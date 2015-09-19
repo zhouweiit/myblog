@@ -59,10 +59,6 @@
             "uri": "/static/frontend/js/modernizr.js",
             "type": "js"
         },
-        "frontend:static/js/silder.js": {
-            "uri": "/static/frontend/js/silder.js",
-            "type": "js"
-        },
         "frontend:widget/header.tpl": {
             "uri": "frontend/widget/header.tpl",
             "type": "tpl"

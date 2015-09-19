@@ -159,7 +159,6 @@
       </ul>
     </div>
   </aside>
-  <script src="{%uri name="common:static/js/silder.js"%}"></script>
   <div class="clear"></div>
   <!-- 清除浮动 --> 
 </div>

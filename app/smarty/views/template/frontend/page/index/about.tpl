@@ -43,7 +43,6 @@
         <!--以下是QQ邮件列表订阅嵌入代码--><a target="_blank" href="http://list.qq.com/cgi-bin/qf_invite?id=65fb9b3618916f162973471ebc5b97ff786efae0ec9a863e"><img border="0" alt="填写您的邮件地址，订阅我们的精彩内容：" src="http://rescdn.list.qq.com/zh_CN/htmledition/images/qunfa/manage/picMode_light_m.png" /></a> </p>
     </div>
   </aside>
-  <script src="{%uri name="common:static/js/silder.js"%}"></script>
   <div class="clear"></div>
   <!-- 清除浮动 --> 
 </div>

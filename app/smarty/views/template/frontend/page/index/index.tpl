@@ -130,7 +130,6 @@
       </ul>
     </div>
   </aside>
-  <script src="js/silder.js"></script>
   <div class="clear"></div>
   <!-- 清除浮动 --> 
 </div>
