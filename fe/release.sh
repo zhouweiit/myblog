@@ -1,7 +1,8 @@
 #!/bin/bash
 server_project_root=/Users/baidu/Zend/workspaces/php_workspace/myblog
 rm -rf ./output
-fisp release -cr ./home -d ./output
+fisp release -cr ./frontend -d ./output
+fisp release -cr ./backend -d ./output
 fisp release -cr ./common -d ./output
 echo "delete server project files"
 rm -rf $server_project_root/public/static
