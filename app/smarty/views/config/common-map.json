@@ -7,10 +7,6 @@
                 "isPage": true
             }
         },
-        "common:static/css/base.css": {
-            "uri": "/static/common/css/base.css",
-            "type": "css"
-        },
         "common:static/js/base64.min.js": {
             "uri": "/static/common/js/base64.min.js",
             "type": "js",

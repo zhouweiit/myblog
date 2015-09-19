@@ -14,13 +14,13 @@
       <p class="box_c"><span class="d_time">发布时间：2014-04-17</span><span>编辑：杨青</span><span>浏览（390）</span><span>评论览（14）</span></p>
       <ul class="infos">
         <p>2014第二版黑色Html5个人博客模板主题《如影随形》，如精灵般的影子会给人一种神秘的感觉。一张剪影图黑白搭配，如果整个网站用黑白灰三色，会显得比较太过沉重，于是，在选择亮色方面，用以红为主色，蓝为辅色。这样就铺上了一些神秘甚至有些俏皮的元素。</p>
-        <p>如果你更喜欢用蓝色或者绿色，这也不错，替换关键的颜色值就行了，推荐颜色值：<img src="images/color.jpg" alt="黑色Html5个人博客模板"></p>
+        <p>如果你更喜欢用蓝色或者绿色，这也不错，替换关键的颜色值就行了，推荐颜色值：<img src="/static/frontend/images/color.jpg" alt="黑色Html5个人博客模板"></p>
         <p>Html5响应式两栏布局，LOGO重点突出，首页推荐文章列表以Logo中轴线为时间轴，鼠标Hover触发时间轴左侧栏显示文章发布时间，文字banner动画均以css3代码来实现效果。</p>
         <p><b>首页效果图：</b></p>
-        <p><img src="images/xgt.jpg" alt="黑色Html5个人博客模板"></p>
+        <p><img src="/static/frontend/images/xgt.jpg" alt="黑色Html5个人博客模板"></p>
         <p><b>移动设备和平板电脑浏览效果：</b></p>
-        <p><img src="images/ltpic.jpg" alt="黑色Html5个人博客模板"></p>
-        <p><img src="images/col.jpg" alt="黑色Html5个人博客模板"></p>
+        <p><img src="/static/frontend/images/ltpic.jpg" alt="黑色Html5个人博客模板"></p>
+        <p><img src="/static/frontend/images/col.jpg" alt="黑色Html5个人博客模板"></p>
       </ul>
       <div class="keybq">
         <p><span>关键字词</span>：黑色,个人博客,时间轴,响应式</p>
@@ -83,7 +83,7 @@
       </h2>
       <ul class="pl_n">
         <dl>
-          <dt><img src="images/s8.jpg"> </dt>
+          <dt><img src="/static/frontend/images/s8.jpg"> </dt>
           <dt> </dt>
           <dd>DanceSmile
             <time>49分钟前</time>
@@ -91,7 +91,7 @@
           <dd><a href="/">文章非常详细，我很喜欢.前端的工程师很少，我记得几年前yahoo花高薪招聘前端也招不到</a></dd>
         </dl>
         <dl>
-          <dt><img src="images/s7.jpg"> </dt>
+          <dt><img src="/static/frontend/images/s7.jpg"> </dt>
           <dt> </dt>
           <dd>yisa
             <time>2小时前</time>
@@ -99,7 +99,7 @@
           <dd><a href="/">我手机里面也有这样一个号码存在</a></dd>
         </dl>
         <dl>
-          <dt><img src="images/s6.jpg"> </dt>
+          <dt><img src="/static/frontend/images/s6.jpg"> </dt>
           <dt> </dt>
           <dd>小林博客
             <time>8月7日</time>
@@ -107,7 +107,7 @@
           <dd><a href="/">博客色彩丰富，很是好看</a></dd>
         </dl>
         <dl>
-          <dt><img src="images/003.jpg"> </dt>
+          <dt><img src="/static/frontend/images/003.jpg"> </dt>
           <dt> </dt>
           <dd>DanceSmile
             <time>49分钟前</time>
@@ -115,7 +115,7 @@
           <dd><a href="/">文章非常详细，我很喜欢.前端的工程师很少，我记得几年前yahoo花高薪招聘前端也招不到</a></dd>
         </dl>
         <dl>
-          <dt><img src="images/002.jpg"> </dt>
+          <dt><img src="/static/frontend/images/002.jpg"> </dt>
           <dt> </dt>
           <dd>yisa
             <time>2小时前</time>
@@ -126,7 +126,7 @@
       <h2>
         <p>最近访客</p>
         <ul>
-          <img src="images/vis.jpg"><!-- 直接使用“多说”插件的调用代码 -->
+          <img src="/static/frontend/images/vis.jpg"><!-- 直接使用“多说”插件的调用代码 -->
         </ul>
       </h2>
     </div>

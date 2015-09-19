@@ -14,51 +14,51 @@
         <p><span>个人博客</span>模板</p>
         <a href="/" class="more">更多>></a> </h3>
       <ul>
-        <li><a href="/"  target="_blank"><img src="images/t00.jpg"></a><span>黑色Html5个人博客模板主题《如影随形》</span></li>
-        <li><a href="/"  target="_blank"><img src="images/t01.jpg"></a><span>仿新浪博客风格·梅——古典个人博客模板</span></li>
-        <li><a href="/" target="_blank"><img src="images/t02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
-        <li><a href="/"  target="_blank"><img src="images/t03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
-        <li><a href="/" target="_blank"><img src="images/t04.jpg"></a><span>女生清新个人博客网站模板</span></li>
-        <li><a href="/"  target="_blank"><img src="images/t05.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
-        <li><a href="/"  target="_blank"><img src="images/t06.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
-        <li><a href="/"  target="_blank"><img src="images/01.jpg"></a><span>仿新浪博客风格·梅——古典个人博客模板</span></li>
-        <li><a href="/" target="_blank"><img src="images/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
-        <li><a href="/" target="_blank"><img src="images/04.jpg"></a><span>女生清新个人博客网站模板</span></li>
-        <li><a href="/"  target="_blank"><img src="images/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
-        <li><a href="/"  target="_blank"><img src="images/03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
+        <li><a href="/"  target="_blank"><img src="/static/frontend/images/t00.jpg"></a><span>黑色Html5个人博客模板主题《如影随形》</span></li>
+        <li><a href="/"  target="_blank"><img src="/static/frontend/images/t01.jpg"></a><span>仿新浪博客风格·梅——古典个人博客模板</span></li>
+        <li><a href="/" target="_blank"><img src="/static/frontend/images/t02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
+        <li><a href="/"  target="_blank"><img src="/static/frontend/images/t03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
+        <li><a href="/" target="_blank"><img src="/static/frontend/images/t04.jpg"></a><span>女生清新个人博客网站模板</span></li>
+        <li><a href="/"  target="_blank"><img src="/static/frontend/images/t05.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
+        <li><a href="/"  target="_blank"><img src="/static/frontend/images/t06.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
+        <li><a href="/"  target="_blank"><img src="/static/frontend/images/01.jpg"></a><span>仿新浪博客风格·梅——古典个人博客模板</span></li>
+        <li><a href="/" target="_blank"><img src="/static/frontend/images/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
+        <li><a href="/" target="_blank"><img src="/static/frontend/images/04.jpg"></a><span>女生清新个人博客网站模板</span></li>
+        <li><a href="/"  target="_blank"><img src="/static/frontend/images/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
+        <li><a href="/"  target="_blank"><img src="/static/frontend/images/03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
       </ul>
       <h3>
         <p><span>企业</span>网站模板</p>
         <a href="/" class="more">更多>></a> </h3>
       <ul>
-        <li><a href="/"  target="_blank"><img src="images/01.jpg"></a><span>仿新浪博客风格·梅——古典个人博客模板</span></li>
-        <li><a href="/" target="_blank"><img src="images/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
-        <li><a href="/"  target="_blank"><img src="images/03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
-        <li><a href="/" target="_blank"><img src="images/04.jpg"></a><span>女生清新个人博客网站模板</span></li>
-        <li><a href="/"  target="_blank"><img src="images/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
-        <li><a href="/"  target="_blank"><img src="images/03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
+        <li><a href="/"  target="_blank"><img src="/static/frontend/images/01.jpg"></a><span>仿新浪博客风格·梅——古典个人博客模板</span></li>
+        <li><a href="/" target="_blank"><img src="/static/frontend/images/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
+        <li><a href="/"  target="_blank"><img src="/static/frontend/images/03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
+        <li><a href="/" target="_blank"><img src="/static/frontend/images/04.jpg"></a><span>女生清新个人博客网站模板</span></li>
+        <li><a href="/"  target="_blank"><img src="/static/frontend/images/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
+        <li><a href="/"  target="_blank"><img src="/static/frontend/images/03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
       </ul>
       <h3>
         <p>个人<span>作品</span></p>
         <a href="/" class="more">更多>></a> </h3>
       <ul>
-        <li><a href="/"  target="_blank"><img src="images/01.jpg"></a><span>仿新浪博客风格·梅——古典个人博客模板</span></li>
-        <li><a href="/" target="_blank"><img src="images/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
-        <li><a href="/"  target="_blank"><img src="images/03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
-        <li><a href="/" target="_blank"><img src="images/04.jpg"></a><span>女生清新个人博客网站模板</span></li>
-        <li><a href="/"  target="_blank"><img src="images/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
-        <li><a href="/"  target="_blank"><img src="images/03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
+        <li><a href="/"  target="_blank"><img src="/static/frontend/images/01.jpg"></a><span>仿新浪博客风格·梅——古典个人博客模板</span></li>
+        <li><a href="/" target="_blank"><img src="/static/frontend/images/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
+        <li><a href="/"  target="_blank"><img src="/static/frontend/images/03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
+        <li><a href="/" target="_blank"><img src="/static/frontend/images/04.jpg"></a><span>女生清新个人博客网站模板</span></li>
+        <li><a href="/"  target="_blank"><img src="/static/frontend/images/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
+        <li><a href="/"  target="_blank"><img src="/static/frontend/images/03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
       </ul>
       <h3>
         <p><span>国外</span>Html5模板</p>
         <a href="/" class="more">更多>></a> </h3>
       <ul>
-        <li><a href="/"  target="_blank"><img src="images/01.jpg"></a><span>仿新浪博客风格·梅——古典个人博客模板</span></li>
-        <li><a href="/" target="_blank"><img src="images/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
-        <li><a href="/"  target="_blank"><img src="images/03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
-        <li><a href="/" target="_blank"><img src="images/04.jpg"></a><span>女生清新个人博客网站模板</span></li>
-        <li><a href="/"  target="_blank"><img src="images/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
-        <li><a href="/"  target="_blank"><img src="images/03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
+        <li><a href="/"  target="_blank"><img src="/static/frontend/images/01.jpg"></a><span>仿新浪博客风格·梅——古典个人博客模板</span></li>
+        <li><a href="/" target="_blank"><img src="/static/frontend/images/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
+        <li><a href="/"  target="_blank"><img src="/static/frontend/images/03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
+        <li><a href="/" target="_blank"><img src="/static/frontend/images/04.jpg"></a><span>女生清新个人博客网站模板</span></li>
+        <li><a href="/"  target="_blank"><img src="/static/frontend/images/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
+        <li><a href="/"  target="_blank"><img src="/static/frontend/images/03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
       </ul>
     </div>
     <div class="page"><a title="Total record"><b>113</b></a><b>1</b><a href="/">2</a><a href="/">3</a><a href="/">4</a><a href="/">5</a><a href="/">&gt;</a><a href="/">&gt;&gt;</a></div>
@@ -104,7 +104,7 @@
       </h2>
       <ul class="pl_n">
         <dl>
-          <dt><img src="images/s8.jpg"> </dt>
+          <dt><img src="/static/frontend/images/s8.jpg"> </dt>
           <dt> </dt>
           <dd>DanceSmile
             <time>49分钟前</time>
@@ -112,7 +112,7 @@
           <dd><a href="/">文章非常详细，我很喜欢.前端的工程师很少，我记得几年前yahoo花高薪招聘前端也招不到</a></dd>
         </dl>
         <dl>
-          <dt><img src="images/s7.jpg"> </dt>
+          <dt><img src="/static/frontend/images/s7.jpg"> </dt>
           <dt> </dt>
           <dd>yisa
             <time>2小时前</time>
@@ -120,7 +120,7 @@
           <dd><a href="/">我手机里面也有这样一个号码存在</a></dd>
         </dl>
         <dl>
-          <dt><img src="images/s6.jpg"> </dt>
+          <dt><img src="/static/frontend/images/s6.jpg"> </dt>
           <dt> </dt>
           <dd>小林博客
             <time>8月7日</time>
@@ -128,7 +128,7 @@
           <dd><a href="/">博客色彩丰富，很是好看</a></dd>
         </dl>
         <dl>
-          <dt><img src="images/003.jpg"> </dt>
+          <dt><img src="/static/frontend/images/003.jpg"> </dt>
           <dt> </dt>
           <dd>DanceSmile
             <time>49分钟前</time>
@@ -136,7 +136,7 @@
           <dd><a href="/">文章非常详细，我很喜欢.前端的工程师很少，我记得几年前yahoo花高薪招聘前端也招不到</a></dd>
         </dl>
         <dl>
-          <dt><img src="images/002.jpg"> </dt>
+          <dt><img src="/static/frontend/images/002.jpg"> </dt>
           <dt> </dt>
           <dd>yisa
             <time>2小时前</time>
@@ -147,7 +147,7 @@
       <h2>
         <p>最近访客</p>
         <ul>
-          <img src="images/vis.jpg"><!-- 直接使用“多说”插件的调用代码 -->
+          <img src="/static/frontend/images/vis.jpg"><!-- 直接使用“多说”插件的调用代码 -->
         </ul>
       </h2>
     </div>
