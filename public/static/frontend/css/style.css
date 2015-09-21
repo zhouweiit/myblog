@@ -45,6 +45,7 @@
 .pl_n dl { display: block; overflow: hidden; margin-bottom: 12px; color: #ffffff; }
 .pl_n dd { line-height: 22px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden }
 .pl_n dd a { color: #bbbbbb; }
+.pl_n dl dd a:hover { text-decoration: underline; color: #FFF;text-decoration: none;}
 .pl_n time { color: #53a2e1; margin-left: 10px }
 .pl_n dt { float: left; }
 .pl_n dt img { width: 50px; height: 50px; margin-right: 10px; border-radius: 50%; transition: all 1s }

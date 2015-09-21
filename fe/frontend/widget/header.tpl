@@ -28,5 +28,25 @@
    		<a href="/index/share">生活游记</a>
    		<a href="/index/new">心情随笔</a>
    		<a href="/index/about">关于我</a>
+   		<input class="search" type="text" placeholder="  全站搜索"/>
    	</nav>
 </header>
+<style>
+input.search{
+	transition:all 0.30s ease-in-out;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	border:#53a2e1 2px solid;
+	border-radius:5px;
+	outline:none;
+	height:25px;
+	float:right;
+	margin-top:10px;
+	margin-right:10px;
+}
+input.search:focus{
+	box-shadow:0 0 5px #53a2e1;
+	-webkit-box-shadow:0 0 5px #53a2e1;
+	-moz-box-shadow:0 0 5px #53a2e1;
+}
+</style>

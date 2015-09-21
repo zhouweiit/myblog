@@ -7,7 +7,6 @@
 	 name="frontend:widget/header.tpl"
   %}
   <article>
-    <h3 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="1/">关于我</a></h3>
     <div class="about">
       <h2>Just about me</h2>
       <ul>
@@ -33,4 +32,4 @@
   <div class="clear"></div>
   <!-- 清除浮动 --> 
 </div>
-{%require name='frontend:page/index/about.tpl'%}{%/block%}
+{%/block%}

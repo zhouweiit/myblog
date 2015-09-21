@@ -7,7 +7,6 @@
 	 name="frontend:widget/header.tpl"
   %}
   <article>
-    <h2 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="1/">模板分享</a>><a href="1/">个人博客模板</a></h2>
     <div class="index_about">
       <h2 class="c_titile">黑色Html5个人博客模板主题《如影随形》</h2>
       <p class="box_c"><span class="d_time">发布时间：2014-04-17</span><span>编辑：杨青</span><span>浏览（390）</span><span>评论览（14）</span></p>
@@ -49,4 +48,4 @@
   <div class="clear"></div>
   <!-- 清除浮动 --> 
 </div>
-{%require name='frontend:page/index/new.tpl'%}{%/block%}
+{%/block%}

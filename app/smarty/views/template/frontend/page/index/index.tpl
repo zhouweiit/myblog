@@ -74,4 +74,4 @@
   <div class="clear"></div>
   <!-- 清除浮动 --> 
 </div>
-{%require name='frontend:page/index/index.tpl'%}{%/block%}
+{%/block%}

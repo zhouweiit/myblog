@@ -1,6 +1,6 @@
 /* 共用css */
 * { margin: 0; padding: 0 }
-body { font: 12px "宋体", Arial, Helvetica, sans-serif; background: #f5f5f5 }
+body { font: 12px "Helvetica Neue", Arial, Helvetica, sans-serif; background: #f5f5f5 }
 img { border: 0; display: block }
 ul { list-style: none; }
 h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal; }
@@ -27,6 +27,6 @@ nav a:hover { background: #53a2e1; }
 article { width: 73%; float: left;  }/* 左侧栏 */
 aside { width: 27%;  float: right; }/* 右侧栏 */
 /* 版权信息 */
-.copyright { background: #0d0d0d; border-radius: 50%; text-align: center; color: #d8d8d8; padding: 20px; margin: 60px 20px 0 20px; border: #1b1a1a 1px solid; }
+.copyright {border-radius: 50%; text-align: center; color: #d8d8d8; padding: 20px; margin: 60px 20px 0 20px; }
 .copyright p { line-height: 26px; text-shadow: #000 1px 1px 1px }
 .copyright p a { color: #d8d8d8; }

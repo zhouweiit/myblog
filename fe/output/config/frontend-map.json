@@ -1,0 +1,96 @@
+{
+    "res": {
+        "frontend:page/index/about.tpl": {
+            "uri": "/template/frontend/page/index/about.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            }
+        },
+        "frontend:page/index/index.tpl": {
+            "uri": "/template/frontend/page/index/index.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            }
+        },
+        "frontend:page/index/new.tpl": {
+            "uri": "/template/frontend/page/index/new.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            }
+        },
+        "frontend:page/index/newlist.tpl": {
+            "uri": "/template/frontend/page/index/newlist.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            }
+        },
+        "frontend:page/index/share.tpl": {
+            "uri": "/template/frontend/page/index/share.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            }
+        },
+        "frontend:static/css/about.css": {
+            "uri": "/static/frontend/css/about.css",
+            "type": "css"
+        },
+        "frontend:static/css/base.css": {
+            "uri": "/static/frontend/css/base.css",
+            "type": "css"
+        },
+        "frontend:static/css/index.css": {
+            "uri": "/static/frontend/css/index.css",
+            "type": "css"
+        },
+        "frontend:static/css/media.css": {
+            "uri": "/static/frontend/css/media.css",
+            "type": "css"
+        },
+        "frontend:static/css/style.css": {
+            "uri": "/static/frontend/css/style.css",
+            "type": "css"
+        },
+        "frontend:static/js/modernizr.js": {
+            "uri": "/static/frontend/js/modernizr.js",
+            "type": "js"
+        },
+        "frontend:widget/aside.tpl": {
+            "uri": "frontend/widget/aside.tpl",
+            "type": "tpl"
+        },
+        "frontend:widget/bloginfo.tpl": {
+            "uri": "frontend/widget/bloginfo.tpl",
+            "type": "tpl"
+        },
+        "frontend:widget/copyright.tpl": {
+            "uri": "frontend/widget/copyright.tpl",
+            "type": "tpl"
+        },
+        "frontend:widget/header.tpl": {
+            "uri": "frontend/widget/header.tpl",
+            "type": "tpl"
+        },
+        "frontend:widget/links.tpl": {
+            "uri": "frontend/widget/links.tpl",
+            "type": "tpl"
+        },
+        "frontend:widget/newest.tpl": {
+            "uri": "frontend/widget/newest.tpl",
+            "type": "tpl"
+        },
+        "frontend:widget/ranking.tpl": {
+            "uri": "frontend/widget/ranking.tpl",
+            "type": "tpl"
+        },
+        "frontend:widget/recommend.tpl": {
+            "uri": "frontend/widget/recommend.tpl",
+            "type": "tpl"
+        }
+    },
+    "pkg": {}
+}
