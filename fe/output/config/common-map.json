@@ -1,0 +1,39 @@
+{
+    "res": {
+        "common:page/frontLayout.tpl": {
+            "uri": "/template/common/page/frontLayout.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            }
+        },
+        "common:static/js/base64.min.js": {
+            "uri": "/static/common/js/base64.min.js",
+            "type": "js",
+            "deps": [
+                "buffer"
+            ]
+        },
+        "common:static/js/jquery-1.8.1.min.js": {
+            "uri": "/static/common/js/jquery-1.8.1.min.js",
+            "type": "js"
+        },
+        "common:static/js/jsencrypt.min.js": {
+            "uri": "/static/common/js/jsencrypt.min.js",
+            "type": "js"
+        },
+        "common:static/js/mod.js": {
+            "uri": "/static/common/js/mod.js",
+            "type": "js"
+        },
+        "common:static/js/modernizr.js": {
+            "uri": "/static/common/js/modernizr.js",
+            "type": "js"
+        },
+        "common:static/js/silder.js": {
+            "uri": "/static/common/js/silder.js",
+            "type": "js"
+        }
+    },
+    "pkg": {}
+}

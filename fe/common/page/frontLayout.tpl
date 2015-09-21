@@ -7,6 +7,9 @@
 <meta name="description" content="如影随形主题的个人博客模板，神秘、俏皮。" />
 <link href="{%uri name="frontend:static/css/base.css"%}" rel="stylesheet">
 <link href="{%uri name="frontend:static/css/media.css"%}" rel="stylesheet">
+<link href="{%uri name="frontend:static/css/index.css"%}" rel="stylesheet">
+<link href="{%uri name="frontend:static/css/about.css"%}" rel="stylesheet">
+<link href="{%uri name="frontend:static/css/style.css"%}" rel="stylesheet">
 <script src="{%uri name="common:static/js/jquery-1.8.1.min.js"%}"></script>
 <script src="{%uri name="common:static/js/jsencrypt.min.js"%}"></script>
 <script src="{%uri name="common:static/js/modernizr.js"%}"></script>
