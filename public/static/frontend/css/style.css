@@ -51,12 +51,12 @@
 .pl_n dt img { width: 50px; height: 50px; margin-right: 10px; border-radius: 50%; transition: all 1s }
 .pl_n dt img:hover { -webkit-transform: rotate(360deg); -ms-transform: rotate(30deg); -moz-transform: rotate(30deg); -o-transform: rotate(30deg); transform: rotate(30deg); }
 .index_about { margin: 20px }
-.c_titile { font-size: 22px; margin: 20px 0; text-align: center; font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif; }
+.c_titile { font-size: 22px; margin: 20px 0; text-align: center; font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif; color:#525554;}
 .box_c { color: #999; text-align: center }
 .box_c span { margin: 0 10px; }
 .box_c span a { color: #099; }
 ul.infos { overflow: hidden; margin: 20px 0; line-height: 28px; font-size: 14px; text-indent: 2em; color: #525554 }
-ul.infos p { margin-bottom: 10px }
+ul.infos p { margin-bottom: 10px;color:#525554;}
 ul.infos p img { display: block; margin: auto }
 .keybq { background: url(/static/frontend/images/6264.png) no-repeat 10px center #F8F8F8; line-height: 30px; height: 30px; padding-left: 40px; border: 1px solid #F0F0F0; margin: 20px 0;color:#756f71; }
 .keybq span { color: #000000 }

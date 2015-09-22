@@ -12,8 +12,8 @@ a:hover { text-decoration: none; }
 /* 头部信息 */
 .ibody { background: url(/static/frontend/images/bg.png) repeat-y; width: 1000px; margin: auto; box-shadow: 2px -1px 10px #666; }
 header { position: relative; }
-header h1 { padding: 15px 0 0 80px; font-size: 22px; font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif; }
-header h2 { margin: 20px 80px; color: #8e8d8d }
+header h1 { padding: 15px 0 0 80px; font-size: 22px; font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif;color:#525554;}
+header h2 { margin: 20px 80px; color: #525554; }
 /* logo */
 .logo { background: url(/static/frontend/images/logo.png) no-repeat #000 center; width: 145px; height: 145px; border-radius: 50%; position: absolute; left: -72px; top: 40px; box-shadow: 0px 2px 2px #414141; }
 .logo:hover { background: url(/static/frontend/images/home.png) no-repeat #000 center; }

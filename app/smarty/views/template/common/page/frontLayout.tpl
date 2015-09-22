@@ -6,7 +6,6 @@
 <meta name="keywords" content="个人博客模板,博客模板,响应式" />
 <meta name="description" content="如影随形主题的个人博客模板，神秘、俏皮。" />
 <link href="{%uri name="frontend:static/css/base.css"%}" rel="stylesheet">
-<link href="{%uri name="frontend:static/css/media.css"%}" rel="stylesheet">
 <link href="{%uri name="frontend:static/css/index.css"%}" rel="stylesheet">
 <link href="{%uri name="frontend:static/css/about.css"%}" rel="stylesheet">
 <link href="{%uri name="frontend:static/css/style.css"%}" rel="stylesheet">

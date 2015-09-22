@@ -76,7 +76,7 @@
         <div class="dateview">2013-09-05</div>
       </div>
     </div>
-    <div class="page"><a title="Total record"><b>113</b></a><a>&lt;&lt;</a><a>&lt;</a></a><b>1</b><a href="/">2</a><a href="/">3</a><a href="/">4</a><a href="/">5</a><a href="/">&gt;</a><a href="/">&gt;&gt;</a></div>
+    <div class="page"><a>&lt;&lt;</a><a>&lt;</a></a><b>1</b><a href="/">2</a><a href="/">3</a><a href="/">4</a><a href="/">5</a><a href="/">&gt;</a><a href="/">&gt;&gt;</a></div>
   </article>
   <aside>
     {%widget

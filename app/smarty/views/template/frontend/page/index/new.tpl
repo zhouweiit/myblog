@@ -179,7 +179,8 @@
         	<input class="inputblue" type="text" style="width:200px;"/> 昵称 (必填)<br />
         	<input class="inputblue" type="text" style="width:200px;"/> 电子邮箱 (我们会为您保密)<br />
         	<input class="inputblue" type="text" style="width:200px;"/> 网址<br />
-        	<textarea class="inputblue" style="width:550px;height:150px;"></textarea>
+        	<textarea class="inputblue" style="width:550px;height:150px;"></textarea><br />
+        	<div class="commentsubmit">提交评论</div>
         </form>
         
       </div>

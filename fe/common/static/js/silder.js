@@ -1,15 +1,6 @@
-/*导航当前页高亮*/
-var obj=null;
-var As=document.getElementById('topnav').getElementsByTagName('a');
-obj = As[0];
-for(i=1;i<As.length;i++){if(window.location.href.indexOf(As[i].href)>=0)
-obj=As[i];}
-obj.id='topnav_current'
-
-/*百度分享广告*/
-window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-
 $(function(){
+	
+	//搜索按钮样式
 	$("img.imageserach").mousedown(function(){
 		$(this).css('width','25px');
 		$(this).css('margin-right','10px');
@@ -20,14 +11,27 @@ $(function(){
 			$("img.imageserach").css('margin-top','10px');
 		},100);
 	});
+	//搜索按钮样式
 	$("img.imageserach").mouseout(function(){
 		$(this).css('width','25px');
 		$(this).css('margin-right','10px');
 		$(this).css('margin-top','12px');
 	});
+	//搜索按钮样式
 	$("img.imageserach").mouseover(function(){
 		$(this).css('width','28px');
 		$(this).css('margin-right','7px');
 		$(this).css('margin-top','10px');
+	});
+	
+	//评论提交按钮样式
+	$("div.commentsubmit").click(function(){
+		$(this).css("padding","1px");
+		$(this).css("border","#1d73ba 3px solid");
+	});
+	
+	$("div.commentsubmit").mouseout(function(){
+		$(this).css("padding","3px");
+		$(this).css("border","#53a2e1 1px solid");
 	});
 });

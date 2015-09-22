@@ -125,6 +125,25 @@ a.readmore { background: #A9B1D0; color: #FFF; padding: 5px 10px; float: right; 
 .imageserach{
 	width:25px;float:right;margin-top:12px;margin-right:10px;
 }
+
+div.commentsubmit{
+	padding:3px;
+	border:#53a2e1 1px solid;
+	width:60px;
+	text-align:center;
+	border-radius:5px;
+	background:#53a2e1;
+	color:#ffffff;
+	margin-top:3px;
+}
+
+div.commentsubmit:hover{
+	border:#53a2e1 1px solid;
+	box-shadow:0 0 10px #53a2e1;
+	-webkit-box-shadow:0 0 10px #53a2e1;
+	-moz-box-shadow:0 0 10px #53a2e1;
+}
+
 .inputblue{
 	transition:all 0.30s ease-in-out;
 	-webkit-transition: all 0.30s ease-in-out;

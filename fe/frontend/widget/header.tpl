@@ -29,7 +29,5 @@
    		<a href="/index/new">幽默段子</a>
    		<a href="/index/about">关于我</a>
    		<img class="imageserach" src="/static/frontend/images/search.png"/>
-   		<input class="inputblue" type="text" placeholder="  全站搜索" style="float:right;"/>
    	</nav>
 </header>
-
