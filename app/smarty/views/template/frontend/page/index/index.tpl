@@ -64,7 +64,19 @@
         <p class="autor"><span>作者：杨青</span><span>分类：【<a href="/">css3</a>】</span><span>浏览（<a href="/">459</a>）</span><span>评论（<a href="/">30</a>）</span></p>
         <div class="dateview">2013-09-05</div>
       </div>
+      <div class="blogs">
+        <h3><a href="/">css3制作的一个魔方</a></h3>
+        <figure><img src="/static/frontend/images/04.png" ></figure>
+        <ul>
+          本应用由CSS3代码实现，无图片和flash，请使用Chrome等webkit内核浏览器或Firefox打开。破解攻略和大家分享下：首先，破解魔方，我们就要先了解它的结构，魔方共6色6面，每面又分为中央块（最中间的块6个）、角块（4角的块8个）和边块（4条边中间的块12个）...
+          </p>
+          <a href="/" target="_blank" class="readmore">全文</a>
+        </ul>
+        <p class="autor"><span>作者：杨青</span><span>分类：【<a href="/">css3</a>】</span><span>浏览（<a href="/">459</a>）</span><span>评论（<a href="/">30</a>）</span></p>
+        <div class="dateview">2013-09-05</div>
+      </div>
     </div>
+    <div class="page"><a title="Total record"><b>113</b></a><a>&lt;&lt;</a><a>&lt;</a></a><b>1</b><a href="/">2</a><a href="/">3</a><a href="/">4</a><a href="/">5</a><a href="/">&gt;</a><a href="/">&gt;&gt;</a></div>
   </article>
   <aside>
     {%widget

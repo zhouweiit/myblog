@@ -4,7 +4,7 @@
 .about_h a:hover { color: #e41635 }
 .newblog { margin: 0 20px 20px 20px; border-bottom: #dcdcdc 1px dashed; position: relative; clear: both; display: inline-block; padding-bottom: 20px; }
 .newblog h3 { font-size: 14px; font-weight: bold; margin-bottom: 10px }
-.newblog h3 a { color: #181818; }
+.newblog h3 a { color: #474645; }
 .newblog h3 a:hover { text-decoration: underline }
 .newblog ul { float: left; line-height: 20px; width: 72%; color: #474645; }
 .newblog::before { content: ""; width: 10px; height: 10px; border-radius: 50%; position: absolute; background: #cac1c1; border: 2px solid #fff; left: -27px; -webkit-transition: all 1s; -moz-transition: all 1s; -o-transition: all 1s; transition: all 1s; }
@@ -23,8 +23,8 @@
 .page a b { color: #999; }
 .page>b, .page a { margin: 0 2px; height: 26px; line-height: 26px; border-radius: 50%; width: 26px; text-align: center; display: inline-block }
 .page a { margin: 0 2px; height: 26px; line-height: 26px; border-radius: 50%; width: 26px; text-align: center; display: inline-block }/* 针对IE6 */
-.page>b, .page a:hover { background: #333; color: #FFF; }
-.page a { color: #F33; border: #999 1px solid; }
+.page>b, .page a:hover { background: #8c8d8d; color: #FFF; }
+.page a { color: #8c8d8d; border: #999 1px solid; }
 .rnav { width: 120px; margin: 20px auto; overflow: hidden; }
 .rnav li { width: 120px; text-align: center; display: inline-block; margin-bottom: 2px; height: 40px; line-height: 40px }
 .rnav li a { color: #FFF; display: block; -webkit-transition: all 1s; -moz-transition: all 1s; -o-transition: all 1s; transition: all 1s }
@@ -42,7 +42,7 @@
 .ph_n li span { margin-right: 10px; font-family: "Microsoft Yahei"; color: #FFF; background: #404040; padding: 3px 5px }
 .ph_n li span.num1, .ph_n li span.num2, .ph_n li span.num3 { background: #f16b17 }
 /* 最新评论 */
-.pl_n dl { display: block; overflow: hidden; margin-bottom: 12px; color: #ffffff; }
+.pl_n dl { display: block; overflow: hidden; margin-bottom: 12px; color: #bbbbbb; }
 .pl_n dd { line-height: 22px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden }
 .pl_n dd a { color: #bbbbbb; }
 .pl_n dl dd a:hover { text-decoration: underline; color: #FFF;text-decoration: none;}
@@ -58,11 +58,12 @@
 ul.infos { overflow: hidden; margin: 20px 0; line-height: 28px; font-size: 14px; text-indent: 2em; color: #525554 }
 ul.infos p { margin-bottom: 10px }
 ul.infos p img { display: block; margin: auto }
-.keybq { background: url(/static/frontend/images/6264.png) no-repeat 10px center #F8F8F8; line-height: 30px; height: 30px; padding-left: 40px; border: 1px solid #F0F0F0; margin: 20px 0; }
-.keybq span { color: #099 }
+.keybq { background: url(/static/frontend/images/6264.png) no-repeat 10px center #F8F8F8; line-height: 30px; height: 30px; padding-left: 40px; border: 1px solid #F0F0F0; margin: 20px 0;color:#756f71; }
+.keybq span { color: #000000 }
 .nextinfo { line-height: 24px; }
+div.otherlink{height:180px;}
 .nextinfo a, .otherlink li a { color: #756f71 }
-.otherlink h2 { border-bottom: #099 2px solid; line-height: 40px; font-size: 12px; background: url(/static/frontend/images/5794.png) 10px center no-repeat; padding-left: 40px; color: #099 }
+.otherlink h2,.comment h2{ border-bottom: #53a2e1 2px solid; line-height: 40px; font-size: 12px; background: url(/static/frontend/images/5794.png) 10px center no-repeat; padding-left: 40px; color: #53a2e1 }
 .otherlink ul { margin: 10px 0 }
 .otherlink li { line-height: 24px; height: 24px; display: block; width: 290px; float: left; overflow: hidden; margin-right: 30px; }
 .otherlink li a:hover, .nextinfo a:hover { text-decoration: underline }

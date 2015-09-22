@@ -21,5 +21,5 @@
 {%/head%}
 {%body id="type_page"%}
 {%block name="content"%}{%/block%}
-{%/body%}
+{%require name='common:page/frontLayout.tpl'%}{%/body%}
 </html>
