@@ -1,7 +1,7 @@
 <header>
 	<div class="writeinfo" style="height:100px;">
 		<div style="float:left;">
-		   	<h1>如影随形</h1>
+		   	<h1>笑傲江湖</h1>
 		   	<h2>影子是一个会撒谎的精灵，它在虚空中流浪和等待被发现之间;在存在与不存在之间....</h2>
 	   	</div>
 	   	<div style="float:right;padding-top:15px;font:16px '宋体', Arial, Helvetica, sans-serif;color:#bbbbbb;">
@@ -26,38 +26,10 @@
 		<a href="/index/index" id="topnav_current">首页</a>
    		<a href="/index/newlist">技术文档</a>
    		<a href="/index/share">生活游记</a>
-   		<a href="/index/new">心情随笔</a>
+   		<a href="/index/new">幽默段子</a>
    		<a href="/index/about">关于我</a>
+   		<img class="imageserach" src="/static/frontend/images/search.png"/>
    		<input class="inputblue" type="text" placeholder="  全站搜索" style="float:right;"/>
    	</nav>
 </header>
-<style>
-.inputblue{
-	transition:all 0.30s ease-in-out;
-	-webkit-transition: all 0.30s ease-in-out;
-	-moz-transition: all 0.30s ease-in-out;
-	border:#bcb6b6 1px solid;
-	border-radius:3px;
-	outline:none;
-	height:25px;
-	margin-top:10px;
-	margin-right:10px;
-}
-.inputblue:focus{
-	border:#53a2e1 1px solid;
-	box-shadow:0 0 10px #53a2e1;
-	-webkit-box-shadow:0 0 10px #53a2e1;
-	-moz-box-shadow:0 0 10px #53a2e1;
-}
 
-div.comment_info{
-	margin-top:10px;
-	padding:10px;
-	border:#bcb6b6 1px solid;
-	border-radius:3px;	
-	background-color:#fafafa;
-}
-div.clear{
-	clear:both;
-}
-</style>

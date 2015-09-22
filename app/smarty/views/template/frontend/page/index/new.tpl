@@ -44,77 +44,144 @@
       </div>
       <div class="comment">
         <h2 style="background: url(/static/frontend/images/comment.png) 10px center no-repeat; ">热点评论</h2>
+        
         <div class="comment_info">
-        	<div style="float:left;">
+        	<div class="comment_user">
         		<img src="/static/frontend/images/s8.jpg" style="width:70px;">
-        		<div style="font-size:13px;font-weight:bold;color:#756f71;padding-top:8px;text-align:center;">
+        		<div  class="comment_user_name">
         			程序狗
         		</div>
         		<div class="clear"></div>
         	</div>
-        	<div style="float:left;padding-left:23px;font-size:13px;font-weight:normal;color:#756f71;">
+        	<div style="float:left;padding-left:23px;font-weight:normal;">
 	        	<label style="float:left;">2015年10月11日 19:11</label>
-	        	<label style="float:right;margin-left:365px;">回复 | 引用</label>
+	        	<label style="float:right;margin-left:365px;"><a class='replay' href='javascript:void(0)'>回复</a> | <a class='replay' href='javascript:void(0)'>引用</a></label>
 	        	<div class="clear"></div>
         	</div>
-        	<div style="float:left;line-height:18px;font-size:13px;font-weight:normal;color:#756f71;padding-top:10px;padding-left:23px;padding-right:10px;text-align:left;word-break:break-all;word-wrap:break-word;">
+        	<div class="comment_content">
         		<div style="width:565px;">
-        			我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友
+        			<div> <!-- 有引用，需要添加class="comment_content_info" -->
+        				我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友
+        			</div>
         		</div>
         		<div class="clear"></div>
         	</div>
         	<div class="clear"></div>
         </div>
+        
         <div class="comment_info">
-        	<div style="float:left;">
+        	<div class="comment_user">
         		<img src="/static/frontend/images/s8.jpg" style="width:70px;">
-        		<div style="font-size:13px;font-weight:bold;color:#756f71;padding-top:8px;text-align:center;">
+        		<div  class="comment_user_name">
         			程序狗
         		</div>
         		<div class="clear"></div>
         	</div>
-        	<div style="float:left;padding-left:23px;font-size:13px;font-weight:normal;color:#756f71;">
+        	<div style="float:left;padding-left:23px;font-weight:normal;">
 	        	<label style="float:left;">2015年10月11日 19:11</label>
-	        	<label style="float:right;margin-left:365px;">回复 | 引用</label>
+	        	<label style="float:right;margin-left:365px;"><a class='replay' href='javascript:void(0)'>回复</a> | <a class='replay' href='javascript:void(0)'>引用</a></label>
 	        	<div class="clear"></div>
         	</div>
-        	<div style="float:left;line-height:18px;font-size:13px;font-weight:normal;color:#756f71;padding-top:10px;padding-left:23px;padding-right:10px;text-align:left;word-break:break-all;word-wrap:break-word;">
+        	<div class="comment_content">
         		<div style="width:565px;">
-        			我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友
+        			<div> <!-- 有引用，需要添加class="comment_content_info" -->
+        				<div class="atuser">@程序狗：</div>
+        				我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友
+        			</div>
         		</div>
         		<div class="clear"></div>
         	</div>
         	<div class="clear"></div>
         </div>
+        
         <div class="comment_info">
-        	<div style="float:left;">
+        	<div class="comment_user">
         		<img src="/static/frontend/images/s8.jpg" style="width:70px;">
-        		<div style="font-size:13px;font-weight:bold;color:#756f71;padding-top:8px;text-align:center;">
+        		<div  class="comment_user_name">
         			程序狗
         		</div>
         		<div class="clear"></div>
         	</div>
-        	<div style="float:left;padding-left:23px;font-size:13px;font-weight:normal;color:#756f71;">
+        	<div style="float:left;padding-left:23px;font-weight:normal;">
 	        	<label style="float:left;">2015年10月11日 19:11</label>
-	        	<label style="float:right;margin-left:365px;">回复 | 引用</label>
+	        	<label style="float:right;margin-left:365px;"><a class='replay' href='javascript:void(0)'>回复</a> | <a class='replay' href='javascript:void(0)'>引用</a></label>
 	        	<div class="clear"></div>
         	</div>
-        	<div style="float:left;line-height:18px;font-size:13px;font-weight:normal;color:#756f71;padding-top:10px;padding-left:23px;padding-right:10px;text-align:left;word-break:break-all;word-wrap:break-word;">
+        	<div class="comment_content">
         		<div style="width:565px;">
-        			我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友
+        			<div class='comment_quote' style="width:500px;">
+        				<div style="font-weight:bold;">
+		        			程序狗：
+		        		</div>
+		        		<div class="comment_content_info">
+		        			我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝
+		        		</div>
+        			</div>
+        			<div class="comment_content_info">
+        				我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友
+        			</div>
         		</div>
         		<div class="clear"></div>
         	</div>
         	<div class="clear"></div>
         </div>
+        
+        <div class="comment_info">
+        
+        	<div class="comment_user">
+        		<img src="/static/frontend/images/s8.jpg" style="width:70px;">
+        		<div  class="comment_user_name">
+        			程序狗
+        		</div>
+        		<div class="clear"></div>
+        	</div>
+        	<div style="float:left;padding-left:23px;font-weight:normal;">
+	        	<label style="float:left;">2015年10月11日 19:11</label>
+	        	<label style="float:right;margin-left:365px;"><a class='replay' href='javascript:void(0)'>回复</a> | <a class='replay' href='javascript:void(0)'>引用</a></label>
+	        	<div class="clear"></div>
+        	</div>
+        	
+        	<div class="comment_content">
+        	
+        		<div style="width:565px;">
+        			<div class='comment_quote' style="width:500px;">
+        			
+        				<div style="font-weight:bold;margin-bottom:5px;">
+		        			程序狗：
+		        		</div>
+        				
+        				<div class='comment_quote' style="width:400px;">
+	        				<div style="font-weight:bold;">
+			        			程序狗：
+			        		</div>
+			        		<div class="comment_content_info">
+			        			我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝
+			        		</div>
+	        			</div>
+        				
+		        		<div class="comment_content_info">
+		        			我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝
+		        		</div>
+        			</div>
+        			
+        			<div class="comment_content_info">
+        				我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友
+        			</div>
+        			
+        		</div>
+        		<div class="clear"></div>
+        	</div>
+        	<div class="clear"></div>
+        </div>
+        
         <div style="float:block;height:12px;"></div>
         <form style="border-top:#dcdcdc 1px dashed;font-size:13px;color:#756f71;">
         	<input class="inputblue" type="text" style="width:200px;"/> 昵称 (必填)<br />
         	<input class="inputblue" type="text" style="width:200px;"/> 电子邮箱 (我们会为您保密)<br />
         	<input class="inputblue" type="text" style="width:200px;"/> 网址<br />
-        	<textarea class="inputblue" style="width:550px;height:150px;">
-        	</textarea>
+        	<textarea class="inputblue" style="width:550px;height:150px;"></textarea>
         </form>
+        
       </div>
     </div>
   </article>
