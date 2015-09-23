@@ -10,7 +10,7 @@ use Phalcon\Logger;
  * 
  * 使用debug,info,error
  * 
- * @author zhouwei17
+ * @author zhouwei
  *
  */
 class Log {

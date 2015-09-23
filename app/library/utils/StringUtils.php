@@ -8,7 +8,7 @@ class StringUtils {
 	 * @param int $strlength
 	 * @param string $strdata
 	 * @return array
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */ 	 
 	public static function getRandString($strlength,$strdata = 'abcdefghijkmnpqrstuvwxyz123456789'){
 		$captchCode = array();

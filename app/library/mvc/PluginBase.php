@@ -2,6 +2,13 @@
 
 namespace library\mvc;
 
+/**
+ * 
+ * 插件的超类
+ * 
+ * @author zhouwei
+ *
+ */
 abstract class PluginBase {
 	
 	/**

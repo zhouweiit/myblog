@@ -9,7 +9,7 @@ class MathUtils {
 	 * @param float $num	需要四舍五入的数字
 	 * @param int $places	保留的位数
 	 * @return flaot
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	public static function round($num,$places){
 		return round($num, $places);

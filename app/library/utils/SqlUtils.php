@@ -8,7 +8,7 @@ class SqlUtils {
 	 * 根据传入的数组拼接SQL语句与
 	 * @param array $condition
 	 * @return array (conditinSql => sql语句,bindArray=>绑定的参数)
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	public static function getInSqlCondition(array $condition){
 		$conditionSql = '';

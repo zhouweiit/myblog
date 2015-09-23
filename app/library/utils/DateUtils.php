@@ -4,7 +4,7 @@ namespace library\utils;
 /**
  * 日期工具函数
  * 
- * @author zhouwei17
+ * @author zhouwei
  *
  */
 class DateUtils {
@@ -13,7 +13,7 @@ class DateUtils {
 	 * 获取某一个月的天数
 	 * @param date $date 传入一个日期，如2011-05-01
 	 * @return int 月的天数
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	public static function getMonDays($date){
 		return date('t', strtotime($date));
@@ -23,7 +23,7 @@ class DateUtils {
 	 * 根据减少或者增加的月份获取年/月/日的数组
 	 * @param int $reduce 往前或往后推的月份，负数是往前退，如-1，正数是往后推，如1
 	 * @return array 如array(2015,05,03)
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	public static function getDateArrayByReduceOrAddMonth($monthNum){
 		return explode('-',date('Y-m-d', strtotime("{$monthNum} month")));
@@ -34,7 +34,7 @@ class DateUtils {
 	 * @param string $date
 	 * @param int $monthNum
 	 * @return array
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	public static function getDateArrayByReduceOrAddMonthDate($date,$monthNum){
 		return explode('-',date('Y-m-d', strtotime("{$monthNum} month",strtotime($date))));
@@ -43,7 +43,7 @@ class DateUtils {
 	/**
 	 * 获取当前时间年月日的数组格式
 	 * @return array
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	public static function getNowDateArray(){
 		return explode('-',date('Y-m-d'));
@@ -54,7 +54,7 @@ class DateUtils {
 	 * @param int $date 当前日期
 	 * @param string $spreator 日期的分隔符,默认'-'
 	 * @return array('head'=> '月头日期','end'=>'月尾日期')
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	public static function getDateByMonth($date,$spreator = '-'){
 		$dataArray = explode('-',date('Y-m-d',strtotime($date)));
@@ -70,7 +70,7 @@ class DateUtils {
 	 * @param date $startDate	开始日期
 	 * @param date $endDate		结束日期
 	 * @return array 从小到大排的日期
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	public static function getDateMonthRangeArray($startDate,$endDate){
 		if (empty($startDate) || empty($endDate)){

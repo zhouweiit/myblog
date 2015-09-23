@@ -3,6 +3,12 @@
 namespace library\mvc;
 
 use Phalcon\Config\Adapter\Ini;
+/**
+ * service的容器
+ * 
+ * @author zhouwei
+ *
+ */
 abstract class ServiceBase {
 	
 	/**

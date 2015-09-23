@@ -16,7 +16,7 @@ class RedisUtils {
 	 * @param string retainKey 该值不会被计算至MD5，如果有值，会直接连接在redisKeyPrefix之后
 	 * @param mix $keys 不定长参数，可以输入多个key用来计算
 	 * @return string
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	public static function getRedisKey($redisKey,$retainKey = null,$keys = null){
 		$args = func_get_args();
@@ -45,7 +45,7 @@ class RedisUtils {
 	 * 将数组排序后，连接成一个字符串
 	 * @param array $array
 	 * @return string
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	private static function getArrayToString(array $array){
 		foreach ($array as $key => $value){
@@ -63,7 +63,7 @@ class RedisUtils {
 	 * @param mix $value
 	 * @throws \Exception
 	 * @return void
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	private static function checkIsOrHaveObject($value){
 		if (is_object($value)){

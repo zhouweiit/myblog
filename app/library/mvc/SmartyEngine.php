@@ -6,6 +6,11 @@ use Phalcon\Mvc\View\EngineInterface;
 use Phalcon\Config\Adapter\Ini;
 use frontend;
 
+/**
+ * 实现使用phalcon的view的引擎，这里使用smary做容器
+ * @author baidu
+ *
+ */
 class SmartyEngine extends Engine implements EngineInterface{
 	
 	/**
@@ -27,7 +32,7 @@ class SmartyEngine extends Engine implements EngineInterface{
 	 * @param View $view
 	 * @param \Phalcon\DiInterface $dependencyInjector
 	 * @return void
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	public function __construct(\Phalcon\Mvc\ViewBaseInterface $view,\Phalcon\DiInterface $dependencyInjector = null) {
 		parent::__construct($view,$dependencyInjector);
@@ -41,7 +46,7 @@ class SmartyEngine extends Engine implements EngineInterface{
 	 * @param array $params
 	 * $mustClean boolean $mustClean
 	 * @return void
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	public function render($path, $params, $mustClean = false) {
 		$childContent = $this->view->getContent();
@@ -55,7 +60,7 @@ class SmartyEngine extends Engine implements EngineInterface{
 	/**
 	 * @param array $params
 	 * @return void
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	private function assignTplParams($params){
 		$this->phalconSmarty->assign($params);
@@ -65,7 +70,7 @@ class SmartyEngine extends Engine implements EngineInterface{
 	 * 获取action的smarty模板
 	 * @param string $path phalcon的view的path
 	 * @return string
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	private function getSmartyTplPath($path){
 		$actionName 	= $this->dispatcher->getActionName();

@@ -6,6 +6,11 @@ use Phalcon\Di;
 use Phalcon\Http\Response\Cookies;
 use Phalcon\Session\AdapterInterface;
 use library\utils\StringUtils;
+/**
+ * 实现phalcon的session，实现用redis作为session的容器
+ * 
+ * @author zhouwei
+ */
 class RedisSession implements AdapterInterface{
 	
 	/**

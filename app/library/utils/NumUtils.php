@@ -9,7 +9,7 @@ class NumUtils {
 	 * @param number $num
 	 * @param number $default
 	 * @return number
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	public static function getNullDefault($num,$default = 0) {
 		if (isset($num)){

@@ -4,6 +4,11 @@ namespace library\mvc;
 use Phalcon\Config\Adapter\Ini;
 require_once 'Smarty.class.php';
 
+/**
+ * 继承smarty,实现方法供phalcon使用
+ * 
+ * @author zhouwei
+ */
 class PhalconSmarty extends \Smarty{
 	
 	public $configIni;
@@ -13,7 +18,7 @@ class PhalconSmarty extends \Smarty{
 	/**
 	 * @param Ini $config
 	 * @return void
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	public function __construct(Ini $config){
 		parent::__construct();
@@ -25,7 +30,7 @@ class PhalconSmarty extends \Smarty{
 	/**
 	 * 初始化phalcon
 	 * @return void
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	private function initPhalconSmarty(){
 		$this->compile_dir 		= $this->root . "/" .$this->configIni->smarty->compiledir;

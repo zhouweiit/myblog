@@ -8,7 +8,7 @@ class RsaUtils {
 	 * 根据私有key得到资源信息
 	 * @param string $privatKey
 	 * @return resource on sucess or false on error
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	public static function opensslPkeyGetPrivate($privatKey){
 		return openssl_pkey_get_private($privatKey);
@@ -18,7 +18,7 @@ class RsaUtils {
 	 * 根据公有key得到资源信息
 	 * @param string $publicKey
 	 * @return resource on sucess or false on error
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	public static function opensslPkeyGetPublic($publicKey){
 		return openssl_pkey_get_public($publicKey);
@@ -30,7 +30,7 @@ class RsaUtils {
 	 * @param string $privateKey		私有key资源
 	 * @param boolean $base64Encode		是否需要base64_encode，默认true
 	 * @return boolean|string
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	public static function opensslPrivateEncrypt($data,$privateKey,$base64Encode = true){
 		$privateKey = self::opensslPkeyGetPrivate($privateKey);
@@ -53,7 +53,7 @@ class RsaUtils {
 	 * @param string $publicKey
 	 * @param boolean $base64Encode
 	 * @return boolean|string
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	public static function opensslPublicDecrypt($data,$publicKey,$base64Encode = true){
 		$publicKey = self::opensslPkeyGetPublic($publicKey);
@@ -76,7 +76,7 @@ class RsaUtils {
 	 * @param string $publicKey		共有key资源
 	 * @param boolean $base64Encode		是否需要base64_encode，默认true
 	 * @return boolean|string
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	public static function opensslPublicEncrypt($data,$publicKey,$base64Encode = true){
 		$publicKey = self::opensslPkeyGetPublic($publicKey);
@@ -99,7 +99,7 @@ class RsaUtils {
 	 * @param string $privateKey
 	 * @param boolean $base64Encode
 	 * @return boolean|string
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	public static function opensslPrivateDecrypt($data,$privateKey,$base64Encode = true){
 		$privateKey = self::opensslPkeyGetPrivate($privateKey);

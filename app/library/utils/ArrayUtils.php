@@ -10,7 +10,7 @@ class ArrayUtils {
 	 * @param int $num		长度
 	 * @param mix $obj		需要默认填补的数据
 	 * @return array
-	 * @author zhouwei17
+	 * @author zhouwei
 	 */
 	public static function padArray($array,$num,$obj = ''){
 		$length = count($array);

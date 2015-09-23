@@ -5,6 +5,12 @@ namespace library\mvc;
 use Predis\Client;
 use Phalcon\Config\Adapter\Ini;
 use Phalcon\DiInterface;
+
+/**
+ * 集成phpredis的clent实现
+ * 
+ * @author zhouwei
+ */
 class RedisClient extends Client{
 	
 	/**

@@ -3,6 +3,10 @@
 namespace library\mvc;
 
 use Phalcon\Di;
+/**
+ * dao的超类
+ * @author zhouwei
+ */
 abstract class DaoBase {
 	
 	/**
