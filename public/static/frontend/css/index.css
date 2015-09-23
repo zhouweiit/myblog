@@ -245,7 +245,7 @@ div.archive_date{
 }
 div.archive_category{
 	float:left;
-	margin-left:5px;
+	margin-left:20px;
 }
 div.archive_date a,div.archive_category a{
 	color:#bbbbbb;

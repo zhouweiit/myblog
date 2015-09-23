@@ -39,6 +39,11 @@ class Article {
     private $categorId;
     
     /**
+     * 列表页图片
+     */
+    private $headimage;
+    
+    /**
      * 阅读次数
      * @var int
      */
@@ -81,6 +86,7 @@ class Article {
     		'content' 			=> 'content',
     		'user_id' 			=> 'userId',
     		'category_id' 		=> 'categoryId',
+    		'headimage'			=> 'headimage',
     		'readTimes' 		=> 'readTimes',
     		'tag' 				=> 'tag',
     		'releaseDatetime' 	=> 'releaseDatetime',
@@ -90,6 +96,20 @@ class Article {
     	);
     }
     
+	/**
+	 * @return the $headimage
+	 */
+	public function getHeadimage() {
+		return $this->headimage;
+	}
+
+	/**
+	 * @param field_type $headimage
+	 */
+	public function setHeadimage($headimage) {
+		$this->headimage = $headimage;
+	}
+
 	/**
 	 * @return the $id
 	 */

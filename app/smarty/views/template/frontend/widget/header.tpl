@@ -24,10 +24,10 @@
    	<!--<div class="logo"><a href="/"></a></div>-->
    	<nav id="topnav">
 		<a href="/index/index" id="topnav_current">首页</a>
-   		<a href="/index/newlist">技术文档</a>
-   		<a href="/index/share">生活游记</a>
-   		<a href="/index/new">幽默段子</a>
-   		<a href="/index/about">关于我</a>
+   		<a href="/article/list">技术文档</a>
+   		<a href="/article/list">生活游记</a>
+   		<a href="/article/info">幽默段子</a>
+   		<a href="/about/blog">关于我</a>
    		<img class="imageserach" src="/static/frontend/images/search.png"/>
    		<input class="inputblue" type="text" placeholder="  全站搜索" style="float:right;"/>
    	</nav>
