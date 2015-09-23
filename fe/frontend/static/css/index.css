@@ -84,7 +84,7 @@ opacity:1;
 .blogs ul { float: right;font-size:12px; line-height: 20px; width: 72%; color: #525554; }
 .blogs ul:hover { cursor: pointer; }
 .autor { overflow: hidden; clear: both; margin: 10px 0 0 0; display: inline-block; line-height: 26px; height: 26px; color: #838383; background: #f6f6f6; width: 100% }
-.autor span { margin: 0 10px; }
+.autor span { margin: 0 20px; }
 .autor span a { color: #8c8d8d;font-weight:normal;}
 a.readmore { background: #A9B1D0; color: #FFF; padding: 5px 10px; float: right; margin: 20px 0 0 0 ;margin-left: 10px;}
 .blogs::before { content: ""; width: 10px; height: 10px; border-radius: 50%; position: absolute; background: #cac1c1; border: 2px solid #fff; left: -27px; -webkit-transition: all 1s; -moz-transition: all 1s; -o-transition: all 1s; transition: all 1s; }
@@ -245,7 +245,7 @@ div.archive_date{
 }
 div.archive_category{
 	float:left;
-	margin-left:5px;
+	margin-left:20px;
 }
 div.archive_date a,div.archive_category a{
 	color:#bbbbbb;
