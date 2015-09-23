@@ -212,3 +212,47 @@ div.clear{
 a.replay{
 	color:#53a2e1;
 }
+
+div.tag{
+	font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	color:#bbbbbb;
+	padding:20px;
+}
+
+div.tagcontainer{
+	margin-top:-5px;
+}
+
+div.tag div.tagcontainer a{
+	margin-left:3px;
+	font-weight:300;
+	color:#bbbbbb;
+}
+
+div.tag div.tagcontainer a:hover{
+	color:#ffffff;
+}
+
+
+div.archive{
+	font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	color:#bbbbbb;
+	padding:20px;
+	font-size:12px;
+}
+div.archive_date{
+	float:left;
+}
+div.archive_category{
+	float:left;
+	margin-left:5px;
+}
+div.archive_date a,div.archive_category a{
+	color:#bbbbbb;
+	display:block;
+	margin-top:5px;
+}
+
+div.archive_date a:hover,div.archive_category a:hover{
+	color:#ffffff;
+}

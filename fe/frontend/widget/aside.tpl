@@ -31,13 +31,50 @@
 	<h2>
 	  <p class="tj_t1">标签</p>
 	</h2>
-	<br />
+	<div class="tag">
+		<div class="tagcontainer">
+			<a href="javascript:void(0)">Java</a><a href="javascript:void(0)" style="font-size:25px;">python</a><a href="javascript:void(0)">node.js</a><a href="javascript:void(0)">c++</a><a href="javascript:void(0)">HTML</a>
+		</div>
+		<div class="tagcontainer">
+			<a href="javascript:void(0)" style="font-size:25px;">Java</a><a href="javascript:void(0)" style="font-size:10px;">Php</a><a href="javascript:void(0)" style="font-size:17px;">node.js</a><a href="javascript:void(0)" style="font-size:30px;">c++</a><a href="javascript:void(0)" href="javascript:void(0)">HTML</a>
+		</div>
+		<div class="tagcontainer">
+			<a href="javascript:void(0)" style="font-size:10px;">Java</a><a href="javascript:void(0)" style="font-size:12px;">Php</a><a href="javascript:void(0)" style="font-size:20px;">node.js</a><a href="javascript:void(0)" style="font-size:16px;">c++</a><a href="javascript:void(0)" style="font-size:15px;">HTML</a>
+		</div>
+		<div class="tagcontainer">
+			<a href="javascript:void(0)">Java</a><a href="javascript:void(0)">Php</a><a href="javascript:void(0)"  style="font-size:40px;">node.js</a><a href="javascript:void(0)">c++</a>
+		</div class="tagcontainer">
+		<div class="tagcontainer">
+			<a href="javascript:void(0)" style="font-size:20px;">Java</a><a href="javascript:void(0)" style="font-size:20px;">Php</a><a href="javascript:void(0)">node.js</a><a href="javascript:void(0)">c++</a><a href="javascript:void(0)">HTML</a>
+		</div>
+		<div class="tagcontainer">
+			<a href="javascript:void(0)">Java</a><a href="javascript:void(0)">Php</a><a href="javascript:void(0)">node.js</a><a href="javascript:void(0)" style="font-size:22px;">c++</a><a href="javascript:void(0)"  style="font-size:30px;">HTML</a>
+		</div>
+	</div>
 </div>
 <div class="tj_news">
 	<h2>
 	  <p class="tj_t1">归档</p>
 	</h2>
-	<br />
+	<div class="archive">
+		<div class="archive_date">
+			<a href="/">2013年5月（3311）</a>
+			<a href="/">2013年6月（33）</a>
+			<a href="/">2013年7月（33）</a>
+			<a href="/">2013年8月（33）</a>
+			<a href="/">2013年9月（33）</a>
+			<a href="/">2013年10月（33）</a>
+		</div>
+		<div class="archive_category">
+			<a href="/">幽默（220）</a>
+			<a href="/">技术编程（2）</a>
+			<a href="/">旅游日记（22）</a>
+			<a href="/">探险（30）</a>
+			<a href="/">动漫世界（30）</a>
+			<a href="/">经典美剧（30）</a>
+		</div>
+		<div class="clear"></div>
+	</div>
 </div> 
 <div class="ph_news">
 	<h2>
@@ -91,13 +128,13 @@
     <p class="tj_t1">友情链接</p>
   </h2>
   <ul>
-    <li><a href="/">杨青个人博客</a></li>
-    <li><a href="/">3DST技术社区</a></li>
+    <li><a href="/">周周个人博客</a></li>
+    <li><a href="/">百度技术论坛</a></li>
   </ul>
 </div>
 <div class="copyright">
   <ul>
-    <p> Design by <a href="/">DanceSmile</a></p>
-    <p>蜀ICP备11002373号-1</p>
+    <p> Design by zhouwei</p>
+    <p>京ICP备11002373号-1</p>
   </ul>
 </div>
