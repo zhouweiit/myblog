@@ -10,7 +10,7 @@
   	<h2 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="1/">模板分享</a>><a href="1/">个人博客模板</a></h2>
     <div class="index_about">
       <h2 class="c_titile">黑色Html5个人博客模板主题《如影随形》</h2>
-      <p class="box_c"><span class="d_time">发布时间：2014-04-17</span><span>编辑：杨青</span><span>浏览（390）</span><span>评论览（14）</span></p>
+      <p class="box_c"><span class="d_time">发布时间：2014-04-17</span><spna><span>分类：<a href="/">java</a>、<a href="/">优化</a>、<a href="/">技术</a></spna><span><a href="/">浏览(390)</a></span><span><a href="/">评论(14)</a></span></p>
       <ul class="infos">
         <p>2014第二版黑色Html5个人博客模板主题《如影随形》，如精灵般的影子会给人一种神秘的感觉。一张剪影图黑白搭配，如果整个网站用黑白灰三色，会显得比较太过沉重，于是，在选择亮色方面，用以红为主色，蓝为辅色。这样就铺上了一些神秘甚至有些俏皮的元素。</p>
         <p>如果你更喜欢用蓝色或者绿色，这也不错，替换关键的颜色值就行了，推荐颜色值：<img src="/static/frontend/images/color.jpg" alt="黑色Html5个人博客模板"></p>
@@ -176,7 +176,7 @@
         </div>
         
         <div style="float:block;height:12px;"></div>
-        <form style="border-top:#dcdcdc 1px dashed;font-size:13px;color:#756f71;">
+        <form style="border-top:#dcdcdc 1px dashed;font-size:12px;color:#756f71;">
         	<input class="inputblue" type="text" style="width:200px;"/> 昵称 (必填)<br />
         	<input class="inputblue" type="text" style="width:200px;"/> 电子邮箱 (我们会为您保密)<br />
         	<input class="inputblue" type="text" style="width:200px;"/> 网址<br />
