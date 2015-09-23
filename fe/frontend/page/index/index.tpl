@@ -7,12 +7,12 @@
 	 name="frontend:widget/header.tpl"
   %}
   <article>
+  	<!-- 
+  	<h2 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="1/">模板分享</a>><a href="1/">个人博客模板</a></h2>
+  	 -->
     <div class="banner">
     </div>
     <div class="bloglist">
-      <h2>
-        <p><span></span>最新文章</p>
-      </h2>
       <div class="blogs">
         <h3><a href="/">犯错了怎么办？</a></h3>
         <figure><img src="/static/frontend/images/01.jpg" ></figure>

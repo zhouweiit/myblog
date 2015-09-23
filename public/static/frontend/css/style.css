@@ -1,7 +1,7 @@
 /* CSS Document */
-.about_h { font-size: 12px; color: #666; line-height: 30px; height: 30px; border-bottom: #d7d7d7 1px solid; padding-left: 60px; margin: 20px; background: url(/static/frontend/images/5849.png) 40px 5px no-repeat; }
-.about_h a { color: #666; margin: 0 5px; }
-.about_h a:hover { color: #e41635 }
+.about_h { font-size: 12px; color: #8c8d8d; line-height: 30px; height: 30px; border-bottom: #d7d7d7 1px solid; padding-left: 60px; margin: 20px; background: url(/static/frontend/images/5849.png) 40px 5px no-repeat; }
+.about_h a { color: #8c8d8d; margin: 0 5px; }
+.about_h a:hover { color: #8c8d8d }
 .newblog { margin: 0 20px 20px 20px; border-bottom: #dcdcdc 1px dashed; position: relative; clear: both; display: inline-block; padding-bottom: 20px; }
 .newblog h3 { font-size: 14px; font-weight: bold; margin-bottom: 10px }
 .newblog h3 a { color: #474645; }
@@ -52,17 +52,17 @@
 .pl_n dt img:hover { -webkit-transform: rotate(360deg); -ms-transform: rotate(30deg); -moz-transform: rotate(30deg); -o-transform: rotate(30deg); transform: rotate(30deg); }
 .index_about { margin: 20px }
 .c_titile { font-size: 22px; margin: 20px 0; text-align: center; font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif; color:#525554;}
-.box_c { color: #999; text-align: center }
+.box_c { color: #8c8d8d; text-align: center }
 .box_c span { margin: 0 10px; }
 .box_c span a { color: #099; }
 ul.infos { overflow: hidden; margin: 20px 0; line-height: 28px; font-size: 14px; text-indent: 2em; color: #525554 }
 ul.infos p { margin-bottom: 10px;color:#525554;}
 ul.infos p img { display: block; margin: auto }
 .keybq { background: url(/static/frontend/images/6264.png) no-repeat 10px center #F8F8F8; line-height: 30px; height: 30px; padding-left: 40px; border: 1px solid #F0F0F0; margin: 20px 0;color:#756f71; }
-.keybq span { color: #000000 }
-.nextinfo { line-height: 24px; }
+.keybq span { color: #8c8d8d }
+.nextinfo { line-height: 24px;color: #8c8d8d; }
 div.otherlink{height:180px;}
-.nextinfo a, .otherlink li a { color: #756f71 }
+.nextinfo a, .otherlink li a { color: #8c8d8d }
 .otherlink h2,.comment h2{ border-bottom: #53a2e1 2px solid; line-height: 40px; font-size: 12px; background: url(/static/frontend/images/5794.png) 10px center no-repeat; padding-left: 40px; color: #53a2e1 }
 .otherlink ul { margin: 10px 0 }
 .otherlink li { line-height: 24px; height: 24px; display: block; width: 290px; float: left; overflow: hidden; margin-right: 30px; }

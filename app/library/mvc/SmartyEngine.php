@@ -77,9 +77,7 @@ class SmartyEngine extends Engine implements EngineInterface{
 		$controllerName = $this->dispatcher->getControllerName();
 		$moduleName		= $this->dispatcher->getModuleName();	
 		$root = $this->configIni->application->root;
-		return $root . '/' . $this->configIni->smarty->templatedir . '/frontend/page/'.$controllerName.'/'.$actionName.'.tpl';
+		return $root . '/' . $this->configIni->smarty->templatedir . '/'.$moduleName.'/page/'.$controllerName.'/'.$actionName.'.tpl';
 	}
-	
 
 }
-
