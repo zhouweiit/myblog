@@ -78,12 +78,18 @@ opacity:1;
 .blogs h3 { font-size: 14px; font-weight: normal; margin-bottom: 15px; transition: all .5s }
 .blogs h3 a { color: #525554; font-size:14px;font-family:"Microsoft Yahei", Arial, Helvetica, sans-serif;}
 .blogs h3:hover { text-decoration: none; }
-.blogs figure { float: left; width: 25%; overflow: hidden; }
+.blogs figure { float: left; width: 25%; overflow: hidden; margin-top:4px;}
 .blogs figure img { width: 100%; margin: auto; -moz-transition: all 0.5s; -webkit-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s; }
 .blogs figure:hover img { -moz-transform: scale(1.1); -webkit-transform: scale(1.1); -o-transform: scale(1.1); -ms-transform: scale(1.1); }
-.blogs ul { float: right;font-size:12px; line-height: 20px; width: 72%; color: #525554; }
+.blogs ul { float: right;font-size:12px; line-height: 20px; width: 100%; color: #756f71; }
+.blogs ul p {margin-bottom:10px;}
 .blogs ul:hover { cursor: pointer; }
-.autor { overflow: hidden; clear: both; margin: 10px 0 0 0; display: inline-block; line-height: 26px; height: 26px; color: #838383;width: 100% }
+.blogs ul figure{margin-right:20px;}
+.blogs p.title_meta{ color: #8c8d8d; text-align: left;padding-bottom:13px;margin-top:-5px;margin-bottom:6px;}
+.blogs span { margin-right:10px; }
+.blogs span a { color: #8c8d8d;font-weight:normal;}
+.blogs span a:hover { text-decoration: underline;}
+.autor { overflow: hidden; clear: both; margin: 0 0 0 0; display: inline-block; line-height: 26px; height: 8px; color: #838383;width: 100% }
 .autor span { margin-right:10px; }
 .autor span a { color: #8c8d8d;font-weight:normal;}
 .autor span a:hover { text-decoration: underline;}
