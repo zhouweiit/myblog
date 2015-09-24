@@ -1,1 +1,31 @@
 <?php
+use service\ArticleService;
+use service\CategoryService;
+use service\TagService;
+use service\ArticleTagMapService;
+use service\CommentService;
+use service\UserService;
+
+$di->setShared('ArticleService', function () use($di) {
+	return new ArticleService($di);
+});
+
+$di->setShared('CategoryService', function () use($di) {
+	return new CategoryService($di);
+});
+	
+$di->setShared('TagService', function () use($di) {
+	return new TagService($di);
+});	
+	
+$di->setShared('ArticleTagMapService', function () use($di) {
+	return new ArticleTagMapService($di);
+});
+	
+$di->setShared('CommentService', function () use($di) {
+	return new CommentService($di);
+});
+
+$di->setShared('UserService', function () use($di) {
+	return new UserService($di);
+});

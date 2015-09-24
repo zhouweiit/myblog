@@ -13,8 +13,7 @@ $loader->registerDirs(array(
 $loader->registerNamespaces(array(
     'library' 		=> ROOT . '/app/library/',
     'Predis' 		=> ROOT . '/app/library/Predis/',
-    'models\db' 	=> ROOT . '/app/models/db/',
-    'models\common' => ROOT . '/app/models/common/',
+    'models' 		=> ROOT . '/app/models/',
     'dao' 			=> ROOT . '/app/dao/',
     'service' 		=> ROOT . '/app/service/',
     'plugin' 		=> ROOT . '/app/plugin/',

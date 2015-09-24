@@ -13,4 +13,5 @@ class ArticleController extends ControllerBase {
 	public function infoAction(){
 		
 	}
+	
 }

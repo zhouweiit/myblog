@@ -2,9 +2,20 @@
 namespace frontend\controllers;
 
 use library\mvc\ControllerBase;
+use service\ArticleService;
 class IndexController extends ControllerBase{
+	
+	/**
+	 * @var ArticleService
+	 */
+	private $articleService;
+	
+	protected function initialize(){
+		$this->articleService = $this->di->get('ArticleService');
+	}
     
 	public function indexAction(){
+		$articleInfo = $this->articleService->getIndexArticleList();
 	}
 	
 }

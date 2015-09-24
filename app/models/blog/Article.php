@@ -36,12 +36,25 @@ class Article {
      * 文章分类ID
      * @var int
      */
-    private $categorId;
+    private $categoryId;
+    
+    /**
+     * 列表页的内容
+     * @var string
+     */
+    private $headcontent;
     
     /**
      * 列表页图片
+     * @var string
      */
     private $headimage;
+    
+    /**
+     * 评论的次数 
+     * @var int
+     */
+    private $commentTimes;
     
     /**
      * 阅读次数
@@ -86,30 +99,18 @@ class Article {
     		'content' 			=> 'content',
     		'user_id' 			=> 'userId',
     		'category_id' 		=> 'categoryId',
+    		'headcontent'		=> 'headcontent',
     		'headimage'			=> 'headimage',
-    		'readTimes' 		=> 'readTimes',
+    		'comment_times'		=> 'commentTimes',
+    		'read_times' 		=> 'readTimes',
     		'tag' 				=> 'tag',
-    		'releaseDatetime' 	=> 'releaseDatetime',
+    		'release_datetime' 	=> 'releaseDatetime',
     		'is_delete' 		=> 'isDelete',
     	    'creation_date'		=> 'creationDate',
     	   	'last_changed_date'	=> 'lastChangedDate',
     	);
     }
     
-	/**
-	 * @return the $headimage
-	 */
-	public function getHeadimage() {
-		return $this->headimage;
-	}
-
-	/**
-	 * @param field_type $headimage
-	 */
-	public function setHeadimage($headimage) {
-		$this->headimage = $headimage;
-	}
-
 	/**
 	 * @return the $id
 	 */
@@ -139,10 +140,31 @@ class Article {
 	}
 
 	/**
-	 * @return the $categorId
+	 * @return the $categoryId
 	 */
-	public function getCategorId() {
-		return $this->categorId;
+	public function getCategoryId() {
+		return $this->categoryId;
+	}
+
+	/**
+	 * @return the $headcontent
+	 */
+	public function getHeadcontent() {
+		return $this->headcontent;
+	}
+
+	/**
+	 * @return the $headimage
+	 */
+	public function getHeadimage() {
+		return $this->headimage;
+	}
+
+	/**
+	 * @return the $commentTimes
+	 */
+	public function getCommentTimes() {
+		return $this->commentTimes;
 	}
 
 	/**
@@ -188,80 +210,101 @@ class Article {
 	}
 
 	/**
-	 * @param field_type $id
+	 * @param number $id
 	 */
 	public function setId($id) {
 		$this->id = $id;
 	}
 
 	/**
-	 * @param field_type $title
+	 * @param string $title
 	 */
 	public function setTitle($title) {
 		$this->title = $title;
 	}
 
 	/**
-	 * @param field_type $content
+	 * @param string $content
 	 */
 	public function setContent($content) {
 		$this->content = $content;
 	}
 
 	/**
-	 * @param field_type $userId
+	 * @param number $userId
 	 */
 	public function setUserId($userId) {
 		$this->userId = $userId;
 	}
 
 	/**
-	 * @param field_type $categorId
+	 * @param number $categoryId
 	 */
-	public function setCategorId($categorId) {
-		$this->categorId = $categorId;
+	public function setCategoryId($categoryId) {
+		$this->categoryId = $categoryId;
 	}
 
 	/**
-	 * @param field_type $readTimes
+	 * @param string $headcontent
+	 */
+	public function setHeadcontent($headcontent) {
+		$this->headcontent = $headcontent;
+	}
+
+	/**
+	 * @param string $headimage
+	 */
+	public function setHeadimage($headimage) {
+		$this->headimage = $headimage;
+	}
+
+	/**
+	 * @param number $commentTimes
+	 */
+	public function setCommentTimes($commentTimes) {
+		$this->commentTimes = $commentTimes;
+	}
+
+	/**
+	 * @param number $readTimes
 	 */
 	public function setReadTimes($readTimes) {
 		$this->readTimes = $readTimes;
 	}
 
 	/**
-	 * @param field_type $tag
+	 * @param string $tag
 	 */
 	public function setTag($tag) {
 		$this->tag = $tag;
 	}
 
 	/**
-	 * @param field_type $releaseDatetime
+	 * @param \models\blog\date $releaseDatetime
 	 */
 	public function setReleaseDatetime($releaseDatetime) {
 		$this->releaseDatetime = $releaseDatetime;
 	}
 
 	/**
-	 * @param field_type $isDelete
+	 * @param number $isDelete
 	 */
 	public function setIsDelete($isDelete) {
 		$this->isDelete = $isDelete;
 	}
 
 	/**
-	 * @param field_type $creationDate
+	 * @param \models\blog\date $creationDate
 	 */
 	public function setCreationDate($creationDate) {
 		$this->creationDate = $creationDate;
 	}
 
 	/**
-	 * @param field_type $lastChangedDate
+	 * @param \models\blog\date $lastChangedDate
 	 */
 	public function setLastChangedDate($lastChangedDate) {
 		$this->lastChangedDate = $lastChangedDate;
 	}
-
+	
 }
