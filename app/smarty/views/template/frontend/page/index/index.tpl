@@ -10,7 +10,7 @@
   	<h2 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="1/">模板分享</a>><a href="1/">个人博客模板</a></h2>
     <div class="bloglist">
       <div class="blogs">
-        <h3><a href="/">黑色Html5个人博客模板主题《如影随形》</a></h3>
+        <h3><a href="/article/info">黑色Html5个人博客模板主题《如影随形》</a></h3>
         <p class="title_meta"><span>发布时间：2014-04-08</span><span>分类：<a href="/">java</a>、<a href="/">优化</a>、<a href="/">技术</a></span><span><a href="/">浏览(459)</a></span><span><a href="/">评论(30)</a></span></p>
         <ul>
           <figure><img src="/static/frontend/images/01.jpg"/></figure>
@@ -74,6 +74,16 @@
         <p class="title_meta"><span>发布时间：2014-04-08</span><span>分类：<a href="/">java</a>、<a href="/">优化</a>、<a href="/">技术</a></span><span><a href="/">浏览(459)</a></span><span><a href="/">评论(30)</a></span></p>
         <ul>
            	<figure><img src="/static/frontend/images/04.png" ></figure>
+        	<p>本应用由CSS3代码实现，无图片和flash，请使用Chrome等webkit内核浏览器或Firefox打开。破解攻略和大家分享下：首先，破解魔方，我们就要先了解它的结构，魔方共6色6面，每面又分为中央块（最中间的块6个）、角块（4角的块8个）和边块（4条边中间的块12个）...</p>
+        	<p>本应用由CSS3代码实现，无图片和flash，请使用Chrome等webkit内核浏览器或Firefox打开。破解攻略和大家分享下：首先，破解魔方，我们就要先了解它的结构，魔方共6色6面，每面又分为中央块（最中间的块6个）、角块（4角的块8个）和边块（4条边中间的块12个）...首先，破解魔方，我们就要先了解它的结构，魔方共6色6面，每面又分为中央块（最中间的块6个）、角块（4角的块8个）和边块（4条边中间的块12个）...</p>
+        	<a href="/" target="_blank" class="readmore">阅读全文</a>
+        </ul>
+        <p class="autor"></p>
+      </div>
+      <div class="blogs">
+        <h3><a href="/">css3制作的一个魔方</a></h3>
+        <p class="title_meta"><span>发布时间：2014-04-08</span><span>分类：<a href="/">java</a>、<a href="/">优化</a>、<a href="/">技术</a></span><span><a href="/">浏览(459)</a></span><span><a href="/">评论(30)</a></span></p>
+        <ul>
         	<p>本应用由CSS3代码实现，无图片和flash，请使用Chrome等webkit内核浏览器或Firefox打开。破解攻略和大家分享下：首先，破解魔方，我们就要先了解它的结构，魔方共6色6面，每面又分为中央块（最中间的块6个）、角块（4角的块8个）和边块（4条边中间的块12个）...</p>
         	<p>本应用由CSS3代码实现，无图片和flash，请使用Chrome等webkit内核浏览器或Firefox打开。破解攻略和大家分享下：首先，破解魔方，我们就要先了解它的结构，魔方共6色6面，每面又分为中央块（最中间的块6个）、角块（4角的块8个）和边块（4条边中间的块12个）...首先，破解魔方，我们就要先了解它的结构，魔方共6色6面，每面又分为中央块（最中间的块6个）、角块（4角的块8个）和边块（4条边中间的块12个）...</p>
         	<a href="/" target="_blank" class="readmore">阅读全文</a>

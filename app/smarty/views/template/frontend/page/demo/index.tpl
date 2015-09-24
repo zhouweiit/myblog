@@ -4,13 +4,13 @@
 {%block name="content"%}
 <div class="ibody">
   {%widget
-	 name="frontend:widget/header.tpl"
+	 name="frontend:widget/headerdemo.tpl"
   %}
   <article>
   	<h2 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="1/">模板分享</a>><a href="1/">个人博客模板</a></h2>
     <div class="bloglist">
       <div class="blogs">
-        <h3><a href="/article/info">黑色Html5个人博客模板主题《如影随形》</a></h3>
+        <h3><a href="/">黑色Html5个人博客模板主题《如影随形》</a></h3>
         <p class="title_meta"><span>发布时间：2014-04-08</span><span>分类：<a href="/">java</a>、<a href="/">优化</a>、<a href="/">技术</a></span><span><a href="/">浏览(459)</a></span><span><a href="/">评论(30)</a></span></p>
         <ul>
           <figure><img src="/static/frontend/images/01.jpg"/></figure>
@@ -95,7 +95,7 @@
   </article>
   <aside>
     {%widget
-	 	name="frontend:widget/aside.tpl"
+	 	name="frontend:widget/asidedemo.tpl"
   	%}
   </aside>
   <div class="clear"></div>
