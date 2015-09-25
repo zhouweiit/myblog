@@ -34,9 +34,10 @@ class ArticleService extends ServiceBase {
 	 * @return array
 	 * @author zhouwei
 	 */
-	public function getIndexArticleList(){
-		$articles = $this->getNewestArticleList(10);
-		return $this->getListByIdsOrArticle(null,$articles);
+	public function getIndexArticleList($page,$pageSize){
+		$articlesInfo = $this->listByPage(null,null,null,null,5,$page,$pageSize);
+		$articleTabInfos = $this->getListByIdsOrArticle(null,$articlesInfo['articles']);
+		return $articleTabInfos;
 	}
 	
 	/**
@@ -70,13 +71,14 @@ class ArticleService extends ServiceBase {
 						'id'	=> $tid,	
 					);
 				}
+				$tagResult[count($tagResult) - 1]['last'] = true;
 			}
 			
 			$articleArrayInfo = array(
 				'title'				=> $value['article']->getTitle(),
 				'headcontent'		=> $value['article']->getHeadcontent(),
 				'headimage'			=> $value['article']->getHeadimage(),
-				'release_datetime' 	=> $value['article']->getReleaseDatetime(),
+				'release_datetime' 	=> date('Y-m-d H:i',strtotime($value['article']->getReleaseDatetime())),
 				'comment_times'		=> $value['article']->getCommentTimes(),
 				'read_times'		=> $value['article']->getReadTimes(),
 				'id'				=> $value['article']->getId(),
@@ -133,6 +135,10 @@ class ArticleService extends ServiceBase {
 	public function listByPage($startdate = null,$enddate = null,array $articleIds = null,array $categoryIds = null,$orderBy = 1,$page = 0,$pageSize = 10){
 		$articles = $this->articleDao->listByPage($startdate,$enddate,$articleIds,$categoryIds,$orderBy,$page,$pageSize,false);
 		$articlesCount = $this->articleDao->listByPage($startdate,$enddate,$articleIds,$categoryIds,$orderBy,$page,$pageSize);
+		return array(
+			'articles' 			=> $articles,
+			'articles_count'	=> $articlesCount->getCount(),
+		);
 	}
 	
 	/**

@@ -5,6 +5,7 @@ namespace dao\blog;
 use library\mvc\DaoBase;
 use library\mvc\pdo\Persistent;
 use library\utils\SqlUtils;
+use library\mvc\pdo\PersistenResult;
 
 class ArticleDao extends DaoBase {
 	
@@ -71,12 +72,15 @@ class ArticleDao extends DaoBase {
 		} else {
 			$order = 'id';
 		}
-		if (!$count){
+		if ($count){
+			$result = $this->persistent->query($sql,$bind);
+			return $result->fetchOne('models\common\SpecialColumn');
+		} else {
 			$sql .= ' order by '.$order;
 			$sql .= ' limit '.$page * $pageSize.','.($page + 1) * $pageSize;
-		} 
-		$result = $this->persistent->query($sql,$bind);
-		return $result->fetchAll($this->className);
+			$result = $this->persistent->query($sql,$bind);
+			return $result->fetchAll($this->className);
+		}
 	}
 	
 	/**

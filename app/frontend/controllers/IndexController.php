@@ -15,7 +15,9 @@ class IndexController extends ControllerBase{
 	}
     
 	public function indexAction(){
-		$articleInfo = $this->articleService->getIndexArticleList();
+		$page = $this->request->get('page',null,0);
+		$articleInfo = $this->articleService->getIndexArticleList($page,10);
+		$this->view->setVar('articleInfo', $articleInfo);
 	}
 	
 }
