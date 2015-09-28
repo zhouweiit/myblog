@@ -5,6 +5,7 @@ use service\TagService;
 use service\ArticleTagMapService;
 use service\CommentService;
 use service\UserService;
+use service\PageService;
 
 $di->setShared('ArticleService', function () use($di) {
 	return new ArticleService($di);
@@ -29,3 +30,7 @@ $di->setShared('CommentService', function () use($di) {
 $di->setShared('UserService', function () use($di) {
 	return new UserService($di);
 });
+
+$di->setShared('PageService', function () use($di) {
+	return new PageService($di);
+});	

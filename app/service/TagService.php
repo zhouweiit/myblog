@@ -4,12 +4,18 @@ namespace service;
 
 use library\mvc\ServiceBase;
 use dao\blog\TagDao;
+use library\mvc\Log;
 class TagService extends ServiceBase{
 	
 	/**
 	 * @var TagDao
 	 */
 	private $tagDao;
+	
+	/**
+	 * @var Log
+	 */
+	private $log;
 	
 	protected function init(){
 		$this->log					= $this->di->get('applicationLog');

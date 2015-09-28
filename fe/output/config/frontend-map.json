@@ -88,6 +88,10 @@
         "frontend:widget/headerdemo.tpl": {
             "uri": "frontend/widget/headerdemo.tpl",
             "type": "tpl"
+        },
+        "frontend:widget/page.tpl": {
+            "uri": "frontend/widget/page.tpl",
+            "type": "tpl"
         }
     },
     "pkg": {}

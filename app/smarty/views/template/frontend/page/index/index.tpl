@@ -37,7 +37,9 @@
       </div>
       {%/foreach%}
     </div>
-    <div class="page"><a>&lt;&lt;</a><a>&lt;</a></a><b>1</b><a href="/">...</a><a href="/">3</a><a href="/">...</a><a href="/">5</a><a href="/">&gt;</a><a href="/">&gt;&gt;</a></div>
+    {%widget
+	 	name="frontend:widget/page.tpl"
+  	%}
   </article>
   <aside>
     {%widget
@@ -47,4 +49,4 @@
   <div class="clear"></div>
   <!-- 清除浮动 --> 
 </div>
-{%require name='frontend:page/index/index.tpl'%}{%/block%}
+{%require name='frontend:page/index/index.tpl'%}{%require name='frontend:page/index/index.tpl'%}{%/block%}

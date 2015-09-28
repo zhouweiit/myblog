@@ -37,7 +37,10 @@ class ArticleService extends ServiceBase {
 	public function getIndexArticleList($page,$pageSize){
 		$articlesInfo = $this->listByPage(null,null,null,null,5,$page,$pageSize);
 		$articleTabInfos = $this->getListByIdsOrArticle(null,$articlesInfo['articles']);
-		return $articleTabInfos;
+		return array(
+			'article' => $articleTabInfos,
+			'count'	  => $articlesInfo['articles_count'],
+		);
 	}
 	
 	/**
