@@ -77,7 +77,7 @@ class ArticleDao extends DaoBase {
 			return $result->fetchOne('models\common\SpecialColumn');
 		} else {
 			$sql .= ' order by '.$order;
-			$sql .= ' limit '.$page * $pageSize.','.($page + 1) * $pageSize;
+			$sql .= ' limit '.$page * $pageSize.','.$pageSize;
 			$result = $this->persistent->query($sql,$bind);
 			return $result->fetchAll($this->className);
 		}

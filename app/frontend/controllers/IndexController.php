@@ -23,10 +23,14 @@ class IndexController extends ControllerBase{
     
 	public function indexAction(){
 		$page = $this->request->get('page',null,1);
-		$articleInfo = $this->articleService->getIndexArticleList($page - 1,10);
+		$pageSize = 1;
+		$params = $this->request->get();
+		$articleInfo = $this->articleService->getIndexArticleList($page - 1,$pageSize);
 		$pages = $this->pageService->createPageArray($articleInfo['count'], $page, 1);
+		$pageUrl = $this->pageService->createPageUrl($this->request->get(),'/index/index');
 		$this->view->setVar('articleInfo', $articleInfo['article']);
 		$this->view->setVar('pages', $pages);
+		$this->view->setVar('pageUrl', $pageUrl);
 	}
 	
 }

@@ -77,6 +77,23 @@ class PageService extends ServiceBase {
 		return $pagesArray;
 	}
 	
+	/**
+	 * 根据传递的参数生成
+	 * @param array $params		需要传递的参数
+	 * @param string $baseUrl  	所需要跳转的url
+	 * @return string
+	 * @author zhouwei
+	 */
+	public function createPageUrl(array $params,$baseUrl = '/',array $filterParams = array('p','page')){
+		$paramUrl = '?';
+		foreach ($params as $key => $param){
+			if (in_array($key, $filterParams)){
+				continue;
+			}
+			$paramUrl .= $key.'='.urlencode($param).'&';
+		}
+		return $baseUrl.$paramUrl;
+	}
 	
 	
 }
