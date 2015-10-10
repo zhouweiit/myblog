@@ -43,7 +43,7 @@
           <li><a href="/news/s/2013-06-06/24.html" title="爱情的背叛者">爱情的背叛者</a></li>
         </ul>
       </div>
-      <div class="comment">
+      <div class="comment" id="comment">
         <h2 style="background: url(/static/frontend/images/comment.png) 10px center no-repeat; ">热点评论</h2>
         
         <div class="comment_info">
