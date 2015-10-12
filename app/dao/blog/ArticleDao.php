@@ -40,7 +40,7 @@ class ArticleDao extends DaoBase {
 	 * @return array
 	 * @author zhouwei
 	 */
-	public function listByPage($startdate = null,$enddate = null,array $articleIds = null,array $categoryIds = null,$orderBy = 1,$page = 0,$pageSize = 10,$count = true){
+	public function listByPage($startdate = null,$enddate = null,array $articleIds = null,$categoryIds = null,$orderBy = 1,$page = 0,$pageSize = 10,$count = true){
 		if ($count){
 			$sql = 'select count(*) as count from article where is_delete = 0';
 		} else {

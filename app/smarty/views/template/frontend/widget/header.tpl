@@ -22,10 +22,10 @@
 	   	</div>
    	</div>
    	<nav id="topnav">
-		<a href="/index/index" id="topnav_current">首页</a>
-   		<a href="/article/list">技术文档</a>
-   		<a href="/article/info">幽默段子</a>
-   		<a href="/article/list">生活随笔</a>
+		<a href="/index/index" {%if $index%}id="topnav_current"{%/if%}>首页</a>
+   		{%foreach from=$firstCategory item=category%}
+       		<a href="/index/index?categoryid={%$category.id%}" {%if $category.id == $firstCategoryId%}id="topnav_current"{%/if%}>{%$category.name%}</a>
+       	{%/foreach%}
    		<a href="/article/list">留言小本</a>
    		<a href="/about/blog">关于我</a>
    		<img class="imageserach" src="/static/frontend/images/search.png"/>

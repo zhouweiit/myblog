@@ -5,6 +5,7 @@ namespace service;
 use library\mvc\ServiceBase;
 use dao\blog\ArticleDao;
 use library\utils\DateUtils;
+use library\mvc\Log;
 
 class ArticleService extends ServiceBase {
 	
@@ -23,18 +24,29 @@ class ArticleService extends ServiceBase {
 	 */
 	private $articleTagMapService;
 	
+	/**
+	 * @var CategoryService
+	 */
+	private $categoryService;
+	
+	/**
+	 * @var Log
+	 */
+	private $log;
+	
 	protected function init(){
 		$this->log					= $this->di->get('applicationLog');
 		$this->articleDao		  	= $this->di->get('dao\blog\ArticleDao');
 		$this->tagService			= $this->di->get('TagService');
 		$this->articleTagMapService = $this->di->get('ArticleTagMapService');
+		$this->categoryService		= $this->di->get('CategoryService');
 	}
 	
 	/**
 	 * 获取首页的文章列表信息
 	 * @param int $page			需要查询的页数
 	 * @param int $pageSize		每页小时的条数
-	 * @param int $categoryId	分类ID
+	 * @param int $categoryId	分类ID	一级与二级分类都可以
 	 * @param int $tagid		标签ID
 	 * @param date $date		日期 
 	 * @return array
@@ -48,7 +60,14 @@ class ArticleService extends ServiceBase {
 			$mapInfos = $this->articleTagMapService->getArticleMapByTagId($tagid);
 			$articlesInfo = $this->listByPage(null,null,array_keys($mapInfos),null,$orderby,$page,$pageSize);
 		} else if (!empty($categoryId)){//直接查询频道的数据
-			$articlesInfo = $this->listByPage(null,null,null,$categoryId,$orderby,$page,$pageSize);
+			$categoryInfos = $this->categoryService->getCategoryByPid($categoryId);
+			$categoryIds = null;
+			if (empty($categoryInfos)){
+				$categoryIds = array($categoryId);
+			} else {
+				$categoryIds = array_keys($categoryInfos);
+			}
+			$articlesInfo = $this->listByPage(null,null,null,$categoryIds,$orderby,$page,$pageSize);
 		} else {//显示首页的数据
 			$articlesInfo = $this->listByPage(null,null,null,null,$orderby,$page,$pageSize);
 		}

@@ -41,4 +41,39 @@ class CategoryDao extends DaoBase {
 		return $result->fetchOne($this->className);
 	}
 	
+	/**
+	 * 获取所有的分类ID，并按照深度、PID、优先级排序
+	 * @return array
+	 * @author zhouwei
+	 */
+	public function getAllCategory(){
+		$sql = 'select * from category where is_delete = 0 order by depth,pid,priority';
+		$result = $this->persistent->query($sql);
+		return $result->fetchOne($this->className);
+	}
+	
+	/**
+	 * 根据父ID获取所有的分类信息
+	 * @param int $pid
+	 * @return array
+	 * @author zhouwei
+	 */
+	public function getCategoryByPid($pid){
+		$sql = 'select * from category where pid = :pid and is_delete = 0 order by priority';
+		$result = $this->persistent->query($sql,array(':pid'=>$pid));
+		return $result->fetchAll($this->className);
+	}
+	
+	/**
+	 * 根据depth获取分类信息
+	 * @param int $depth
+	 * @return array
+	 * @author zhouwei
+	 */
+	public function getCategoryByDepth($depth){
+		$sql = 'select * from category where depth = :depth and is_delete = 0 order by priority';
+		$result = $this->persistent->query($sql,array(':depth'=>$depth));
+		return $result->fetchAll($this->className);
+	}
+	
 }

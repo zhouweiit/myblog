@@ -7,7 +7,7 @@
 	 name="frontend:widget/header.tpl"
   %}
   <article>
-  	<h2 class="about_h">您现在的位置是：<a href="/">首页</a>&gt;&nbsp;最新文章</h2>
+  	{%$navigation%}
     <div class="bloglist">
       {%foreach from=$articleInfo item=article%}
       <div class="blogs">

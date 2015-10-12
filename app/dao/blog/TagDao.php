@@ -39,7 +39,7 @@ class TagDao extends DaoBase {
 			':id'	=> $id,
 		);
 		$result = $this->persistent->query($sql,$bind);
-		return $result->fetchOne($sql);
+		return $result->fetchOne($this->className);
 	}
 	
 	/**

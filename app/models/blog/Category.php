@@ -8,6 +8,18 @@ namespace models\blog;
  *
  */
 class Category {
+	
+	/**
+	 * 分类深度，一级分类为1
+	 * @var int
+	 */
+	const FIRST_CATEGORY_DEPTH = 1;
+	
+	/**
+	 * 分类深度，二级分类为2
+	 * @var int
+	 */
+	const SECOND_CATEGORY_DEPTH = 2;
     
     /**
      * 自增主键ID
@@ -26,6 +38,18 @@ class Category {
      * @var string
      */
     private $name;
+    
+    /**
+     * 分类深度
+     * @var int
+     */
+    private $depth;
+    
+    /**
+     * 分类的优先级
+     * @var int
+     */
+    private $priority;
     
     /**
      * 是否删除
@@ -50,6 +74,8 @@ class Category {
     		'id' 				=> 'id',
     	    'pid'				=> 'pid',
     	    'name'				=> 'name',
+    		'depth'				=> 'depth',
+    		'priority'			=> 'priority',
    			'is_delete' 		=> 'isDelete',
    			'creation_date'		=> 'creationDate',
    			'last_changed_date'	=> 'lastChangedDate',
@@ -75,6 +101,20 @@ class Category {
 	 */
 	public function getName() {
 		return $this->name;
+	}
+
+	/**
+	 * @return the $depth
+	 */
+	public function getDepth() {
+		return $this->depth;
+	}
+
+	/**
+	 * @return the $priority
+	 */
+	public function getPriority() {
+		return $this->priority;
 	}
 
 	/**
@@ -120,6 +160,20 @@ class Category {
 	}
 
 	/**
+	 * @param number $depth
+	 */
+	public function setDepth($depth) {
+		$this->depth = $depth;
+	}
+
+	/**
+	 * @param number $priority
+	 */
+	public function setPriority($priority) {
+		$this->priority = $priority;
+	}
+
+	/**
 	 * @param number $isDelete
 	 */
 	public function setIsDelete($isDelete) {
@@ -139,5 +193,8 @@ class Category {
 	public function setLastChangedDate($lastChangedDate) {
 		$this->lastChangedDate = $lastChangedDate;
 	}
+
+    
+	
 
 }
