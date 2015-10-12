@@ -52,4 +52,19 @@ class ArticleTagMapService extends ServiceBase {
 		}
 		return $result;
 	}
+	
+	/**
+	 * 根据标签ID获取所有的map信息
+	 * @param int $tagId
+	 * @return array
+	 * @author zhouwei
+	 */
+	public function getArticleMapByTagId($tagId){
+		$mapInfos = $this->articleTagMapDao->getByTagId($tagId);
+		$result = array();
+		foreach ($mapInfos as $value){
+			$result[$value->getArticleId()] = $value;
+		}
+		return $result;
+	}
 }

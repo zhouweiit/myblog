@@ -67,7 +67,7 @@ class ArticleTagMapDao extends DaoBase {
 		$bind = array(
 			':tag_id'	=> $tagId
 		);
-		$result = $this->persistent->query($bind);
+		$result = $this->persistent->query($sql,$bind);
 		return $result->fetchAll($this->className);
 	}
 	
