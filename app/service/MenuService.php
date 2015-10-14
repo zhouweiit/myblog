@@ -42,7 +42,7 @@ class MenuService extends ServiceBase {
 		$navigation = '<h2 class="about_h">您现在的位置是：';
 		$categoryid = null;
 		if (!empty($date)){//优先查询日期的文章信息，并且再首页频道显示
-			$dateTmp = date('Y-m',strtotime($date));
+			$dateTmp = date('Y年m月',strtotime($date));
 			$navigation .= '<a href="/">首页</a>&gt;&nbsp;<a href="/index/index?date='.$dateTmp.'-01">'.$dateTmp.'</a></h2>';
 		} else if (!empty($tagid)){//根据标签ID查询文章信息，并且根据标签的频道分类再频道显现
 			$tag = $this->tagService->getTagById($tagid);

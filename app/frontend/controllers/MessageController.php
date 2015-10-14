@@ -5,7 +5,7 @@ namespace frontend\controllers;
 use library\mvc\ControllerBase;
 use service\CategoryService;
 
-class AboutController extends ControllerBase {
+class MessageController extends ControllerBase {
 	
 	/**
 	 * @var CategoryService
@@ -16,10 +16,10 @@ class AboutController extends ControllerBase {
 		$this->categoryService  = $this->di->get('CategoryService');
 	}
 	
-	public function blogAction(){
+	public function leaveAction(){
 		$fristCategory = $this->categoryService->getFirstCategory();
 		$this->view->setVar('firstCategory', $fristCategory);
-		$this->view->setVar('blog', true);
+		$this->view->setVar('leave', true);
 	}
 	
 }
