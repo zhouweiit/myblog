@@ -212,4 +212,86 @@ class ArticleService extends ServiceBase {
 		return $result;
 	}
 	
+	/**
+	 * 获取所有文章的基本信息
+	 * @return array
+	 * @author zhouwei
+	 */
+	public function getAllAticleBaseInfo(){
+		$articles = $this->articleDao->getAllAticle();
+		return $articles;
+	}
+	
+	/**
+	 * 根据发布时间，获取最新的10篇文章基本信息'
+	 * @param array $allArticles
+	 * @return array
+	 * @author zhouwei
+	 */
+	public function getNewArticleTop10(array $allArticles){
+		$result = array();
+		$count = 0;
+		foreach ($allArticles as $value){
+			if ($count >= 10){
+				break;
+			}
+			$result[$value->getId()] = array(
+				'id'	=> $value->getId(),
+				'name'	=> $value->getTitle(),
+			);
+			$count++;
+		}
+		return $result;
+	}
+	
+	/**
+	 * 根据浏览的次数、评论的条数已经发布的时间，获取最热门的10篇文章基本信息
+	 * @param array $allArticles
+	 * @return array
+	 * @author zhouwei
+	 */
+	public function getHotArticleTop10(array $allArticles){
+		return array();
+	}
+	
+	/**
+	 * 根据所有的文章，获取文章的分类，包含日期与category，并获取各自的文章的条数
+	 * @param array $allArticles
+	 * @return array
+	 * @author zhouwei
+	 */
+	public function getArchiveInfo(array $allArticles){
+		$dates = array();
+		$categorys = array();
+		$allCategorys = $this->categoryService->getAllCategory();
+		foreach ($allArticles as $value){
+			$date = date('Y年m月',strtotime($value->getReleaseDatetime()));
+			if (isset($dates[$date])){
+				$dates[$date]['times'] = $dates[$date]['times'] + 1;
+			} else {
+				$dates[$date] = array(
+					'times'		=> 1,
+					'date'		=> date('Y-m',strtotime($value->getReleaseDatetime())),
+				);
+			}
+			$category = $value->getCategoryId();
+			if (!isset($allCategorys[$category])){
+				continue;
+			}
+			if (isset($categorys[$category])){
+				$categorys[$category]['times'] = $categorys[$category]['times'] + 1;
+			} else {
+				$categorys[$category] = array(
+					'times'			=> 1,
+					'category_name'	=> $allCategorys[$category]->getName(),
+					'category_id'	=> $allCategorys[$category]->getId(),
+				);
+			}
+		}
+		return array(
+			'date' 		=> $dates,
+			'category'	=> $categorys,		
+		);
+	}
+	
 }

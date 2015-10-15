@@ -59,5 +59,6 @@ class TagService extends ServiceBase{
 	public function getTagById($id){
 		return $tag = $this->tagDao->getTagById($id);
 	}
+
 }
 

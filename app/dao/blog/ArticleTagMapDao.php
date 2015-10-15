@@ -71,4 +71,15 @@ class ArticleTagMapDao extends DaoBase {
 		return $result->fetchAll($this->className);
 	}
 	
+	/**
+	 * 获取所有的文章与标签的map的关系
+	 * @return array
+	 * @author zhouwei
+	 */
+	public function getAllMapInfos(){
+		$sql = 'select * from article_tag_map where is_delete = 0';
+		$result = $this->persistent->query($sql);
+		return $result->fetchAll($this->className);
+	}
+	
 }

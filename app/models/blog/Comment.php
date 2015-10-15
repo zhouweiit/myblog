@@ -77,7 +77,7 @@ class Comment {
    			'pid' 				=> 'pid',
     		'name' 				=> 'name',
     		'email' 			=> 'email',
-   			'releaseDatetime' 	=> 'releaseDatetime',
+   			'release_datetime' 	=> 'releaseDatetime',
    			'is_delete' 		=> 'isDelete',
    			'creation_date'		=> 'creationDate',
    			'last_changed_date'	=> 'lastChangedDate',

@@ -32,7 +32,7 @@
 .rnav li a:hover { background: rgba(255,255,255,0.2); -webkit-transform: rotate(360deg); -moz-transform: rotate(360deg); -o-transform: rotate(360deg); transform: rotate(360deg); }
 .ph_news h2 { font-size: 16px; font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif; color: #FFF; }
 .ph_news h2 p { height: 40px; line-height: 40px; width: 100px; padding: 0 0 0 30px; border-radius: 0 20px 20px 0; text-shadow: rgba(0,0,0,.65) 1px 1px; background: #53a2e1 }
-.ph_news ul { margin-top: 20px;margin-bottom: 20px;margin-left:10px;margin-right:10px;}
+.ph_news ul { margin-top: 20px;margin-bottom: 20px;margin-left:20px;margin-right:20px;}
 .ph_news li { white-space: nowrap; text-overflow: ellipsis; overflow: hidden; width: 100%; color: #cdcbcb; line-height: 24px; height: 24px; }
 .ph_news li a { color: #cdcbcb; }
 .ph_news li a:hover, .pl_n dd a:hover { text-decoration: underline }
@@ -40,7 +40,8 @@
 .ph_n li span.num1, .ph_n li span.num2, .ph_n li span.num3 { background: #f16b17 }
 /* 最新评论 */
 .pl_n dl { display: block; overflow: hidden; margin-bottom: 12px; color: #bbbbbb; }
-.pl_n dd { line-height: 22px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden }
+.pl_n dd { line-height: 22px; text-overflow: ellipsis; overflow: hidden }/*white-space: nowrap;*/
+.pl_n dd.comment_name{color:#53a2e1;}
 .pl_n dd a { color: #bbbbbb; }
 .pl_n dl dd a:hover { text-decoration: underline; color: #FFF;text-decoration: none;}
 .pl_n time { color: #53a2e1; margin-left: 10px }

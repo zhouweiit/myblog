@@ -5,7 +5,6 @@ namespace dao\blog;
 use library\mvc\DaoBase;
 use library\mvc\pdo\Persistent;
 use library\utils\SqlUtils;
-use library\mvc\pdo\PersistenResult;
 
 class ArticleDao extends DaoBase {
 	
@@ -132,6 +131,17 @@ class ArticleDao extends DaoBase {
 		$bind = $inSqlCondition['bindArray'];
 		$sql = 'select * from article where id in ('.$inSqlCondition['conditinSql'].') and is_delete = 0 order by '.$order;
 		$result = $this->persistent->query($sql,$bind);
-		return $result->fetchAll($result);
+		return $result->fetchAll($this->className);
+	}
+	
+	/**
+	 * 获取所有文章的基本信息
+	 * @return array
+	 * @author zhouwei
+	 */
+	public function getAllAticle(){
+		$sql = 'select id,title,category_id,comment_times,read_times,release_datetime from article where is_delete = 0 order by release_datetime desc';
+		$result = $this->persistent->query($sql);
+		return $result->fetchAll($this->className);
 	}
 }

@@ -67,4 +67,29 @@ class ArticleTagMapService extends ServiceBase {
 		}
 		return $result;
 	}
+	
+	/**
+	 * 获取所有文章的标签信息，并获取各自的文章的条数
+	 * @return array
+	 * @author zhouwei
+	 */
+	public function getArchiveTag(){
+		$tagMaps = $this->articleTagMapDao->getAllMapInfos();
+		$allTag = $this->tagService->getAllTag();
+		$result = array();
+		foreach ($tagMaps as $value){
+			if (!isset($allTag[$value->getTagId()])){
+				continue;
+			}
+			if (isset($result[$value->getTagId()])){
+				$result[$value->getTagId()]['times'] = $result[$value->getTagId()]['times'] + 1;
+			} else {
+				$result[$value->getTagId()] = array(
+					'times' 	=> 1,
+					'tag_name'	=> $allTag[$value->getTagId()]->getName(),
+				);
+			}
+		}
+		return $result;
+	}
 }

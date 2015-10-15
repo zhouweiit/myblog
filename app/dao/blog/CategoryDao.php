@@ -49,7 +49,7 @@ class CategoryDao extends DaoBase {
 	public function getAllCategory(){
 		$sql = 'select * from category where is_delete = 0 order by depth,pid,priority';
 		$result = $this->persistent->query($sql);
-		return $result->fetchOne($this->className);
+		return $result->fetchAll($this->className);
 	}
 	
 	/**
