@@ -34,4 +34,20 @@ $(function(){
 		$(this).css("padding","3px");
 		$(this).css("border","#53a2e1 1px solid");
 	});
+	
+	//tag cloud
+	if(!$('#myCanvas').tagcanvas({
+	   textColour: '#bbbbbb',
+	   outlineColour: '#bbbbbb',
+	   reverse: true,
+	   depth: 0.8,
+	   maxSpeed: 0.05,
+	   initial:[0.8,-0.3],
+	   maxSpeed:0.01,
+	   depth:0.5
+	 },'tags')) {
+	   // something went wrong, hide the canvas container
+	   $('#myCanvasContainer').hide();
+	 };
+	 
 });

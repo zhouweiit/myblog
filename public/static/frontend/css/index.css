@@ -219,7 +219,8 @@ a.replay{
 div.tag{
 	font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
 	color:#bbbbbb;
-	padding:20px;
+	padding-left:10px;
+	padding-top:5px;
 }
 
 div.tagcontainer{

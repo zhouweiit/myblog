@@ -55,13 +55,4 @@ class AsideService extends ServiceBase {
 		);
 	}
 	
-	/**
-	 * 按照模板要求，组合tag的信息
-	 * @param array $archiveTags
-	 * @return array
-	 * @author zhouwei
-	 */
-	private function createTagsOutTpl($archiveTags){
-		
-	}
 }

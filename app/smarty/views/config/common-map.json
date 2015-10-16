@@ -30,6 +30,10 @@
             "uri": "/static/common/js/modernizr.js",
             "type": "js"
         },
+        "common:static/js/jquery.tagcanvas.min.js": {
+            "uri": "/static/common/js/jquery.tagcanvas.min.js",
+            "type": "js"
+        },
         "common:static/js/silder.js": {
             "uri": "/static/common/js/silder.js",
             "type": "js"
