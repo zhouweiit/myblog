@@ -54,4 +54,14 @@ class AsideService extends ServiceBase {
 			'newComments'	=> $newComments,
 		);
 	}
+	
+	/**
+	 * 按照模板要求，组合tag的信息
+	 * @param array $archiveTags
+	 * @return array
+	 * @author zhouwei
+	 */
+	private function createTagsOutTpl($archiveTags){
+		
+	}
 }

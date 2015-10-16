@@ -32,13 +32,13 @@
 			<a href="javascript:void(0)" style="font-size:10px;">Java</a><a href="javascript:void(0)" style="font-size:12px;">Php</a><a href="javascript:void(0)" style="font-size:20px;">node.js</a><a href="javascript:void(0)" style="font-size:16px;">c++</a><a href="javascript:void(0)" style="font-size:15px;">HTML</a>
 		</div>
 		<div class="tagcontainer">
-			<a href="javascript:void(0)">Java</a><a href="javascript:void(0)">Php</a><a href="javascript:void(0)"  style="font-size:40px;">node.js</a><a href="javascript:void(0)">c++</a>
+			<a href="javascript:void(0)">Java</a><a href="javascript:void(0)">Php</a><a href="javascript:void(0)"  style="font-size:30px;">node.js</a><a href="javascript:void(0)">c++</a>
 		</div class="tagcontainer">
 		<div class="tagcontainer">
 			<a href="javascript:void(0)" style="font-size:20px;">Java</a><a href="javascript:void(0)" style="font-size:20px;">Php</a><a href="javascript:void(0)">node.js</a><a href="javascript:void(0)">c++</a><a href="javascript:void(0)">HTML</a>
 		</div>
 		<div class="tagcontainer">
-			<a href="javascript:void(0)">Java</a><a href="javascript:void(0)">Php</a><a href="javascript:void(0)">node.js</a><a href="javascript:void(0)" style="font-size:22px;">c++</a><a href="javascript:void(0)"  style="font-size:30px;">HTML</a>
+			<a href="javascript:void(0)" style="font-size:30px;">Java</a>
 		</div>
 	</div>
 </div>
