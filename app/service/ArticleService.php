@@ -317,4 +317,49 @@ class ArticleService extends ServiceBase {
 		);
 	}
 	
+	/**
+	 * 根据文章ID获取文章信息
+	 * @param int $articleId
+	 * @return array
+	 * @author zhouwei
+	 */
+	public function getArticleInfoById($articleId){
+		$articleInfo = $this->articleDao->getById($articleId);
+		$tagInfo = $this->getArticleTagsInfo($articleId);
+		return array(
+			'article'	=> array(
+				'title'				=> $articleInfo->getTitle(),
+				'category_id'		=> $articleInfo->getCategoryId(),
+				'headcontent'		=> $articleInfo->getHeadcontent(),
+				'headimage'			=> $articleInfo->getHeadimage(),
+				'release_datetime' 	=> date('Y-m-d H:i',strtotime($articleInfo->getReleaseDatetime())),
+				'comment_times'		=> $articleInfo->getCommentTimes(),
+				'read_times'		=> $articleInfo->getReadTimes(),
+				'content'			=> $articleInfo->getContent(),
+				'id'				=> $articleInfo->getId(),
+			),		
+			'tag'		=> $tagInfo,
+		);
+	}
+	
+	/**
+	 * 根据文章获取文章的标签信息
+	 * @param unknown $articleId
+	 */
+	public function getArticleTagsInfo($articleId){
+		$maps = $this->articleTagMapService->getArticleMapByArticleId($articleId);
+		$tags = $this->tagService->getAllTag();
+		$result = array();
+		foreach ($maps as $map){
+			if (isset($tags[$map->getTagId()])){
+				$result[] = array(
+					'name'	=> $tags[$map->getTagId()]->getName(),
+					'id'	=> $map->getTagId(),
+				);
+			}
+		}
+		$result[count($result) - 1]['last'] = true;
+		return $result;
+	}
+	
 }

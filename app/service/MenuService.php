@@ -32,9 +32,9 @@ class MenuService extends ServiceBase {
 
 	/**
 	 * 根据连接传输的信息，正确的显示菜单与导航条
-	 * @param int $categoryId
-	 * @param int $tagid
-	 * @param date $date
+	 * @param int $categoryId	分类ID
+	 * @param int $tagid		标签ID
+	 * @param date $date		日期
 	 * @return array
 	 * @author zhouwei
 	 */
@@ -43,7 +43,7 @@ class MenuService extends ServiceBase {
 		$categoryid = null;
 		if (!empty($date)){//优先查询日期的文章信息，并且再首页频道显示
 			$dateTmp = date('Y年m月',strtotime($date));
-			$navigation .= '<a href="/">首页</a>&gt;&nbsp;<a href="/index/index?date='.$dateTmp.'-01">'.$dateTmp.'</a></h2>';
+			$navigation .= '<a href="/">首页</a>&gt;&nbsp;<a href="/index/index?date='.date('Y-m',strtotime($date)).'-01">'.$dateTmp.'</a></h2>';
 		} else if (!empty($tagid)){//根据标签ID查询文章信息，并且根据标签的频道分类再频道显现
 			$tag = $this->tagService->getTagById($tagid);
 			if (!empty($tag)){

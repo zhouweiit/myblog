@@ -15,7 +15,7 @@
         <p class="title_meta">
         	<span>发布时间：<a href="/index/index?date={%$article.release_datetime%}">{%$article.release_datetime%}</a></span>
         	{%if $article.tag%}
-	        	<span>分类：
+	        	<span>标签：
 	        	{%foreach from=$article.tag item=tag%}
 	        		{%if $tag.last%}
 	        			<a href="/index/index?tagid={%$tag.id%}">{%$tag.name%}</a>
