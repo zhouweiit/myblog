@@ -278,6 +278,23 @@ class ArticleService extends ServiceBase {
 	}
 	
 	/**
+	 * 获取相关文章的TOP10
+	 * @param array $tagIds
+	 * @param int $articleId
+	 * @return array
+	 * @author zhouwei
+	 */
+	public function getRelatedArticlesTop10(array $tagids,$articleId){
+		$articleIds = $this->articleTagMapService->getArticleMapByTagIds($tagids,$articleId);
+		if (empty($articleIds)){
+			return array();
+		}
+		$articleInfos = $this->articleDao->getByIds($articleIds);
+		$articleInfosHot = $this->getHotArticleTop10($articleInfos);
+		return $articleInfosHot;
+	}
+	
+	/**
 	 * 根据所有的文章，获取文章的分类，包含日期与category，并获取各自的文章的条数
 	 * @param array $allArticles
 	 * @return array
@@ -352,7 +369,7 @@ class ArticleService extends ServiceBase {
 		$result = array();
 		foreach ($maps as $map){
 			if (isset($tags[$map->getTagId()])){
-				$result[] = array(
+				$result[$map->getTagId()] = array(
 					'name'	=> $tags[$map->getTagId()]->getName(),
 					'id'	=> $map->getTagId(),
 				);

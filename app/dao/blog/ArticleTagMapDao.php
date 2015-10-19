@@ -72,6 +72,20 @@ class ArticleTagMapDao extends DaoBase {
 	}
 	
 	/**
+	 * 根据tag的id数组获取所有的map信息
+	 * @param array $tagIds
+	 * @return array
+	 * @author zhouwei
+	 */
+	public function getByTagIds(array $tagIds){
+		$inSqlCondition = SqlUtils::getInSqlCondition($tagIds);
+		$bind = $inSqlCondition['bindArray'];
+		$sql = 'select * from article_tag_map where tag_id in ('.$inSqlCondition['conditinSql'].') and is_delete = 0';
+		$result = $this->persistent->query($sql,$bind);
+		return $result->fetchAll($this->className);
+	}
+	
+	/**
 	 * 获取所有的文章与标签的map的关系
 	 * @return array
 	 * @author zhouwei

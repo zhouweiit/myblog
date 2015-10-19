@@ -41,6 +41,8 @@ class ArticleController extends ControllerBase {
 		$articleid = $this->request->get('articleid');
 		$articleInfo = $this->articleService->getArticleInfoById($articleid);
 		//todo 文章不存在，跳404
+		$tagids = array_keys($articleInfo['tag']);
+		$relatedArticle = $this->articleService->getRelatedArticlesTop10($tagids, $articleid);
 		$menuInfo = $this->menuService->getMenuInfo($articleInfo['article']['category_id'],null,null);
 		$asideInfo = $this->asideService->getAsideResult();
 		$fristCategory = $this->categoryService->getFirstCategory();
@@ -50,6 +52,7 @@ class ArticleController extends ControllerBase {
 		$this->view->setVar('aside', $asideInfo);
 		$this->view->setVar('article', $articleInfo['article']);
 		$this->view->setVar('tags',$articleInfo['tag']);
+		$this->view->setVar('relateArticle', $relatedArticle);
 	}
 	
 }
