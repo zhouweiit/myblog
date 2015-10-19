@@ -23,7 +23,7 @@
 	</h2>
 	<div class="tag">
 		<div id="myCanvasContainer">
-	      <canvas width="250" height="250" id="myCanvas">
+	      <canvas width="230" height="230" id="myCanvas">
 	        <p>Anything in here will be replaced on browsers that support the canvas element</p>
 	      </canvas>
 	    </div>
@@ -64,7 +64,7 @@
 		{%foreach from=$aside.newComments item=comment%}
 		<dl>
 		    <dd class="comment_name">{%$comment.name%}</dd>
-		    <dd><a href="/">{%$comment.content%}</a></dd>
+		    <dd><a href="/article/info?articleid={%$comment.article_id%}#comment">{%$comment.content%}</a></dd>
 		 </dl>
 		{%/foreach%}
 	</ul>
@@ -75,13 +75,27 @@
     <p class="tj_t1">友情链接</p>
   </h2>
   <ul>
-    <li><a href="/">周周个人博客</a></li>
-    <li><a href="/">百度技术论坛</a></li>
+  	 {%foreach from=$aside.links item=link%}
+  	 	<li><a href="{%$link->getUrl()%}">{%$link->getName()%}</a></li>
+  	 {%/foreach%}
   </ul>
 </div>
+
+<div class="ph_news">
+	<h2>
+	  <p class="tj_t1">联系方式</p>
+	</h2>
+	<ul class="pl_n">
+		<dl>
+		    <dd><a href="mailto:zhouwei_work@163.com">邮箱：zhouwei_work@163.com</a></dd>
+		    <dd><a href="https://github.com/zhouweiit">github：github.com/zhouweiit</a></dd>
+		 </dl>
+	</ul>
+</div>
+
 <div class="copyright">
   <ul>
-    <p> Design by zhouwei</p>
-    <p>京ICP备11002373号-1</p>
+    <p>Copyright © 2015 zwiter</p>
+    <p>All Rights Reserved</p>
   </ul>
 </div>

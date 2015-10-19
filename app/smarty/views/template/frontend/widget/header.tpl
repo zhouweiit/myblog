@@ -27,7 +27,9 @@
        		<a href="/index/index?categoryid={%$category.id%}" {%if $category.id == $firstCategoryId%}id="topnav_current"{%/if%}>{%$category.name%}</a>
        	{%/foreach%}
    		<a href="/message/leave" {%if $leave%}id="topnav_current"{%/if%}>留言小本</a>
+   		{%*
    		<a href="/about/blog" {%if $blog%}id="topnav_current"{%/if%}>关于我</a>
+   		*%}
    		<img class="imageserach" src="/static/frontend/images/search.png"/>
    		<input class="inputblue" type="text" placeholder="  全站搜索" style="float:right;"/>
    	</nav>

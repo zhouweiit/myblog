@@ -8,6 +8,7 @@ use service\UserService;
 use service\PageService;
 use service\MenuService;
 use service\AsideService;
+use service\LinksService;
 
 $di->setShared('ArticleService', function () use($di) {
 	return new ArticleService($di);
@@ -43,4 +44,8 @@ $di->setShared('MenuService', function () use($di) {
 
 $di->setShared('AsideService', function () use($di) {
 	return new AsideService($di);
+});
+
+$di->setShared('LinksService', function () use($di) {
+	return new LinksService($di);
 });

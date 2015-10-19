@@ -27,11 +27,17 @@ class AsideService extends ServiceBase {
 	 */
 	private $commentService;
 	
+	/**
+	 * @var LinksService
+	 */
+	private $linksService;
+	
 	protected function init(){
 		$this->log					= $this->di->get('applicationLog');
 		$this->articleService		= $this->di->get('ArticleService');
 		$this->articleTagMapService = $this->di->get('ArticleTagMapService');
 		$this->commentService		= $this->di->get('CommentService');
+		$this->linksService			= $this->di->get('LinksService');
 	} 
 	
 	/**
@@ -46,13 +52,32 @@ class AsideService extends ServiceBase {
 		$archiveInfo = $this->articleService->getArchiveInfo($allArticles);
 		$archiveTags = $this->articleTagMapService->getArchiveTag();
 		$newComments = $this->commentService->getNewCommentTop10();
+		$links 		 = $this->linksService->getAllLinks();
 		return array(
 			'newarticles'	=> $newArticles,
 			'hotArticles'	=> $hotArticles,
 			'archiveInfo'	=> $archiveInfo,
 			'archiveTags'	=> $archiveTags,
 			'newComments'	=> $newComments,
+			'links'			=> $links,
 		);
+	}
+	
+	/**
+	 * 将超链接从对象转为数组供smarty使用
+	 * @param unknown $links
+	 * @return multitype:multitype:NULL
+	 */
+	private function getLinksArray($links){
+		$result = array();
+		foreach ($links as $value){
+			$result[] = array(
+				'name' 	=> $value->getName(),
+				'url'	=> $value->getUrl(),
+				'id'	=> $value->getId(),	
+			);
+		}
+		return $result;
 	}
 	
 }

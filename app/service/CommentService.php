@@ -33,6 +33,7 @@ class CommentService extends ServiceBase {
 				'content'			=> $value->getContent(),
 				'name'				=> $value->getName(),
 				'release_datetime'	=> $value->getReleaseDatetime(),
+				'article_id'		=> $value->getArticleId(),
 			);
 		}
 		return $result;

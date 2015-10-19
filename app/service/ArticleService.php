@@ -251,7 +251,30 @@ class ArticleService extends ServiceBase {
 	 * @author zhouwei
 	 */
 	public function getHotArticleTop10(array $allArticles){
-		return array();
+		$score = array();
+		$nowtime = time();
+		$allArticlesTmp = array();
+		foreach ($allArticles as $value){
+			$score[$value->getId()] = $value->getCommentTimes() * 20 
+								+ $value->getReadTimes() 
+								+ (strtotime($value->getReleaseDatetime()) - $nowtime) / 86400;
+			$allArticlesTmp[$value->getId()] = $value;
+		}
+		arsort($score);
+		$result = array();
+		$count = 0;
+		foreach ($score as $key => $scoreVal){
+			if ($count >= 10){
+				break;
+			}
+			$article = $allArticlesTmp[$key];
+			$result[] = array(
+				'id'	=> $article->getId(),
+				'name'	=> $article->getTitle(),
+			);
+			$count++;
+		}
+		return $result;
 	}
 	
 	/**
