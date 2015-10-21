@@ -50,4 +50,16 @@ $(function(){
 	   $('#myCanvasContainer').hide();
 	 };
 	 
+	$("a.replaybutton").click(function(){
+		var name = $(this).attr('name');
+		$("#comment_content").html('<div class="atuser">@'+name+'：</div>');
+	});
+	
+	$("a.quotebutton").click(function(){
+		var pid = $(this).attr('pid');
+		var pidnum = $(this).attr('pidnum');
+		$("#comment_content").html('<div class="comment_quote_hider">'+pid+'</div>');
+		$("#form_comment_pid").val(pidnum);
+	});
+	 
 });

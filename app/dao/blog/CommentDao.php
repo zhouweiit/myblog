@@ -38,4 +38,16 @@ class CommentDao extends DaoBase {
 		return $result->fetchAll($this->className);
 	}
 	
+	/**
+	 * 根据文章ID获取文章的评论信息
+	 * @param int $articleid
+	 * @return array
+	 * @author zhouwei
+	 */
+	public function getCommentByArticleId($articleid){
+		$sql = 'select * from comment where is_delete = 0 and article_id = :article_id order by release_datetime asc';
+		$result = $this->persistent->query($sql,array(':article_id'=>$articleid));
+		return $result->fetchAll($this->className);
+	}
+	
 }

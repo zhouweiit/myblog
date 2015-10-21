@@ -14,7 +14,6 @@
 .newblog:hover::after { opacity: 1 }
 .dateview { position: absolute; left: -125px; top: 0px; z-index: 1; color: #F5F5F5; }
 .newblog figure { float: right; width: 25%; overflow: hidden; }
-.newblog figure img { width: 100%; margin: auto; -moz-transition: all 0.5s; -webkit-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s; }
 .newblog figure:hover img { -moz-transform: scale(1.1); -webkit-transform: scale(1.1); -o-transform: scale(1.1); -ms-transform: scale(1.1); }
 .page { margin: 20px 0; text-align: center; width: 100%; overflow: hidden; }
 .page a b { color: #999; }

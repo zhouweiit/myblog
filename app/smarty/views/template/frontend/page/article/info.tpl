@@ -52,127 +52,49 @@
       <div class="comment" id="comment">
         <h2 style="background: url(/static/frontend/images/comment.png) 10px center no-repeat; ">热点评论</h2>
         
-        <div class="comment_info">
-        	<div class="comment_user">
+        {%assign var="floor" value=1%}
+        {%foreach from=$comments item=commentInfo%}
+       	<div class="comment_info">
+       		<div class="comment_user">
         		<img src="/static/frontend/images/s8.jpg" style="width:70px;">
         		<div  class="comment_user_name">
-        			程序狗
+        			{%$commentInfo.comment->getName()%}
         		</div>
         		<div class="clear"></div>
         	</div>
         	<div style="float:left;padding-left:23px;font-weight:normal;">
-	        	<label style="float:left;">2015年10月11日 19:11</label>
-	        	<label style="float:right;margin-left:365px;"><a class='replay' href='javascript:void(0)'>回复</a> | <a class='replay' href='javascript:void(0)'>引用</a></label>
-	        	<div class="clear"></div>
-        	</div>
-        	<div class="comment_content">
-        		<div style="width:565px;">
-        			<div> <!-- 有引用，需要添加class="comment_content_info" -->
-        				我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友
-        			</div>
-        		</div>
-        		<div class="clear"></div>
-        	</div>
-        	<div class="clear"></div>
-        </div>
-        
-        <div class="comment_info">
-        	<div class="comment_user">
-        		<img src="/static/frontend/images/s8.jpg" style="width:70px;">
-        		<div  class="comment_user_name">
-        			程序狗
-        		</div>
-        		<div class="clear"></div>
-        	</div>
-        	<div style="float:left;padding-left:23px;font-weight:normal;">
-	        	<label style="float:left;">2015年10月11日 19:11</label>
-	        	<label style="float:right;margin-left:365px;"><a class='replay' href='javascript:void(0)'>回复</a> | <a class='replay' href='javascript:void(0)'>引用</a></label>
-	        	<div class="clear"></div>
-        	</div>
-        	<div class="comment_content">
-        		<div style="width:565px;">
-        			<div> <!-- 有引用，需要添加class="comment_content_info" -->
-        				<div class="atuser">@程序狗：</div>
-        				我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友
-        			</div>
-        		</div>
-        		<div class="clear"></div>
-        	</div>
-        	<div class="clear"></div>
-        </div>
-        
-        <div class="comment_info">
-        	<div class="comment_user">
-        		<img src="/static/frontend/images/s8.jpg" style="width:70px;">
-        		<div  class="comment_user_name">
-        			程序狗
-        		</div>
-        		<div class="clear"></div>
-        	</div>
-        	<div style="float:left;padding-left:23px;font-weight:normal;">
-	        	<label style="float:left;">2015年10月11日 19:11</label>
-	        	<label style="float:right;margin-left:365px;"><a class='replay' href='javascript:void(0)'>回复</a> | <a class='replay' href='javascript:void(0)'>引用</a></label>
-	        	<div class="clear"></div>
-        	</div>
-        	<div class="comment_content">
-        		<div style="width:565px;">
-        			<div class='comment_quote' style="width:500px;">
-        				<div style="font-weight:bold;">
-		        			程序狗：
-		        		</div>
-		        		<div class="comment_content_info">
-		        			我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝
-		        		</div>
-        			</div>
-        			<div class="comment_content_info">
-        				我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友
-        			</div>
-        		</div>
-        		<div class="clear"></div>
-        	</div>
-        	<div class="clear"></div>
-        </div>
-        
-        <div class="comment_info">
-        
-        	<div class="comment_user">
-        		<img src="/static/frontend/images/s8.jpg" style="width:70px;">
-        		<div  class="comment_user_name">
-        			程序狗
-        		</div>
-        		<div class="clear"></div>
-        	</div>
-        	<div style="float:left;padding-left:23px;font-weight:normal;">
-	        	<label style="float:left;">2015年10月11日 19:11</label>
-	        	<label style="float:right;margin-left:365px;"><a class='replay' href='javascript:void(0)'>回复</a> | <a class='replay' href='javascript:void(0)'>引用</a></label>
+	        	<label style="float:left;">{%$commentInfo.date%} &nbsp;&nbsp;|&nbsp; #{%$floor%}</label>
+	        	<label style="float:right;margin-left:325px;"><a class='replay replaybutton' name="{%$commentInfo.comment->getName()%}" href='javascript:void(0)'>回复</a> | <a class='replay quotebutton' pid="#{%$commentInfo.comment->getId()%}" pidnum="{%$commentInfo.comment->getId()%},{%$commentInfo.comment->getPid()%}" href='javascript:void(0)'>引用</a></label>
 	        	<div class="clear"></div>
         	</div>
         	
         	<div class="comment_content">
-        	
         		<div style="width:565px;">
-        			<div class='comment_quote' style="width:500px;">
+        			{%*正序评论的用户名*%}
+        			{%foreach from=$commentInfo.father item=fatherComment%}
+       					{%assign var="px" value=(500 - ($fatherComment.count - 1) * 50) %}
+       				<div class='comment_quote' style="width:{%$px%}px;">
+        				{%if $fatherComment.count <10 %}
+        					<div style="font-weight:bold;">
+        						{%$fatherComment.comment->getName()%}：
+        					</div>
+        				{%/if%}
+        			{%/foreach%}
         			
-        				<div style="font-weight:bold;margin-bottom:5px;">
-		        			程序狗：
-		        		</div>
-        				
-        				<div class='comment_quote' style="width:400px;">
-	        				<div style="font-weight:bold;">
-			        			程序狗：
-			        		</div>
-			        		<div class="comment_content_info">
-			        			我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝
-			        		</div>
-	        			</div>
-        				
-		        		<div class="comment_content_info">
-		        			我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝
-		        		</div>
+        			{%*倒序评论的信息*%}
+        			{%foreach from=$commentInfo.fatherDesc item=fatherComment%}
+       					<div class="comment_content_info">
+        				{%if $fatherComment.count <10 %}
+			        			{%$fatherComment.comment->getContent()%}
+			        	{%else%}
+			        			......
+			        	{%/if%}	
+			        	</div>
         			</div>
+        			{%/foreach%}
         			
         			<div class="comment_content_info">
-        				我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友
+        				{%$commentInfo.comment->getContent()%}
         			</div>
         			
         		</div>
@@ -180,13 +102,15 @@
         	</div>
         	<div class="clear"></div>
         </div>
-        
+        {%assign var="floor" value=$floor + 1%}
+        {%/foreach%}
         <div style="float:block;height:12px;"></div>
+        
         <form style="border-top:#dcdcdc 1px dashed;font-size:12px;color:#756f71;">
-        	<input class="inputblue" type="text" style="width:200px;"/> 昵称 (必填)<br />
-        	<input class="inputblue" type="text" style="width:200px;"/> 电子邮箱 (我们会为您保密)<br />
-        	<input class="inputblue" type="text" style="width:200px;"/> 网址<br />
-        	<textarea class="inputblue" style="width:550px;height:150px;"></textarea><br />
+        	<input class="inputblue" name="name" type="text" style="width:200px;padding-left:5px;padding-right:5px;"/> 昵称 (必填)<br />
+        	<input class="inputblue" name="email" type="text" style="width:200px;padding-left:5px;padding-right:5px;"/> 电子邮箱 (我们会为您保密)<br />
+        	<textarea class="inputblue" name="content" id="comment_content" style="width:550px;height:150px;padding:5px;"></textarea><br />
+        	<input type="hidden" id="form_comment_pid" name="pid" value=""/>
         	<div class="commentsubmit">提交评论</div>
         </form>
         
@@ -201,4 +125,4 @@
   <div class="clear"></div>
   <!-- 清除浮动 --> 
 </div>
-{%require name='frontend:page/article/info.tpl'%}{%require name='frontend:page/article/info.tpl'%}{%/block%}
+{%/block%}
