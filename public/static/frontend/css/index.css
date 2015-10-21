@@ -210,6 +210,12 @@ div.atuser{
 	font-weight:bold;
 	padding-bottom:5px;
 }
+a.floor{
+	color:#53a2e1;
+}
+a.floot:hover{
+	color:#53a2e1;
+}
 div.clear{
 	clear:both;
 }

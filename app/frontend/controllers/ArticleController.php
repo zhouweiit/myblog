@@ -8,6 +8,7 @@ use service\CategoryService;
 use service\ArticleService;
 use service\MenuService;
 use service\CommentService;
+use service\UserService;
 
 class ArticleController extends ControllerBase {
 	
@@ -36,12 +37,18 @@ class ArticleController extends ControllerBase {
 	 */
 	private $commentService;
 	
+	/**
+	 * @var UserService
+	 */
+	private $userService;
+	
 	protected function initialize(){
 		$this->asideService		= $this->di->get('AsideService');
 		$this->categoryService  = $this->di->get('CategoryService');
 		$this->articleService	= $this->di->get('ArticleService');
 		$this->menuService		= $this->di->get('MenuService');
 		$this->commentService	= $this->di->get('CommentService');
+		$this->userService		= $this->di->get('UserService');
 	}
 	
 	public function infoAction(){
@@ -57,6 +64,8 @@ class ArticleController extends ControllerBase {
 		$asideInfo = $this->asideService->getAsideResult();
 		//评论
 		$comments = $this->commentService->getCommentTreeByArticleId($articleid);
+		//当前评论人的cookie信息
+		$userInfo = $this->userService->getUserCookies();
 		$fristCategory = $this->categoryService->getFirstCategory();
 		$this->view->setVar('firstCategory', $fristCategory);
 		$this->view->setVar('firstCategoryId', $menuInfo['categoryid']);
@@ -66,6 +75,22 @@ class ArticleController extends ControllerBase {
 		$this->view->setVar('tags',$articleInfo['tag']);
 		$this->view->setVar('relateArticle', $relatedArticle);
 		$this->view->setVar('comments', $comments);
+		$this->view->setVar('userInfo', $userInfo);
 	}
 	
+	public function commitCommentAction(){
+		$name = $this->request->get('name');
+		$email = $this->request->get('email');
+		$content = $this->request->get('content');
+		$pid = $this->request->get('pid');
+		$articleId = $this->request->get('articleid');
+		$commentFloor = $this->request->get('comment_floor');
+		$result = $this->commentService->addComment($articleId, $content, $pid, $name, $email);
+		$this->userService->setUserCookies($name, $email);
+		if ($result){
+			$this->response->redirect('http://127.0.0.1:8889/article/info?articleid=1#floor-'.$commentFloor);
+		} else {
+			$this->response->redirect('http://127.0.0.1:8889/article/info?articleid=1#form_comment');
+		}
+	}
 }

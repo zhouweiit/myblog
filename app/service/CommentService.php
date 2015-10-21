@@ -53,7 +53,7 @@ class CommentService extends ServiceBase {
 		foreach ($commentInfos as $comment){
 			$commentTrees[$comment->getId()] = array(
 				'comment'	=> $comment,
-				'date'		=> date('Y年m月d日 H:i'),
+				'date'		=> date('Y年m月d日 H:i',strtotime($comment->getReleaseDatetime())),
 			);
 			$pid = trim($comment->getPid());
 			if (!empty($pid)){
@@ -63,11 +63,10 @@ class CommentService extends ServiceBase {
 					if (isset($commentInfos[$id]) && $count <= 9){
 						$commentTrees[$comment->getId()]['father'][$commentInfos[$id]->getId()] = array(
 							'comment' 	=> $commentInfos[$id],
-							'count'		=> $count++,
+							'count'		=> $count,
 						);
-					} else {
-						$count++;
 					}
+					$count++;
 				}
 				if ($count > 9){
 					$commentTrees[$comment->getId()]['father'][] = array(
@@ -97,6 +96,26 @@ class CommentService extends ServiceBase {
 			$result[$value->getId()] = $value;
 		}
 		return $result;
+	}
+	
+	/**
+	 * 新增一条评论信息
+	 * @param int $articleId
+	 * @param string $content
+	 * @param int $pid
+	 * @param string $name
+	 * @param string $email
+	 * @return void
+	 * @author zhouwei
+	 */
+	public function addComment($articleId,$content,$pid,$name,$email){
+		if (empty($pid)){
+			$pid = null;
+		} else if (empty($articleId) || empty($content) || empty($name)){
+			return false;
+		}
+		$this->commentDao->insertComment($articleId, $content, $pid, $name, $email);
+		return true;
 	}
 	
 }

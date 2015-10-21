@@ -50,4 +50,26 @@ class CommentDao extends DaoBase {
 		return $result->fetchAll($this->className);
 	}
 	
+	/**
+	 * 新增一条评论信息
+	 * @param int $articleId
+	 * @param string $content
+	 * @param int $pid
+	 * @param string $name
+	 * @param string $email
+	 * @return void
+	 * @author zhouwei
+	 */
+	public function insertComment($articleId,$content,$pid,$name,$email){
+		$sql = 'insert into comment (article_id,content,pid,name,email,is_check,release_datetime,is_delete,creation_date,last_changed_date) values(
+					:article_id,:content,:pid,:name,:email,0,now(),0,now(),now())';
+		$bind = array(
+			':article_id'	=> $articleId,
+			':content'		=> $content,
+			':pid'			=> $pid,
+			':name'			=> $name,
+			':email'		=> $email,
+		);
+		print_r($this->persistent->execute($sql,$bind));
+	}
 }

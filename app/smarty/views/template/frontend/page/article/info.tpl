@@ -43,8 +43,8 @@
       <div class="otherlink">
         <h2>相关文章</h2>
         <ul>
-	        {%foreach from=$relateArticle item=article%}
-				<li><a href="/article/info?articleid={%$article.id%}">{%$article.name%}</a></li>
+	        {%foreach from=$relateArticle item=value%}
+				<li><a href="/article/info?articleid={%$value.id%}">{%$value.name%}</a></li>
 			{%/foreach%}
         </ul>
       </div>
@@ -54,7 +54,7 @@
         
         {%assign var="floor" value=1%}
         {%foreach from=$comments item=commentInfo%}
-       	<div class="comment_info">
+       	<div class="comment_info" id="floor-{%$floor%}">
        		<div class="comment_user">
         		<img src="/static/frontend/images/s8.jpg" style="width:70px;">
         		<div  class="comment_user_name">
@@ -63,8 +63,8 @@
         		<div class="clear"></div>
         	</div>
         	<div style="float:left;padding-left:23px;font-weight:normal;">
-	        	<label style="float:left;">{%$commentInfo.date%} &nbsp;&nbsp;|&nbsp; #{%$floor%}</label>
-	        	<label style="float:right;margin-left:325px;"><a class='replay replaybutton' name="{%$commentInfo.comment->getName()%}" href='javascript:void(0)'>回复</a> | <a class='replay quotebutton' pid="#{%$commentInfo.comment->getId()%}" pidnum="{%$commentInfo.comment->getId()%},{%$commentInfo.comment->getPid()%}" href='javascript:void(0)'>引用</a></label>
+	        	<label style="float:left;">{%$commentInfo.date%} &nbsp;&nbsp;|&nbsp; <a href="#floor-{%$floor%}" class="floor">#{%$floor%}</a></label>
+	        	<label style="float:right;margin-left:325px;"><a class='replay replaybutton' name="{%$commentInfo.comment->getName()%}" href='#form_comment'>回复</a> | <a class='replay quotebutton' pid="#{%$commentInfo.comment->getId()%}" pidnum="{%$commentInfo.comment->getId()%},{%$commentInfo.comment->getPid()%}" href='#form_comment'>引用</a></label>
 	        	<div class="clear"></div>
         	</div>
         	
@@ -106,12 +106,14 @@
         {%/foreach%}
         <div style="float:block;height:12px;"></div>
         
-        <form style="border-top:#dcdcdc 1px dashed;font-size:12px;color:#756f71;">
-        	<input class="inputblue" name="name" type="text" style="width:200px;padding-left:5px;padding-right:5px;"/> 昵称 (必填)<br />
-        	<input class="inputblue" name="email" type="text" style="width:200px;padding-left:5px;padding-right:5px;"/> 电子邮箱 (我们会为您保密)<br />
-        	<textarea class="inputblue" name="content" id="comment_content" style="width:550px;height:150px;padding:5px;"></textarea><br />
+        <form id="form_comment" style="border-top:#dcdcdc 1px dashed;font-size:12px;color:#756f71;" method="post" action="/article/commitComment">
+        	<input class="inputblue" name="name" id="comment_name" type="text" style="color:#756f71;width:200px;padding-left:5px;padding-right:5px;" value="{%$userInfo.username%}"/> 昵称 (必填)<br />
+        	<input class="inputblue" name="email" id="comment_email" type="text" style="color:#756f71;width:200px;padding-left:5px;padding-right:5px;" value="{%$userInfo.useremail%}"/> 电子邮箱 (我们会为您保密)<br />
+        	<textarea class="inputblue" name="content" id="comment_content" style="color:#756f71;width:550px;height:150px;padding:5px;"></textarea><br />
         	<input type="hidden" id="form_comment_pid" name="pid" value=""/>
-        	<div class="commentsubmit">提交评论</div>
+        	<input type="hidden" name="articleid" value="{%$article.id%}"/>
+        	<input type="hidden" name="comment_floor" value="{%$floor%}"/>
+        	<div class="commentsubmit" id="comment_submit">提交评论</div>
         </form>
         
       </div>

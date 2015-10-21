@@ -52,6 +52,12 @@ class Comment {
     private $releaseDatetime;
     
     /**
+     * 是否审核
+     * @var int
+     */
+    private $isCheck;
+    
+    /**
      * 是否删除
      * @var int
      */
@@ -78,6 +84,7 @@ class Comment {
     		'name' 				=> 'name',
     		'email' 			=> 'email',
    			'release_datetime' 	=> 'releaseDatetime',
+    		'is_check'			=> 'isCheck',
    			'is_delete' 		=> 'isDelete',
    			'creation_date'		=> 'creationDate',
    			'last_changed_date'	=> 'lastChangedDate',
@@ -131,6 +138,13 @@ class Comment {
 	 */
 	public function getReleaseDatetime() {
 		return $this->releaseDatetime;
+	}
+
+	/**
+	 * @return the $isCheck
+	 */
+	public function getIsCheck() {
+		return $this->isCheck;
 	}
 
 	/**
@@ -204,6 +218,13 @@ class Comment {
 	}
 
 	/**
+	 * @param number $isCheck
+	 */
+	public function setIsCheck($isCheck) {
+		$this->isCheck = $isCheck;
+	}
+
+	/**
 	 * @param number $isDelete
 	 */
 	public function setIsDelete($isDelete) {
@@ -223,4 +244,5 @@ class Comment {
 	public function setLastChangedDate($lastChangedDate) {
 		$this->lastChangedDate = $lastChangedDate;
 	}
+	
 }

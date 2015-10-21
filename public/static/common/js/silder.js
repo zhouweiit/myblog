@@ -61,5 +61,52 @@ $(function(){
 		$("#comment_content").html('<div class="comment_quote_hider">'+pid+'</div>');
 		$("#form_comment_pid").val(pidnum);
 	});
-	 
+	
+	$("#comment_name").focus(function(){
+		if ($.trim($(this).val()) == '请输入昵称，谢谢!'){
+			$(this).val('');
+		}
+	});
+	
+	$("#comment_email").focus(function(){
+		if ($.trim($(this).val()) == '请输入邮箱，谢谢!'){
+			$(this).val('');
+		}
+	});
+	
+	$("#comment_content").focus(function(){
+		if ($.trim($(this).val()) == '请输入评论内容，谢谢!'){
+			$(this).val('');
+		}
+	});
+	
+	$("#comment_submit").click(function(){
+		var name = $("#comment_name");
+		var email = $("#comment_email");
+		var content = $("#comment_content");
+		var error = false;
+		if ($.trim(name.val()) == '' || $.trim(name.val()) == '请输入昵称，谢谢'){
+			name.val("请输入昵称，谢谢!");
+			error = true;
+		}
+		if ($.trim(email.val()) == '' || $.trim(email.val()) == '请输入邮箱，谢谢'){
+			email.val("请输入邮箱，谢谢!");
+			error = true;
+		}
+		if ($.trim(content.val()) == '' || $.trim(content.val()) == '请输入评论内容，谢谢'){
+			content.val("请输入评论内容，谢谢!");
+			error = true;
+		}
+		if (error){
+			return;
+		} else {
+			$("#form_comment").submit();
+		}
+	});
 });
+
+
+
+
+
+
