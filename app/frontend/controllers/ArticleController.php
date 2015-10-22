@@ -54,7 +54,11 @@ class ArticleController extends ControllerBase {
 	public function infoAction(){
 		$articleid = $this->request->get('articleid');
 		$articleInfo = $this->articleService->getArticleInfoById($articleid);
-		//todo 文章不存在，跳404
+		
+		if (empty($articleInfo)){
+			//todo 文章不存在，跳404
+		}
+		
 		$tagids = array_keys($articleInfo['tag']);
 		//相关推荐
 		$relatedArticle = $this->articleService->getRelatedArticlesTop10($tagids, $articleid);
@@ -66,6 +70,7 @@ class ArticleController extends ControllerBase {
 		$userInfo = $this->userService->getUserCookies();
 		//评论
 		$comments = $this->commentService->getCommentTreeByArticleId($articleid,$userInfo['username']);
+
 		$fristCategory = $this->categoryService->getFirstCategory();
 		$this->view->setVar('firstCategory', $fristCategory);
 		$this->view->setVar('firstCategoryId', $menuInfo['categoryid']);
@@ -87,10 +92,23 @@ class ArticleController extends ControllerBase {
 		$commentFloor = $this->request->get('comment_floor');
 		$result = $this->commentService->addComment($articleId, $content, $pid, $name, $email);
 		$this->userService->setUserCookies($name, $email);
-		if ($result){
-			$this->response->redirect('http://127.0.0.1:8889/article/info?articleid=1#floor-'.$commentFloor);
-		} else {
-			$this->response->redirect('http://127.0.0.1:8889/article/info?articleid=1#form_comment');
+		
+		if ($articleId == 0){//如果是留言评论的跳转
+			
+			if ($result){
+				$this->response->redirect('/message/leave?#floor-'.$commentFloor);
+			} else {
+				$this->response->redirect('/message/leave?#form_comment');
+			}
+			
+		} else {//如果是一般文章评论的跳转
+		
+			if ($result){
+				$this->response->redirect('/article/info?'.$articleId.'=1#floor-'.$commentFloor);
+			} else {
+				$this->response->redirect('/article/info?'.$articleId.'=1#form_comment');
+			}
+			
 		}
 	}
 }

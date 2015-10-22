@@ -52,7 +52,7 @@ $(function(){
 	 
 	$("a.replaybutton").click(function(){
 		var name = $(this).attr('name');
-		var htmltext = '<textarea class="inputblue" name="content" id="comment_content" style="color:#756f71;width:550px;height:150px;padding:5px;"></textarea>';
+		var htmltext = '<textarea class="inputblue" name="content" id="comment_content" style="font-size:12px;color:#756f71;width:550px;height:150px;padding:5px;"></textarea>';
 		$("#comment_content").replaceWith(htmltext);
 		$("#comment_content").html('<div class="atuser">@'+name+'：</div>');
 	});
@@ -60,7 +60,7 @@ $(function(){
 	$("a.quotebutton").click(function(){
 		var pid = $(this).attr('pid');
 		var pidnum = $(this).attr('pidnum');
-		var htmltext = '<textarea class="inputblue" name="content" id="comment_content" style="color:#756f71;width:550px;height:150px;padding:5px;"></textarea>';
+		var htmltext = '<textarea class="inputblue" name="content" id="comment_content" style="font-size:12px;color:#756f71;width:550px;height:150px;padding:5px;"></textarea>';
 		$("#comment_content").replaceWith(htmltext);
 		$("#comment_content").html('<div class="comment_quote_hider">'+pid+'</div>');
 		$("#form_comment_pid").val(pidnum);

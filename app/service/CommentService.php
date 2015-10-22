@@ -17,9 +17,15 @@ class CommentService extends ServiceBase {
 	 */
 	private $commentDao;
 	
+	/**
+	 * @var ArticleService
+	 */
+	private $articleService;
+	
 	protected function init(){
 		$this->log					= $this->di->get('applicationLog');
 		$this->commentDao			= $this->di->get('dao\\blog\\CommentDao');
+		$this->articleService		= $this->di->get('ArticleService');
 	}
 	
 	/**
@@ -111,10 +117,18 @@ class CommentService extends ServiceBase {
 	 * @author zhouwei
 	 */
 	public function addComment($articleId,$content,$pid,$name,$email){
+		if (empty($content) || empty($name)){//没有内容与名称，则不插入评论
+			return false;
+		} else if (is_numeric($articleId) && (int)$articleId === 0){//如果文章ID为0，则认为是用户留言
+			$articleId = 0;
+		} else {//否则，校验文章是否存在
+			$article = $this->articleService->getArticleInfoById($articleId);
+			if (empty($article)){
+				return false;
+			}
+		}
 		if (empty($pid)){
 			$pid = null;
-		} else if (empty($articleId) || empty($content) || empty($name)){
-			return false;
 		}
 		$this->commentDao->insertComment($articleId, $content, $pid, $name, $email);
 		return true;
