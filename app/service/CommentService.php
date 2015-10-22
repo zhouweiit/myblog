@@ -44,11 +44,12 @@ class CommentService extends ServiceBase {
 	/**
 	 * 获取一个文章的评论信息，并根据父子关系列成树
 	 * @param int $articleId
+	 * @param string $name 用户名称
 	 * @return array
 	 * @author zhouwei
 	 */
-	public function getCommentTreeByArticleId($articleId){
-		$commentInfos = $this->getCommentByArticleId($articleId);
+	public function getCommentTreeByArticleId($articleId,$name){
+		$commentInfos = $this->getCommentByArticleId($articleId,$name);
 		$commentTrees = array();
 		foreach ($commentInfos as $comment){
 			$commentTrees[$comment->getId()] = array(
@@ -87,10 +88,11 @@ class CommentService extends ServiceBase {
 	/**
 	 * 根据文章的ID获取文章的评论信息,按发布时间倒序
 	 * @param int $articleId
+	 * @param string $name 用户名称
 	 * @author zhouwei
 	 */
-	public function getCommentByArticleId($articleId){
-		$commentInfo = $this->commentDao->getCommentByArticleId($articleId);
+	public function getCommentByArticleId($articleId,$name){
+		$commentInfo = $this->commentDao->getCommentByArticleId($articleId,$name);
 		$result = array();
 		foreach ($commentInfo as $value){
 			$result[$value->getId()] = $value;

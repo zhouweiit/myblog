@@ -33,7 +33,7 @@ class CommentDao extends DaoBase {
 	 * @author zhouwei
 	 */
 	public function getNewestComment($limit){
-		$sql = 'select * from comment where is_delete = 0 order by release_datetime limit '.$limit;
+		$sql = 'select * from comment where is_delete = 0 and is_check = 1  order by release_datetime limit '.$limit;
 		$result = $this->persistent->query($sql);
 		return $result->fetchAll($this->className);
 	}
@@ -41,12 +41,21 @@ class CommentDao extends DaoBase {
 	/**
 	 * 根据文章ID获取文章的评论信息
 	 * @param int $articleid
+	 * @param string $name 用户的名称
 	 * @return array
 	 * @author zhouwei
 	 */
-	public function getCommentByArticleId($articleid){
-		$sql = 'select * from comment where is_delete = 0 and article_id = :article_id order by release_datetime asc';
-		$result = $this->persistent->query($sql,array(':article_id'=>$articleid));
+	public function getCommentByArticleId($articleid,$name = null){
+		$sql = 'select * from comment where is_delete = 0 and article_id = :article_id';
+		$data = array(':article_id'=>$articleid);
+		if (!empty($name)) {
+			$sql .= ' and (is_check = 1 or name = :name)';
+			$data[':name'] = $name;
+		} else {
+			$sql .= ' and is_check = 1';
+		}
+		$sql .= ' order by release_datetime asc';
+		$result = $this->persistent->query($sql,$data);
 		return $result->fetchAll($this->className);
 	}
 	

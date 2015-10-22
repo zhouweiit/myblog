@@ -62,10 +62,10 @@ class ArticleController extends ControllerBase {
 		$menuInfo = $this->menuService->getMenuInfo($articleInfo['article']['category_id'],null,null);
 		//右栏
 		$asideInfo = $this->asideService->getAsideResult();
-		//评论
-		$comments = $this->commentService->getCommentTreeByArticleId($articleid);
 		//当前评论人的cookie信息
 		$userInfo = $this->userService->getUserCookies();
+		//评论
+		$comments = $this->commentService->getCommentTreeByArticleId($articleid,$userInfo['username']);
 		$fristCategory = $this->categoryService->getFirstCategory();
 		$this->view->setVar('firstCategory', $fristCategory);
 		$this->view->setVar('firstCategoryId', $menuInfo['categoryid']);
