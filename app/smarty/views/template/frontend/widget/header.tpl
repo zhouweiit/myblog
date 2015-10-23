@@ -30,7 +30,9 @@
    		{%*
    		<a href="/about/blog" {%if $blog%}id="topnav_current"{%/if%}>关于我</a>
    		*%}
-   		<img class="imageserach" src="/static/frontend/images/search.png"/>
-   		<input class="inputblue" type="text" placeholder="  全站搜索" style="float:right;"/>
+   		<form action="/index/index" method="post" style="float:right">
+	   		<img class="imageserach" src="/static/frontend/images/search.png" onclick="javascript:submit()"/>
+	   		<input class="inputblue" type="text" {%if $search%}placeholder="{%$search%}"{%else%}placeholder="全站搜索"{%/if%} name="search" style="float:right;padding-left:5px;"/>
+   		</form>
    	</nav>
 </header>

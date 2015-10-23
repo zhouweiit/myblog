@@ -47,10 +47,13 @@ class IndexController extends ControllerBase{
 		$tagid = $this->request->get('tagid');
 		$date = $this->request->get('date');
 		$categoryId = $this->request->get('categoryid');
+		$search = $this->request->getPost('search');
 		$pageSize = 10;
 		$params = $this->request->get();
+		
 		//获取文章
-		$articleInfo = $this->articleService->getIndexArticleList($page - 1,$pageSize,$categoryId,$tagid,$date);
+		$articleInfo = $this->articleService->getIndexArticleList($page - 1,$pageSize,$search,$categoryId,$tagid,$date);
+		
 		$pages = $this->pageService->createPageArray($articleInfo['count'], $page, $pageSize);
 		$pageUrl = $this->pageService->createPageUrl($this->request->get(),'/index/index');
 		$menuInfo = $this->menuService->getMenuInfo($categoryId,$tagid,$date);
@@ -64,6 +67,7 @@ class IndexController extends ControllerBase{
 		$this->view->setVar('navigation', $menuInfo['navigation']);
 		$this->view->setVar('index', !isset($menuInfo['categoryid']) ? true : false);
 		$this->view->setVar('aside', $asideInfo);
+		$this->view->setVar('search', $search);
 	}
 	
 }

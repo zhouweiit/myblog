@@ -93,7 +93,7 @@ class ArticleController extends ControllerBase {
 		$result = $this->commentService->addComment($articleId, $content, $pid, $name, $email);
 		$this->userService->setUserCookies($name, $email);
 		
-		if ($articleId == 0){//如果是留言评论的跳转
+		if ($articleId === '0'){//如果是留言评论的跳转
 			
 			if ($result){
 				$this->response->redirect('/message/leave?#floor-'.$commentFloor);
@@ -104,9 +104,9 @@ class ArticleController extends ControllerBase {
 		} else {//如果是一般文章评论的跳转
 		
 			if ($result){
-				$this->response->redirect('/article/info?'.$articleId.'=1#floor-'.$commentFloor);
+				$this->response->redirect('/article/info?articleid='.$articleId.'#floor-'.$commentFloor);
 			} else {
-				$this->response->redirect('/article/info?'.$articleId.'=1#form_comment');
+				$this->response->redirect('/article/info?articleid='.$articleId.'#form_comment');
 			}
 			
 		}

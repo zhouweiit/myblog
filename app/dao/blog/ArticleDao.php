@@ -83,6 +83,49 @@ class ArticleDao extends DaoBase {
 	}
 	
 	/**
+	 * 根据内容搜索title与content中包含这些关键字的文章
+	 * @param string $content
+	 * @param string $orderBy 可选参数，排序的规则，默认:id，可选：2:read_times,3:comment_times,4:release_datetime
+	 * @param number $page
+	 * @param number $pageSize
+	 * @return array
+	 * @author zhouwei
+	 */
+	public function listByContentPage($content,$orderBy = 1,$page = 0,$pageSize = 10,$count = true){
+		if ($count){
+			$sql = 'select count(*) as count from article where is_delete = 0';
+		} else {
+			$sql = 'select * from article where is_delete = 0';
+		}
+		
+		$sql .= ' and (title like :title or content like :content)';
+		$bind = array(
+			':title'	=> '%'.$content.'%',
+			':content'	=> '%'.$content.'%',
+		);
+		
+		$order = null;
+		if ($orderBy == 2){
+			$order = 'read_times';
+		} else if ($orderBy == 3){
+			$order = 'comment_times';
+		} else if ($orderBy == 4){
+			$order = 'release_datetime';
+		} else {
+			$order = 'id';
+		}
+		if ($count){
+			$result = $this->persistent->query($sql,$bind);
+			return $result->fetchOne('models\common\SpecialColumn');
+		} else {
+			$sql .= ' order by '.$order;
+			$sql .= ' limit '.$page * $pageSize.','.$pageSize;
+			$result = $this->persistent->query($sql,$bind);
+			return $result->fetchAll($this->className);
+		}
+	}
+	
+	/**
 	 * 获取最新的文章
 	 * @param int $limit 获取的条数
 	 * @return array

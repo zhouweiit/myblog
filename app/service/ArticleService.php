@@ -46,14 +46,17 @@ class ArticleService extends ServiceBase {
 	 * 获取首页的文章列表信息
 	 * @param int $page			需要查询的页数
 	 * @param int $pageSize		每页小时的条数
+	 * @param string $content 	内容信息
 	 * @param int $categoryId	分类ID	一级与二级分类都可以
 	 * @param int $tagid		标签ID
 	 * @param date $date		日期 
 	 * @return array
 	 * @author zhouwei
 	 */
-	public function getIndexArticleList($page,$pageSize,$categoryId = null,$tagid = null,$date = null,$orderby = null){
-		if (!empty($date)){//优先查询日期的文章信息，并且再首页频道显示
+	public function getIndexArticleList($page,$pageSize,$content = null,$categoryId = null,$tagid = null,$date = null,$orderby = null){
+		if (!empty($content)){//全文搜索
+			$articlesInfo = $this->listPageByContent($content,$orderby,$page,$pageSize);
+		} else if (!empty($date)){//优先查询日期的文章信息，并且再首页频道显示
 			$dateStartEnd = DateUtils::getDateByMonth($date);
 			$articlesInfo = $this->listByPage($dateStartEnd['head'],$dateStartEnd['end'],null,null,$orderby,$page,$pageSize);
 		} else if (!empty($tagid)){//根据标签ID查询文章信息，并且根据标签的频道分类再频道显现
@@ -172,6 +175,28 @@ class ArticleService extends ServiceBase {
 	public function listByPage($startdate = null,$enddate = null,array $articleIds = null,array $categoryIds = null,$orderBy = 1,$page = 0,$pageSize = 10){
 		$articles = $this->articleDao->listByPage($startdate,$enddate,$articleIds,$categoryIds,$orderBy,$page,$pageSize,false);
 		$articlesCount = $this->articleDao->listByPage($startdate,$enddate,$articleIds,$categoryIds,$orderBy,$page,$pageSize);
+		$resultArticle = array();
+		foreach ($articles as $article){
+			$resultArticle[$article->getId()] = $article;
+		}
+		return array(
+			'articles' 			=> $resultArticle,
+			'articles_count'	=> $articlesCount->getCount(),
+		);
+	}
+	
+	/**
+	 * 根据条件分页获取内容
+	 * @param string $content 文章内容
+	 * @param string $orderBy 可选参数，排序的规则，默认:id，可选：2:read_times,3:comment_times,4:release_datetime
+	 * @param number $page
+	 * @param number $pageSize
+	 * @return array
+	 * @author zhouwei
+	 */
+	public function listPageByContent($content,$orderBy = 1,$page = 0,$pageSize = 10){
+		$articles = $this->articleDao->listByContentPage($content,$orderBy,$page,$pageSize,false);
+		$articlesCount = $this->articleDao->listByContentPage($content,$orderBy,$page,$pageSize);
 		$resultArticle = array();
 		foreach ($articles as $article){
 			$resultArticle[$article->getId()] = $article;
