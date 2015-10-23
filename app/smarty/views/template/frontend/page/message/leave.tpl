@@ -68,7 +68,10 @@
         </div>
         {%assign var="floor" value=$floor + 1%}
         {%/foreach%}
-        <div style="float:block;height:12px;"></div>
+        {%widget
+		 	name="frontend:widget/page.tpl"
+	  	%}
+        <div style="float:block;height:0px;"></div>
         
         <form id="form_comment" style="border-top:#dcdcdc 1px dashed;font-size:12px;color:#756f71;" method="post" action="/article/commitComment">
         	<input class="inputblue" name="name" id="comment_name" type="text" style="color:#756f71;width:200px;padding-left:5px;padding-right:5px;" value="{%$userInfo.username%}"/> 昵称 (必填)<br />

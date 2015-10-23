@@ -45,18 +45,30 @@ class CommentDao extends DaoBase {
 	 * @return array
 	 * @author zhouwei
 	 */
-	public function getCommentByArticleId($articleid,$name = null){
-		$sql = 'select * from comment where is_delete = 0 and article_id = :article_id';
+	public function getCommentByArticleId($articleid,$name = null,$page = 0,$pageSize = 10,$count = true){
+		if ($count){
+			$sql = 'select count(*) as count from comment where is_delete = 0 and article_id = :article_id';
+		} else {
+			$sql = 'select * from comment where is_delete = 0 and article_id = :article_id';
+		}
 		$data = array(':article_id'=>$articleid);
+		
 		if (!empty($name)) {
 			$sql .= ' and (is_check = 1 or name = :name)';
 			$data[':name'] = $name;
 		} else {
 			$sql .= ' and is_check = 1';
 		}
-		$sql .= ' order by release_datetime asc';
-		$result = $this->persistent->query($sql,$data);
-		return $result->fetchAll($this->className);
+		
+		if ($count){
+			$result = $this->persistent->query($sql,$data);
+			return $result->fetchOne('models\common\SpecialColumn');
+		} else {
+			$sql .= ' order by release_datetime asc';
+			$sql .= ' limit '.$page * $pageSize.','.$pageSize;
+			$result = $this->persistent->query($sql,$data);
+			return $result->fetchAll($this->className);
+		}
 	}
 	
 	/**

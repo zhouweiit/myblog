@@ -9,6 +9,7 @@ use service\ArticleService;
 use service\MenuService;
 use service\CommentService;
 use service\UserService;
+use service\PageService;
 
 class ArticleController extends ControllerBase {
 	
@@ -42,6 +43,11 @@ class ArticleController extends ControllerBase {
 	 */
 	private $userService;
 	
+	/**
+	 * @var PageService
+	 */
+	private $pageService;
+	
 	protected function initialize(){
 		$this->asideService		= $this->di->get('AsideService');
 		$this->categoryService  = $this->di->get('CategoryService');
@@ -49,9 +55,12 @@ class ArticleController extends ControllerBase {
 		$this->menuService		= $this->di->get('MenuService');
 		$this->commentService	= $this->di->get('CommentService');
 		$this->userService		= $this->di->get('UserService');
+		$this->pageService 		= $this->di->get('PageService');
 	}
 	
 	public function infoAction(){
+		$page = $this->request->get('page',null,1);
+		$pageSize = 30;
 		$articleid = $this->request->get('articleid');
 		$articleInfo = $this->articleService->getArticleInfoById($articleid);
 		
@@ -69,8 +78,11 @@ class ArticleController extends ControllerBase {
 		//当前评论人的cookie信息
 		$userInfo = $this->userService->getUserCookies();
 		//评论
-		$comments = $this->commentService->getCommentTreeByArticleId($articleid,$userInfo['username']);
+		$comments = $this->commentService->getCommentTreeByArticleId($articleid,$userInfo['username'],$page - 1,$pageSize);
 
+		$pages = $this->pageService->createPageArray($comments['count'], $page, $pageSize);
+		$pageUrl = $this->pageService->createPageUrl($this->request->get(),'/article/info');
+		
 		$fristCategory = $this->categoryService->getFirstCategory();
 		$this->view->setVar('firstCategory', $fristCategory);
 		$this->view->setVar('firstCategoryId', $menuInfo['categoryid']);
@@ -79,8 +91,11 @@ class ArticleController extends ControllerBase {
 		$this->view->setVar('article', $articleInfo['article']);
 		$this->view->setVar('tags',$articleInfo['tag']);
 		$this->view->setVar('relateArticle', $relatedArticle);
-		$this->view->setVar('comments', $comments);
+		$this->view->setVar('comments', $comments['commentTress']);
 		$this->view->setVar('userInfo', $userInfo);
+		$this->view->setVar('pages', $pages);
+		$this->view->setVar('pageUrl', $pageUrl);
+		$this->view->setVar('pageUrlOther', '#comment');
 	}
 	
 	public function commitCommentAction(){

@@ -22,10 +22,16 @@ class CommentService extends ServiceBase {
 	 */
 	private $articleService;
 	
+	/**
+	 * @var PageService
+	 */
+	private $pageService;
+	
 	protected function init(){
 		$this->log					= $this->di->get('applicationLog');
 		$this->commentDao			= $this->di->get('dao\\blog\\CommentDao');
 		$this->articleService		= $this->di->get('ArticleService');
+		$this->pageService 			= $this->di->get('PageService');
 	}
 	
 	/**
@@ -51,11 +57,14 @@ class CommentService extends ServiceBase {
 	 * 获取一个文章的评论信息，并根据父子关系列成树
 	 * @param int $articleId
 	 * @param string $name 用户名称
+	 * @param int $page
+	 * @param int $pageSize
 	 * @return array
 	 * @author zhouwei
 	 */
-	public function getCommentTreeByArticleId($articleId,$name){
-		$commentInfos = $this->getCommentByArticleId($articleId,$name);
+	public function getCommentTreeByArticleId($articleId,$name,$page,$pageSize){
+		$comments = $this->getCommentByArticleId($articleId,$name,$page,$pageSize);
+		$commentInfos = $comments['commentInfo'];
 		$commentTrees = array();
 		foreach ($commentInfos as $comment){
 			$commentTrees[$comment->getId()] = array(
@@ -88,7 +97,10 @@ class CommentService extends ServiceBase {
 				$commentTrees[$comment->getId()]['fatherDesc'] = array_reverse($commentTrees[$comment->getId()]['father']);
 			}
 		}
-		return $commentTrees;
+		return array(
+			'commentTress' 	=> $commentTrees,
+			'count'			=> $comments['count'],
+		);
 	}
 	
 	/**
@@ -97,13 +109,17 @@ class CommentService extends ServiceBase {
 	 * @param string $name 用户名称
 	 * @author zhouwei
 	 */
-	public function getCommentByArticleId($articleId,$name){
-		$commentInfo = $this->commentDao->getCommentByArticleId($articleId,$name);
+	public function getCommentByArticleId($articleId,$name,$page,$pageSize){
+		$commentInfo = $this->commentDao->getCommentByArticleId($articleId,$name,$page,$pageSize,false);
+		$commentCount = $this->commentDao->getCommentByArticleId($articleId,$name,$page,$pageSize);
 		$result = array();
 		foreach ($commentInfo as $value){
 			$result[$value->getId()] = $value;
 		}
-		return $result;
+		return array(
+			'commentInfo'	=> $result,
+			'count'			=> $commentCount->getCount(),
+		);
 	}
 	
 	/**
