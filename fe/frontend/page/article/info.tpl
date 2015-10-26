@@ -7,20 +7,69 @@
 	 name="frontend:widget/header.tpl"
   %}
   <article>
-  	<h2 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="1/">模板分享</a>><a href="1/">个人博客模板</a></h2>
+  	{%$navigation%}
     <div class="index_about">
-      <h2 class="c_titile">黑色Html5个人博客模板主题《如影随形》</h2>
-      <p class="box_c"><span class="d_time">发布时间：2014-04-17</span><spna><span>分类：<a href="/">java</a>、<a href="/">优化</a>、<a href="/">技术</a></spna><span><a href="/">浏览(390)</a></span><span><a href="/">评论(14)</a></span></p>
+      <h2 class="c_titile">{%$article.title%}</h2>
+      <p class="box_c">
+      	<span class="d_time">发布时间：<a href="/index/index?date={%$article.release_datetime%}">{%$article.release_datetime%}</a></span>
+      	{%if $tags%}
+        	<span>标签：
+        	{%foreach from=$tags item=tag%}
+        		{%if $tag.last%}
+        			<a href="/index/index?tagid={%$tag.id%}">{%$tag.name%}</a>
+        		{%else%}
+        			<a href="/index/index?tagid={%$tag.id%}">{%$tag.name%}</a>、
+        		{%/if%}
+        	{%/foreach%}
+        	</span>
+       	{%/if%}
+      	<span><a href="/article/info?articleid={%$article.id%}">浏览({%$article.read_times%})</a></span><span><a href="/article/info?articleid={%$article.id%}#comment">评论({%$article.comment_times%})</a></span></p>
+      </p>
+      
       <ul class="infos">
-        <p>2014第二版黑色Html5个人博客模板主题《如影随形》，如精灵般的影子会给人一种神秘的感觉。一张剪影图黑白搭配，如果整个网站用黑白灰三色，会显得比较太过沉重，于是，在选择亮色方面，用以红为主色，蓝为辅色。这样就铺上了一些神秘甚至有些俏皮的元素。</p>
-        <p>如果你更喜欢用蓝色或者绿色，这也不错，替换关键的颜色值就行了，推荐颜色值：<img src="/static/frontend/images/color.jpg" alt="黑色Html5个人博客模板"></p>
-        <p>Html5响应式两栏布局，LOGO重点突出，首页推荐文章列表以Logo中轴线为时间轴，鼠标Hover触发时间轴左侧栏显示文章发布时间，文字banner动画均以css3代码来实现效果。</p>
-        <p><b>首页效果图：</b></p>
-        <p><img src="/static/frontend/images/xgt.jpg" alt="黑色Html5个人博客模板"></p>
-        <p><b>移动设备和平板电脑浏览效果：</b></p>
-        <p><img src="/static/frontend/images/ltpic.jpg" alt="黑色Html5个人博客模板"></p>
-        <p><img src="/static/frontend/images/col.jpg" alt="黑色Html5个人博客模板"></p>
+        {%$article.content%}
       </ul>
+      
+      <div class="bdsharebuttonbox">
+      	<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+      	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+      	<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+      	<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+      	<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+      	<a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+      	<a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+      	<a href="#" class="bds_more" data-cmd="more"></a>
+      </div>
+	  <script>
+	  	window._bd_share_config={
+  			"common":{
+  				"bdText":"{%$article.title%} | www.zwiter.com",
+  				"bdDesc":"{%$article.title%}",
+  				"bdUrl":"http://www.zwiter.com/article/info?articleid={%$article.id%}",
+  				{%if $article.headimage%}
+  				"bdPic":"{%$article.headimage%}",
+  				{%/if%}
+  				"bdMini":"2",
+  				"bdMiniList":false,
+  				"bdStyle":"1",
+  				"bdSize":"16"
+  			},
+  			"share":{},
+  			"image":{
+  				"viewList":["weixin","tsina","tqq","qzone","renren","fbook","douban"],
+  				"viewText":"分享到：",
+  				"viewSize":"16"
+  			},
+ 			"selectShare":{
+ 				"bdContainerClass":null,
+ 				"bdSelectMiniList":["weixin","tsina","tqq","qzone","renren","fbook","douban"]
+ 			}
+	  	};
+	  	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+	  	
+	  </script>
+     
+      {%*
       <div class="keybq">
         <p><span>关键字词</span>：黑色,个人博客,时间轴,响应式</p>
       </div>
@@ -28,145 +77,65 @@
         <p>上一篇：<a href="/news/s/2013-09-04/606.html">程序员应该如何高效的工作学习</a></p>
         <p>下一篇：<a href="/news/s/2013-10-21/616.html">柴米油盐的生活才是真实</a></p>
       </div>
+      *%}
+      
+      {%if $relateArticle%}
       <div class="otherlink">
         <h2>相关文章</h2>
         <ul>
-          <li><a href="/news/s/2013-07-25/524.html" title="现在，我相信爱情！">现在，我相信爱情！</a></li>
-          <li><a href="/newstalk/mood/2013-07-24/518.html" title="我希望我的爱情是这样的">我希望我的爱情是这样的</a></li>
-          <li><a href="/newstalk/mood/2013-07-02/335.html" title="有种情谊，不是爱情，也算不得友情">有种情谊，不是爱情，也算不得友情</a></li>
-          <li><a href="/newstalk/mood/2013-07-01/329.html" title="世上最美好的爱情">世上最美好的爱情</a></li>
-          <li><a href="/news/read/2013-06-11/213.html" title="爱情没有永远，地老天荒也走不完">爱情没有永远，地老天荒也走不完</a></li>
-          <li><a href="/news/s/2013-06-06/24.html" title="爱情的背叛者">爱情的背叛者</a></li>
-          <li><a href="/news/s/2013-06-06/24.html" title="爱情的背叛者">爱情的背叛者</a></li>
-          <li><a href="/news/s/2013-06-06/24.html" title="爱情的背叛者">爱情的背叛者</a></li>
-          <li><a href="/news/s/2013-06-06/24.html" title="爱情的背叛者">爱情的背叛者</a></li>
-          <li><a href="/news/s/2013-06-06/24.html" title="爱情的背叛者">爱情的背叛者</a></li>
+	        {%foreach from=$relateArticle item=value%}
+				<li><a href="/article/info?articleid={%$value.id%}">{%$value.name%}</a></li>
+			{%/foreach%}
         </ul>
       </div>
-      <div class="comment">
+      {%/if%}
+      
+      <div class="comment" id="comment">
         <h2 style="background: url(/static/frontend/images/comment.png) 10px center no-repeat; ">热点评论</h2>
         
-        <div class="comment_info">
-        	<div class="comment_user">
-        		<img src="/static/frontend/images/s8.jpg" style="width:70px;">
-        		<div  class="comment_user_name">
-        			程序狗
+        {%assign var="floor" value=1%}
+        {%foreach from=$comments item=commentInfo%}
+       	<div class="comment_info" id="floor-{%$floor%}">
+       		<div class="comment_user">
+        		<img src="/static/frontend/images/people.png" style="width:70px;">
+        		<div  class="comment_user_name" style="word-wrap:break-word;width:70px;">
+        			{%$commentInfo.comment->getName()%}
         		</div>
         		<div class="clear"></div>
         	</div>
         	<div style="float:left;padding-left:23px;font-weight:normal;">
-	        	<label style="float:left;">2015年10月11日 19:11</label>
-	        	<label style="float:right;margin-left:365px;"><a class='replay' href='javascript:void(0)'>回复</a> | <a class='replay' href='javascript:void(0)'>引用</a></label>
-	        	<div class="clear"></div>
-        	</div>
-        	<div class="comment_content">
-        		<div style="width:565px;">
-        			<div> <!-- 有引用，需要添加class="comment_content_info" -->
-        				我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友
-        			</div>
-        		</div>
-        		<div class="clear"></div>
-        	</div>
-        	<div class="clear"></div>
-        </div>
-        
-        <div class="comment_info">
-        	<div class="comment_user">
-        		<img src="/static/frontend/images/s8.jpg" style="width:70px;">
-        		<div  class="comment_user_name">
-        			程序狗
-        		</div>
-        		<div class="clear"></div>
-        	</div>
-        	<div style="float:left;padding-left:23px;font-weight:normal;">
-	        	<label style="float:left;">2015年10月11日 19:11</label>
-	        	<label style="float:right;margin-left:365px;"><a class='replay' href='javascript:void(0)'>回复</a> | <a class='replay' href='javascript:void(0)'>引用</a></label>
-	        	<div class="clear"></div>
-        	</div>
-        	<div class="comment_content">
-        		<div style="width:565px;">
-        			<div> <!-- 有引用，需要添加class="comment_content_info" -->
-        				<div class="atuser">@程序狗：</div>
-        				我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友
-        			</div>
-        		</div>
-        		<div class="clear"></div>
-        	</div>
-        	<div class="clear"></div>
-        </div>
-        
-        <div class="comment_info">
-        	<div class="comment_user">
-        		<img src="/static/frontend/images/s8.jpg" style="width:70px;">
-        		<div  class="comment_user_name">
-        			程序狗
-        		</div>
-        		<div class="clear"></div>
-        	</div>
-        	<div style="float:left;padding-left:23px;font-weight:normal;">
-	        	<label style="float:left;">2015年10月11日 19:11</label>
-	        	<label style="float:right;margin-left:365px;"><a class='replay' href='javascript:void(0)'>回复</a> | <a class='replay' href='javascript:void(0)'>引用</a></label>
-	        	<div class="clear"></div>
-        	</div>
-        	<div class="comment_content">
-        		<div style="width:565px;">
-        			<div class='comment_quote' style="width:500px;">
-        				<div style="font-weight:bold;">
-		        			程序狗：
-		        		</div>
-		        		<div class="comment_content_info">
-		        			我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝
-		        		</div>
-        			</div>
-        			<div class="comment_content_info">
-        				我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友
-        			</div>
-        		</div>
-        		<div class="clear"></div>
-        	</div>
-        	<div class="clear"></div>
-        </div>
-        
-        <div class="comment_info">
-        
-        	<div class="comment_user">
-        		<img src="/static/frontend/images/s8.jpg" style="width:70px;">
-        		<div  class="comment_user_name">
-        			程序狗
-        		</div>
-        		<div class="clear"></div>
-        	</div>
-        	<div style="float:left;padding-left:23px;font-weight:normal;">
-	        	<label style="float:left;">2015年10月11日 19:11</label>
-	        	<label style="float:right;margin-left:365px;"><a class='replay' href='javascript:void(0)'>回复</a> | <a class='replay' href='javascript:void(0)'>引用</a></label>
+	        	<label style="float:left;">{%$commentInfo.date%} &nbsp;&nbsp;|&nbsp; <a href="#floor-{%$floor%}" class="floor">#{%$floor%}</a></label>
+	        	<label style="float:right;margin-left:325px;"><a class='replay replaybutton' name="{%$commentInfo.comment->getName()%}" href='#form_comment'>回复</a> | <a class='replay quotebutton' pid="{%$commentInfo.comment->getId()%}" pidnum="{%$commentInfo.comment->getId()%},{%$commentInfo.comment->getPid()%}" href='#form_comment'>引用</a></label>
 	        	<div class="clear"></div>
         	</div>
         	
         	<div class="comment_content">
-        	
         		<div style="width:565px;">
-        			<div class='comment_quote' style="width:500px;">
+        			{%*正序评论的用户名*%}
+        			{%foreach from=$commentInfo.father item=fatherComment%}
+       					{%assign var="px" value=(500 - ($fatherComment.count - 1) * 50) %}
+       				<div class='comment_quote' style="width:{%$px%}px;">
+        				{%if $fatherComment.count <10 %}
+        					<div style="font-weight:bold;">
+        						{%$fatherComment.comment->getName()%}：
+        					</div>
+        				{%/if%}
+        			{%/foreach%}
         			
-        				<div style="font-weight:bold;margin-bottom:5px;">
-		        			程序狗：
-		        		</div>
-        				
-        				<div class='comment_quote' style="width:400px;">
-	        				<div style="font-weight:bold;">
-			        			程序狗：
-			        		</div>
-			        		<div class="comment_content_info">
-			        			我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝
-			        		</div>
-	        			</div>
-        				
-		        		<div class="comment_content_info">
-		        			我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝
-		        		</div>
+        			{%*倒序评论的信息*%}
+        			{%foreach from=$commentInfo.fatherDesc item=fatherComment%}
+       					<div class="comment_content_info">
+        				{%if $fatherComment.count <10 %}
+			        			{%$fatherComment.comment->getContent()%}
+			        	{%else%}
+			        			......
+			        	{%/if%}	
+			        	</div>
         			</div>
+        			{%/foreach%}
         			
         			<div class="comment_content_info">
-        				我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友我们是郝朋友,我们是郝朋友我们是郝朋友我们是郝朋友
+        				{%$commentInfo.comment->getContent()%}
         			</div>
         			
         		</div>
@@ -174,14 +143,21 @@
         	</div>
         	<div class="clear"></div>
         </div>
+        {%assign var="floor" value=$floor + 1%}
+        {%/foreach%}
+        {%widget
+		 	name="frontend:widget/page.tpl"
+	  	%}
+        <div style="float:block;height:0px;"></div>
         
-        <div style="float:block;height:12px;"></div>
-        <form style="border-top:#dcdcdc 1px dashed;font-size:12px;color:#756f71;">
-        	<input class="inputblue" type="text" style="width:200px;"/> 昵称 (必填)<br />
-        	<input class="inputblue" type="text" style="width:200px;"/> 电子邮箱 (我们会为您保密)<br />
-        	<input class="inputblue" type="text" style="width:200px;"/> 网址<br />
-        	<textarea class="inputblue" style="width:550px;height:150px;"></textarea><br />
-        	<div class="commentsubmit">提交评论</div>
+        <form id="form_comment" style="border-top:#dcdcdc 1px dashed;font-size:12px;color:#756f71;" method="post" action="/article/commitComment">
+        	<input class="inputblue" name="name" id="comment_name" type="text" style="color:#756f71;width:200px;padding-left:5px;padding-right:5px;" value="{%$userInfo.username%}"/> 昵称 (必填)<br />
+        	<input class="inputblue" name="email" id="comment_email" type="text" style="color:#756f71;width:200px;padding-left:5px;padding-right:5px;" value="{%$userInfo.useremail%}"/> 电子邮箱 (我们会为您保密)<br />
+        	<textarea class="inputblue" name="content" id="comment_content" style="color:#756f71;width:550px;height:150px;padding:5px;font-size:12px;"></textarea><br />
+        	<input type="hidden" id="form_comment_pid" name="pid" value=""/>
+        	<input type="hidden" name="articleid" value="{%$article.id%}"/>
+        	<input type="hidden" name="comment_floor" value="{%$floor%}"/>
+        	<div class="commentsubmit" id="comment_submit">提交评论</div>
         </form>
         
       </div>
@@ -195,4 +171,4 @@
   <div class="clear"></div>
   <!-- 清除浮动 --> 
 </div>
-{%require name='frontend:page/article/info.tpl'%}{%/block%}
+{%/block%}
