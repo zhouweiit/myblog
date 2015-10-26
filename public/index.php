@@ -11,9 +11,9 @@ set_include_path(implode(PATH_SEPARATOR,array(
 
 try {
 	
-	/*
-	 * 以下为配置加载，注意他们之间的先后顺序，相互之间会有依赖
-	 */
+    /*
+     * 以下为配置加载，注意他们之间的先后顺序，相互之间会有依赖
+     */
 	
 	//默认的DI
     $di = new FactoryDefault();
