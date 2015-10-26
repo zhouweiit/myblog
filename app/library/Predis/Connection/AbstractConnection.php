@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Connection;
 
 use InvalidArgumentException;
@@ -22,200 +21,203 @@ use Predis\Protocol\ProtocolException;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-abstract class AbstractConnection implements NodeConnectionInterface
-{
+abstract class AbstractConnection implements NodeConnectionInterface {
     private $resource;
     private $cachedId;
-
     protected $parameters;
-    protected $initCommands = array();
-
+    protected $initCommands = array ();
+    
     /**
-     * @param ParametersInterface $parameters Initialization parameters for the connection.
+     *
+     * @param ParametersInterface $parameters
+     *            Initialization parameters for the connection.
      */
-    public function __construct(ParametersInterface $parameters)
-    {
-        $this->parameters = $this->assertParameters($parameters);
+    public function __construct(ParametersInterface $parameters) {
+        $this->parameters = $this->assertParameters ( $parameters );
     }
-
+    
     /**
      * Disconnects from the server and destroys the underlying resource when
      * PHP's garbage collector kicks in.
      */
-    public function __destruct()
-    {
-        $this->disconnect();
+    public function __destruct() {
+        $this->disconnect ();
     }
-
+    
     /**
      * Checks some of the parameters used to initialize the connection.
      *
-     * @param ParametersInterface $parameters Initialization parameters for the connection.
-     *
+     * @param ParametersInterface $parameters
+     *            Initialization parameters for the connection.
+     *            
      * @return ParametersInterface
      *
      * @throws \InvalidArgumentException
      */
-    protected function assertParameters(ParametersInterface $parameters)
-    {
+    protected function assertParameters(ParametersInterface $parameters) {
         $scheme = $parameters->scheme;
-
+        
         if ($scheme !== 'tcp' && $scheme !== 'unix') {
-            throw new InvalidArgumentException("Invalid scheme: '$scheme'.");
+            throw new InvalidArgumentException ( "Invalid scheme: '$scheme'." );
         }
-
-        if ($scheme === 'unix' && !isset($parameters->path)) {
-            throw new InvalidArgumentException('Missing UNIX domain socket path.');
+        
+        if ($scheme === 'unix' && ! isset ( $parameters->path )) {
+            throw new InvalidArgumentException ( 'Missing UNIX domain socket path.' );
         }
-
+        
         return $parameters;
     }
-
+    
     /**
      * Creates the underlying resource used to communicate with Redis.
      *
      * @return mixed
      */
     abstract protected function createResource();
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function isConnected()
-    {
-        return isset($this->resource);
+    public function isConnected() {
+        return isset ( $this->resource );
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function connect()
-    {
-        if (!$this->isConnected()) {
-            $this->resource = $this->createResource();
-
+    public function connect() {
+        if (! $this->isConnected ()) {
+            $this->resource = $this->createResource ();
+            
             return true;
         }
-
+        
         return false;
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function disconnect()
-    {
-        unset($this->resource);
+    public function disconnect() {
+        unset ( $this->resource );
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function addConnectCommand(CommandInterface $command)
-    {
-        $this->initCommands[] = $command;
+    public function addConnectCommand(CommandInterface $command) {
+        $this->initCommands [] = $command;
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function executeCommand(CommandInterface $command)
-    {
-        $this->writeRequest($command);
-
-        return $this->readResponse($command);
+    public function executeCommand(CommandInterface $command) {
+        $this->writeRequest ( $command );
+        
+        return $this->readResponse ( $command );
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function readResponse(CommandInterface $command)
-    {
-        return $this->read();
+    public function readResponse(CommandInterface $command) {
+        return $this->read ();
     }
-
+    
     /**
      * Helper method to handle connection errors.
      *
-     * @param string $message Error message.
-     * @param int    $code    Error code.
+     * @param string $message
+     *            Error message.
+     * @param int $code
+     *            Error code.
      */
-    protected function onConnectionError($message, $code = null)
-    {
-        CommunicationException::handle(
-            new ConnectionException(
-                $this, "$message [{$this->parameters->scheme}://{$this->getIdentifier()}]", $code
-            )
-        );
+    protected function onConnectionError($message, $code = null) {
+        CommunicationException::handle ( new ConnectionException ( $this, "$message [{$this->parameters->scheme}://{$this->getIdentifier()}]", $code ) );
     }
-
+    
     /**
      * Helper method to handle protocol errors.
      *
-     * @param string $message Error message.
+     * @param string $message
+     *            Error message.
      */
-    protected function onProtocolError($message)
-    {
-        CommunicationException::handle(
-            new ProtocolException(
-                $this, "$message [{$this->parameters->scheme}://{$this->getIdentifier()}]"
-            )
-        );
+    protected function onProtocolError($message) {
+        CommunicationException::handle ( new ProtocolException ( $this, "$message [{$this->parameters->scheme}://{$this->getIdentifier()}]" ) );
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function getResource()
-    {
-        if (isset($this->resource)) {
+    public function getResource() {
+        if (isset ( $this->resource )) {
             return $this->resource;
         }
-
-        $this->connect();
-
+        
+        $this->connect ();
+        
         return $this->resource;
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function getParameters()
-    {
+    public function getParameters() {
         return $this->parameters;
     }
-
+    
     /**
      * Gets an identifier for the connection.
      *
      * @return string
      */
-    protected function getIdentifier()
-    {
+    protected function getIdentifier() {
         if ($this->parameters->scheme === 'unix') {
             return $this->parameters->path;
         }
-
+        
         return "{$this->parameters->host}:{$this->parameters->port}";
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function __toString()
-    {
-        if (!isset($this->cachedId)) {
-            $this->cachedId = $this->getIdentifier();
+    public function __toString() {
+        if (! isset ( $this->cachedId )) {
+            $this->cachedId = $this->getIdentifier ();
         }
-
+        
         return $this->cachedId;
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function __sleep()
-    {
-        return array('parameters', 'initCommands');
+    public function __sleep() {
+        return array (
+                'parameters',
+                'initCommands' 
+        );
     }
 }

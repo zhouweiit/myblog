@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Collection\Iterator;
 
 use Predis\ClientInterface;
@@ -20,40 +19,42 @@ use Predis\ClientInterface;
  * @author Daniele Alessandri <suppakilla@gmail.com>
  * @link http://redis.io/commands/scan
  */
-class SortedSetKey extends CursorBasedIterator
-{
+class SortedSetKey extends CursorBasedIterator {
     protected $key;
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function __construct(ClientInterface $client, $key, $match = null, $count = null)
-    {
-        $this->requiredCommand($client, 'ZSCAN');
-
-        parent::__construct($client, $match, $count);
-
+    public function __construct(ClientInterface $client, $key, $match = null, $count = null) {
+        $this->requiredCommand ( $client, 'ZSCAN' );
+        
+        parent::__construct ( $client, $match, $count );
+        
         $this->key = $key;
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    protected function executeCommand()
-    {
-        return $this->client->zscan($this->key, $this->cursor, $this->getScanOptions());
+    protected function executeCommand() {
+        return $this->client->zscan ( $this->key, $this->cursor, $this->getScanOptions () );
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    protected function extractNext()
-    {
-        if ($kv = each($this->elements)) {
-            $this->position = $kv[0];
-            $this->current = $kv[1];
-
-            unset($this->elements[$this->position]);
+    protected function extractNext() {
+        if ($kv = each ( $this->elements )) {
+            $this->position = $kv [0];
+            $this->current = $kv [1];
+            
+            unset ( $this->elements [$this->position] );
         }
     }
 }

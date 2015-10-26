@@ -8,28 +8,29 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Command;
 
 /**
+ *
  * @link http://redis.io/commands/expireat
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class KeyExpireAt extends Command
-{
+class KeyExpireAt extends Command {
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function getId()
-    {
+    public function getId() {
         return 'EXPIREAT';
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function parseResponse($data)
-    {
-        return (bool) $data;
+    public function parseResponse($data) {
+        return ( bool ) $data;
     }
 }

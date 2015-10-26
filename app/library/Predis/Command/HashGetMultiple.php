@@ -8,28 +8,29 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Command;
 
 /**
+ *
  * @link http://redis.io/commands/hmget
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class HashGetMultiple extends Command
-{
+class HashGetMultiple extends Command {
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function getId()
-    {
+    public function getId() {
         return 'HMGET';
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    protected function filterArguments(array $arguments)
-    {
-        return self::normalizeVariadic($arguments);
+    protected function filterArguments(array $arguments) {
+        return self::normalizeVariadic ( $arguments );
     }
 }

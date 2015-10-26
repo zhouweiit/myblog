@@ -8,20 +8,20 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Command;
 
 /**
+ *
  * @link http://redis.io/commands/getbit
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class StringGetBit extends Command
-{
+class StringGetBit extends Command {
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function getId()
-    {
+    public function getId() {
         return 'GETBIT';
     }
 }

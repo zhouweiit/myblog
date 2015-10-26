@@ -8,28 +8,29 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Command;
 
 /**
+ *
  * @link http://redis.io/commands/sadd
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class SetAdd extends Command
-{
+class SetAdd extends Command {
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function getId()
-    {
+    public function getId() {
         return 'SADD';
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    protected function filterArguments(array $arguments)
-    {
-        return self::normalizeVariadic($arguments);
+    protected function filterArguments(array $arguments) {
+        return self::normalizeVariadic ( $arguments );
     }
 }

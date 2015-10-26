@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Configuration;
 
 use InvalidArgumentException;
@@ -21,42 +20,37 @@ use Predis\Connection\Aggregate\ReplicationInterface;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class ReplicationOption implements OptionInterface
-{
+class ReplicationOption implements OptionInterface {
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
      *
      * @todo There's more code than needed due to a bug in filter_var() as
-     *       discussed here https://bugs.php.net/bug.php?id=49510 and  different
+     *       discussed here https://bugs.php.net/bug.php?id=49510 and different
      *       behaviours when encountering NULL values on PHP 5.3.
      */
-    public function filter(OptionsInterface $options, $value)
-    {
+    public function filter(OptionsInterface $options, $value) {
         if ($value instanceof ReplicationInterface) {
             return $value;
         }
-
-        if (is_bool($value) || $value === null) {
-            return $value ? $this->getDefault($options) : null;
+        
+        if (is_bool ( $value ) || $value === null) {
+            return $value ? $this->getDefault ( $options ) : null;
         }
-
-        if (
-            !is_object($value) &&
-            null !== $asbool = filter_var($value, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE)
-        ) {
-            return $asbool ? $this->getDefault($options) : null;
+        
+        if (! is_object ( $value ) && null !== $asbool = filter_var ( $value, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE )) {
+            return $asbool ? $this->getDefault ( $options ) : null;
         }
-
-        throw new InvalidArgumentException(
-            "An instance of type 'Predis\Connection\Aggregate\ReplicationInterface' was expected."
-        );
+        
+        throw new InvalidArgumentException ( "An instance of type 'Predis\Connection\Aggregate\ReplicationInterface' was expected." );
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function getDefault(OptionsInterface $options)
-    {
-        return new MasterSlaveReplication();
+    public function getDefault(OptionsInterface $options) {
+        return new MasterSlaveReplication ();
     }
 }

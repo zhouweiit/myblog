@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Connection\Aggregate;
 
 use Predis\Connection\AggregateConnectionInterface;
@@ -19,6 +18,5 @@ use Predis\Connection\AggregateConnectionInterface;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-interface ClusterInterface extends AggregateConnectionInterface
-{
+interface ClusterInterface extends AggregateConnectionInterface {
 }

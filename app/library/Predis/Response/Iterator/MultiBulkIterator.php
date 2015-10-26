@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Response\Iterator;
 
 use Iterator;
@@ -27,54 +26,58 @@ use Predis\Response\ResponseInterface;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-abstract class MultiBulkIterator implements Iterator, Countable, ResponseInterface
-{
+abstract class MultiBulkIterator implements Iterator, Countable, ResponseInterface {
     protected $current;
     protected $position;
     protected $size;
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function rewind()
-    {
+    public function rewind() {
         // NOOP
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function current()
-    {
+    public function current() {
         return $this->current;
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function key()
-    {
+    public function key() {
         return $this->position;
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function next()
-    {
-        if (++$this->position < $this->size) {
-            $this->current = $this->getValue();
+    public function next() {
+        if (++ $this->position < $this->size) {
+            $this->current = $this->getValue ();
         }
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function valid()
-    {
+    public function valid() {
         return $this->position < $this->size;
     }
-
+    
     /**
      * Returns the number of items comprising the whole multibulk response.
      *
@@ -84,23 +87,23 @@ abstract class MultiBulkIterator implements Iterator, Countable, ResponseInterfa
      *
      * @return int
      */
-    public function count()
-    {
+    public function count() {
         return $this->size;
     }
-
+    
     /**
      * Returns the current position of the iterator.
      *
      * @return int
      */
-    public function getPosition()
-    {
+    public function getPosition() {
         return $this->position;
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
     abstract protected function getValue();
 }

@@ -1,3 +1,3 @@
 <?php
-$session = $di->get('session');
-$session->flush();
+$session = $di->get ( 'session' );
+$session->flush ();

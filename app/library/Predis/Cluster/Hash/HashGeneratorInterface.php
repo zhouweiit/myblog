@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Cluster\Hash;
 
 /**
@@ -17,13 +16,13 @@ namespace Predis\Cluster\Hash;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-interface HashGeneratorInterface
-{
+interface HashGeneratorInterface {
     /**
      * Generates an hash from a string to be used for distribution.
      *
-     * @param string $value String value.
-     *
+     * @param string $value
+     *            String value.
+     *            
      * @return int
      */
     public function hash($value);

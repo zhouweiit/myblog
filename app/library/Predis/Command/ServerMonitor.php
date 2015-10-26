@@ -8,20 +8,20 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Command;
 
 /**
+ *
  * @link http://redis.io/commands/monitor
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class ServerMonitor extends Command
-{
+class ServerMonitor extends Command {
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function getId()
-    {
+    public function getId() {
         return 'MONITOR';
     }
 }

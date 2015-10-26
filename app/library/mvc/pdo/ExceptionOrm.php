@@ -2,7 +2,6 @@
 
 namespace library\mvc\pdo;
 
-class ExceptionOrm extends \Exception{
-
+class ExceptionOrm extends \Exception {
 }
 

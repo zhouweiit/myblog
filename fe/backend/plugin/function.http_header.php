@@ -15,26 +15,25 @@
  * @param $params
  * @param $smarty
  */
-
 function smarty_function_http_header($params, &$smarty) {
     $DEFAULT_MIME = 'html';
     $DEFAULT_CHARSET = 'utf-8';
-    $type = (empty($params['type'])) ? $DEFAULT_MIME : $params['type'];
-    $charset = (empty($params['charset'])) ? $DEFAULT_CHARSET : $params['charset']; //UTF-8 ? GBK
-    $mimeTypes = array(
-        'html' => 'text/html',
-        'json' => 'application/json',
-        'javascript' => 'application/x-javascript',
-        'js' => 'application/x-javascript',
-        'xml' => 'text/xml',
-        'stream' => 'application/octet-stream'
+    $type = (empty ( $params ['type'] )) ? $DEFAULT_MIME : $params ['type'];
+    $charset = (empty ( $params ['charset'] )) ? $DEFAULT_CHARSET : $params ['charset']; // UTF-8 ? GBK
+    $mimeTypes = array (
+            'html' => 'text/html',
+            'json' => 'application/json',
+            'javascript' => 'application/x-javascript',
+            'js' => 'application/x-javascript',
+            'xml' => 'text/xml',
+            'stream' => 'application/octet-stream' 
     );
-    if (array_key_exists($type, $mimeTypes)) {
-        $mime = $mimeTypes[$type];
+    if (array_key_exists ( $type, $mimeTypes )) {
+        $mime = $mimeTypes [$type];
     } else {
         $mime = "text/plain";
     }
-    header("Content-Type:$mime; charset=$charset;");
+    header ( "Content-Type:$mime; charset=$charset;" );
 }
 
 

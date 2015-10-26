@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Configuration;
 
 use Predis\Command\Processor\KeyPrefixProcessor;
@@ -20,25 +19,26 @@ use Predis\Command\Processor\ProcessorInterface;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class PrefixOption implements OptionInterface
-{
+class PrefixOption implements OptionInterface {
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function filter(OptionsInterface $options, $value)
-    {
+    public function filter(OptionsInterface $options, $value) {
         if ($value instanceof ProcessorInterface) {
             return $value;
         }
-
-        return new KeyPrefixProcessor($value);
+        
+        return new KeyPrefixProcessor ( $value );
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function getDefault(OptionsInterface $options)
-    {
+    public function getDefault(OptionsInterface $options) {
         // NOOP
     }
 }

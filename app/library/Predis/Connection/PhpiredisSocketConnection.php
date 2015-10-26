@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Connection;
 
 use Predis\NotSupportedException;
@@ -32,361 +31,359 @@ use Predis\Response\Status as StatusResponse;
  *
  * The connection parameters supported by this class are:
  *
- *  - scheme: it can be either 'tcp' or 'unix'.
- *  - host: hostname or IP address of the server.
- *  - port: TCP port of the server.
- *  - path: path of a UNIX domain socket when scheme is 'unix'.
- *  - timeout: timeout to perform the connection.
- *  - read_write_timeout: timeout of read / write operations.
+ * - scheme: it can be either 'tcp' or 'unix'.
+ * - host: hostname or IP address of the server.
+ * - port: TCP port of the server.
+ * - path: path of a UNIX domain socket when scheme is 'unix'.
+ * - timeout: timeout to perform the connection.
+ * - read_write_timeout: timeout of read / write operations.
  *
  * @link http://github.com/nrk/phpiredis
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class PhpiredisSocketConnection extends AbstractConnection
-{
+class PhpiredisSocketConnection extends AbstractConnection {
     private $reader;
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function __construct(ParametersInterface $parameters)
-    {
-        $this->assertExtensions();
-
-        parent::__construct($parameters);
-
-        $this->reader = $this->createReader();
+    public function __construct(ParametersInterface $parameters) {
+        $this->assertExtensions ();
+        
+        parent::__construct ( $parameters );
+        
+        $this->reader = $this->createReader ();
     }
-
+    
     /**
      * Disconnects from the server and destroys the underlying resource and the
      * protocol reader resource when PHP's garbage collector kicks in.
      */
-    public function __destruct()
-    {
-        phpiredis_reader_destroy($this->reader);
-
-        parent::__destruct();
+    public function __destruct() {
+        phpiredis_reader_destroy ( $this->reader );
+        
+        parent::__destruct ();
     }
-
+    
     /**
      * Checks if the socket and phpiredis extensions are loaded in PHP.
      */
-    protected function assertExtensions()
-    {
-        if (!extension_loaded('sockets')) {
-            throw new NotSupportedException(
-                'The "sockets" extension is required by this connection backend.'
-            );
+    protected function assertExtensions() {
+        if (! extension_loaded ( 'sockets' )) {
+            throw new NotSupportedException ( 'The "sockets" extension is required by this connection backend.' );
         }
-
-        if (!extension_loaded('phpiredis')) {
-            throw new NotSupportedException(
-                'The "phpiredis" extension is required by this connection backend.'
-            );
+        
+        if (! extension_loaded ( 'phpiredis' )) {
+            throw new NotSupportedException ( 'The "phpiredis" extension is required by this connection backend.' );
         }
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    protected function assertParameters(ParametersInterface $parameters)
-    {
-        if (isset($parameters->persistent)) {
-            throw new NotSupportedException(
-                "Persistent connections are not supported by this connection backend."
-            );
+    protected function assertParameters(ParametersInterface $parameters) {
+        if (isset ( $parameters->persistent )) {
+            throw new NotSupportedException ( "Persistent connections are not supported by this connection backend." );
         }
-
-        return parent::assertParameters($parameters);
+        
+        return parent::assertParameters ( $parameters );
     }
-
+    
     /**
      * Creates a new instance of the protocol reader resource.
      *
      * @return resource
      */
-    private function createReader()
-    {
-        $reader = phpiredis_reader_create();
-
-        phpiredis_reader_set_status_handler($reader, $this->getStatusHandler());
-        phpiredis_reader_set_error_handler($reader, $this->getErrorHandler());
-
+    private function createReader() {
+        $reader = phpiredis_reader_create ();
+        
+        phpiredis_reader_set_status_handler ( $reader, $this->getStatusHandler () );
+        phpiredis_reader_set_error_handler ( $reader, $this->getErrorHandler () );
+        
         return $reader;
     }
-
+    
     /**
      * Returns the underlying protocol reader resource.
      *
      * @return resource
      */
-    protected function getReader()
-    {
+    protected function getReader() {
         return $this->reader;
     }
-
+    
     /**
      * Returns the handler used by the protocol reader for inline responses.
      *
      * @return \Closure
      */
-    private function getStatusHandler()
-    {
+    private function getStatusHandler() {
         return function ($payload) {
-            return StatusResponse::get($payload);
+            return StatusResponse::get ( $payload );
         };
     }
-
+    
     /**
      * Returns the handler used by the protocol reader for error responses.
      *
      * @return \Closure
      */
-    protected function getErrorHandler()
-    {
+    protected function getErrorHandler() {
         return function ($payload) {
-            return new ErrorResponse($payload);
+            return new ErrorResponse ( $payload );
         };
     }
-
+    
     /**
      * Helper method used to throw exceptions on socket errors.
      */
-    private function emitSocketError()
-    {
-        $errno = socket_last_error();
-        $errstr = socket_strerror($errno);
-
-        $this->disconnect();
-
-        $this->onConnectionError(trim($errstr), $errno);
+    private function emitSocketError() {
+        $errno = socket_last_error ();
+        $errstr = socket_strerror ( $errno );
+        
+        $this->disconnect ();
+        
+        $this->onConnectionError ( trim ( $errstr ), $errno );
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    protected function createResource()
-    {
+    protected function createResource() {
         $isUnix = $this->parameters->scheme === 'unix';
         $domain = $isUnix ? AF_UNIX : AF_INET;
         $protocol = $isUnix ? 0 : SOL_TCP;
-
-        $socket = @call_user_func('socket_create', $domain, SOCK_STREAM, $protocol);
-
-        if (!is_resource($socket)) {
-            $this->emitSocketError();
+        
+        $socket = @call_user_func ( 'socket_create', $domain, SOCK_STREAM, $protocol );
+        
+        if (! is_resource ( $socket )) {
+            $this->emitSocketError ();
         }
-
-        $this->setSocketOptions($socket, $this->parameters);
-
+        
+        $this->setSocketOptions ( $socket, $this->parameters );
+        
         return $socket;
     }
-
+    
     /**
      * Sets options on the socket resource from the connection parameters.
      *
-     * @param resource            $socket     Socket resource.
-     * @param ParametersInterface $parameters Parameters used to initialize the connection.
+     * @param resource $socket
+     *            Socket resource.
+     * @param ParametersInterface $parameters
+     *            Parameters used to initialize the connection.
      */
-    private function setSocketOptions($socket, ParametersInterface $parameters)
-    {
+    private function setSocketOptions($socket, ParametersInterface $parameters) {
         if ($parameters->scheme !== 'tcp') {
             return;
         }
-
-        if (!socket_set_option($socket, SOL_TCP, TCP_NODELAY, 1)) {
-            $this->emitSocketError();
+        
+        if (! socket_set_option ( $socket, SOL_TCP, TCP_NODELAY, 1 )) {
+            $this->emitSocketError ();
         }
-
-        if (!socket_set_option($socket, SOL_SOCKET, SO_REUSEADDR, 1)) {
-            $this->emitSocketError();
+        
+        if (! socket_set_option ( $socket, SOL_SOCKET, SO_REUSEADDR, 1 )) {
+            $this->emitSocketError ();
         }
-
-        if (isset($parameters->read_write_timeout)) {
-            $rwtimeout = (float) $parameters->read_write_timeout;
-            $timeoutSec = floor($rwtimeout);
+        
+        if (isset ( $parameters->read_write_timeout )) {
+            $rwtimeout = ( float ) $parameters->read_write_timeout;
+            $timeoutSec = floor ( $rwtimeout );
             $timeoutUsec = ($rwtimeout - $timeoutSec) * 1000000;
-
-            $timeout = array(
-                'sec' => $timeoutSec,
-                'usec' => $timeoutUsec,
+            
+            $timeout = array (
+                    'sec' => $timeoutSec,
+                    'usec' => $timeoutUsec 
             );
-
-            if (!socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, $timeout)) {
-                $this->emitSocketError();
+            
+            if (! socket_set_option ( $socket, SOL_SOCKET, SO_SNDTIMEO, $timeout )) {
+                $this->emitSocketError ();
             }
-
-            if (!socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, $timeout)) {
-                $this->emitSocketError();
+            
+            if (! socket_set_option ( $socket, SOL_SOCKET, SO_RCVTIMEO, $timeout )) {
+                $this->emitSocketError ();
             }
         }
     }
-
+    
     /**
      * Gets the address from the connection parameters.
      *
-     * @param ParametersInterface $parameters Parameters used to initialize the connection.
-     *
+     * @param ParametersInterface $parameters
+     *            Parameters used to initialize the connection.
+     *            
      * @return string
      */
-    protected static function getAddress(ParametersInterface $parameters)
-    {
+    protected static function getAddress(ParametersInterface $parameters) {
         if ($parameters->scheme === 'unix') {
             return $parameters->path;
         }
-
+        
         $host = $parameters->host;
-
-        if (ip2long($host) === false) {
-            if (false === $addresses = gethostbynamel($host)) {
+        
+        if (ip2long ( $host ) === false) {
+            if (false === $addresses = gethostbynamel ( $host )) {
                 return false;
             }
-
-            return $addresses[array_rand($addresses)];
+            
+            return $addresses [array_rand ( $addresses )];
         }
-
+        
         return $host;
     }
-
+    
     /**
      * Opens the actual connection to the server with a timeout.
      *
-     * @param ParametersInterface $parameters Parameters used to initialize the connection.
-     *
+     * @param ParametersInterface $parameters
+     *            Parameters used to initialize the connection.
+     *            
      * @return string
      */
-    private function connectWithTimeout(ParametersInterface $parameters)
-    {
-        if (false === $host = self::getAddress($parameters)) {
-            $this->onConnectionError("Cannot resolve the address of '$parameters->host'.");
+    private function connectWithTimeout(ParametersInterface $parameters) {
+        if (false === $host = self::getAddress ( $parameters )) {
+            $this->onConnectionError ( "Cannot resolve the address of '$parameters->host'." );
         }
-
-        $socket = $this->getResource();
-
-        socket_set_nonblock($socket);
-
-        if (@socket_connect($socket, $host, (int) $parameters->port) === false) {
-            $error = socket_last_error();
-
+        
+        $socket = $this->getResource ();
+        
+        socket_set_nonblock ( $socket );
+        
+        if (@socket_connect ( $socket, $host, ( int ) $parameters->port ) === false) {
+            $error = socket_last_error ();
+            
             if ($error != SOCKET_EINPROGRESS && $error != SOCKET_EALREADY) {
-                $this->emitSocketError();
+                $this->emitSocketError ();
             }
         }
-
-        socket_set_block($socket);
-
+        
+        socket_set_block ( $socket );
+        
         $null = null;
-        $selectable = array($socket);
-
-        $timeout = (float) $parameters->timeout;
-        $timeoutSecs = floor($timeout);
+        $selectable = array (
+                $socket 
+        );
+        
+        $timeout = ( float ) $parameters->timeout;
+        $timeoutSecs = floor ( $timeout );
         $timeoutUSecs = ($timeout - $timeoutSecs) * 1000000;
-
-        $selected = socket_select($selectable, $selectable, $null, $timeoutSecs, $timeoutUSecs);
-
+        
+        $selected = socket_select ( $selectable, $selectable, $null, $timeoutSecs, $timeoutUSecs );
+        
         if ($selected === 2) {
-            $this->onConnectionError('Connection refused.', SOCKET_ECONNREFUSED);
+            $this->onConnectionError ( 'Connection refused.', SOCKET_ECONNREFUSED );
         }
         if ($selected === 0) {
-            $this->onConnectionError('Connection timed out.', SOCKET_ETIMEDOUT);
+            $this->onConnectionError ( 'Connection timed out.', SOCKET_ETIMEDOUT );
         }
         if ($selected === false) {
-            $this->emitSocketError();
+            $this->emitSocketError ();
         }
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function connect()
-    {
-        if (parent::connect()) {
-            $this->connectWithTimeout($this->parameters);
-
+    public function connect() {
+        if (parent::connect ()) {
+            $this->connectWithTimeout ( $this->parameters );
+            
             if ($this->initCommands) {
-                foreach ($this->initCommands as $command) {
-                    $this->executeCommand($command);
+                foreach ( $this->initCommands as $command ) {
+                    $this->executeCommand ( $command );
                 }
             }
         }
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function disconnect()
-    {
-        if ($this->isConnected()) {
-            socket_close($this->getResource());
-            parent::disconnect();
+    public function disconnect() {
+        if ($this->isConnected ()) {
+            socket_close ( $this->getResource () );
+            parent::disconnect ();
         }
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    protected function write($buffer)
-    {
-        $socket = $this->getResource();
-
-        while (($length = strlen($buffer)) > 0) {
-            $written = socket_write($socket, $buffer, $length);
-
+    protected function write($buffer) {
+        $socket = $this->getResource ();
+        
+        while ( ($length = strlen ( $buffer )) > 0 ) {
+            $written = socket_write ( $socket, $buffer, $length );
+            
             if ($length === $written) {
                 return;
             }
-
+            
             if ($written === false) {
-                $this->onConnectionError('Error while writing bytes to the server.');
+                $this->onConnectionError ( 'Error while writing bytes to the server.' );
             }
-
-            $buffer = substr($buffer, $written);
+            
+            $buffer = substr ( $buffer, $written );
         }
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function read()
-    {
-        $socket = $this->getResource();
+    public function read() {
+        $socket = $this->getResource ();
         $reader = $this->reader;
-
-        while (PHPIREDIS_READER_STATE_INCOMPLETE === $state = phpiredis_reader_get_state($reader)) {
-            if (@socket_recv($socket, $buffer, 4096, 0) === false || $buffer === '') {
-                $this->emitSocketError();
+        
+        while ( PHPIREDIS_READER_STATE_INCOMPLETE === $state = phpiredis_reader_get_state ( $reader ) ) {
+            if (@socket_recv ( $socket, $buffer, 4096, 0 ) === false || $buffer === '') {
+                $this->emitSocketError ();
             }
-
-            phpiredis_reader_feed($reader, $buffer);
+            
+            phpiredis_reader_feed ( $reader, $buffer );
         }
-
+        
         if ($state === PHPIREDIS_READER_STATE_COMPLETE) {
-            return phpiredis_reader_get_reply($reader);
+            return phpiredis_reader_get_reply ( $reader );
         } else {
-            $this->onProtocolError(phpiredis_reader_get_error($reader));
-
+            $this->onProtocolError ( phpiredis_reader_get_error ( $reader ) );
+            
             return;
         }
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function writeRequest(CommandInterface $command)
-    {
-        $arguments = $command->getArguments();
-        array_unshift($arguments, $command->getId());
-
-        $this->write(phpiredis_format_command($arguments));
+    public function writeRequest(CommandInterface $command) {
+        $arguments = $command->getArguments ();
+        array_unshift ( $arguments, $command->getId () );
+        
+        $this->write ( phpiredis_format_command ( $arguments ) );
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function __wakeup()
-    {
-        $this->assertExtensions();
-        $this->reader = $this->createReader();
+    public function __wakeup() {
+        $this->assertExtensions ();
+        $this->reader = $this->createReader ();
     }
 }

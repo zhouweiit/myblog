@@ -8,28 +8,29 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Command;
 
 /**
+ *
  * @link http://redis.io/commands/subscribe
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class PubSubSubscribe extends Command
-{
+class PubSubSubscribe extends Command {
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function getId()
-    {
+    public function getId() {
         return 'SUBSCRIBE';
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    protected function filterArguments(array $arguments)
-    {
-        return self::normalizeArguments($arguments);
+    protected function filterArguments(array $arguments) {
+        return self::normalizeArguments ( $arguments );
     }
 }

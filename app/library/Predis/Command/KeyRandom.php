@@ -8,28 +8,29 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Command;
 
 /**
+ *
  * @link http://redis.io/commands/randomkey
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class KeyRandom extends Command
-{
+class KeyRandom extends Command {
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function getId()
-    {
+    public function getId() {
         return 'RANDOMKEY';
     }
-
+    
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function parseResponse($data)
-    {
+    public function parseResponse($data) {
         return $data !== '' ? $data : null;
     }
 }
