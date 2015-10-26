@@ -16,17 +16,17 @@ class ArticleController extends ControllerBase {
 	/**
 	 * @var CategoryService
 	 */
-	private $categoryService;
+    private $categoryService;
 	
 	/**
 	 * @var ArticleService
 	 */
-	private $articleService;
+    private $articleService;
 	
 	/**
 	 * @var MenuService
 	 */
-	private $menuService;
+    private $menuService;
 	
 	/**
 	 * @var AsideService

@@ -5,8 +5,8 @@ use Phalcon\DI\FactoryDefault;
 define('ROOT', realpath(dirname(__FILE__).'/..'));
 define('APPLICATION_TYPE', 'WEB');
 set_include_path(implode(PATH_SEPARATOR,array(
-	ROOT . '/app/library/smarty',//smarty类库路径
-	get_include_path(),
+    ROOT . '/app/library/smarty',//smarty类库路径
+    get_include_path(),
 )));
 
 try {
@@ -16,38 +16,38 @@ try {
 	 */
 	
 	//默认的DI
-	$di = new FactoryDefault();
+    $di = new FactoryDefault();
 	
-	//实例化application
-	$application = new Application($di);
-	
-	//加载自动加载
-	require_once ROOT . '/app/bootstrap/AutoloaderBoot.php';
-	
-	//加载配置
-	require_once ROOT . '/app/bootstrap/ConfigBoot.php';
-	
-	//加载数据源
-	require_once ROOT . '/app/bootstrap/DatasourceBoot.php';
-	
-	//加载普通对象
-	require_once ROOT . '/app/bootstrap/ObjectBoot.php';
-	
-	//加载dao
-	require_once ROOT . '/app/bootstrap/DaoBoot.php';
-	
-	//加载service
-	require_once ROOT . '/app/bootstrap/ServiceBoot.php';
-	
-	//加载路由
-	require_once ROOT . '/app/bootstrap/RouterBoot.php';
-
-	//初始化应用
-	require_once ROOT . '/app/bootstrap/ApplicationStartBoot.php';
-	
-	//测试使用，上线需要注释掉
-	require_once 'test.php';
-	
+    //实例化application
+    $application = new Application($di);
+    
+    //加载自动加载
+    require_once ROOT . '/app/bootstrap/AutoloaderBoot.php';
+    
+    //加载配置
+    require_once ROOT . '/app/bootstrap/ConfigBoot.php';
+    
+    //加载数据源
+    require_once ROOT . '/app/bootstrap/DatasourceBoot.php';
+    
+    //加载普通对象
+    require_once ROOT . '/app/bootstrap/ObjectBoot.php';
+    
+    //加载dao
+    require_once ROOT . '/app/bootstrap/DaoBoot.php';
+    
+    //加载service
+    require_once ROOT . '/app/bootstrap/ServiceBoot.php';
+    
+    //加载路由
+    require_once ROOT . '/app/bootstrap/RouterBoot.php';
+    
+    //初始化应用
+    require_once ROOT . '/app/bootstrap/ApplicationStartBoot.php';
+    
+    //测试使用，上线需要注释掉
+    require_once 'test.php';
+    
     //处理requset
     echo $application->handle()->getContent();
     
@@ -56,17 +56,17 @@ try {
     
 } catch (Phalcon\Mvc\Dispatcher\Exception $de){
 	
-	//404
-	$application->getDI()->get('response')->setHeader("Status Code","404");
-	$application->getDI()->get('response')->sendHeaders();
+    //404
+    $application->getDI()->get('response')->setHeader("Status Code","404");
+    $application->getDI()->get('response')->sendHeaders();
 	
 } catch(\Exception $e){
-	try {
-		$log = $di->get('applicationLog');
-		$log->error($e);
-		$log->echoLog($e);
-	} catch(\Exception $inner){
-	}
-	throw $e;
+    try {
+    	$log = $di->get('applicationLog');
+    	$log->error($e);
+    	$log->echoLog($e);
+    } catch(\Exception $inner){
+    }
+    throw $e;
 }
 
