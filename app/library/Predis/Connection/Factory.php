@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Predis\Connection;
 
 use InvalidArgumentException;
@@ -20,134 +21,133 @@ use Predis\Command\RawCommand;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class Factory implements FactoryInterface {
-    protected $schemes = array (
-            'tcp' => 'Predis\Connection\StreamConnection',
-            'unix' => 'Predis\Connection\StreamConnection',
-            'http' => 'Predis\Connection\WebdisConnection' 
+class Factory implements FactoryInterface
+{
+    protected $schemes = array(
+        'tcp'  => 'Predis\Connection\StreamConnection',
+        'unix' => 'Predis\Connection\StreamConnection',
+        'http' => 'Predis\Connection\WebdisConnection',
     );
-    
+
     /**
      * Checks if the provided argument represents a valid connection class
-     * implementing Predis\Connection\NodeConnectionInterface.
-     * Optionally,
+     * implementing Predis\Connection\NodeConnectionInterface. Optionally,
      * callable objects are used for lazy initialization of connection objects.
      *
-     * @param mixed $initializer
-     *            FQN of a connection class or a callable for lazy initialization.
-     *            
+     * @param mixed $initializer FQN of a connection class or a callable for lazy initialization.
+     *
      * @return mixed
      *
      * @throws \InvalidArgumentException
      */
-    protected function checkInitializer($initializer) {
-        if (is_callable ( $initializer )) {
+    protected function checkInitializer($initializer)
+    {
+        if (is_callable($initializer)) {
             return $initializer;
         }
-        
-        $class = new ReflectionClass ( $initializer );
-        
-        if (! $class->isSubclassOf ( 'Predis\Connection\NodeConnectionInterface' )) {
-            throw new InvalidArgumentException ( 'A connection initializer must be a valid connection class or a callable object.' );
+
+        $class = new ReflectionClass($initializer);
+
+        if (!$class->isSubclassOf('Predis\Connection\NodeConnectionInterface')) {
+            throw new InvalidArgumentException(
+                'A connection initializer must be a valid connection class or a callable object.'
+            );
         }
-        
+
         return $initializer;
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function define($scheme, $initializer) {
-        $this->schemes [$scheme] = $this->checkInitializer ( $initializer );
+    public function define($scheme, $initializer)
+    {
+        $this->schemes[$scheme] = $this->checkInitializer($initializer);
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function undefine($scheme) {
-        unset ( $this->schemes [$scheme] );
+    public function undefine($scheme)
+    {
+        unset($this->schemes[$scheme]);
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function create($parameters) {
-        if (! $parameters instanceof ParametersInterface) {
-            $parameters = $this->createParameters ( $parameters );
+    public function create($parameters)
+    {
+        if (!$parameters instanceof ParametersInterface) {
+            $parameters = $this->createParameters($parameters);
         }
-        
+
         $scheme = $parameters->scheme;
-        
-        if (! isset ( $this->schemes [$scheme] )) {
-            throw new InvalidArgumentException ( "Unknown connection scheme: '$scheme'." );
+
+        if (!isset($this->schemes[$scheme])) {
+            throw new InvalidArgumentException("Unknown connection scheme: '$scheme'.");
         }
-        
-        $initializer = $this->schemes [$scheme];
-        
-        if (is_callable ( $initializer )) {
-            $connection = call_user_func ( $initializer, $parameters, $this );
+
+        $initializer = $this->schemes[$scheme];
+
+        if (is_callable($initializer)) {
+            $connection = call_user_func($initializer, $parameters, $this);
         } else {
-            $connection = new $initializer ( $parameters );
-            $this->prepareConnection ( $connection );
+            $connection = new $initializer($parameters);
+            $this->prepareConnection($connection);
         }
-        
-        if (! $connection instanceof NodeConnectionInterface) {
-            throw new UnexpectedValueException ( "Objects returned by connection initializers must implement " . "'Predis\Connection\NodeConnectionInterface'." );
+
+        if (!$connection instanceof NodeConnectionInterface) {
+            throw new UnexpectedValueException(
+                "Objects returned by connection initializers must implement ".
+                "'Predis\Connection\NodeConnectionInterface'."
+            );
         }
-        
+
         return $connection;
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function aggregate(AggregateConnectionInterface $connection, array $parameters) {
-        foreach ( $parameters as $node ) {
-            $connection->add ( $node instanceof NodeConnectionInterface ? $node : $this->create ( $node ) );
+    public function aggregate(AggregateConnectionInterface $connection, array $parameters)
+    {
+        foreach ($parameters as $node) {
+            $connection->add($node instanceof NodeConnectionInterface ? $node : $this->create($node));
         }
     }
-    
+
     /**
      * Creates a connection parameters instance from the supplied argument.
      *
-     * @param mixed $parameters
-     *            Original connection parameters.
-     *            
+     * @param mixed $parameters Original connection parameters.
+     *
      * @return ParametersInterface
      */
-    protected function createParameters($parameters) {
-        return Parameters::create ( $parameters );
+    protected function createParameters($parameters)
+    {
+        return Parameters::create($parameters);
     }
-    
+
     /**
      * Prepares a connection instance after its initialization.
      *
-     * @param NodeConnectionInterface $connection
-     *            Connection instance.
+     * @param NodeConnectionInterface $connection Connection instance.
      */
-    protected function prepareConnection(NodeConnectionInterface $connection) {
-        $parameters = $connection->getParameters ();
-        
-        if (isset ( $parameters->password )) {
-            $connection->addConnectCommand ( new RawCommand ( array (
-                    'AUTH',
-                    $parameters->password 
-            ) ) );
+    protected function prepareConnection(NodeConnectionInterface $connection)
+    {
+        $parameters = $connection->getParameters();
+
+        if (isset($parameters->password)) {
+            $connection->addConnectCommand(
+                new RawCommand(array('AUTH', $parameters->password))
+            );
         }
-        
-        if (isset ( $parameters->database )) {
-            $connection->addConnectCommand ( new RawCommand ( array (
-                    'SELECT',
-                    $parameters->database 
-            ) ) );
+
+        if (isset($parameters->database)) {
+            $connection->addConnectCommand(
+                new RawCommand(array('SELECT', $parameters->database))
+            );
         }
     }
 }

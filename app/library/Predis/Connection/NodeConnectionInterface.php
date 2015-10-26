@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Predis\Connection;
 
 use Predis\Command\CommandInterface;
@@ -17,37 +18,37 @@ use Predis\Command\CommandInterface;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-interface NodeConnectionInterface extends ConnectionInterface {
+interface NodeConnectionInterface extends ConnectionInterface
+{
     /**
      * Returns a string representation of the connection.
      *
      * @return string
      */
     public function __toString();
-    
+
     /**
      * Returns the underlying resource used to communicate with Redis.
      *
      * @return mixed
      */
     public function getResource();
-    
+
     /**
      * Returns the parameters used to initialize the connection.
      *
      * @return ParametersInterface
      */
     public function getParameters();
-    
+
     /**
      * Pushes the given command into a queue of commands executed when
      * establishing the actual connection to Redis.
      *
-     * @param CommandInterface $command
-     *            Instance of a Redis command.
+     * @param CommandInterface $command Instance of a Redis command.
      */
     public function addConnectCommand(CommandInterface $command);
-    
+
     /**
      * Reads a response from the server.
      *

@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Predis\Collection\Iterator;
 
 use Predis\ClientInterface;
@@ -19,24 +20,23 @@ use Predis\ClientInterface;
  * @author Daniele Alessandri <suppakilla@gmail.com>
  * @link http://redis.io/commands/scan
  */
-class Keyspace extends CursorBasedIterator {
+class Keyspace extends CursorBasedIterator
+{
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function __construct(ClientInterface $client, $match = null, $count = null) {
-        $this->requiredCommand ( $client, 'SCAN' );
-        
-        parent::__construct ( $client, $match, $count );
+    public function __construct(ClientInterface $client, $match = null, $count = null)
+    {
+        $this->requiredCommand($client, 'SCAN');
+
+        parent::__construct($client, $match, $count);
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    protected function executeCommand() {
-        return $this->client->scan ( $this->cursor, $this->getScanOptions () );
+    protected function executeCommand()
+    {
+        return $this->client->scan($this->cursor, $this->getScanOptions());
     }
 }

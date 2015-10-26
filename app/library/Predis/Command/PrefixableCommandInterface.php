@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Predis\Command;
 
 /**
@@ -15,12 +16,12 @@ namespace Predis\Command;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-interface PrefixableCommandInterface extends CommandInterface {
+interface PrefixableCommandInterface extends CommandInterface
+{
     /**
      * Prefixes all the keys found in the arguments of the command.
      *
-     * @param string $prefix
-     *            String used to prefix the keys.
+     * @param string $prefix String used to prefix the keys.
      */
     public function prefixKeys($prefix);
 }

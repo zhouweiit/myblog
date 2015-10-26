@@ -8,29 +8,28 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Predis\Command;
 
 /**
- *
  * @link http://redis.io/commands/move
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class KeyMove extends Command {
+class KeyMove extends Command
+{
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function getId() {
+    public function getId()
+    {
         return 'MOVE';
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function parseResponse($data) {
-        return ( bool ) $data;
+    public function parseResponse($data)
+    {
+        return (bool) $data;
     }
 }

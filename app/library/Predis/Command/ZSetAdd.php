@@ -8,42 +8,39 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Predis\Command;
 
 /**
- *
  * @link http://redis.io/commands/zadd
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class ZSetAdd extends Command {
+class ZSetAdd extends Command
+{
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function getId() {
+    public function getId()
+    {
         return 'ZADD';
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    protected function filterArguments(array $arguments) {
-        if (count ( $arguments ) === 2 && is_array ( $arguments [1] )) {
-            $flattened = array (
-                    $arguments [0] 
-            );
-            
-            foreach ( $arguments [1] as $member => $score ) {
-                $flattened [] = $score;
-                $flattened [] = $member;
+    protected function filterArguments(array $arguments)
+    {
+        if (count($arguments) === 2 && is_array($arguments[1])) {
+            $flattened = array($arguments[0]);
+
+            foreach ($arguments[1] as $member => $score) {
+                $flattened[] = $score;
+                $flattened[] = $member;
             }
-            
+
             return $flattened;
         }
-        
+
         return $arguments;
     }
 }

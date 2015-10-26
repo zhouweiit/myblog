@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Predis\Protocol;
 
 use Predis\Command\CommandInterface;
@@ -17,13 +18,13 @@ use Predis\Command\CommandInterface;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-interface RequestSerializerInterface {
+interface RequestSerializerInterface
+{
     /**
      * Serializes a Redis command.
      *
-     * @param CommandInterface $command
-     *            Redis command.
-     *            
+     * @param CommandInterface $command Redis command.
+     *
      * @return string
      */
     public function serialize(CommandInterface $command);

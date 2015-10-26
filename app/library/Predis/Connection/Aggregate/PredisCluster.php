@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Predis\Connection\Aggregate;
 
 use ArrayIterator;
@@ -26,220 +27,211 @@ use Predis\Connection\NodeConnectionInterface;
  * @author Daniele Alessandri <suppakilla@gmail.com>
  * @todo Add the ability to remove connections from pool.
  */
-class PredisCluster implements ClusterInterface, IteratorAggregate, Countable {
+class PredisCluster implements ClusterInterface, IteratorAggregate, Countable
+{
     private $pool;
     private $strategy;
     private $distributor;
-    
+
     /**
-     *
-     * @param StrategyInterface $strategy
-     *            Optional cluster strategy.
+     * @param StrategyInterface $strategy Optional cluster strategy.
      */
-    public function __construct(StrategyInterface $strategy = null) {
-        $this->pool = array ();
-        $this->strategy = $strategy ?  : new PredisStrategy ();
-        $this->distributor = $this->strategy->getDistributor ();
+    public function __construct(StrategyInterface $strategy = null)
+    {
+        $this->pool = array();
+        $this->strategy = $strategy ?: new PredisStrategy();
+        $this->distributor = $this->strategy->getDistributor();
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function isConnected() {
-        foreach ( $this->pool as $connection ) {
-            if ($connection->isConnected ()) {
+    public function isConnected()
+    {
+        foreach ($this->pool as $connection) {
+            if ($connection->isConnected()) {
                 return true;
             }
         }
-        
+
         return false;
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function connect() {
-        foreach ( $this->pool as $connection ) {
-            $connection->connect ();
+    public function connect()
+    {
+        foreach ($this->pool as $connection) {
+            $connection->connect();
         }
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function disconnect() {
-        foreach ( $this->pool as $connection ) {
-            $connection->disconnect ();
+    public function disconnect()
+    {
+        foreach ($this->pool as $connection) {
+            $connection->disconnect();
         }
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function add(NodeConnectionInterface $connection) {
-        $parameters = $connection->getParameters ();
-        
-        if (isset ( $parameters->alias )) {
-            $this->pool [$parameters->alias] = $connection;
+    public function add(NodeConnectionInterface $connection)
+    {
+        $parameters = $connection->getParameters();
+
+        if (isset($parameters->alias)) {
+            $this->pool[$parameters->alias] = $connection;
         } else {
-            $this->pool [] = $connection;
+            $this->pool[] = $connection;
         }
-        
-        $weight = isset ( $parameters->weight ) ? $parameters->weight : null;
-        $this->distributor->add ( $connection, $weight );
+
+        $weight = isset($parameters->weight) ? $parameters->weight : null;
+        $this->distributor->add($connection, $weight);
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function remove(NodeConnectionInterface $connection) {
-        if (($id = array_search ( $connection, $this->pool, true )) !== false) {
-            unset ( $this->pool [$id] );
-            $this->distributor->remove ( $connection );
-            
+    public function remove(NodeConnectionInterface $connection)
+    {
+        if (($id = array_search($connection, $this->pool, true)) !== false) {
+            unset($this->pool[$id]);
+            $this->distributor->remove($connection);
+
             return true;
         }
-        
+
         return false;
     }
-    
+
     /**
      * Removes a connection instance using its alias or index.
      *
-     * @param string $connectionID
-     *            Alias or index of a connection.
-     *            
+     * @param string $connectionID Alias or index of a connection.
+     *
      * @return bool Returns true if the connection was in the pool.
      */
-    public function removeById($connectionID) {
-        if ($connection = $this->getConnectionById ( $connectionID )) {
-            return $this->remove ( $connection );
+    public function removeById($connectionID)
+    {
+        if ($connection = $this->getConnectionById($connectionID)) {
+            return $this->remove($connection);
         }
-        
+
         return false;
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function getConnection(CommandInterface $command) {
-        $slot = $this->strategy->getSlot ( $command );
-        
-        if (! isset ( $slot )) {
-            throw new NotSupportedException ( "Cannot use '{$command->getId()}' over clusters of connections." );
+    public function getConnection(CommandInterface $command)
+    {
+        $slot = $this->strategy->getSlot($command);
+
+        if (!isset($slot)) {
+            throw new NotSupportedException(
+                "Cannot use '{$command->getId()}' over clusters of connections."
+            );
         }
-        
-        $node = $this->distributor->getBySlot ( $slot );
-        
+
+        $node = $this->distributor->getBySlot($slot);
+
         return $node;
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function getConnectionById($connectionID) {
-        return isset ( $this->pool [$connectionID] ) ? $this->pool [$connectionID] : null;
+    public function getConnectionById($connectionID)
+    {
+        return isset($this->pool[$connectionID]) ? $this->pool[$connectionID] : null;
     }
-    
+
     /**
      * Retrieves a connection instance from the cluster using a key.
      *
-     * @param string $key
-     *            Key string.
-     *            
+     * @param string $key Key string.
+     *
      * @return NodeConnectionInterface
      */
-    public function getConnectionByKey($key) {
-        $hash = $this->strategy->getSlotByKey ( $key );
-        $node = $this->distributor->getBySlot ( $hash );
-        
+    public function getConnectionByKey($key)
+    {
+        $hash = $this->strategy->getSlotByKey($key);
+        $node = $this->distributor->getBySlot($hash);
+
         return $node;
     }
-    
+
     /**
      * Returns the underlying command hash strategy used to hash commands by
      * using keys found in their arguments.
      *
      * @return StrategyInterface
      */
-    public function getClusterStrategy() {
+    public function getClusterStrategy()
+    {
         return $this->strategy;
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function count() {
-        return count ( $this->pool );
+    public function count()
+    {
+        return count($this->pool);
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function getIterator() {
-        return new ArrayIterator ( $this->pool );
+    public function getIterator()
+    {
+        return new ArrayIterator($this->pool);
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function writeRequest(CommandInterface $command) {
-        $this->getConnection ( $command )->writeRequest ( $command );
+    public function writeRequest(CommandInterface $command)
+    {
+        $this->getConnection($command)->writeRequest($command);
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function readResponse(CommandInterface $command) {
-        return $this->getConnection ( $command )->readResponse ( $command );
+    public function readResponse(CommandInterface $command)
+    {
+        return $this->getConnection($command)->readResponse($command);
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function executeCommand(CommandInterface $command) {
-        return $this->getConnection ( $command )->executeCommand ( $command );
+    public function executeCommand(CommandInterface $command)
+    {
+        return $this->getConnection($command)->executeCommand($command);
     }
-    
+
     /**
      * Executes the specified Redis command on all the nodes of a cluster.
      *
-     * @param CommandInterface $command
-     *            A Redis command.
-     *            
+     * @param CommandInterface $command A Redis command.
+     *
      * @return array
      */
-    public function executeCommandOnNodes(CommandInterface $command) {
-        $responses = array ();
-        
-        foreach ( $this->pool as $connection ) {
-            $responses [] = $connection->executeCommand ( $command );
+    public function executeCommandOnNodes(CommandInterface $command)
+    {
+        $responses = array();
+
+        foreach ($this->pool as $connection) {
+            $responses[] = $connection->executeCommand($command);
         }
-        
+
         return $responses;
     }
 }

@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Predis\Command;
 
 use InvalidArgumentException;
@@ -22,119 +23,111 @@ use InvalidArgumentException;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class RawCommand implements CommandInterface {
+class RawCommand implements CommandInterface
+{
     private $slot;
     private $commandID;
     private $arguments;
-    
+
     /**
+     * @param array $arguments Command ID and its arguments.
      *
-     * @param array $arguments
-     *            Command ID and its arguments.
-     *            
      * @throws \InvalidArgumentException
      */
-    public function __construct(array $arguments) {
-        if (! $arguments) {
-            throw new InvalidArgumentException ( 'The arguments array must contain at least the command ID.' );
+    public function __construct(array $arguments)
+    {
+        if (!$arguments) {
+            throw new InvalidArgumentException(
+                'The arguments array must contain at least the command ID.'
+            );
         }
-        
-        $this->commandID = strtoupper ( array_shift ( $arguments ) );
+
+        $this->commandID = strtoupper(array_shift($arguments));
         $this->arguments = $arguments;
     }
-    
+
     /**
      * Creates a new raw command using a variadic method.
      *
-     * @param string $commandID
-     *            Redis command ID.
-     * @param
-     *            string ... Arguments list for the command.
-     *            
+     * @param string $commandID Redis command ID.
+     * @param string ...        Arguments list for the command.
+     *
      * @return CommandInterface
      */
     public static function create($commandID /* [ $arg, ... */)
     {
-        $arguments = func_get_args ();
-        $command = new self ( $arguments );
-        
+        $arguments = func_get_args();
+        $command = new self($arguments);
+
         return $command;
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->commandID;
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function setArguments(array $arguments) {
+    public function setArguments(array $arguments)
+    {
         $this->arguments = $arguments;
-        unset ( $this->slot );
+        unset($this->slot);
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function setRawArguments(array $arguments) {
-        $this->setArguments ( $arguments );
+    public function setRawArguments(array $arguments)
+    {
+        $this->setArguments($arguments);
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function getArguments() {
+    public function getArguments()
+    {
         return $this->arguments;
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function getArgument($index) {
-        if (isset ( $this->arguments [$index] )) {
-            return $this->arguments [$index];
+    public function getArgument($index)
+    {
+        if (isset($this->arguments[$index])) {
+            return $this->arguments[$index];
         }
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function setSlot($slot) {
+    public function setSlot($slot)
+    {
         $this->slot = $slot;
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function getSlot() {
-        if (isset ( $this->slot )) {
+    public function getSlot()
+    {
+        if (isset($this->slot)) {
             return $this->slot;
         }
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function parseResponse($data) {
+    public function parseResponse($data)
+    {
         return $data;
     }
 }

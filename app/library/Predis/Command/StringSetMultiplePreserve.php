@@ -8,29 +8,28 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Predis\Command;
 
 /**
- *
  * @link http://redis.io/commands/msetnx
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class StringSetMultiplePreserve extends StringSetMultiple {
+class StringSetMultiplePreserve extends StringSetMultiple
+{
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function getId() {
+    public function getId()
+    {
         return 'MSETNX';
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function parseResponse($data) {
-        return ( bool ) $data;
+    public function parseResponse($data)
+    {
+        return (bool) $data;
     }
 }

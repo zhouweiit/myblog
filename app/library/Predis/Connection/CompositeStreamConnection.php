@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Predis\Connection;
 
 use InvalidArgumentException;
@@ -21,113 +22,105 @@ use Predis\Protocol\Text\ProtocolProcessor as TextProtocolProcessor;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class CompositeStreamConnection extends StreamConnection implements CompositeConnectionInterface {
+class CompositeStreamConnection extends StreamConnection implements CompositeConnectionInterface
+{
     protected $protocol;
-    
+
     /**
-     *
-     * @param ParametersInterface $parameters
-     *            Initialization parameters for the connection.
-     * @param ProtocolProcessorInterface $protocol
-     *            Protocol processor.
+     * @param ParametersInterface        $parameters Initialization parameters for the connection.
+     * @param ProtocolProcessorInterface $protocol   Protocol processor.
      */
-    public function __construct(ParametersInterface $parameters, ProtocolProcessorInterface $protocol = null) {
-        $this->parameters = $this->assertParameters ( $parameters );
-        $this->protocol = $protocol ?  : new TextProtocolProcessor ();
+    public function __construct(
+        ParametersInterface $parameters,
+        ProtocolProcessorInterface $protocol = null
+    ) {
+        $this->parameters = $this->assertParameters($parameters);
+        $this->protocol = $protocol ?: new TextProtocolProcessor();
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function getProtocol() {
+    public function getProtocol()
+    {
         return $this->protocol;
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function writeBuffer($buffer) {
-        $this->write ( $buffer );
+    public function writeBuffer($buffer)
+    {
+        $this->write($buffer);
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function readBuffer($length) {
+    public function readBuffer($length)
+    {
         if ($length <= 0) {
-            throw new InvalidArgumentException ( 'Length parameter must be greater than 0.' );
+            throw new InvalidArgumentException('Length parameter must be greater than 0.');
         }
-        
+
         $value = '';
-        $socket = $this->getResource ();
-        
+        $socket = $this->getResource();
+
         do {
-            $chunk = fread ( $socket, $length );
-            
+            $chunk = fread($socket, $length);
+
             if ($chunk === false || $chunk === '') {
-                $this->onConnectionError ( 'Error while reading bytes from the server.' );
+                $this->onConnectionError('Error while reading bytes from the server.');
             }
-            
+
             $value .= $chunk;
-        } while ( ($length -= strlen ( $chunk )) > 0 );
-        
+        } while (($length -= strlen($chunk)) > 0);
+
         return $value;
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function readLine() {
+    public function readLine()
+    {
         $value = '';
-        $socket = $this->getResource ();
-        
+        $socket = $this->getResource();
+
         do {
-            $chunk = fgets ( $socket );
-            
+            $chunk = fgets($socket);
+
             if ($chunk === false || $chunk === '') {
-                $this->onConnectionError ( 'Error while reading line from the server.' );
+                $this->onConnectionError('Error while reading line from the server.');
             }
-            
+
             $value .= $chunk;
-        } while ( substr ( $value, - 2 ) !== "\r\n" );
-        
-        return substr ( $value, 0, - 2 );
+        } while (substr($value, -2) !== "\r\n");
+
+        return substr($value, 0, -2);
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function writeRequest(CommandInterface $command) {
-        $this->protocol->write ( $this, $command );
+    public function writeRequest(CommandInterface $command)
+    {
+        $this->protocol->write($this, $command);
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function read() {
-        return $this->protocol->read ( $this );
+    public function read()
+    {
+        return $this->protocol->read($this);
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function __sleep() {
-        return array_merge ( parent::__sleep (), array (
-                'protocol' 
-        ) );
+    public function __sleep()
+    {
+        return array_merge(parent::__sleep(), array('protocol'));
     }
 }

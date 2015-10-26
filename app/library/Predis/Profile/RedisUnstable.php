@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Predis\Profile;
 
 /**
@@ -15,22 +16,21 @@ namespace Predis\Profile;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class RedisUnstable extends RedisVersion300 {
+class RedisUnstable extends RedisVersion300
+{
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function getVersion() {
+    public function getVersion()
+    {
         return '3.0';
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function getSupportedCommands() {
-        return array_merge ( parent::getSupportedCommands (), array () );
+    public function getSupportedCommands()
+    {
+        return array_merge(parent::getSupportedCommands(), array());
     }
 }

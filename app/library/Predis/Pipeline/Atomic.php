@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Predis\Pipeline;
 
 use SplQueue;
@@ -24,96 +25,96 @@ use Predis\Response\ServerException;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class Atomic extends Pipeline {
+class Atomic extends Pipeline
+{
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function __construct(ClientInterface $client) {
-        if (! $client->getProfile ()->supportsCommands ( array (
-                'multi',
-                'exec',
-                'discard' 
-        ) )) {
-            throw new ClientException ( "The current profile does not support 'MULTI', 'EXEC' and 'DISCARD'." );
+    public function __construct(ClientInterface $client)
+    {
+        if (!$client->getProfile()->supportsCommands(array('multi', 'exec', 'discard'))) {
+            throw new ClientException(
+                "The current profile does not support 'MULTI', 'EXEC' and 'DISCARD'."
+            );
         }
-        
-        parent::__construct ( $client );
+
+        parent::__construct($client);
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    protected function getConnection() {
-        $connection = $this->getClient ()->getConnection ();
-        
-        if (! $connection instanceof NodeConnectionInterface) {
+    protected function getConnection()
+    {
+        $connection = $this->getClient()->getConnection();
+
+        if (!$connection instanceof NodeConnectionInterface) {
             $class = __CLASS__;
-            
-            throw new ClientException ( "The class '$class' does not support aggregate connections." );
+
+            throw new ClientException("The class '$class' does not support aggregate connections.");
         }
-        
+
         return $connection;
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    protected function executePipeline(ConnectionInterface $connection, SplQueue $commands) {
-        $profile = $this->getClient ()->getProfile ();
-        $connection->executeCommand ( $profile->createCommand ( 'multi' ) );
-        
-        foreach ( $commands as $command ) {
-            $connection->writeRequest ( $command );
+    protected function executePipeline(ConnectionInterface $connection, SplQueue $commands)
+    {
+        $profile = $this->getClient()->getProfile();
+        $connection->executeCommand($profile->createCommand('multi'));
+
+        foreach ($commands as $command) {
+            $connection->writeRequest($command);
         }
-        
-        foreach ( $commands as $command ) {
-            $response = $connection->readResponse ( $command );
-            
+
+        foreach ($commands as $command) {
+            $response = $connection->readResponse($command);
+
             if ($response instanceof ErrorResponseInterface) {
-                $connection->executeCommand ( $profile->createCommand ( 'discard' ) );
-                throw new ServerException ( $response->getMessage () );
+                $connection->executeCommand($profile->createCommand('discard'));
+                throw new ServerException($response->getMessage());
             }
         }
-        
-        $executed = $connection->executeCommand ( $profile->createCommand ( 'exec' ) );
-        
-        if (! isset ( $executed )) {
+
+        $executed = $connection->executeCommand($profile->createCommand('exec'));
+
+        if (!isset($executed)) {
             // TODO: should be throwing a more appropriate exception.
-            throw new ClientException ( 'The underlying transaction has been aborted by the server.' );
+            throw new ClientException(
+                'The underlying transaction has been aborted by the server.'
+            );
         }
-        
-        if (count ( $executed ) !== count ( $commands )) {
-            $expected = count ( $commands );
-            $received = count ( $executed );
-            
-            throw new ClientException ( "Invalid number of responses [expected $expected, received $received]." );
+
+        if (count($executed) !== count($commands)) {
+            $expected = count($commands);
+            $received = count($executed);
+
+            throw new ClientException(
+                "Invalid number of responses [expected $expected, received $received]."
+            );
         }
-        
-        $responses = array ();
-        $sizeOfPipe = count ( $commands );
-        $exceptions = $this->throwServerExceptions ();
-        
-        for($i = 0; $i < $sizeOfPipe; $i ++) {
-            $command = $commands->dequeue ();
-            $response = $executed [$i];
-            
-            if (! $response instanceof ResponseInterface) {
-                $responses [] = $command->parseResponse ( $response );
+
+        $responses = array();
+        $sizeOfPipe = count($commands);
+        $exceptions = $this->throwServerExceptions();
+
+        for ($i = 0; $i < $sizeOfPipe; $i++) {
+            $command  = $commands->dequeue();
+            $response = $executed[$i];
+
+            if (!$response instanceof ResponseInterface) {
+                $responses[] = $command->parseResponse($response);
             } elseif ($response instanceof ErrorResponseInterface && $exceptions) {
-                $this->exception ( $connection, $response );
+                $this->exception($connection, $response);
             } else {
-                $responses [] = $response;
+                $responses[] = $response;
             }
-            
-            unset ( $executed [$i] );
+
+            unset($executed[$i]);
         }
-        
+
         return $responses;
     }
 }

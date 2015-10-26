@@ -8,29 +8,28 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Predis\Command;
 
 /**
- *
  * @link http://redis.io/commands/unsubscribe
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class PubSubUnsubscribe extends Command {
+class PubSubUnsubscribe extends Command
+{
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function getId() {
+    public function getId()
+    {
         return 'UNSUBSCRIBE';
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    protected function filterArguments(array $arguments) {
-        return self::normalizeArguments ( $arguments );
+    protected function filterArguments(array $arguments)
+    {
+        return self::normalizeArguments($arguments);
     }
 }

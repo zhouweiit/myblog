@@ -8,29 +8,28 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Predis\Command;
 
 /**
- *
  * @link http://redis.io/commands/bgsave
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class ServerBackgroundSave extends Command {
+class ServerBackgroundSave extends Command
+{
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function getId() {
+    public function getId()
+    {
         return 'BGSAVE';
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function parseResponse($data) {
+    public function parseResponse($data)
+    {
         return $data === 'Background saving started' ? true : $data;
     }
 }

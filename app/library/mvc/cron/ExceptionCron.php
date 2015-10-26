@@ -2,5 +2,5 @@
 
 namespace library\mvc\cron;
 
-class ExceptionCron extends \Exception {
+class ExceptionCron extends \Exception{
 }

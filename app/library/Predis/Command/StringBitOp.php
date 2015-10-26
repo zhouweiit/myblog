@@ -8,35 +8,34 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Predis\Command;
 
 /**
- *
  * @link http://redis.io/commands/bitop
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class StringBitOp extends Command {
+class StringBitOp extends Command
+{
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function getId() {
+    public function getId()
+    {
         return 'BITOP';
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    protected function filterArguments(array $arguments) {
-        if (count ( $arguments ) === 3 && is_array ( $arguments [2] )) {
-            list ( $operation, $destination, ) = $arguments;
-            $arguments = $arguments [2];
-            array_unshift ( $arguments, $operation, $destination );
+    protected function filterArguments(array $arguments)
+    {
+        if (count($arguments) === 3 && is_array($arguments[2])) {
+            list($operation, $destination, ) = $arguments;
+            $arguments = $arguments[2];
+            array_unshift($arguments, $operation, $destination);
         }
-        
+
         return $arguments;
     }
 }

@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Predis\Cluster;
 
 use Predis\Cluster\Distributor\DistributorInterface;
@@ -21,29 +22,28 @@ use Predis\Command\CommandInterface;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-interface StrategyInterface {
+interface StrategyInterface
+{
     /**
      * Returns a slot for the given command used for clustering distribution or
      * NULL when this is not possible.
      *
-     * @param CommandInterface $command
-     *            Command instance.
-     *            
+     * @param CommandInterface $command Command instance.
+     *
      * @return int
      */
     public function getSlot(CommandInterface $command);
-    
+
     /**
      * Returns a slot for the given key used for clustering distribution or NULL
      * when this is not possible.
      *
-     * @param string $key
-     *            Key string.
-     *            
+     * @param string $key Key string.
+     *
      * @return int
      */
     public function getSlotByKey($key);
-    
+
     /**
      * Returns a distributor instance to be used by the cluster.
      *

@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Predis\Connection;
 
 use Predis\CommunicationException;
@@ -17,5 +18,6 @@ use Predis\CommunicationException;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class ConnectionException extends CommunicationException {
+class ConnectionException extends CommunicationException
+{
 }

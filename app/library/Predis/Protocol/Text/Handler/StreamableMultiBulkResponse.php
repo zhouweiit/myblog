@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Predis\Protocol\Text\Handler;
 
 use Predis\CommunicationException;
@@ -25,19 +26,21 @@ use Predis\Protocol\ProtocolException;
  * @link http://redis.io/topics/protocol
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class StreamableMultiBulkResponse implements ResponseHandlerInterface {
+class StreamableMultiBulkResponse implements ResponseHandlerInterface
+{
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function handle(CompositeConnectionInterface $connection, $payload) {
-        $length = ( int ) $payload;
-        
+    public function handle(CompositeConnectionInterface $connection, $payload)
+    {
+        $length = (int) $payload;
+
         if ("$length" != $payload) {
-            CommunicationException::handle ( new ProtocolException ( $connection, "Cannot parse '$payload' as a valid length for a multi-bulk response." ) );
+            CommunicationException::handle(new ProtocolException(
+                $connection, "Cannot parse '$payload' as a valid length for a multi-bulk response."
+            ));
         }
-        
-        return new MultiBulkIterator ( $connection, $length );
+
+        return new MultiBulkIterator($connection, $length);
     }
 }

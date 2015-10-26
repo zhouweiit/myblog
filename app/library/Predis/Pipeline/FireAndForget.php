@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Predis\Pipeline;
 
 use SplQueue;
@@ -18,19 +19,19 @@ use Predis\Connection\ConnectionInterface;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class FireAndForget extends Pipeline {
+class FireAndForget extends Pipeline
+{
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    protected function executePipeline(ConnectionInterface $connection, SplQueue $commands) {
-        while ( ! $commands->isEmpty () ) {
-            $connection->writeRequest ( $commands->dequeue () );
+    protected function executePipeline(ConnectionInterface $connection, SplQueue $commands)
+    {
+        while (!$commands->isEmpty()) {
+            $connection->writeRequest($commands->dequeue());
         }
-        
-        $connection->disconnect ();
-        
-        return array ();
+
+        $connection->disconnect();
+
+        return array();
     }
 }

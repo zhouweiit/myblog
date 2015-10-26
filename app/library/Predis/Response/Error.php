@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Predis\Response;
 
 /**
@@ -16,44 +17,43 @@ namespace Predis\Response;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class Error implements ErrorInterface {
+class Error implements ErrorInterface
+{
     private $message;
-    
+
     /**
-     *
-     * @param string $message
-     *            Error message returned by Redis
+     * @param string $message Error message returned by Redis
      */
-    public function __construct($message) {
+    public function __construct($message)
+    {
         $this->message = $message;
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function getMessage() {
+    public function getMessage()
+    {
         return $this->message;
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function getErrorType() {
-        list ( $errorType, ) = explode ( ' ', $this->getMessage (), 2 );
-        
+    public function getErrorType()
+    {
+        list($errorType, ) = explode(' ', $this->getMessage(), 2);
+
         return $errorType;
     }
-    
+
     /**
      * Converts the object to its string representation.
      *
      * @return string
      */
-    public function __toString() {
-        return $this->getMessage ();
+    public function __toString()
+    {
+        return $this->getMessage();
     }
 }

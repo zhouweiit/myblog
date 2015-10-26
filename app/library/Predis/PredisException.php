@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Predis;
 
 use Exception;
@@ -17,5 +18,6 @@ use Exception;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-abstract class PredisException extends Exception {
+abstract class PredisException extends Exception
+{
 }

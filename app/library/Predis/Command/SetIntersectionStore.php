@@ -8,35 +8,32 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Predis\Command;
 
 /**
- *
  * @link http://redis.io/commands/sinterstore
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class SetIntersectionStore extends Command {
+class SetIntersectionStore extends Command
+{
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    public function getId() {
+    public function getId()
+    {
         return 'SINTERSTORE';
     }
-    
+
     /**
-     *
-     * @ERROR!!!
-     *
+     * {@inheritdoc}
      */
-    protected function filterArguments(array $arguments) {
-        if (count ( $arguments ) === 2 && is_array ( $arguments [1] )) {
-            return array_merge ( array (
-                    $arguments [0] 
-            ), $arguments [1] );
+    protected function filterArguments(array $arguments)
+    {
+        if (count($arguments) === 2 && is_array($arguments[1])) {
+            return array_merge(array($arguments[0]), $arguments[1]);
         }
-        
+
         return $arguments;
     }
 }
