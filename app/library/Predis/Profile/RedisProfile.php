@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Profile;
 
 use InvalidArgumentException;
@@ -21,19 +20,16 @@ use Predis\Command\Processor\ProcessorInterface;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-abstract class RedisProfile implements ProfileInterface
-{
+abstract class RedisProfile implements ProfileInterface {
     private $commands;
     private $processor;
-
+    
     /**
-     *
      */
-    public function __construct()
-    {
-        $this->commands = $this->getSupportedCommands();
+    public function __construct() {
+        $this->commands = $this->getSupportedCommands ();
     }
-
+    
     /**
      * Returns a map of all the commands supported by the profile and their
      * actual PHP classes.
@@ -41,108 +37,103 @@ abstract class RedisProfile implements ProfileInterface
      * @return array
      */
     abstract protected function getSupportedCommands();
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function supportsCommand($commandID)
-    {
-        return isset($this->commands[strtoupper($commandID)]);
+    public function supportsCommand($commandID) {
+        return isset ( $this->commands [strtoupper ( $commandID )] );
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function supportsCommands(array $commandIDs)
-    {
-        foreach ($commandIDs as $commandID) {
-            if (!$this->supportsCommand($commandID)) {
+    public function supportsCommands(array $commandIDs) {
+        foreach ( $commandIDs as $commandID ) {
+            if (! $this->supportsCommand ( $commandID )) {
                 return false;
             }
         }
-
+        
         return true;
     }
-
+    
     /**
      * Returns the fully-qualified name of a class representing the specified
      * command ID registered in the current server profile.
      *
-     * @param string $commandID Command ID.
-     *
+     * @param string $commandID
+     *            Command ID.
+     *            
      * @return string|null
      */
-    public function getCommandClass($commandID)
-    {
-        if (isset($this->commands[$commandID = strtoupper($commandID)])) {
-            return $this->commands[$commandID];
+    public function getCommandClass($commandID) {
+        if (isset ( $this->commands [$commandID = strtoupper ( $commandID )] )) {
+            return $this->commands [$commandID];
         }
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function createCommand($commandID, array $arguments = array())
-    {
-        $commandID = strtoupper($commandID);
-
-        if (!isset($this->commands[$commandID])) {
-            throw new ClientException("Command '$commandID' is not a registered Redis command.");
+    public function createCommand($commandID, array $arguments = array()) {
+        $commandID = strtoupper ( $commandID );
+        
+        if (! isset ( $this->commands [$commandID] )) {
+            throw new ClientException ( "Command '$commandID' is not a registered Redis command." );
         }
-
-        $commandClass = $this->commands[$commandID];
-        $command = new $commandClass();
-        $command->setArguments($arguments);
-
-        if (isset($this->processor)) {
-            $this->processor->process($command);
+        
+        $commandClass = $this->commands [$commandID];
+        $command = new $commandClass ();
+        $command->setArguments ( $arguments );
+        
+        if (isset ( $this->processor )) {
+            $this->processor->process ( $command );
         }
-
+        
         return $command;
     }
-
+    
     /**
      * Defines a new command in the server profile.
      *
-     * @param string $commandID Command ID.
-     * @param string $class     Fully-qualified name of a Predis\Command\CommandInterface.
-     *
+     * @param string $commandID
+     *            Command ID.
+     * @param string $class
+     *            Fully-qualified name of a Predis\Command\CommandInterface.
+     *            
      * @throws \InvalidArgumentException
      */
-    public function defineCommand($commandID, $class)
-    {
-        $reflection = new ReflectionClass($class);
-
-        if (!$reflection->isSubclassOf('Predis\Command\CommandInterface')) {
-            throw new InvalidArgumentException("The class '$class' is not a valid command class.");
+    public function defineCommand($commandID, $class) {
+        $reflection = new ReflectionClass ( $class );
+        
+        if (! $reflection->isSubclassOf ( 'Predis\Command\CommandInterface' )) {
+            throw new InvalidArgumentException ( "The class '$class' is not a valid command class." );
         }
-
-        $this->commands[strtoupper($commandID)] = $class;
+        
+        $this->commands [strtoupper ( $commandID )] = $class;
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function setProcessor(ProcessorInterface $processor = null)
-    {
+    public function setProcessor(ProcessorInterface $processor = null) {
         $this->processor = $processor;
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function getProcessor()
-    {
+    public function getProcessor() {
         return $this->processor;
     }
-
+    
     /**
      * Returns the version of server profile as its string representation.
      *
      * @return string
      */
-    public function __toString()
-    {
-        return $this->getVersion();
+    public function __toString() {
+        return $this->getVersion ();
     }
 }

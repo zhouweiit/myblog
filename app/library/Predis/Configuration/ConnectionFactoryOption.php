@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Configuration;
 
 use InvalidArgumentException;
@@ -21,35 +20,30 @@ use Predis\Connection\FactoryInterface;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class ConnectionFactoryOption implements OptionInterface
-{
+class ConnectionFactoryOption implements OptionInterface {
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function filter(OptionsInterface $options, $value)
-    {
+    public function filter(OptionsInterface $options, $value) {
         if ($value instanceof FactoryInterface) {
             return $value;
-        } elseif (is_array($value)) {
-            $factory = $this->getDefault($options);
-
-            foreach ($value as $scheme => $initializer) {
-                $factory->define($scheme, $initializer);
+        } elseif (is_array ( $value )) {
+            $factory = $this->getDefault ( $options );
+            
+            foreach ( $value as $scheme => $initializer ) {
+                $factory->define ( $scheme, $initializer );
             }
-
+            
             return $factory;
         } else {
-            throw new InvalidArgumentException(
-                'Invalid value provided for the connections option.'
-            );
+            throw new InvalidArgumentException ( 'Invalid value provided for the connections option.' );
         }
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function getDefault(OptionsInterface $options)
-    {
-        return new Factory();
+    public function getDefault(OptionsInterface $options) {
+        return new Factory ();
     }
 }

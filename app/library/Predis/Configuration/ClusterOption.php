@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Configuration;
 
 use InvalidArgumentException;
@@ -23,55 +22,51 @@ use Predis\Connection\Aggregate\RedisCluster;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class ClusterOption implements OptionInterface
-{
+class ClusterOption implements OptionInterface {
     /**
      * Creates a new cluster connection from on a known descriptive name.
      *
-     * @param OptionsInterface $options Instance of the client options.
-     * @param string           $id      Descriptive identifier of the cluster type (`predis`, `redis-cluster`)
-     *
+     * @param OptionsInterface $options
+     *            Instance of the client options.
+     * @param string $id
+     *            Descriptive identifier of the cluster type (`predis`, `redis-cluster`)
+     *            
      * @return ClusterInterface|null
      */
-    protected function createByDescription(OptionsInterface $options, $id)
-    {
+    protected function createByDescription(OptionsInterface $options, $id) {
         switch ($id) {
-            case 'predis':
-            case 'predis-cluster':
-                return new PredisCluster();
-
-            case 'redis':
-            case 'redis-cluster':
-                return new RedisCluster($options->connections);
-
-            default:
+            case 'predis' :
+            case 'predis-cluster' :
+                return new PredisCluster ();
+            
+            case 'redis' :
+            case 'redis-cluster' :
+                return new RedisCluster ( $options->connections );
+            
+            default :
                 return;
         }
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function filter(OptionsInterface $options, $value)
-    {
-        if (is_string($value)) {
-            $value = $this->createByDescription($options, $value);
+    public function filter(OptionsInterface $options, $value) {
+        if (is_string ( $value )) {
+            $value = $this->createByDescription ( $options, $value );
         }
-
-        if (!$value instanceof ClusterInterface) {
-            throw new InvalidArgumentException(
-                "An instance of type 'Predis\Connection\Aggregate\ClusterInterface' was expected."
-            );
+        
+        if (! $value instanceof ClusterInterface) {
+            throw new InvalidArgumentException ( "An instance of type 'Predis\Connection\Aggregate\ClusterInterface' was expected." );
         }
-
+        
         return $value;
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function getDefault(OptionsInterface $options)
-    {
-        return new PredisCluster();
+    public function getDefault(OptionsInterface $options) {
+        return new PredisCluster ();
     }
 }

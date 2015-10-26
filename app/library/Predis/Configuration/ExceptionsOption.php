@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Configuration;
 
 /**
@@ -17,21 +16,18 @@ namespace Predis\Configuration;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class ExceptionsOption implements OptionInterface
-{
+class ExceptionsOption implements OptionInterface {
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function filter(OptionsInterface $options, $value)
-    {
-        return filter_var($value, FILTER_VALIDATE_BOOLEAN);
+    public function filter(OptionsInterface $options, $value) {
+        return filter_var ( $value, FILTER_VALIDATE_BOOLEAN );
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function getDefault(OptionsInterface $options)
-    {
+    public function getDefault(OptionsInterface $options) {
         return true;
     }
 }

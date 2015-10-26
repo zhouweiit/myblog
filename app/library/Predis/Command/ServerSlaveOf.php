@@ -8,32 +8,32 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Command;
 
 /**
+ *
  * @link http://redis.io/commands/slaveof
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class ServerSlaveOf extends Command
-{
+class ServerSlaveOf extends Command {
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function getId()
-    {
+    public function getId() {
         return 'SLAVEOF';
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    protected function filterArguments(array $arguments)
-    {
-        if (count($arguments) === 0 || $arguments[0] === 'NO ONE') {
-            return array('NO', 'ONE');
+    protected function filterArguments(array $arguments) {
+        if (count ( $arguments ) === 0 || $arguments [0] === 'NO ONE') {
+            return array (
+                    'NO',
+                    'ONE' 
+            );
         }
-
+        
         return $arguments;
     }
 }

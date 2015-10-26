@@ -8,20 +8,18 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Command;
 
 /**
+ *
  * @link http://redis.io/commands/sunionstore
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class SetUnionStore extends SetIntersectionStore
-{
+class SetUnionStore extends SetIntersectionStore {
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function getId()
-    {
+    public function getId() {
         return 'SUNIONSTORE';
     }
 }

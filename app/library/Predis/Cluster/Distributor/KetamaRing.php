@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Cluster\Distributor;
 
 /**
@@ -19,51 +18,48 @@ namespace Predis\Cluster\Distributor;
  * @author Daniele Alessandri <suppakilla@gmail.com>
  * @author Lorenzo Castelli <lcastelli@gmail.com>
  */
-class KetamaRing extends HashRing
-{
+class KetamaRing extends HashRing {
     const DEFAULT_REPLICAS = 160;
-
+    
     /**
-     * @param mixed $nodeHashCallback Callback returning a string used to calculate the hash of nodes.
+     *
+     * @param mixed $nodeHashCallback
+     *            Callback returning a string used to calculate the hash of nodes.
      */
-    public function __construct($nodeHashCallback = null)
-    {
-        parent::__construct($this::DEFAULT_REPLICAS, $nodeHashCallback);
+    public function __construct($nodeHashCallback = null) {
+        parent::__construct ( $this::DEFAULT_REPLICAS, $nodeHashCallback );
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    protected function addNodeToRing(&$ring, $node, $totalNodes, $replicas, $weightRatio)
-    {
-        $nodeObject = $node['object'];
-        $nodeHash = $this->getNodeHash($nodeObject);
-        $replicas = (int) floor($weightRatio * $totalNodes * ($replicas / 4));
-
-        for ($i = 0; $i < $replicas; $i++) {
-            $unpackedDigest = unpack('V4', md5("$nodeHash-$i", true));
-
-            foreach ($unpackedDigest as $key) {
-                $ring[$key] = $nodeObject;
+    protected function addNodeToRing(&$ring, $node, $totalNodes, $replicas, $weightRatio) {
+        $nodeObject = $node ['object'];
+        $nodeHash = $this->getNodeHash ( $nodeObject );
+        $replicas = ( int ) floor ( $weightRatio * $totalNodes * ($replicas / 4) );
+        
+        for($i = 0; $i < $replicas; $i ++) {
+            $unpackedDigest = unpack ( 'V4', md5 ( "$nodeHash-$i", true ) );
+            
+            foreach ( $unpackedDigest as $key ) {
+                $ring [$key] = $nodeObject;
             }
         }
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function hash($value)
-    {
-        $hash = unpack('V', md5($value, true));
-
-        return $hash[1];
+    public function hash($value) {
+        $hash = unpack ( 'V', md5 ( $value, true ) );
+        
+        return $hash [1];
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    protected function wrapAroundStrategy($upper, $lower, $ringKeysCount)
-    {
+    protected function wrapAroundStrategy($upper, $lower, $ringKeysCount) {
         // Binary search for the first item in ringkeys with a value greater
         // or equal to the key. If no such item exists, return the first item.
         return $lower < $ringKeysCount ? $lower : 0;

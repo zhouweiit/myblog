@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Command\Processor;
 
 use ArrayAccess;
@@ -21,113 +20,100 @@ use Predis\Command\CommandInterface;
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class ProcessorChain implements ArrayAccess, ProcessorInterface
-{
-    private $processors = array();
-
+class ProcessorChain implements ArrayAccess, ProcessorInterface {
+    private $processors = array ();
+    
     /**
-     * @param array $processors List of instances of ProcessorInterface.
+     *
+     * @param array $processors
+     *            List of instances of ProcessorInterface.
      */
-    public function __construct($processors = array())
-    {
-        foreach ($processors as $processor) {
-            $this->add($processor);
+    public function __construct($processors = array()) {
+        foreach ( $processors as $processor ) {
+            $this->add ( $processor );
         }
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function add(ProcessorInterface $processor)
-    {
-        $this->processors[] = $processor;
+    public function add(ProcessorInterface $processor) {
+        $this->processors [] = $processor;
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function remove(ProcessorInterface $processor)
-    {
-        if (false !== $index = array_search($processor, $this->processors, true)) {
-            unset($this[$index]);
+    public function remove(ProcessorInterface $processor) {
+        if (false !== $index = array_search ( $processor, $this->processors, true )) {
+            unset ( $this [$index] );
         }
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function process(CommandInterface $command)
-    {
-        for ($i = 0; $i < $count = count($this->processors); $i++) {
-            $this->processors[$i]->process($command);
+    public function process(CommandInterface $command) {
+        for($i = 0; $i < $count = count ( $this->processors ); $i ++) {
+            $this->processors [$i]->process ( $command );
         }
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function getProcessors()
-    {
+    public function getProcessors() {
         return $this->processors;
     }
-
+    
     /**
      * Returns an iterator over the list of command processor in the chain.
      *
      * @return ArrayIterator
      */
-    public function getIterator()
-    {
-        return new ArrayIterator($this->processors);
+    public function getIterator() {
+        return new ArrayIterator ( $this->processors );
     }
-
+    
     /**
      * Returns the number of command processors in the chain.
      *
      * @return int
      */
-    public function count()
-    {
-        return count($this->processors);
+    public function count() {
+        return count ( $this->processors );
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function offsetExists($index)
-    {
-        return isset($this->processors[$index]);
+    public function offsetExists($index) {
+        return isset ( $this->processors [$index] );
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function offsetGet($index)
-    {
-        return $this->processors[$index];
+    public function offsetGet($index) {
+        return $this->processors [$index];
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function offsetSet($index, $processor)
-    {
-        if (!$processor instanceof ProcessorInterface) {
-            throw new InvalidArgumentException(
-                "A processor chain accepts only instances of ".
-                "'Predis\Command\Processor\ProcessorInterface'."
-            );
+    public function offsetSet($index, $processor) {
+        if (! $processor instanceof ProcessorInterface) {
+            throw new InvalidArgumentException ( "A processor chain accepts only instances of " . "'Predis\Command\Processor\ProcessorInterface'." );
         }
-
-        $this->processors[$index] = $processor;
+        
+        $this->processors [$index] = $processor;
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function offsetUnset($index)
-    {
-        unset($this->processors[$index]);
-        $this->processors = array_values($this->processors);
+    public function offsetUnset($index) {
+        unset ( $this->processors [$index] );
+        $this->processors = array_values ( $this->processors );
     }
 }

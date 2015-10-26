@@ -8,28 +8,25 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Command;
 
 /**
+ *
  * @link http://redis.io/commands/mget
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class StringGetMultiple extends Command
-{
+class StringGetMultiple extends Command {
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function getId()
-    {
+    public function getId() {
         return 'MGET';
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    protected function filterArguments(array $arguments)
-    {
-        return self::normalizeArguments($arguments);
+    protected function filterArguments(array $arguments) {
+        return self::normalizeArguments ( $arguments );
     }
 }

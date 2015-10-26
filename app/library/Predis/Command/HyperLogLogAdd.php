@@ -8,36 +8,32 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Command;
 
 /**
+ *
  * @link http://redis.io/commands/pfadd
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class HyperLogLogAdd extends Command
-{
+class HyperLogLogAdd extends Command {
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function getId()
-    {
+    public function getId() {
         return 'PFADD';
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    protected function filterArguments(array $arguments)
-    {
-        return self::normalizeVariadic($arguments);
+    protected function filterArguments(array $arguments) {
+        return self::normalizeVariadic ( $arguments );
     }
-
+    
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function parseResponse($data)
-    {
-        return (bool) $data;
+    public function parseResponse($data) {
+        return ( bool ) $data;
     }
 }

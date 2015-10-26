@@ -12,118 +12,123 @@ use service\UserService;
 use service\PageService;
 
 class ArticleController extends ControllerBase {
-	
-	/**
-	 * @var CategoryService
-	 */
+    
+    /**
+     *
+     * @var CategoryService
+     */
     private $categoryService;
-	
-	/**
-	 * @var ArticleService
-	 */
+    
+    /**
+     *
+     * @var ArticleService
+     */
     private $articleService;
-	
-	/**
-	 * @var MenuService
-	 */
+    
+    /**
+     *
+     * @var MenuService
+     */
     private $menuService;
-	
-	/**
-	 * @var AsideService
-	 */
-	private $asideService;
-	
-	/**
-	 * @var CommentService
-	 */
-	private $commentService;
-	
-	/**
-	 * @var UserService
-	 */
-	private $userService;
-	
-	/**
-	 * @var PageService
-	 */
-	private $pageService;
-	
-	protected function initialize(){
-		$this->asideService		= $this->di->get('AsideService');
-		$this->categoryService  = $this->di->get('CategoryService');
-		$this->articleService	= $this->di->get('ArticleService');
-		$this->menuService		= $this->di->get('MenuService');
-		$this->commentService	= $this->di->get('CommentService');
-		$this->userService		= $this->di->get('UserService');
-		$this->pageService 		= $this->di->get('PageService');
-	}
-	
-	public function infoAction(){
-		$page = $this->request->get('page',null,1);
-		$pageSize = 30;
-		$articleid = $this->request->get('articleid');
-		$articleInfo = $this->articleService->getArticleInfoById($articleid);
-		
-		if (empty($articleInfo)){
-			//todo 文章不存在，跳404
-		}
-		
-		$tagids = array_keys($articleInfo['tag']);
-		//相关推荐
-		$relatedArticle = $this->articleService->getRelatedArticlesTop10($tagids, $articleid);
-		//菜单
-		$menuInfo = $this->menuService->getMenuInfo($articleInfo['article']['category_id'],null,null);
-		//右栏
-		$asideInfo = $this->asideService->getAsideResult();
-		//当前评论人的cookie信息
-		$userInfo = $this->userService->getUserCookies();
-		//评论
-		$comments = $this->commentService->getCommentTreeByArticleId($articleid,$userInfo['username'],$page - 1,$pageSize);
-
-		$pages = $this->pageService->createPageArray($comments['count'], $page, $pageSize);
-		$pageUrl = $this->pageService->createPageUrl($this->request->get(),'/article/info');
-		
-		$fristCategory = $this->categoryService->getFirstCategory();
-		$this->view->setVar('firstCategory', $fristCategory);
-		$this->view->setVar('firstCategoryId', $menuInfo['categoryid']);
-		$this->view->setVar('navigation', $menuInfo['navigation']);
-		$this->view->setVar('aside', $asideInfo);
-		$this->view->setVar('article', $articleInfo['article']);
-		$this->view->setVar('tags',$articleInfo['tag']);
-		$this->view->setVar('relateArticle', $relatedArticle);
-		$this->view->setVar('comments', $comments['commentTress']);
-		$this->view->setVar('userInfo', $userInfo);
-		$this->view->setVar('pages', $pages);
-		$this->view->setVar('pageUrl', $pageUrl);
-		$this->view->setVar('pageUrlOther', '#comment');
-	}
-	
-	public function commitCommentAction(){
-		$name = $this->request->get('name');
-		$email = $this->request->get('email');
-		$content = $this->request->get('content');
-		$pid = $this->request->get('pid');
-		$articleId = $this->request->get('articleid');
-		$commentFloor = $this->request->get('comment_floor');
-		$result = $this->commentService->addComment($articleId, $content, $pid, $name, $email);
-		$this->userService->setUserCookies($name, $email);
-		
-		if ($articleId === '0'){//如果是留言评论的跳转
-			
-			if ($result){
-				$this->response->redirect('/message/leave?#floor-'.$commentFloor);
-			} else {
-				$this->response->redirect('/message/leave?#form_comment');
-			}
-			
-		} else {//如果是一般文章评论的跳转
-		
-			if ($result){
-				$this->response->redirect('/article/info?articleid='.$articleId.'#floor-'.$commentFloor);
-			} else {
-				$this->response->redirect('/article/info?articleid='.$articleId.'#form_comment');
-			}
-			
-		}
-	}
+    
+    /**
+     *
+     * @var AsideService
+     */
+    private $asideService;
+    
+    /**
+     *
+     * @var CommentService
+     */
+    private $commentService;
+    
+    /**
+     *
+     * @var UserService
+     */
+    private $userService;
+    
+    /**
+     *
+     * @var PageService
+     */
+    private $pageService;
+    
+    protected function initialize() {
+        $this->asideService = $this->di->get ( 'AsideService' );
+        $this->categoryService = $this->di->get ( 'CategoryService' );
+        $this->articleService = $this->di->get ( 'ArticleService' );
+        $this->menuService = $this->di->get ( 'MenuService' );
+        $this->commentService = $this->di->get ( 'CommentService' );
+        $this->userService = $this->di->get ( 'UserService' );
+        $this->pageService = $this->di->get ( 'PageService' );
+    }
+    
+    public function infoAction() {
+        $page = $this->request->get ( 'page', null, 1 );
+        $pageSize = 30;
+        $articleid = $this->request->get ( 'articleid' );
+        $articleInfo = $this->articleService->getArticleInfoById ( $articleid );
+        
+        if (empty ( $articleInfo )) {
+            // todo 文章不存在，跳404
+        }
+        
+        $tagids = array_keys ( $articleInfo ['tag'] );
+        // 相关推荐
+        $relatedArticle = $this->articleService->getRelatedArticlesTop10 ( $tagids, $articleid );
+        // 菜单
+        $menuInfo = $this->menuService->getMenuInfo ( $articleInfo ['article'] ['category_id'], null, null );
+        // 右栏
+        $asideInfo = $this->asideService->getAsideResult ();
+        // 当前评论人的cookie信息
+        $userInfo = $this->userService->getUserCookies ();
+        // 评论
+        $comments = $this->commentService->getCommentTreeByArticleId ( $articleid, $userInfo ['username'], $page - 1, $pageSize );
+        
+        $pages = $this->pageService->createPageArray ( $comments ['count'], $page, $pageSize );
+        $pageUrl = $this->pageService->createPageUrl ( $this->request->get (), '/article/info' );
+        
+        $fristCategory = $this->categoryService->getFirstCategory ();
+        $this->view->setVar ( 'firstCategory', $fristCategory );
+        $this->view->setVar ( 'firstCategoryId', $menuInfo ['categoryid'] );
+        $this->view->setVar ( 'navigation', $menuInfo ['navigation'] );
+        $this->view->setVar ( 'aside', $asideInfo );
+        $this->view->setVar ( 'article', $articleInfo ['article'] );
+        $this->view->setVar ( 'tags', $articleInfo ['tag'] );
+        $this->view->setVar ( 'relateArticle', $relatedArticle );
+        $this->view->setVar ( 'comments', $comments ['commentTress'] );
+        $this->view->setVar ( 'userInfo', $userInfo );
+        $this->view->setVar ( 'pages', $pages );
+        $this->view->setVar ( 'pageUrl', $pageUrl );
+        $this->view->setVar ( 'pageUrlOther', '#comment' );
+    }
+    
+    public function commitCommentAction() {
+        $name = $this->request->get ( 'name' );
+        $email = $this->request->get ( 'email' );
+        $content = $this->request->get ( 'content' );
+        $pid = $this->request->get ( 'pid' );
+        $articleId = $this->request->get ( 'articleid' );
+        $commentFloor = $this->request->get ( 'comment_floor' );
+        $result = $this->commentService->addComment ( $articleId, $content, $pid, $name, $email );
+        $this->userService->setUserCookies ( $name, $email );
+        
+        if ($articleId === '0') { // 如果是留言评论的跳转
+            
+            if ($result) {
+                $this->response->redirect ( '/message/leave?#floor-' . $commentFloor );
+            } else {
+                $this->response->redirect ( '/message/leave?#form_comment' );
+            }
+        } else { // 如果是一般文章评论的跳转
+            
+            if ($result) {
+                $this->response->redirect ( '/article/info?articleid=' . $articleId . '#floor-' . $commentFloor );
+            } else {
+                $this->response->redirect ( '/article/info?articleid=' . $articleId . '#form_comment' );
+            }
+        }
+    }
 }

@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Protocol\Text\Handler;
 
 use Predis\Connection\CompositeConnectionInterface;
@@ -21,13 +20,11 @@ use Predis\Response\Error;
  * @link http://redis.io/topics/protocol
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class ErrorResponse implements ResponseHandlerInterface
-{
+class ErrorResponse implements ResponseHandlerInterface {
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function handle(CompositeConnectionInterface $connection, $payload)
-    {
-        return new Error($payload);
+    public function handle(CompositeConnectionInterface $connection, $payload) {
+        return new Error ( $payload );
     }
 }

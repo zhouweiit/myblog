@@ -40,6 +40,7 @@ class IndexController extends ControllerBase {
      * @var AsideService
      */
     private $asideService;
+    
     protected function initialize() {
         $this->articleService = $this->di->get ( 'ArticleService' );
         $this->pageService = $this->di->get ( 'PageService' );
@@ -47,6 +48,7 @@ class IndexController extends ControllerBase {
         $this->categoryService = $this->di->get ( 'CategoryService' );
         $this->asideService = $this->di->get ( 'AsideService' );
     }
+    
     public function indexAction() {
         $page = $this->request->get ( 'page', null, 1 );
         $tagid = $this->request->get ( 'tagid' );

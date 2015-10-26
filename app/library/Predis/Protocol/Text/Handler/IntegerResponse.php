@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Predis\Protocol\Text\Handler;
 
 use Predis\CommunicationException;
@@ -22,23 +21,19 @@ use Predis\Protocol\ProtocolException;
  * @link http://redis.io/topics/protocol
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class IntegerResponse implements ResponseHandlerInterface
-{
+class IntegerResponse implements ResponseHandlerInterface {
     /**
-     * {@inheritdoc}
+     * @ERROR!!!
      */
-    public function handle(CompositeConnectionInterface $connection, $payload)
-    {
-        if (is_numeric($payload)) {
-            return (int) $payload;
+    public function handle(CompositeConnectionInterface $connection, $payload) {
+        if (is_numeric ( $payload )) {
+            return ( int ) $payload;
         }
-
+        
         if ($payload !== 'nil') {
-            CommunicationException::handle(new ProtocolException(
-                $connection, "Cannot parse '$payload' as a valid numeric response."
-            ));
+            CommunicationException::handle ( new ProtocolException ( $connection, "Cannot parse '$payload' as a valid numeric response." ) );
         }
-
+        
         return null;
     }
 }
