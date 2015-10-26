@@ -25,7 +25,7 @@ class Status implements ResponseInterface {
      * @param string $payload
      *            Payload of the status response as returned by Redis.
      */
-    public function __construct($payload) {
+    public function __construct($payload){
         $this->payload = $payload;
     }
     
@@ -34,7 +34,7 @@ class Status implements ResponseInterface {
      *
      * @return string
      */
-    public function __toString() {
+    public function __toString(){
         return $this->payload;
     }
     
@@ -43,7 +43,7 @@ class Status implements ResponseInterface {
      *
      * @return string
      */
-    public function getPayload() {
+    public function getPayload(){
         return $this->payload;
     }
     
@@ -58,18 +58,18 @@ class Status implements ResponseInterface {
      *            
      * @return string
      */
-    public static function get($payload) {
+    public static function get($payload){
         switch ($payload) {
             case 'OK' :
             case 'QUEUED' :
-                if (isset ( self::$$payload )) {
+                if (isset(self::$$payload)) {
                     return self::$$payload;
                 }
                 
-                return self::$$payload = new self ( $payload );
+                return self::$$payload = new self($payload);
             
             default :
-                return new self ( $payload );
+                return new self($payload);
         }
     }
 }

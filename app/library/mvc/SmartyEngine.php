@@ -39,11 +39,11 @@ class SmartyEngine extends Engine implements EngineInterface {
      * @return void
      * @author zhouwei
      */
-    public function __construct(\Phalcon\Mvc\ViewBaseInterface $view, \Phalcon\DiInterface $dependencyInjector = null) {
-        parent::__construct ( $view, $dependencyInjector );
-        $this->configIni = $dependencyInjector->get ( 'configIni' );
-        $this->phalconSmarty = new PhalconSmarty ( $this->configIni );
-        $this->dispatcher = $dependencyInjector->getShared ( 'dispatcher' );
+    public function __construct(\Phalcon\Mvc\ViewBaseInterface $view, \Phalcon\DiInterface $dependencyInjector = null){
+        parent::__construct($view,$dependencyInjector);
+        $this->configIni = $dependencyInjector->get('configIni');
+        $this->phalconSmarty = new PhalconSmarty($this->configIni);
+        $this->dispatcher = $dependencyInjector->getShared('dispatcher');
     }
     
     /**
@@ -54,13 +54,13 @@ class SmartyEngine extends Engine implements EngineInterface {
      * @return void
      * @author zhouwei
      */
-    public function render($path, $params, $mustClean = false) {
-        $childContent = $this->view->getContent ();
-        $this->phalconSmarty->assign ( 'phalcon_layout_content', $childContent );
-        $tplPath = $this->getSmartyTplPath ( $path );
-        $this->assignTplParams ( $params );
-        $content = $this->phalconSmarty->fetch ( $tplPath );
-        $this->view->setContent ( $content );
+    public function render($path, $params, $mustClean = false){
+        $childContent = $this->view->getContent();
+        $this->phalconSmarty->assign('phalcon_layout_content',$childContent);
+        $tplPath = $this->getSmartyTplPath($path);
+        $this->assignTplParams($params);
+        $content = $this->phalconSmarty->fetch($tplPath);
+        $this->view->setContent($content);
     }
     
     /**
@@ -69,8 +69,8 @@ class SmartyEngine extends Engine implements EngineInterface {
      * @return void
      * @author zhouwei
      */
-    private function assignTplParams($params) {
-        $this->phalconSmarty->assign ( $params );
+    private function assignTplParams($params){
+        $this->phalconSmarty->assign($params);
     }
     
     /**
@@ -81,10 +81,10 @@ class SmartyEngine extends Engine implements EngineInterface {
      * @return string
      * @author zhouwei
      */
-    private function getSmartyTplPath($path) {
-        $actionName = $this->dispatcher->getActionName ();
-        $controllerName = $this->dispatcher->getControllerName ();
-        $moduleName = $this->dispatcher->getModuleName ();
+    private function getSmartyTplPath($path){
+        $actionName = $this->dispatcher->getActionName();
+        $controllerName = $this->dispatcher->getControllerName();
+        $moduleName = $this->dispatcher->getModuleName();
         $root = $this->configIni->application->root;
         return $root . '/' . $this->configIni->smarty->templatedir . '/' . $moduleName . '/page/' . $controllerName . '/' . $actionName . '.tpl';
     }

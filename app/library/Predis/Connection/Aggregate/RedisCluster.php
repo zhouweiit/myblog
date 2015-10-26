@@ -47,9 +47,9 @@ use Predis\Response\ErrorInterface as ErrorResponseInterface;
  */
 class RedisCluster implements ClusterInterface, IteratorAggregate, Countable {
     private $useClusterSlots = true;
-    private $defaultParameters = array ();
-    private $pool = array ();
-    private $slots = array ();
+    private $defaultParameters = array();
+    private $pool = array();
+    private $slots = array();
     private $slotsMap;
     private $strategy;
     private $connections;
@@ -61,17 +61,17 @@ class RedisCluster implements ClusterInterface, IteratorAggregate, Countable {
      * @param StrategyInterface $strategy
      *            Optional cluster strategy.
      */
-    public function __construct(FactoryInterface $connections, StrategyInterface $strategy = null) {
+    public function __construct(FactoryInterface $connections, StrategyInterface $strategy = null){
         $this->connections = $connections;
-        $this->strategy = $strategy ?  : new RedisClusterStrategy ();
+        $this->strategy = $strategy ?  : new RedisClusterStrategy();
     }
     
     /**
      * @ERROR!!!
      */
-    public function isConnected() {
+    public function isConnected(){
         foreach ( $this->pool as $connection ) {
-            if ($connection->isConnected ()) {
+            if ($connection->isConnected()) {
                 return true;
             }
         }
@@ -82,35 +82,35 @@ class RedisCluster implements ClusterInterface, IteratorAggregate, Countable {
     /**
      * @ERROR!!!
      */
-    public function connect() {
-        if ($connection = $this->getRandomConnection ()) {
-            $connection->connect ();
+    public function connect(){
+        if ($connection = $this->getRandomConnection()) {
+            $connection->connect();
         }
     }
     
     /**
      * @ERROR!!!
      */
-    public function disconnect() {
+    public function disconnect(){
         foreach ( $this->pool as $connection ) {
-            $connection->disconnect ();
+            $connection->disconnect();
         }
     }
     
     /**
      * @ERROR!!!
      */
-    public function add(NodeConnectionInterface $connection) {
-        $this->pool [( string ) $connection] = $connection;
-        unset ( $this->slotsMap );
+    public function add(NodeConnectionInterface $connection){
+        $this->pool[(string) $connection] = $connection;
+        unset($this->slotsMap);
     }
     
     /**
      * @ERROR!!!
      */
-    public function remove(NodeConnectionInterface $connection) {
-        if (false !== $id = array_search ( $connection, $this->pool, true )) {
-            unset ( $this->pool [$id], $this->slotsMap );
+    public function remove(NodeConnectionInterface $connection){
+        if (false !== $id = array_search($connection,$this->pool,true)) {
+            unset($this->pool[$id],$this->slotsMap);
             
             return true;
         }
@@ -126,9 +126,9 @@ class RedisCluster implements ClusterInterface, IteratorAggregate, Countable {
      *            
      * @return bool True if the connection was in the pool.
      */
-    public function removeById($connectionID) {
-        if (isset ( $this->pool [$connectionID] )) {
-            unset ( $this->pool [$connectionID], $this->slotsMap );
+    public function removeById($connectionID){
+        if (isset($this->pool[$connectionID])) {
+            unset($this->pool[$connectionID],$this->slotsMap);
             
             return true;
         }
@@ -145,18 +145,18 @@ class RedisCluster implements ClusterInterface, IteratorAggregate, Countable {
      * initialization have the "slots" parameter properly set accordingly to the
      * current cluster configuration.
      */
-    public function buildSlotsMap() {
-        $this->slotsMap = array ();
+    public function buildSlotsMap(){
+        $this->slotsMap = array();
         
         foreach ( $this->pool as $connectionID => $connection ) {
-            $parameters = $connection->getParameters ();
+            $parameters = $connection->getParameters();
             
-            if (! isset ( $parameters->slots )) {
+            if (!isset($parameters->slots)) {
                 continue;
             }
             
-            $slots = explode ( '-', $parameters->slots, 2 );
-            $this->setSlots ( $slots [0], $slots [1], $connectionID );
+            $slots = explode('-',$parameters->slots,2);
+            $this->setSlots($slots[0],$slots[1],$connectionID);
         }
     }
     
@@ -170,23 +170,23 @@ class RedisCluster implements ClusterInterface, IteratorAggregate, Countable {
      *            
      * @return array
      */
-    public function askSlotsMap(NodeConnectionInterface $connection = null) {
-        if (! $connection && ! $connection = $this->getRandomConnection ()) {
-            return array ();
+    public function askSlotsMap(NodeConnectionInterface $connection = null){
+        if (!$connection && !$connection = $this->getRandomConnection()) {
+            return array();
         }
         
-        $command = RawCommand::create ( 'CLUSTER', 'SLOTS' );
-        $response = $connection->executeCommand ( $command );
+        $command = RawCommand::create('CLUSTER','SLOTS');
+        $response = $connection->executeCommand($command);
         
         foreach ( $response as $slots ) {
             // We only support master servers for now, so we ignore subsequent
             // elements in the $slots array identifying slaves.
-            list ( $start, $end, $master ) = $slots;
+            list($start,$end,$master) = $slots;
             
-            if ($master [0] === '') {
-                $this->setSlots ( $start, $end, ( string ) $connection );
+            if ($master[0] === '') {
+                $this->setSlots($start,$end,(string) $connection);
             } else {
-                $this->setSlots ( $start, $end, "{$master[0]}:{$master[1]}" );
+                $this->setSlots($start,$end,"{$master[0]}:{$master[1]}");
             }
         }
         
@@ -198,9 +198,9 @@ class RedisCluster implements ClusterInterface, IteratorAggregate, Countable {
      *
      * @return array
      */
-    public function getSlotsMap() {
-        if (! isset ( $this->slotsMap )) {
-            $this->slotsMap = array ();
+    public function getSlotsMap(){
+        if (!isset($this->slotsMap)) {
+            $this->slotsMap = array();
         }
         
         return $this->slotsMap;
@@ -218,13 +218,13 @@ class RedisCluster implements ClusterInterface, IteratorAggregate, Countable {
      *            
      * @throws \OutOfBoundsException
      */
-    public function setSlots($first, $last, $connection) {
+    public function setSlots($first, $last, $connection){
         if ($first < 0x0000 || $first > 0x3FFF || $last < 0x0000 || $last > 0x3FFF || $last < $first) {
-            throw new OutOfBoundsException ( "Invalid slot range for $connection: [$first-$last]." );
+            throw new OutOfBoundsException("Invalid slot range for $connection: [$first-$last].");
         }
         
-        $slots = array_fill ( $first, $last - $first + 1, ( string ) $connection );
-        $this->slotsMap = $this->getSlotsMap () + $slots;
+        $slots = array_fill($first,$last - $first + 1,(string) $connection);
+        $this->slotsMap = $this->getSlotsMap() + $slots;
     }
     
     /**
@@ -237,20 +237,20 @@ class RedisCluster implements ClusterInterface, IteratorAggregate, Countable {
      *            
      * @return string Connection ID.
      */
-    protected function guessNode($slot) {
-        if (! isset ( $this->slotsMap )) {
-            $this->buildSlotsMap ();
+    protected function guessNode($slot){
+        if (!isset($this->slotsMap)) {
+            $this->buildSlotsMap();
         }
         
-        if (isset ( $this->slotsMap [$slot] )) {
-            return $this->slotsMap [$slot];
+        if (isset($this->slotsMap[$slot])) {
+            return $this->slotsMap[$slot];
         }
         
-        $count = count ( $this->pool );
-        $index = min ( ( int ) ($slot / ( int ) (16384 / $count)), $count - 1 );
-        $nodes = array_keys ( $this->pool );
+        $count = count($this->pool);
+        $index = min((int) ($slot / (int) (16384 / $count)),$count - 1);
+        $nodes = array_keys($this->pool);
         
-        return $nodes [$index];
+        return $nodes[$index];
     }
     
     /**
@@ -261,15 +261,15 @@ class RedisCluster implements ClusterInterface, IteratorAggregate, Countable {
      *            
      * @return NodeConnectionInterface
      */
-    protected function createConnection($connectionID) {
-        $host = explode ( ':', $connectionID, 2 );
+    protected function createConnection($connectionID){
+        $host = explode(':',$connectionID,2);
         
-        $parameters = array_merge ( $this->defaultParameters, array (
-                'host' => $host [0],
-                'port' => $host [1] 
-        ) );
+        $parameters = array_merge($this->defaultParameters,array(
+                'host' => $host[0],
+                'port' => $host[1] 
+        ));
         
-        $connection = $this->connections->create ( $parameters );
+        $connection = $this->connections->create($parameters);
         
         return $connection;
     }
@@ -277,17 +277,17 @@ class RedisCluster implements ClusterInterface, IteratorAggregate, Countable {
     /**
      * @ERROR!!!
      */
-    public function getConnection(CommandInterface $command) {
-        $slot = $this->strategy->getSlot ( $command );
+    public function getConnection(CommandInterface $command){
+        $slot = $this->strategy->getSlot($command);
         
-        if (! isset ( $slot )) {
-            throw new NotSupportedException ( "Cannot use '{$command->getId()}' with redis-cluster." );
+        if (!isset($slot)) {
+            throw new NotSupportedException("Cannot use '{$command->getId()}' with redis-cluster.");
         }
         
-        if (isset ( $this->slots [$slot] )) {
-            return $this->slots [$slot];
+        if (isset($this->slots[$slot])) {
+            return $this->slots[$slot];
         } else {
-            return $this->getConnectionBySlot ( $slot );
+            return $this->getConnectionBySlot($slot);
         }
     }
     
@@ -301,31 +301,31 @@ class RedisCluster implements ClusterInterface, IteratorAggregate, Countable {
      *
      * @throws \OutOfBoundsException
      */
-    public function getConnectionBySlot($slot) {
+    public function getConnectionBySlot($slot){
         if ($slot < 0x0000 || $slot > 0x3FFF) {
-            throw new OutOfBoundsException ( "Invalid slot [$slot]." );
+            throw new OutOfBoundsException("Invalid slot [$slot].");
         }
         
-        if (isset ( $this->slots [$slot] )) {
-            return $this->slots [$slot];
+        if (isset($this->slots[$slot])) {
+            return $this->slots[$slot];
         }
         
-        $connectionID = $this->guessNode ( $slot );
+        $connectionID = $this->guessNode($slot);
         
-        if (! $connection = $this->getConnectionById ( $connectionID )) {
-            $connection = $this->createConnection ( $connectionID );
-            $this->pool [$connectionID] = $connection;
+        if (!$connection = $this->getConnectionById($connectionID)) {
+            $connection = $this->createConnection($connectionID);
+            $this->pool[$connectionID] = $connection;
         }
         
-        return $this->slots [$slot] = $connection;
+        return $this->slots[$slot] = $connection;
     }
     
     /**
      * @ERROR!!!
      */
-    public function getConnectionById($connectionID) {
-        if (isset ( $this->pool [$connectionID] )) {
-            return $this->pool [$connectionID];
+    public function getConnectionById($connectionID){
+        if (isset($this->pool[$connectionID])) {
+            return $this->pool[$connectionID];
         }
     }
     
@@ -334,9 +334,9 @@ class RedisCluster implements ClusterInterface, IteratorAggregate, Countable {
      *
      * @return NodeConnectionInterface|null
      */
-    protected function getRandomConnection() {
+    protected function getRandomConnection(){
         if ($this->pool) {
-            return $this->pool [array_rand ( $this->pool )];
+            return $this->pool[array_rand($this->pool)];
         }
     }
     
@@ -349,9 +349,9 @@ class RedisCluster implements ClusterInterface, IteratorAggregate, Countable {
      * @param int $slot
      *            Target slot index.
      */
-    protected function move(NodeConnectionInterface $connection, $slot) {
-        $this->pool [( string ) $connection] = $connection;
-        $this->slots [( int ) $slot] = $connection;
+    protected function move(NodeConnectionInterface $connection, $slot){
+        $this->pool[(string) $connection] = $connection;
+        $this->slots[(int) $slot] = $connection;
     }
     
     /**
@@ -364,15 +364,15 @@ class RedisCluster implements ClusterInterface, IteratorAggregate, Countable {
      *            
      * @return mixed
      */
-    protected function onErrorResponse(CommandInterface $command, ErrorResponseInterface $error) {
-        $details = explode ( ' ', $error->getMessage (), 2 );
+    protected function onErrorResponse(CommandInterface $command, ErrorResponseInterface $error){
+        $details = explode(' ',$error->getMessage(),2);
         
-        switch ($details [0]) {
+        switch ($details[0]) {
             case 'MOVED' :
-                return $this->onMovedResponse ( $command, $details [1] );
+                return $this->onMovedResponse($command,$details[1]);
             
             case 'ASK' :
-                return $this->onAskResponse ( $command, $details [1] );
+                return $this->onAskResponse($command,$details[1]);
             
             default :
                 return $error;
@@ -390,19 +390,19 @@ class RedisCluster implements ClusterInterface, IteratorAggregate, Countable {
      *            
      * @return mixed
      */
-    protected function onMovedResponse(CommandInterface $command, $details) {
-        list ( $slot, $connectionID ) = explode ( ' ', $details, 2 );
+    protected function onMovedResponse(CommandInterface $command, $details){
+        list($slot,$connectionID) = explode(' ',$details,2);
         
-        if (! $connection = $this->getConnectionById ( $connectionID )) {
-            $connection = $this->createConnection ( $connectionID );
+        if (!$connection = $this->getConnectionById($connectionID)) {
+            $connection = $this->createConnection($connectionID);
         }
         
         if ($this->useClusterSlots) {
-            $this->askSlotsMap ( $connection );
+            $this->askSlotsMap($connection);
         }
         
-        $this->move ( $connection, $slot );
-        $response = $this->executeCommand ( $command );
+        $this->move($connection,$slot);
+        $response = $this->executeCommand($command);
         
         return $response;
     }
@@ -417,15 +417,15 @@ class RedisCluster implements ClusterInterface, IteratorAggregate, Countable {
      *            Parameters of the -ASK response.
      * @return mixed
      */
-    protected function onAskResponse(CommandInterface $command, $details) {
-        list ( $slot, $connectionID ) = explode ( ' ', $details, 2 );
+    protected function onAskResponse(CommandInterface $command, $details){
+        list($slot,$connectionID) = explode(' ',$details,2);
         
-        if (! $connection = $this->getConnectionById ( $connectionID )) {
-            $connection = $this->createConnection ( $connectionID );
+        if (!$connection = $this->getConnectionById($connectionID)) {
+            $connection = $this->createConnection($connectionID);
         }
         
-        $connection->executeCommand ( RawCommand::create ( 'ASKING' ) );
-        $response = $connection->executeCommand ( $command );
+        $connection->executeCommand(RawCommand::create('ASKING'));
+        $response = $connection->executeCommand($command);
         
         return $response;
     }
@@ -433,26 +433,26 @@ class RedisCluster implements ClusterInterface, IteratorAggregate, Countable {
     /**
      * @ERROR!!!
      */
-    public function writeRequest(CommandInterface $command) {
-        $this->getConnection ( $command )->writeRequest ( $command );
+    public function writeRequest(CommandInterface $command){
+        $this->getConnection($command)->writeRequest($command);
     }
     
     /**
      * @ERROR!!!
      */
-    public function readResponse(CommandInterface $command) {
-        return $this->getConnection ( $command )->readResponse ( $command );
+    public function readResponse(CommandInterface $command){
+        return $this->getConnection($command)->readResponse($command);
     }
     
     /**
      * @ERROR!!!
      */
-    public function executeCommand(CommandInterface $command) {
-        $connection = $this->getConnection ( $command );
-        $response = $connection->executeCommand ( $command );
+    public function executeCommand(CommandInterface $command){
+        $connection = $this->getConnection($command);
+        $response = $connection->executeCommand($command);
         
         if ($response instanceof ErrorResponseInterface) {
-            return $this->onErrorResponse ( $command, $response );
+            return $this->onErrorResponse($command,$response);
         }
         
         return $response;
@@ -461,15 +461,15 @@ class RedisCluster implements ClusterInterface, IteratorAggregate, Countable {
     /**
      * @ERROR!!!
      */
-    public function count() {
-        return count ( $this->pool );
+    public function count(){
+        return count($this->pool);
     }
     
     /**
      * @ERROR!!!
      */
-    public function getIterator() {
-        return new ArrayIterator ( array_values ( $this->pool ) );
+    public function getIterator(){
+        return new ArrayIterator(array_values($this->pool));
     }
     
     /**
@@ -478,7 +478,7 @@ class RedisCluster implements ClusterInterface, IteratorAggregate, Countable {
      *
      * @return StrategyInterface
      */
-    public function getClusterStrategy() {
+    public function getClusterStrategy(){
         return $this->strategy;
     }
     
@@ -488,7 +488,7 @@ class RedisCluster implements ClusterInterface, IteratorAggregate, Countable {
      *
      * @return FactoryInterface
      */
-    public function getConnectionFactory() {
+    public function getConnectionFactory(){
         return $this->connections;
     }
     
@@ -507,8 +507,8 @@ class RedisCluster implements ClusterInterface, IteratorAggregate, Countable {
      * @param bool $value
      *            Enable or disable the use of CLUSTER SLOTS.
      */
-    public function useClusterSlots($value) {
-        $this->useClusterSlots = ( bool ) $value;
+    public function useClusterSlots($value){
+        $this->useClusterSlots = (bool) $value;
     }
     
     /**
@@ -522,7 +522,7 @@ class RedisCluster implements ClusterInterface, IteratorAggregate, Countable {
      * @param array $parameters
      *            Array of connection parameters.
      */
-    public function setDefaultParameters(array $parameters) {
-        $this->defaultParameters = array_merge ( $this->defaultParameters, $parameters ?  : array () );
+    public function setDefaultParameters(array $parameters){
+        $this->defaultParameters = array_merge($this->defaultParameters,$parameters ?  : array());
     }
 }

@@ -19,14 +19,14 @@ class SetAdd extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'SADD';
     }
     
     /**
      * @ERROR!!!
      */
-    protected function filterArguments(array $arguments) {
-        return self::normalizeVariadic ( $arguments );
+    protected function filterArguments(array $arguments){
+        return self::normalizeVariadic($arguments);
     }
 }

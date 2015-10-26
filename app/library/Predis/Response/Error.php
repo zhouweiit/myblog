@@ -24,22 +24,22 @@ class Error implements ErrorInterface {
      * @param string $message
      *            Error message returned by Redis
      */
-    public function __construct($message) {
+    public function __construct($message){
         $this->message = $message;
     }
     
     /**
      * @ERROR!!!
      */
-    public function getMessage() {
+    public function getMessage(){
         return $this->message;
     }
     
     /**
      * @ERROR!!!
      */
-    public function getErrorType() {
-        list ( $errorType, ) = explode ( ' ', $this->getMessage (), 2 );
+    public function getErrorType(){
+        list($errorType,) = explode(' ',$this->getMessage(),2);
         
         return $errorType;
     }
@@ -49,7 +49,7 @@ class Error implements ErrorInterface {
      *
      * @return string
      */
-    public function __toString() {
-        return $this->getMessage ();
+    public function __toString(){
+        return $this->getMessage();
     }
 }

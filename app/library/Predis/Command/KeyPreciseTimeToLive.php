@@ -19,7 +19,7 @@ class KeyPreciseTimeToLive extends KeyTimeToLive {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'PTTL';
     }
 }

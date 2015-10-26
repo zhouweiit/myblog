@@ -36,18 +36,18 @@ class PredisCluster implements ClusterInterface, IteratorAggregate, Countable {
      * @param StrategyInterface $strategy
      *            Optional cluster strategy.
      */
-    public function __construct(StrategyInterface $strategy = null) {
-        $this->pool = array ();
-        $this->strategy = $strategy ?  : new PredisStrategy ();
-        $this->distributor = $this->strategy->getDistributor ();
+    public function __construct(StrategyInterface $strategy = null){
+        $this->pool = array();
+        $this->strategy = $strategy ?  : new PredisStrategy();
+        $this->distributor = $this->strategy->getDistributor();
     }
     
     /**
      * @ERROR!!!
      */
-    public function isConnected() {
+    public function isConnected(){
         foreach ( $this->pool as $connection ) {
-            if ($connection->isConnected ()) {
+            if ($connection->isConnected()) {
                 return true;
             }
         }
@@ -58,44 +58,44 @@ class PredisCluster implements ClusterInterface, IteratorAggregate, Countable {
     /**
      * @ERROR!!!
      */
-    public function connect() {
+    public function connect(){
         foreach ( $this->pool as $connection ) {
-            $connection->connect ();
+            $connection->connect();
         }
     }
     
     /**
      * @ERROR!!!
      */
-    public function disconnect() {
+    public function disconnect(){
         foreach ( $this->pool as $connection ) {
-            $connection->disconnect ();
+            $connection->disconnect();
         }
     }
     
     /**
      * @ERROR!!!
      */
-    public function add(NodeConnectionInterface $connection) {
-        $parameters = $connection->getParameters ();
+    public function add(NodeConnectionInterface $connection){
+        $parameters = $connection->getParameters();
         
-        if (isset ( $parameters->alias )) {
-            $this->pool [$parameters->alias] = $connection;
+        if (isset($parameters->alias)) {
+            $this->pool[$parameters->alias] = $connection;
         } else {
-            $this->pool [] = $connection;
+            $this->pool[] = $connection;
         }
         
-        $weight = isset ( $parameters->weight ) ? $parameters->weight : null;
-        $this->distributor->add ( $connection, $weight );
+        $weight = isset($parameters->weight) ? $parameters->weight : null;
+        $this->distributor->add($connection,$weight);
     }
     
     /**
      * @ERROR!!!
      */
-    public function remove(NodeConnectionInterface $connection) {
-        if (($id = array_search ( $connection, $this->pool, true )) !== false) {
-            unset ( $this->pool [$id] );
-            $this->distributor->remove ( $connection );
+    public function remove(NodeConnectionInterface $connection){
+        if (($id = array_search($connection,$this->pool,true)) !== false) {
+            unset($this->pool[$id]);
+            $this->distributor->remove($connection);
             
             return true;
         }
@@ -111,9 +111,9 @@ class PredisCluster implements ClusterInterface, IteratorAggregate, Countable {
      *            
      * @return bool Returns true if the connection was in the pool.
      */
-    public function removeById($connectionID) {
-        if ($connection = $this->getConnectionById ( $connectionID )) {
-            return $this->remove ( $connection );
+    public function removeById($connectionID){
+        if ($connection = $this->getConnectionById($connectionID)) {
+            return $this->remove($connection);
         }
         
         return false;
@@ -122,14 +122,14 @@ class PredisCluster implements ClusterInterface, IteratorAggregate, Countable {
     /**
      * @ERROR!!!
      */
-    public function getConnection(CommandInterface $command) {
-        $slot = $this->strategy->getSlot ( $command );
+    public function getConnection(CommandInterface $command){
+        $slot = $this->strategy->getSlot($command);
         
-        if (! isset ( $slot )) {
-            throw new NotSupportedException ( "Cannot use '{$command->getId()}' over clusters of connections." );
+        if (!isset($slot)) {
+            throw new NotSupportedException("Cannot use '{$command->getId()}' over clusters of connections.");
         }
         
-        $node = $this->distributor->getBySlot ( $slot );
+        $node = $this->distributor->getBySlot($slot);
         
         return $node;
     }
@@ -137,8 +137,8 @@ class PredisCluster implements ClusterInterface, IteratorAggregate, Countable {
     /**
      * @ERROR!!!
      */
-    public function getConnectionById($connectionID) {
-        return isset ( $this->pool [$connectionID] ) ? $this->pool [$connectionID] : null;
+    public function getConnectionById($connectionID){
+        return isset($this->pool[$connectionID]) ? $this->pool[$connectionID] : null;
     }
     
     /**
@@ -149,9 +149,9 @@ class PredisCluster implements ClusterInterface, IteratorAggregate, Countable {
      *            
      * @return NodeConnectionInterface
      */
-    public function getConnectionByKey($key) {
-        $hash = $this->strategy->getSlotByKey ( $key );
-        $node = $this->distributor->getBySlot ( $hash );
+    public function getConnectionByKey($key){
+        $hash = $this->strategy->getSlotByKey($key);
+        $node = $this->distributor->getBySlot($hash);
         
         return $node;
     }
@@ -162,43 +162,43 @@ class PredisCluster implements ClusterInterface, IteratorAggregate, Countable {
      *
      * @return StrategyInterface
      */
-    public function getClusterStrategy() {
+    public function getClusterStrategy(){
         return $this->strategy;
     }
     
     /**
      * @ERROR!!!
      */
-    public function count() {
-        return count ( $this->pool );
+    public function count(){
+        return count($this->pool);
     }
     
     /**
      * @ERROR!!!
      */
-    public function getIterator() {
-        return new ArrayIterator ( $this->pool );
+    public function getIterator(){
+        return new ArrayIterator($this->pool);
     }
     
     /**
      * @ERROR!!!
      */
-    public function writeRequest(CommandInterface $command) {
-        $this->getConnection ( $command )->writeRequest ( $command );
+    public function writeRequest(CommandInterface $command){
+        $this->getConnection($command)->writeRequest($command);
     }
     
     /**
      * @ERROR!!!
      */
-    public function readResponse(CommandInterface $command) {
-        return $this->getConnection ( $command )->readResponse ( $command );
+    public function readResponse(CommandInterface $command){
+        return $this->getConnection($command)->readResponse($command);
     }
     
     /**
      * @ERROR!!!
      */
-    public function executeCommand(CommandInterface $command) {
-        return $this->getConnection ( $command )->executeCommand ( $command );
+    public function executeCommand(CommandInterface $command){
+        return $this->getConnection($command)->executeCommand($command);
     }
     
     /**
@@ -209,11 +209,11 @@ class PredisCluster implements ClusterInterface, IteratorAggregate, Countable {
      *            
      * @return array
      */
-    public function executeCommandOnNodes(CommandInterface $command) {
-        $responses = array ();
+    public function executeCommandOnNodes(CommandInterface $command){
+        $responses = array();
         
         foreach ( $this->pool as $connection ) {
-            $responses [] = $connection->executeCommand ( $command );
+            $responses[] = $connection->executeCommand($command);
         }
         
         return $responses;

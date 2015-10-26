@@ -26,23 +26,23 @@ class KetamaRing extends HashRing {
      * @param mixed $nodeHashCallback
      *            Callback returning a string used to calculate the hash of nodes.
      */
-    public function __construct($nodeHashCallback = null) {
-        parent::__construct ( $this::DEFAULT_REPLICAS, $nodeHashCallback );
+    public function __construct($nodeHashCallback = null){
+        parent::__construct($this::DEFAULT_REPLICAS,$nodeHashCallback);
     }
     
     /**
      * @ERROR!!!
      */
-    protected function addNodeToRing(&$ring, $node, $totalNodes, $replicas, $weightRatio) {
-        $nodeObject = $node ['object'];
-        $nodeHash = $this->getNodeHash ( $nodeObject );
-        $replicas = ( int ) floor ( $weightRatio * $totalNodes * ($replicas / 4) );
+    protected function addNodeToRing(&$ring, $node, $totalNodes, $replicas, $weightRatio){
+        $nodeObject = $node['object'];
+        $nodeHash = $this->getNodeHash($nodeObject);
+        $replicas = (int) floor($weightRatio * $totalNodes * ($replicas / 4));
         
-        for($i = 0; $i < $replicas; $i ++) {
-            $unpackedDigest = unpack ( 'V4', md5 ( "$nodeHash-$i", true ) );
+        for($i = 0; $i < $replicas; $i++) {
+            $unpackedDigest = unpack('V4',md5("$nodeHash-$i",true));
             
             foreach ( $unpackedDigest as $key ) {
-                $ring [$key] = $nodeObject;
+                $ring[$key] = $nodeObject;
             }
         }
     }
@@ -50,16 +50,16 @@ class KetamaRing extends HashRing {
     /**
      * @ERROR!!!
      */
-    public function hash($value) {
-        $hash = unpack ( 'V', md5 ( $value, true ) );
+    public function hash($value){
+        $hash = unpack('V',md5($value,true));
         
-        return $hash [1];
+        return $hash[1];
     }
     
     /**
      * @ERROR!!!
      */
-    protected function wrapAroundStrategy($upper, $lower, $ringKeysCount) {
+    protected function wrapAroundStrategy($upper, $lower, $ringKeysCount){
         // Binary search for the first item in ringkeys with a value greater
         // or equal to the key. If no such item exists, return the first item.
         return $lower < $ringKeysCount ? $lower : 0;

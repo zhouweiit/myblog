@@ -19,9 +19,9 @@ class TagService extends ServiceBase {
      * @var Log
      */
     private $log;
-    protected function init() {
-        $this->log = $this->di->get ( 'applicationLog' );
-        $this->tagDao = $this->di->get ( 'dao\blog\TagDao' );
+    protected function init(){
+        $this->log = $this->di->get('applicationLog');
+        $this->tagDao = $this->di->get('dao\blog\TagDao');
     }
     
     /**
@@ -30,11 +30,11 @@ class TagService extends ServiceBase {
      * @return array
      * @author zhouwei
      */
-    public function getAllTag() {
-        $tags = $this->tagDao->getAllTag ();
-        $result = array ();
+    public function getAllTag(){
+        $tags = $this->tagDao->getAllTag();
+        $result = array();
         foreach ( $tags as $value ) {
-            $result [$value->getId ()] = $value;
+            $result[$value->getId()] = $value;
         }
         return $result;
     }
@@ -45,11 +45,11 @@ class TagService extends ServiceBase {
      * @return array
      * @author zhouwei
      */
-    public function getTagByIds(array $ids) {
-        $tags = $this->tagDao->getTagByIds ( $ids );
-        $result = array ();
+    public function getTagByIds(array $ids){
+        $tags = $this->tagDao->getTagByIds($ids);
+        $result = array();
         foreach ( $tags as $value ) {
-            $result [$value->getId ()] = $value;
+            $result[$value->getId()] = $value;
         }
         return $result;
     }
@@ -61,8 +61,8 @@ class TagService extends ServiceBase {
      * @return array
      * @author zhouwei
      */
-    public function getTagById($id) {
-        return $tag = $this->tagDao->getTagById ( $id );
+    public function getTagById($id){
+        return $tag = $this->tagDao->getTagById($id);
     }
 }
 

@@ -22,9 +22,9 @@ abstract class DaoBase {
      * @param \Phalcon\DiInterface $dependencyInjector            
      * @return void
      */
-    public function __construct(\Phalcon\DiInterface $dependencyInjector) {
+    public function __construct(\Phalcon\DiInterface $dependencyInjector){
         $this->di = $dependencyInjector;
-        $this->init ();
+        $this->init();
     }
     
     /**
@@ -32,6 +32,6 @@ abstract class DaoBase {
      * @return void
      * @author zhouwei17
      */
-    protected function init() {
+    protected function init(){
     }
 }

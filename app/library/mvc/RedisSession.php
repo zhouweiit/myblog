@@ -92,12 +92,12 @@ class RedisSession implements AdapterInterface {
      * @return void
      * @author zhouwei17
      */
-    public function __construct(Di $di) {
+    public function __construct(Di $di){
         $this->di = $di;
-        $config = $this->di->get ( 'configIni' );
-        $this->cookies = $this->di->get ( 'cookies' );
+        $config = $this->di->get('configIni');
+        $this->cookies = $this->di->get('cookies');
         $this->sessionName = $config->session->sessionIdName;
-        $this->sessionTimeout = time () + $config->session->sessionTimeout;
+        $this->sessionTimeout = time() + $config->session->sessionTimeout;
     }
     
     /**
@@ -106,17 +106,17 @@ class RedisSession implements AdapterInterface {
      * @return void
      * @author zhouwei17
      */
-    private function initRedisSession() {
-        if (! isset ( $this->sessionId ) || empty ( $this->sessionId ) || strlen ( $this->sessionId ) !== 32) {
-            $this->sessionId = $this->createSessionId ();
+    private function initRedisSession(){
+        if (!isset($this->sessionId) || empty($this->sessionId) || strlen($this->sessionId) !== 32) {
+            $this->sessionId = $this->createSessionId();
         }
         $this->redisSessionKey = RedisSession::REDIS_SESSION_PREFIX . '_' . $this->sessionId;
-        $sessionValue = $this->redisClient->get ( $this->redisSessionKey );
-        if (! empty ( $sessionValue )) {
-            $this->sessionValue = unserialize ( $sessionValue );
+        $sessionValue = $this->redisClient->get($this->redisSessionKey);
+        if (!empty($sessionValue)) {
+            $this->sessionValue = unserialize($sessionValue);
         }
-        if (! is_array ( $this->sessionValue )) {
-            $this->sessionValue = array ();
+        if (!is_array($this->sessionValue)) {
+            $this->sessionValue = array();
         }
     }
     
@@ -126,8 +126,8 @@ class RedisSession implements AdapterInterface {
      * @return string
      * @author zhouwei17
      */
-    private function createSessionId() {
-        return md5 ( implode ( '', StringUtils::getRandString ( 10 ) ) . uniqid () . rand ( 10000000, 999999999 ) );
+    private function createSessionId(){
+        return md5(implode('',StringUtils::getRandString(10)) . uniqid() . rand(10000000,999999999));
     }
     
     /**
@@ -136,8 +136,8 @@ class RedisSession implements AdapterInterface {
      * @return void
      * @author zhouwei17
      */
-    private function registerRedisService() {
-        $this->redisClient = $this->di->get ( 'redisSessionClient' );
+    private function registerRedisService(){
+        $this->redisClient = $this->di->get('redisSessionClient');
     }
     
     /**
@@ -146,14 +146,14 @@ class RedisSession implements AdapterInterface {
      * @return void
      * @author zhouwei17
      */
-    public function start() {
-        if ($this->isStarted ()) {
+    public function start(){
+        if ($this->isStarted()) {
             return;
         }
-        $this->registerRedisService ();
-        $this->sessionId = $this->cookies->get ( $this->sessionName )->getValue ();
-        $this->initRedisSession ();
-        $this->cookies->set ( $this->sessionName, $this->sessionId, $this->sessionTimeout );
+        $this->registerRedisService();
+        $this->sessionId = $this->cookies->get($this->sessionName)->getValue();
+        $this->initRedisSession();
+        $this->cookies->set($this->sessionName,$this->sessionId,$this->sessionTimeout);
     }
     
     /**
@@ -162,7 +162,7 @@ class RedisSession implements AdapterInterface {
      * @return void
      * @author zhouwei
      */
-    public function setOptions(array $options) {
+    public function setOptions(array $options){
         $this->options = $options;
     }
     
@@ -171,7 +171,7 @@ class RedisSession implements AdapterInterface {
      * @return array
      * @author zhouwei17
      */
-    public function getOptions() {
+    public function getOptions(){
         return $this->options;
     }
     
@@ -183,9 +183,9 @@ class RedisSession implements AdapterInterface {
      * @return mix
      * @author zhouwe17
      */
-    public function get($key, $defaultValue = null) {
-        $value = $this->sessionValue [$key];
-        return isset ( $value ) ? $value : $defaultValue;
+    public function get($key, $defaultValue = null){
+        $value = $this->sessionValue[$key];
+        return isset($value) ? $value : $defaultValue;
     }
     
     /**
@@ -197,10 +197,10 @@ class RedisSession implements AdapterInterface {
      * @return booean
      * @author zhouwei17
      */
-    public function set($key, $value) {
-        if ($this->isStarted ()) {
+    public function set($key, $value){
+        if ($this->isStarted()) {
             $this->sessionValueChanged = true;
-            $this->sessionValue [$key] = $value;
+            $this->sessionValue[$key] = $value;
             return true;
         }
         return false;
@@ -213,9 +213,9 @@ class RedisSession implements AdapterInterface {
      * @return boolean
      * @author zhouwei17
      */
-    public function has($key) {
-        if ($this->isStarted ()) {
-            return array_key_exists ( $key, $this->sessionValue );
+    public function has($key){
+        if ($this->isStarted()) {
+            return array_key_exists($key,$this->sessionValue);
             return true;
         }
         return false;
@@ -228,10 +228,10 @@ class RedisSession implements AdapterInterface {
      * @return boolean
      * @author zhouwei17
      */
-    public function remove($key) {
-        if ($this->isStarted ()) {
+    public function remove($key){
+        if ($this->isStarted()) {
             $this->sessionValueChanged = true;
-            unset ( $this->sessionValue [$key] );
+            unset($this->sessionValue[$key]);
             return true;
         }
         return false;
@@ -243,8 +243,8 @@ class RedisSession implements AdapterInterface {
      * @return string
      * @author zhouwei17
      */
-    public function getId() {
-        if ($this->isStarted ()) {
+    public function getId(){
+        if ($this->isStarted()) {
             return $this->sessionId;
         }
         return null;
@@ -256,7 +256,7 @@ class RedisSession implements AdapterInterface {
      * @return boolean
      * @author zhouwei17
      */
-    public function isStarted() {
+    public function isStarted(){
         if ($this->sessionId !== null) {
             return true;
         }
@@ -269,10 +269,10 @@ class RedisSession implements AdapterInterface {
      * @return boolean true 成功,false失败
      * @author zhouwei17
      */
-    public function destroy() {
-        if ($this->isStarted ()) {
-            $this->redisClient->del ( $this->redisSessionKey );
-            $this->cookies->delete ( $this->sessionName );
+    public function destroy(){
+        if ($this->isStarted()) {
+            $this->redisClient->del($this->redisSessionKey);
+            $this->cookies->delete($this->sessionName);
             return true;
         }
         return false;
@@ -285,12 +285,12 @@ class RedisSession implements AdapterInterface {
      * @return void
      * @author zhouwei17
      */
-    public function flush() {
-        if ($this->isStarted () && ! empty ( $this->sessionValue )) {
+    public function flush(){
+        if ($this->isStarted() && !empty($this->sessionValue)) {
             if (true === $this->sessionValueChanged) {
-                $this->redisClient->set ( $this->redisSessionKey, serialize ( $this->sessionValue ) );
+                $this->redisClient->set($this->redisSessionKey,serialize($this->sessionValue));
             }
-            $this->redisClient->expire ( $this->redisSessionKey, $this->sessionTimeout );
+            $this->redisClient->expire($this->redisSessionKey,$this->sessionTimeout);
         }
     }
     
@@ -300,10 +300,10 @@ class RedisSession implements AdapterInterface {
      * @return array
      * @author zhouwei17
      */
-    public function getSessionValue() {
-        if (! isset ( $this->sessionValue )) {
+    public function getSessionValue(){
+        if (!isset($this->sessionValue)) {
             return $this->sessionValue;
         }
-        return array ();
+        return array();
     }
 }

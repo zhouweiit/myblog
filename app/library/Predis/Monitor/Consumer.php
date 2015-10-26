@@ -30,19 +30,19 @@ class Consumer implements Iterator {
      * @param ClientInterface $client
      *            Client instance used by the consumer.
      */
-    public function __construct(ClientInterface $client) {
-        $this->assertClient ( $client );
+    public function __construct(ClientInterface $client){
+        $this->assertClient($client);
         
         $this->client = $client;
         
-        $this->start ();
+        $this->start();
     }
     
     /**
      * Automatically stops the consumer when the garbage collector kicks in.
      */
-    public function __destruct() {
-        $this->stop ();
+    public function __destruct(){
+        $this->stop();
     }
     
     /**
@@ -54,21 +54,21 @@ class Consumer implements Iterator {
      *            
      * @throws NotSupportedException
      */
-    private function assertClient(ClientInterface $client) {
-        if ($client->getConnection () instanceof AggregateConnectionInterface) {
-            throw new NotSupportedException ( 'Cannot initialize a monitor consumer over aggregate connections.' );
+    private function assertClient(ClientInterface $client){
+        if ($client->getConnection() instanceof AggregateConnectionInterface) {
+            throw new NotSupportedException('Cannot initialize a monitor consumer over aggregate connections.');
         }
         
-        if ($client->getProfile ()->supportsCommand ( 'MONITOR' ) === false) {
-            throw new NotSupportedException ( "The current profile does not support 'MONITOR'." );
+        if ($client->getProfile()->supportsCommand('MONITOR') === false) {
+            throw new NotSupportedException("The current profile does not support 'MONITOR'.");
         }
     }
     
     /**
      * Initializes the consumer and sends the MONITOR command to the server.
      */
-    protected function start() {
-        $this->client->executeCommand ( $this->client->createCommand ( 'MONITOR' ) );
+    protected function start(){
+        $this->client->executeCommand($this->client->createCommand('MONITOR'));
         $this->valid = true;
     }
     
@@ -77,15 +77,15 @@ class Consumer implements Iterator {
      * Internally this is done by disconnecting from server
      * since there is no way to terminate the stream initialized by MONITOR.
      */
-    public function stop() {
-        $this->client->disconnect ();
+    public function stop(){
+        $this->client->disconnect();
         $this->valid = false;
     }
     
     /**
      * @ERROR!!!
      */
-    public function rewind() {
+    public function rewind(){
         // NOOP
     }
     
@@ -94,22 +94,22 @@ class Consumer implements Iterator {
      *
      * @return Object
      */
-    public function current() {
-        return $this->getValue ();
+    public function current(){
+        return $this->getValue();
     }
     
     /**
      * @ERROR!!!
      */
-    public function key() {
+    public function key(){
         return $this->position;
     }
     
     /**
      * @ERROR!!!
      */
-    public function next() {
-        $this->position ++;
+    public function next(){
+        $this->position++;
     }
     
     /**
@@ -117,7 +117,7 @@ class Consumer implements Iterator {
      *
      * @return bool
      */
-    public function valid() {
+    public function valid(){
         return $this->valid;
     }
     
@@ -127,34 +127,34 @@ class Consumer implements Iterator {
      *
      * @return Object
      */
-    private function getValue() {
+    private function getValue(){
         $database = 0;
         $client = null;
-        $event = $this->client->getConnection ()->read ();
+        $event = $this->client->getConnection()->read();
         
-        $callback = function ($matches) use(&$database, &$client) {
-            if (2 === $count = count ( $matches )) {
+        $callback = function ($matches) use(&$database, &$client){
+            if (2 === $count = count($matches)) {
                 // Redis <= 2.4
-                $database = ( int ) $matches [1];
+                $database = (int) $matches[1];
             }
             
             if (4 === $count) {
                 // Redis >= 2.6
-                $database = ( int ) $matches [2];
-                $client = $matches [3];
+                $database = (int) $matches[2];
+                $client = $matches[3];
             }
             
             return ' ';
         };
         
-        $event = preg_replace_callback ( '/ \(db (\d+)\) | \[(\d+) (.*?)\] /', $callback, $event, 1 );
-        @list ( $timestamp, $command, $arguments ) = explode ( ' ', $event, 3 );
+        $event = preg_replace_callback('/ \(db (\d+)\) | \[(\d+) (.*?)\] /',$callback,$event,1);
+        @list($timestamp,$command,$arguments) = explode(' ',$event,3);
         
-        return ( object ) array (
-                'timestamp' => ( float ) $timestamp,
+        return (object) array(
+                'timestamp' => (float) $timestamp,
                 'database' => $database,
                 'client' => $client,
-                'command' => substr ( $command, 1, - 1 ),
+                'command' => substr($command,1,-1),
                 'arguments' => $arguments 
         );
     }

@@ -52,9 +52,9 @@ class Client implements ClientInterface {
      * @param mixed $options
      *            Options to configure some behaviours of the client.
      */
-    public function __construct($parameters = null, $options = null) {
-        $this->options = $this->createOptions ( $options ?  : array () );
-        $this->connection = $this->createConnection ( $parameters ?  : array () );
+    public function __construct($parameters = null, $options = null){
+        $this->options = $this->createOptions($options ?  : array());
+        $this->connection = $this->createConnection($parameters ?  : array());
         $this->profile = $this->options->profile;
     }
     
@@ -70,16 +70,16 @@ class Client implements ClientInterface {
      *
      * @throws \InvalidArgumentException
      */
-    protected function createOptions($options) {
-        if (is_array ( $options )) {
-            return new Options ( $options );
+    protected function createOptions($options){
+        if (is_array($options)) {
+            return new Options($options);
         }
         
         if ($options instanceof OptionsInterface) {
             return $options;
         }
         
-        throw new InvalidArgumentException ( "Invalid type for client options." );
+        throw new InvalidArgumentException("Invalid type for client options.");
     }
     
     /**
@@ -102,46 +102,46 @@ class Client implements ClientInterface {
      *
      * @throws \InvalidArgumentException
      */
-    protected function createConnection($parameters) {
+    protected function createConnection($parameters){
         if ($parameters instanceof ConnectionInterface) {
             return $parameters;
         }
         
-        if ($parameters instanceof ParametersInterface || is_string ( $parameters )) {
-            return $this->options->connections->create ( $parameters );
+        if ($parameters instanceof ParametersInterface || is_string($parameters)) {
+            return $this->options->connections->create($parameters);
         }
         
-        if (is_array ( $parameters )) {
-            if (! isset ( $parameters [0] )) {
-                return $this->options->connections->create ( $parameters );
+        if (is_array($parameters)) {
+            if (!isset($parameters[0])) {
+                return $this->options->connections->create($parameters);
             }
             
             $options = $this->options;
             
-            if ($options->defined ( 'aggregate' )) {
-                $initializer = $this->getConnectionInitializerWrapper ( $options->aggregate );
-                $connection = $initializer ( $parameters, $options );
+            if ($options->defined('aggregate')) {
+                $initializer = $this->getConnectionInitializerWrapper($options->aggregate);
+                $connection = $initializer($parameters,$options);
             } else {
-                if ($options->defined ( 'replication' ) && $replication = $options->replication) {
+                if ($options->defined('replication') && $replication = $options->replication) {
                     $connection = $replication;
                 } else {
                     $connection = $options->cluster;
                 }
                 
-                $options->connections->aggregate ( $connection, $parameters );
+                $options->connections->aggregate($connection,$parameters);
             }
             
             return $connection;
         }
         
-        if (is_callable ( $parameters )) {
-            $initializer = $this->getConnectionInitializerWrapper ( $parameters );
-            $connection = $initializer ( $this->options );
+        if (is_callable($parameters)) {
+            $initializer = $this->getConnectionInitializerWrapper($parameters);
+            $connection = $initializer($this->options);
             
             return $connection;
         }
         
-        throw new InvalidArgumentException ( 'Invalid type for connection parameters.' );
+        throw new InvalidArgumentException('Invalid type for connection parameters.');
     }
     
     /**
@@ -152,12 +152,12 @@ class Client implements ClientInterface {
      *
      * @return \Closure
      */
-    protected function getConnectionInitializerWrapper($callable) {
-        return function () use($callable) {
-            $connection = call_user_func_array ( $callable, func_get_args () );
+    protected function getConnectionInitializerWrapper($callable){
+        return function () use($callable){
+            $connection = call_user_func_array($callable,func_get_args());
             
-            if (! $connection instanceof ConnectionInterface) {
-                throw new UnexpectedValueException ( 'The callable connection initializer returned an invalid type.' );
+            if (!$connection instanceof ConnectionInterface) {
+                throw new UnexpectedValueException('The callable connection initializer returned an invalid type.');
             }
             
             return $connection;
@@ -167,14 +167,14 @@ class Client implements ClientInterface {
     /**
      * @ERROR!!!
      */
-    public function getProfile() {
+    public function getProfile(){
         return $this->profile;
     }
     
     /**
      * @ERROR!!!
      */
-    public function getOptions() {
+    public function getOptions(){
         return $this->options;
     }
     
@@ -190,26 +190,26 @@ class Client implements ClientInterface {
      *
      * @throws \InvalidArgumentException
      */
-    public function getClientFor($connectionID) {
-        if (! $connection = $this->getConnectionById ( $connectionID )) {
-            throw new InvalidArgumentException ( "Invalid connection ID: $connectionID." );
+    public function getClientFor($connectionID){
+        if (!$connection = $this->getConnectionById($connectionID)) {
+            throw new InvalidArgumentException("Invalid connection ID: $connectionID.");
         }
         
-        return new static ( $connection, $this->options );
+        return new static($connection,$this->options);
     }
     
     /**
      * Opens the underlying connection and connects to the server.
      */
-    public function connect() {
-        $this->connection->connect ();
+    public function connect(){
+        $this->connection->connect();
     }
     
     /**
      * Closes the underlying connection and disconnects from the server.
      */
-    public function disconnect() {
-        $this->connection->disconnect ();
+    public function disconnect(){
+        $this->connection->disconnect();
     }
     
     /**
@@ -218,8 +218,8 @@ class Client implements ClientInterface {
      * This is the same as `Client::disconnect()` as it does not actually send
      * the `QUIT` command to Redis, but simply closes the connection.
      */
-    public function quit() {
-        $this->disconnect ();
+    public function quit(){
+        $this->disconnect();
     }
     
     /**
@@ -227,14 +227,14 @@ class Client implements ClientInterface {
      *
      * @return bool
      */
-    public function isConnected() {
-        return $this->connection->isConnected ();
+    public function isConnected(){
+        return $this->connection->isConnected();
     }
     
     /**
      * @ERROR!!!
      */
-    public function getConnection() {
+    public function getConnection(){
         return $this->connection;
     }
     
@@ -249,12 +249,12 @@ class Client implements ClientInterface {
      *
      * @throws NotSupportedException
      */
-    public function getConnectionById($connectionID) {
-        if (! $this->connection instanceof AggregateConnectionInterface) {
-            throw new NotSupportedException ( 'Retrieving connections by ID is supported only by aggregate connections.' );
+    public function getConnectionById($connectionID){
+        if (!$this->connection instanceof AggregateConnectionInterface) {
+            throw new NotSupportedException('Retrieving connections by ID is supported only by aggregate connections.');
         }
         
-        return $this->connection->getConnectionById ( $connectionID );
+        return $this->connection->getConnectionById($connectionID);
     }
     
     /**
@@ -272,17 +272,17 @@ class Client implements ClientInterface {
      *            
      * @return mixed
      */
-    public function executeRaw(array $arguments, &$error = null) {
+    public function executeRaw(array $arguments, &$error = null){
         $error = false;
         
-        $response = $this->connection->executeCommand ( new RawCommand ( $arguments ) );
+        $response = $this->connection->executeCommand(new RawCommand($arguments));
         
         if ($response instanceof ResponseInterface) {
             if ($response instanceof ErrorResponseInterface) {
                 $error = true;
             }
             
-            return ( string ) $response;
+            return (string) $response;
         }
         
         return $response;
@@ -291,32 +291,32 @@ class Client implements ClientInterface {
     /**
      * @ERROR!!!
      */
-    public function __call($commandID, $arguments) {
-        return $this->executeCommand ( $this->createCommand ( $commandID, $arguments ) );
+    public function __call($commandID, $arguments){
+        return $this->executeCommand($this->createCommand($commandID,$arguments));
     }
     
     /**
      * @ERROR!!!
      */
-    public function createCommand($commandID, $arguments = array()) {
-        return $this->profile->createCommand ( $commandID, $arguments );
+    public function createCommand($commandID, $arguments = array()){
+        return $this->profile->createCommand($commandID,$arguments);
     }
     
     /**
      * @ERROR!!!
      */
-    public function executeCommand(CommandInterface $command) {
-        $response = $this->connection->executeCommand ( $command );
+    public function executeCommand(CommandInterface $command){
+        $response = $this->connection->executeCommand($command);
         
         if ($response instanceof ResponseInterface) {
             if ($response instanceof ErrorResponseInterface) {
-                $response = $this->onErrorResponse ( $command, $response );
+                $response = $this->onErrorResponse($command,$response);
             }
             
             return $response;
         }
         
-        return $command->parseResponse ( $response );
+        return $command->parseResponse($response);
     }
     
     /**
@@ -331,22 +331,22 @@ class Client implements ClientInterface {
      *
      * @throws ServerException
      */
-    protected function onErrorResponse(CommandInterface $command, ErrorResponseInterface $response) {
-        if ($command instanceof ScriptCommand && $response->getErrorType () === 'NOSCRIPT') {
-            $eval = $this->createCommand ( 'EVAL' );
-            $eval->setRawArguments ( $command->getEvalArguments () );
+    protected function onErrorResponse(CommandInterface $command, ErrorResponseInterface $response){
+        if ($command instanceof ScriptCommand && $response->getErrorType() === 'NOSCRIPT') {
+            $eval = $this->createCommand('EVAL');
+            $eval->setRawArguments($command->getEvalArguments());
             
-            $response = $this->executeCommand ( $eval );
+            $response = $this->executeCommand($eval);
             
-            if (! $response instanceof ResponseInterface) {
-                $response = $command->parseResponse ( $response );
+            if (!$response instanceof ResponseInterface) {
+                $response = $command->parseResponse($response);
             }
             
             return $response;
         }
         
         if ($this->options->exceptions) {
-            throw new ServerException ( $response->getMessage () );
+            throw new ServerException($response->getMessage());
         }
         
         return $response;
@@ -366,21 +366,21 @@ class Client implements ClientInterface {
      *            
      * @return mixed
      */
-    private function sharedContextFactory($initializer, $argv = null) {
-        switch (count ( $argv )) {
+    private function sharedContextFactory($initializer, $argv = null){
+        switch (count($argv)) {
             case 0 :
-                return $this->$initializer ();
+                return $this->$initializer();
             
             case 1 :
-                return is_array ( $argv [0] ) ? $this->$initializer ( $argv [0] ) : $this->$initializer ( null, $argv [0] );
+                return is_array($argv[0]) ? $this->$initializer($argv[0]) : $this->$initializer(null,$argv[0]);
             
             case 2 :
-                list ( $arg0, $arg1 ) = $argv;
+                list($arg0,$arg1) = $argv;
                 
-                return $this->$initializer ( $arg0, $arg1 );
+                return $this->$initializer($arg0,$arg1);
             
             default :
-                return $this->$initializer ( $this, $argv );
+                return $this->$initializer($this,$argv);
         }
     }
     
@@ -395,7 +395,7 @@ class Client implements ClientInterface {
      */
     public function pipeline(/* arguments */)
     {
-        return $this->sharedContextFactory ( 'createPipeline', func_get_args () );
+        return $this->sharedContextFactory('createPipeline',func_get_args());
     }
     
     /**
@@ -408,10 +408,10 @@ class Client implements ClientInterface {
      *            
      * @return Pipeline|array
      */
-    protected function createPipeline(array $options = null, $callable = null) {
-        if (isset ( $options ['atomic'] ) && $options ['atomic']) {
+    protected function createPipeline(array $options = null, $callable = null){
+        if (isset($options['atomic']) && $options['atomic']) {
             $class = 'Predis\Pipeline\Atomic';
-        } elseif (isset ( $options ['fire-and-forget'] ) && $options ['fire-and-forget']) {
+        } elseif (isset($options['fire-and-forget']) && $options['fire-and-forget']) {
             $class = 'Predis\Pipeline\FireAndForget';
         } else {
             $class = 'Predis\Pipeline\Pipeline';
@@ -420,10 +420,10 @@ class Client implements ClientInterface {
         /*
          * @var ClientContextInterface
          */
-        $pipeline = new $class ( $this );
+        $pipeline = new $class($this);
         
-        if (isset ( $callable )) {
-            return $pipeline->execute ( $callable );
+        if (isset($callable)) {
+            return $pipeline->execute($callable);
         }
         
         return $pipeline;
@@ -440,7 +440,7 @@ class Client implements ClientInterface {
      */
     public function transaction(/* arguments */)
     {
-        return $this->sharedContextFactory ( 'createTransaction', func_get_args () );
+        return $this->sharedContextFactory('createTransaction',func_get_args());
     }
     
     /**
@@ -453,11 +453,11 @@ class Client implements ClientInterface {
      *            
      * @return MultiExecTransaction|array
      */
-    protected function createTransaction(array $options = null, $callable = null) {
-        $transaction = new MultiExecTransaction ( $this, $options );
+    protected function createTransaction(array $options = null, $callable = null){
+        $transaction = new MultiExecTransaction($this,$options);
         
-        if (isset ( $callable )) {
-            return $transaction->execute ( $callable );
+        if (isset($callable)) {
+            return $transaction->execute($callable);
         }
         
         return $transaction;
@@ -474,7 +474,7 @@ class Client implements ClientInterface {
      */
     public function pubSubLoop(/* arguments */)
     {
-        return $this->sharedContextFactory ( 'createPubSub', func_get_args () );
+        return $this->sharedContextFactory('createPubSub',func_get_args());
     }
     
     /**
@@ -487,16 +487,16 @@ class Client implements ClientInterface {
      *            
      * @return PubSubConsumer|null
      */
-    protected function createPubSub(array $options = null, $callable = null) {
-        $pubsub = new PubSubConsumer ( $this, $options );
+    protected function createPubSub(array $options = null, $callable = null){
+        $pubsub = new PubSubConsumer($this,$options);
         
-        if (! isset ( $callable )) {
+        if (!isset($callable)) {
             return $pubsub;
         }
         
         foreach ( $pubsub as $message ) {
-            if (call_user_func ( $callable, $pubsub, $message ) === false) {
-                $pubsub->stop ();
+            if (call_user_func($callable,$pubsub,$message) === false) {
+                $pubsub->stop();
             }
         }
     }
@@ -506,7 +506,7 @@ class Client implements ClientInterface {
      *
      * @return MonitorConsumer
      */
-    public function monitor() {
-        return new MonitorConsumer ( $this );
+    public function monitor(){
+        return new MonitorConsumer($this);
     }
 }

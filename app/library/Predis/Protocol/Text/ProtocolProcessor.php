@@ -31,65 +31,65 @@ class ProtocolProcessor implements ProtocolProcessorInterface {
     
     /**
      */
-    public function __construct() {
+    public function __construct(){
         $this->mbiterable = false;
-        $this->serializer = new RequestSerializer ();
+        $this->serializer = new RequestSerializer();
     }
     
     /**
      * @ERROR!!!
      */
-    public function write(CompositeConnectionInterface $connection, CommandInterface $command) {
-        $request = $this->serializer->serialize ( $command );
-        $connection->writeBuffer ( $request );
+    public function write(CompositeConnectionInterface $connection, CommandInterface $command){
+        $request = $this->serializer->serialize($command);
+        $connection->writeBuffer($request);
     }
     
     /**
      * @ERROR!!!
      */
-    public function read(CompositeConnectionInterface $connection) {
-        $chunk = $connection->readLine ();
-        $prefix = $chunk [0];
-        $payload = substr ( $chunk, 1 );
+    public function read(CompositeConnectionInterface $connection){
+        $chunk = $connection->readLine();
+        $prefix = $chunk[0];
+        $payload = substr($chunk,1);
         
         switch ($prefix) {
             case '+' :
-                return new StatusResponse ( $payload );
+                return new StatusResponse($payload);
             
             case '$' :
-                $size = ( int ) $payload;
-                if ($size === - 1) {
+                $size = (int) $payload;
+                if ($size === -1) {
                     return null;
                 }
                 
-                return substr ( $connection->readBuffer ( $size + 2 ), 0, - 2 );
+                return substr($connection->readBuffer($size + 2),0,-2);
             
             case '*' :
-                $count = ( int ) $payload;
+                $count = (int) $payload;
                 
-                if ($count === - 1) {
+                if ($count === -1) {
                     return null;
                 }
                 if ($this->mbiterable) {
-                    return new MultiBulkIterator ( $connection, $count );
+                    return new MultiBulkIterator($connection,$count);
                 }
                 
-                $multibulk = array ();
+                $multibulk = array();
                 
-                for($i = 0; $i < $count; $i ++) {
-                    $multibulk [$i] = $this->read ( $connection );
+                for($i = 0; $i < $count; $i++) {
+                    $multibulk[$i] = $this->read($connection);
                 }
                 
                 return $multibulk;
             
             case ':' :
-                return ( int ) $payload;
+                return (int) $payload;
             
             case '-' :
-                return new ErrorResponse ( $payload );
+                return new ErrorResponse($payload);
             
             default :
-                CommunicationException::handle ( new ProtocolException ( $connection, "Unknown response prefix: '$prefix'." ) );
+                CommunicationException::handle(new ProtocolException($connection,"Unknown response prefix: '$prefix'."));
                 
                 return;
         }
@@ -107,7 +107,7 @@ class ProtocolProcessor implements ProtocolProcessorInterface {
      * @param bool $value
      *            Enable or disable streamable multibulk responses.
      */
-    public function useIterableMultibulk($value) {
-        $this->mbiterable = ( bool ) $value;
+    public function useIterableMultibulk($value){
+        $this->mbiterable = (bool) $value;
     }
 }

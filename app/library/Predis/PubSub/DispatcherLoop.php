@@ -29,8 +29,8 @@ class DispatcherLoop {
      * @param Consumer $pubsub
      *            PubSub consumer instance used by the loop.
      */
-    public function __construct(Consumer $pubsub) {
-        $this->callbacks = array ();
+    public function __construct(Consumer $pubsub){
+        $this->callbacks = array();
         $this->pubsub = $pubsub;
     }
     
@@ -42,9 +42,9 @@ class DispatcherLoop {
      *            
      * @throws \InvalidArgumentException
      */
-    protected function assertCallback($callable) {
-        if (! is_callable ( $callable )) {
-            throw new InvalidArgumentException ( 'The given argument must be a callable object.' );
+    protected function assertCallback($callable){
+        if (!is_callable($callable)) {
+            throw new InvalidArgumentException('The given argument must be a callable object.');
         }
     }
     
@@ -53,7 +53,7 @@ class DispatcherLoop {
      *
      * @return Consumer
      */
-    public function getPubSubConsumer() {
+    public function getPubSubConsumer(){
         return $this->pubsub;
     }
     
@@ -63,9 +63,9 @@ class DispatcherLoop {
      * @param mixed $callable
      *            A callback.
      */
-    public function subscriptionCallback($callable = null) {
-        if (isset ( $callable )) {
-            $this->assertCallback ( $callable );
+    public function subscriptionCallback($callable = null){
+        if (isset($callable)) {
+            $this->assertCallback($callable);
         }
         
         $this->subscriptionCallback = $callable;
@@ -78,9 +78,9 @@ class DispatcherLoop {
      * @param mixed $callable
      *            A callback.
      */
-    public function defaultCallback($callable = null) {
-        if (isset ( $callable )) {
-            $this->assertCallback ( $callable );
+    public function defaultCallback($callable = null){
+        if (isset($callable)) {
+            $this->assertCallback($callable);
         }
         
         $this->subscriptionCallback = $callable;
@@ -94,12 +94,12 @@ class DispatcherLoop {
      * @param Callable $callback
      *            A callback.
      */
-    public function attachCallback($channel, $callback) {
-        $callbackName = $this->getPrefixKeys () . $channel;
+    public function attachCallback($channel, $callback){
+        $callbackName = $this->getPrefixKeys() . $channel;
         
-        $this->assertCallback ( $callback );
-        $this->callbacks [$callbackName] = $callback;
-        $this->pubsub->subscribe ( $channel );
+        $this->assertCallback($callback);
+        $this->callbacks[$callbackName] = $callback;
+        $this->pubsub->subscribe($channel);
     }
     
     /**
@@ -108,37 +108,37 @@ class DispatcherLoop {
      * @param string $channel
      *            Redis channel.
      */
-    public function detachCallback($channel) {
-        $callbackName = $this->getPrefixKeys () . $channel;
+    public function detachCallback($channel){
+        $callbackName = $this->getPrefixKeys() . $channel;
         
-        if (isset ( $this->callbacks [$callbackName] )) {
-            unset ( $this->callbacks [$callbackName] );
-            $this->pubsub->unsubscribe ( $channel );
+        if (isset($this->callbacks[$callbackName])) {
+            unset($this->callbacks[$callbackName]);
+            $this->pubsub->unsubscribe($channel);
         }
     }
     
     /**
      * Starts the dispatcher loop.
      */
-    public function run() {
+    public function run(){
         foreach ( $this->pubsub as $message ) {
             $kind = $message->kind;
             
             if ($kind !== Consumer::MESSAGE && $kind !== Consumer::PMESSAGE) {
-                if (isset ( $this->subscriptionCallback )) {
+                if (isset($this->subscriptionCallback)) {
                     $callback = $this->subscriptionCallback;
-                    call_user_func ( $callback, $message );
+                    call_user_func($callback,$message);
                 }
                 
                 continue;
             }
             
-            if (isset ( $this->callbacks [$message->channel] )) {
-                $callback = $this->callbacks [$message->channel];
-                call_user_func ( $callback, $message->payload );
-            } elseif (isset ( $this->defaultCallback )) {
+            if (isset($this->callbacks[$message->channel])) {
+                $callback = $this->callbacks[$message->channel];
+                call_user_func($callback,$message->payload);
+            } elseif (isset($this->defaultCallback)) {
                 $callback = $this->defaultCallback;
-                call_user_func ( $callback, $message );
+                call_user_func($callback,$message);
             }
         }
     }
@@ -146,8 +146,8 @@ class DispatcherLoop {
     /**
      * Terminates the dispatcher loop.
      */
-    public function stop() {
-        $this->pubsub->stop ();
+    public function stop(){
+        $this->pubsub->stop();
     }
     
     /**
@@ -155,11 +155,11 @@ class DispatcherLoop {
      *
      * @return string
      */
-    protected function getPrefixKeys() {
-        $options = $this->pubsub->getClient ()->getOptions ();
+    protected function getPrefixKeys(){
+        $options = $this->pubsub->getClient()->getOptions();
         
-        if (isset ( $options->prefix )) {
-            return $options->prefix->getPrefix ();
+        if (isset($options->prefix)) {
+            return $options->prefix->getPrefix();
         }
         
         return '';

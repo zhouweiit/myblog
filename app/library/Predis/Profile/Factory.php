@@ -20,7 +20,7 @@ use Predis\ClientException;
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 final class Factory {
-    private static $profiles = array (
+    private static $profiles = array(
             '2.0' => 'Predis\Profile\RedisVersion200',
             '2.2' => 'Predis\Profile\RedisVersion220',
             '2.4' => 'Predis\Profile\RedisVersion240',
@@ -33,7 +33,7 @@ final class Factory {
     
     /**
      */
-    private function __construct() {
+    private function __construct(){
         // NOOP
     }
     
@@ -42,8 +42,8 @@ final class Factory {
      *
      * @return ProfileInterface
      */
-    public static function getDefault() {
-        return self::get ( 'default' );
+    public static function getDefault(){
+        return self::get('default');
     }
     
     /**
@@ -51,8 +51,8 @@ final class Factory {
      *
      * @return ProfileInterface
      */
-    public static function getDevelopment() {
-        return self::get ( 'dev' );
+    public static function getDevelopment(){
+        return self::get('dev');
     }
     
     /**
@@ -65,14 +65,14 @@ final class Factory {
      *            
      * @throws \InvalidArgumentException
      */
-    public static function define($alias, $class) {
-        $reflection = new ReflectionClass ( $class );
+    public static function define($alias, $class){
+        $reflection = new ReflectionClass($class);
         
-        if (! $reflection->isSubclassOf ( 'Predis\Profile\ProfileInterface' )) {
-            throw new InvalidArgumentException ( "The class '$class' is not a valid profile class." );
+        if (!$reflection->isSubclassOf('Predis\Profile\ProfileInterface')) {
+            throw new InvalidArgumentException("The class '$class' is not a valid profile class.");
         }
         
-        self::$profiles [$alias] = $class;
+        self::$profiles[$alias] = $class;
     }
     
     /**
@@ -85,13 +85,13 @@ final class Factory {
      *
      * @throws ClientException
      */
-    public static function get($version) {
-        if (! isset ( self::$profiles [$version] )) {
-            throw new ClientException ( "Unknown server profile: '$version'." );
+    public static function get($version){
+        if (!isset(self::$profiles[$version])) {
+            throw new ClientException("Unknown server profile: '$version'.");
         }
         
-        $profile = self::$profiles [$version];
+        $profile = self::$profiles[$version];
         
-        return new $profile ();
+        return new $profile();
     }
 }

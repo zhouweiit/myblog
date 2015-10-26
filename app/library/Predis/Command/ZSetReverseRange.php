@@ -19,7 +19,7 @@ class ZSetReverseRange extends ZSetRange {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'ZREVRANGE';
     }
 }

@@ -19,18 +19,18 @@ class StringBitOp extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'BITOP';
     }
     
     /**
      * @ERROR!!!
      */
-    protected function filterArguments(array $arguments) {
-        if (count ( $arguments ) === 3 && is_array ( $arguments [2] )) {
-            list ( $operation, $destination, ) = $arguments;
-            $arguments = $arguments [2];
-            array_unshift ( $arguments, $operation, $destination );
+    protected function filterArguments(array $arguments){
+        if (count($arguments) === 3 && is_array($arguments[2])) {
+            list($operation,$destination,) = $arguments;
+            $arguments = $arguments[2];
+            array_unshift($arguments,$operation,$destination);
         }
         
         return $arguments;

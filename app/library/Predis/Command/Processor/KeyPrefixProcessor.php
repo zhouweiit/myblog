@@ -29,7 +29,7 @@ class KeyPrefixProcessor implements ProcessorInterface {
      * @param string $prefix
      *            Prefix for the keys.
      */
-    public function __construct($prefix) {
+    public function __construct($prefix){
         $this->prefix = $prefix;
         $this->commands = array(
             /* ---------------- Redis 1.2 ---------------- */
@@ -163,7 +163,7 @@ class KeyPrefixProcessor implements ProcessorInterface {
      * @param string $prefix
      *            Prefix for the keys.
      */
-    public function setPrefix($prefix) {
+    public function setPrefix($prefix){
         $this->prefix = $prefix;
     }
     
@@ -172,18 +172,18 @@ class KeyPrefixProcessor implements ProcessorInterface {
      *
      * @return string
      */
-    public function getPrefix() {
+    public function getPrefix(){
         return $this->prefix;
     }
     
     /**
      * @ERROR!!!
      */
-    public function process(CommandInterface $command) {
+    public function process(CommandInterface $command){
         if ($command instanceof PrefixableCommandInterface) {
-            $command->prefixKeys ( $this->prefix );
-        } elseif (isset ( $this->commands [$commandID = strtoupper ( $command->getId () )] )) {
-            call_user_func ( $this->commands [$commandID], $command, $this->prefix );
+            $command->prefixKeys($this->prefix);
+        } elseif (isset($this->commands[$commandID = strtoupper($command->getId())])) {
+            call_user_func($this->commands[$commandID],$command,$this->prefix);
         }
     }
     
@@ -205,27 +205,27 @@ class KeyPrefixProcessor implements ProcessorInterface {
      *            
      * @throws \InvalidArgumentException
      */
-    public function setCommandHandler($commandID, $callback = null) {
-        $commandID = strtoupper ( $commandID );
+    public function setCommandHandler($commandID, $callback = null){
+        $commandID = strtoupper($commandID);
         
-        if (! isset ( $callback )) {
-            unset ( $this->commands [$commandID] );
+        if (!isset($callback)) {
+            unset($this->commands[$commandID]);
             
             return;
         }
         
-        if (! is_callable ( $callback )) {
-            throw new InvalidArgumentException ( "Callback must be a valid callable object or NULL" );
+        if (!is_callable($callback)) {
+            throw new InvalidArgumentException("Callback must be a valid callable object or NULL");
         }
         
-        $this->commands [$commandID] = $callback;
+        $this->commands[$commandID] = $callback;
     }
     
     /**
      * @ERROR!!!
      */
-    public function __toString() {
-        return $this->getPrefix ();
+    public function __toString(){
+        return $this->getPrefix();
     }
     
     /**
@@ -236,10 +236,10 @@ class KeyPrefixProcessor implements ProcessorInterface {
      * @param string $prefix
      *            Prefix string.
      */
-    public static function first(CommandInterface $command, $prefix) {
-        if ($arguments = $command->getArguments ()) {
-            $arguments [0] = "$prefix{$arguments[0]}";
-            $command->setRawArguments ( $arguments );
+    public static function first(CommandInterface $command, $prefix){
+        if ($arguments = $command->getArguments()) {
+            $arguments[0] = "$prefix{$arguments[0]}";
+            $command->setRawArguments($arguments);
         }
     }
     
@@ -251,13 +251,13 @@ class KeyPrefixProcessor implements ProcessorInterface {
      * @param string $prefix
      *            Prefix string.
      */
-    public static function all(CommandInterface $command, $prefix) {
-        if ($arguments = $command->getArguments ()) {
+    public static function all(CommandInterface $command, $prefix){
+        if ($arguments = $command->getArguments()) {
             foreach ( $arguments as &$key ) {
                 $key = "$prefix$key";
             }
             
-            $command->setRawArguments ( $arguments );
+            $command->setRawArguments($arguments);
         }
     }
     
@@ -269,15 +269,15 @@ class KeyPrefixProcessor implements ProcessorInterface {
      * @param string $prefix
      *            Prefix string.
      */
-    public static function interleaved(CommandInterface $command, $prefix) {
-        if ($arguments = $command->getArguments ()) {
-            $length = count ( $arguments );
+    public static function interleaved(CommandInterface $command, $prefix){
+        if ($arguments = $command->getArguments()) {
+            $length = count($arguments);
             
             for($i = 0; $i < $length; $i += 2) {
-                $arguments [$i] = "$prefix{$arguments[$i]}";
+                $arguments[$i] = "$prefix{$arguments[$i]}";
             }
             
-            $command->setRawArguments ( $arguments );
+            $command->setRawArguments($arguments);
         }
     }
     
@@ -289,15 +289,15 @@ class KeyPrefixProcessor implements ProcessorInterface {
      * @param string $prefix
      *            Prefix string.
      */
-    public static function skipFirst(CommandInterface $command, $prefix) {
-        if ($arguments = $command->getArguments ()) {
-            $length = count ( $arguments );
+    public static function skipFirst(CommandInterface $command, $prefix){
+        if ($arguments = $command->getArguments()) {
+            $length = count($arguments);
             
-            for($i = 1; $i < $length; $i ++) {
-                $arguments [$i] = "$prefix{$arguments[$i]}";
+            for($i = 1; $i < $length; $i++) {
+                $arguments[$i] = "$prefix{$arguments[$i]}";
             }
             
-            $command->setRawArguments ( $arguments );
+            $command->setRawArguments($arguments);
         }
     }
     
@@ -309,15 +309,15 @@ class KeyPrefixProcessor implements ProcessorInterface {
      * @param string $prefix
      *            Prefix string.
      */
-    public static function skipLast(CommandInterface $command, $prefix) {
-        if ($arguments = $command->getArguments ()) {
-            $length = count ( $arguments );
+    public static function skipLast(CommandInterface $command, $prefix){
+        if ($arguments = $command->getArguments()) {
+            $length = count($arguments);
             
-            for($i = 0; $i < $length - 1; $i ++) {
-                $arguments [$i] = "$prefix{$arguments[$i]}";
+            for($i = 0; $i < $length - 1; $i++) {
+                $arguments[$i] = "$prefix{$arguments[$i]}";
             }
             
-            $command->setRawArguments ( $arguments );
+            $command->setRawArguments($arguments);
         }
     }
     
@@ -329,22 +329,22 @@ class KeyPrefixProcessor implements ProcessorInterface {
      * @param string $prefix
      *            Prefix string.
      */
-    public static function sort(CommandInterface $command, $prefix) {
-        if ($arguments = $command->getArguments ()) {
-            $arguments [0] = "$prefix{$arguments[0]}";
+    public static function sort(CommandInterface $command, $prefix){
+        if ($arguments = $command->getArguments()) {
+            $arguments[0] = "$prefix{$arguments[0]}";
             
-            if (($count = count ( $arguments )) > 1) {
-                for($i = 1; $i < $count; $i ++) {
-                    switch ($arguments [$i]) {
+            if (($count = count($arguments)) > 1) {
+                for($i = 1; $i < $count; $i++) {
+                    switch ($arguments[$i]) {
                         case 'BY' :
                         case 'STORE' :
-                            $arguments [$i] = "$prefix{$arguments[++$i]}";
+                            $arguments[$i] = "$prefix{$arguments[++$i]}";
                             break;
                         
                         case 'GET' :
-                            $value = $arguments [++ $i];
+                            $value = $arguments[++$i];
                             if ($value !== '#') {
-                                $arguments [$i] = "$prefix$value";
+                                $arguments[$i] = "$prefix$value";
                             }
                             break;
                         
@@ -355,7 +355,7 @@ class KeyPrefixProcessor implements ProcessorInterface {
                 }
             }
             
-            $command->setRawArguments ( $arguments );
+            $command->setRawArguments($arguments);
         }
     }
     
@@ -367,13 +367,13 @@ class KeyPrefixProcessor implements ProcessorInterface {
      * @param string $prefix
      *            Prefix string.
      */
-    public static function evalKeys(CommandInterface $command, $prefix) {
-        if ($arguments = $command->getArguments ()) {
-            for($i = 2; $i < $arguments [1] + 2; $i ++) {
-                $arguments [$i] = "$prefix{$arguments[$i]}";
+    public static function evalKeys(CommandInterface $command, $prefix){
+        if ($arguments = $command->getArguments()) {
+            for($i = 2; $i < $arguments[1] + 2; $i++) {
+                $arguments[$i] = "$prefix{$arguments[$i]}";
             }
             
-            $command->setRawArguments ( $arguments );
+            $command->setRawArguments($arguments);
         }
     }
     
@@ -385,16 +385,16 @@ class KeyPrefixProcessor implements ProcessorInterface {
      * @param string $prefix
      *            Prefix string.
      */
-    public static function zsetStore(CommandInterface $command, $prefix) {
-        if ($arguments = $command->getArguments ()) {
-            $arguments [0] = "$prefix{$arguments[0]}";
-            $length = (( int ) $arguments [1]) + 2;
+    public static function zsetStore(CommandInterface $command, $prefix){
+        if ($arguments = $command->getArguments()) {
+            $arguments[0] = "$prefix{$arguments[0]}";
+            $length = ((int) $arguments[1]) + 2;
             
-            for($i = 2; $i < $length; $i ++) {
-                $arguments [$i] = "$prefix{$arguments[$i]}";
+            for($i = 2; $i < $length; $i++) {
+                $arguments[$i] = "$prefix{$arguments[$i]}";
             }
             
-            $command->setRawArguments ( $arguments );
+            $command->setRawArguments($arguments);
         }
     }
 }

@@ -19,14 +19,14 @@ class ListPushTail extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'RPUSH';
     }
     
     /**
      * @ERROR!!!
      */
-    protected function filterArguments(array $arguments) {
-        return self::normalizeVariadic ( $arguments );
+    protected function filterArguments(array $arguments){
+        return self::normalizeVariadic($arguments);
     }
 }

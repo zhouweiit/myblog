@@ -86,8 +86,8 @@ class Comment {
      * @var date
      */
     private $lastChangedDate;
-    public static function columnMap() {
-        return array (
+    public static function columnMap(){
+        return array(
             'id' => 'id',
             'article_id' => 'articleId',
             'content' => 'content',
@@ -106,7 +106,7 @@ class Comment {
      *
      * @return the $id
      */
-    public function getId() {
+    public function getId(){
         return $this->id;
     }
     
@@ -114,7 +114,7 @@ class Comment {
      *
      * @return the $articleId
      */
-    public function getArticleId() {
+    public function getArticleId(){
         return $this->articleId;
     }
     
@@ -122,7 +122,7 @@ class Comment {
      *
      * @return the $content
      */
-    public function getContent() {
+    public function getContent(){
         return $this->content;
     }
     
@@ -130,7 +130,7 @@ class Comment {
      *
      * @return the $pid
      */
-    public function getPid() {
+    public function getPid(){
         return $this->pid;
     }
     
@@ -138,7 +138,7 @@ class Comment {
      *
      * @return the $name
      */
-    public function getName() {
+    public function getName(){
         return $this->name;
     }
     
@@ -146,7 +146,7 @@ class Comment {
      *
      * @return the $email
      */
-    public function getEmail() {
+    public function getEmail(){
         return $this->email;
     }
     
@@ -154,7 +154,7 @@ class Comment {
      *
      * @return the $releaseDatetime
      */
-    public function getReleaseDatetime() {
+    public function getReleaseDatetime(){
         return $this->releaseDatetime;
     }
     
@@ -162,7 +162,7 @@ class Comment {
      *
      * @return the $isCheck
      */
-    public function getIsCheck() {
+    public function getIsCheck(){
         return $this->isCheck;
     }
     
@@ -170,7 +170,7 @@ class Comment {
      *
      * @return the $isDelete
      */
-    public function getIsDelete() {
+    public function getIsDelete(){
         return $this->isDelete;
     }
     
@@ -178,7 +178,7 @@ class Comment {
      *
      * @return the $creationDate
      */
-    public function getCreationDate() {
+    public function getCreationDate(){
         return $this->creationDate;
     }
     
@@ -186,7 +186,7 @@ class Comment {
      *
      * @return the $lastChangedDate
      */
-    public function getLastChangedDate() {
+    public function getLastChangedDate(){
         return $this->lastChangedDate;
     }
     
@@ -194,7 +194,7 @@ class Comment {
      *
      * @param number $id            
      */
-    public function setId($id) {
+    public function setId($id){
         $this->id = $id;
     }
     
@@ -202,7 +202,7 @@ class Comment {
      *
      * @param number $articleId            
      */
-    public function setArticleId($articleId) {
+    public function setArticleId($articleId){
         $this->articleId = $articleId;
     }
     
@@ -210,7 +210,7 @@ class Comment {
      *
      * @param string $content            
      */
-    public function setContent($content) {
+    public function setContent($content){
         $this->content = $content;
     }
     
@@ -218,7 +218,7 @@ class Comment {
      *
      * @param number $pid            
      */
-    public function setPid($pid) {
+    public function setPid($pid){
         $this->pid = $pid;
     }
     
@@ -226,7 +226,7 @@ class Comment {
      *
      * @param string $name            
      */
-    public function setName($name) {
+    public function setName($name){
         $this->name = $name;
     }
     
@@ -234,7 +234,7 @@ class Comment {
      *
      * @param string $email            
      */
-    public function setEmail($email) {
+    public function setEmail($email){
         $this->email = $email;
     }
     
@@ -242,7 +242,7 @@ class Comment {
      *
      * @param \models\blog\date $releaseDatetime            
      */
-    public function setReleaseDatetime($releaseDatetime) {
+    public function setReleaseDatetime($releaseDatetime){
         $this->releaseDatetime = $releaseDatetime;
     }
     
@@ -250,7 +250,7 @@ class Comment {
      *
      * @param number $isCheck            
      */
-    public function setIsCheck($isCheck) {
+    public function setIsCheck($isCheck){
         $this->isCheck = $isCheck;
     }
     
@@ -258,7 +258,7 @@ class Comment {
      *
      * @param number $isDelete            
      */
-    public function setIsDelete($isDelete) {
+    public function setIsDelete($isDelete){
         $this->isDelete = $isDelete;
     }
     
@@ -266,7 +266,7 @@ class Comment {
      *
      * @param \models\blog\date $creationDate            
      */
-    public function setCreationDate($creationDate) {
+    public function setCreationDate($creationDate){
         $this->creationDate = $creationDate;
     }
     
@@ -274,7 +274,7 @@ class Comment {
      *
      * @param \models\blog\date $lastChangedDate            
      */
-    public function setLastChangedDate($lastChangedDate) {
+    public function setLastChangedDate($lastChangedDate){
         $this->lastChangedDate = $lastChangedDate;
     }
 }

@@ -19,7 +19,7 @@ class ZSetReverseRangeByScore extends ZSetRangeByScore {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'ZREVRANGEBYSCORE';
     }
 }

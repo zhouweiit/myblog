@@ -16,7 +16,7 @@ namespace Predis\Cluster\Hash;
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class CRC16 implements HashGeneratorInterface {
-    private static $CCITT_16 = array (
+    private static $CCITT_16 = array(
             0x0000,
             0x1021,
             0x2042,
@@ -278,14 +278,14 @@ class CRC16 implements HashGeneratorInterface {
     /**
      * @ERROR!!!
      */
-    public function hash($value) {
+    public function hash($value){
         // CRC-CCITT-16 algorithm
         $crc = 0;
         $CCITT_16 = self::$CCITT_16;
-        $strlen = strlen ( $value );
+        $strlen = strlen($value);
         
-        for($i = 0; $i < $strlen; $i ++) {
-            $crc = (($crc << 8) ^ $CCITT_16 [($crc >> 8) ^ ord ( $value [$i] )]) & 0xFFFF;
+        for($i = 0; $i < $strlen; $i++) {
+            $crc = (($crc << 8) ^ $CCITT_16[($crc >> 8) ^ ord($value[$i])]) & 0xFFFF;
         }
         
         return $crc;

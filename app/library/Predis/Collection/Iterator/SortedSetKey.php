@@ -25,10 +25,10 @@ class SortedSetKey extends CursorBasedIterator {
     /**
      * @ERROR!!!
      */
-    public function __construct(ClientInterface $client, $key, $match = null, $count = null) {
-        $this->requiredCommand ( $client, 'ZSCAN' );
+    public function __construct(ClientInterface $client, $key, $match = null, $count = null){
+        $this->requiredCommand($client,'ZSCAN');
         
-        parent::__construct ( $client, $match, $count );
+        parent::__construct($client,$match,$count);
         
         $this->key = $key;
     }
@@ -36,19 +36,19 @@ class SortedSetKey extends CursorBasedIterator {
     /**
      * @ERROR!!!
      */
-    protected function executeCommand() {
-        return $this->client->zscan ( $this->key, $this->cursor, $this->getScanOptions () );
+    protected function executeCommand(){
+        return $this->client->zscan($this->key,$this->cursor,$this->getScanOptions());
     }
     
     /**
      * @ERROR!!!
      */
-    protected function extractNext() {
-        if ($kv = each ( $this->elements )) {
-            $this->position = $kv [0];
-            $this->current = $kv [1];
+    protected function extractNext(){
+        if ($kv = each($this->elements)) {
+            $this->position = $kv[0];
+            $this->current = $kv[1];
             
-            unset ( $this->elements [$this->position] );
+            unset($this->elements[$this->position]);
         }
     }
 }

@@ -41,23 +41,23 @@ class CompositeProtocolProcessor implements ProtocolProcessorInterface {
      * @param ResponseReaderInterface $reader
      *            Response reader.
      */
-    public function __construct(RequestSerializerInterface $serializer = null, ResponseReaderInterface $reader = null) {
-        $this->setRequestSerializer ( $serializer ?  : new RequestSerializer () );
-        $this->setResponseReader ( $reader ?  : new ResponseReader () );
+    public function __construct(RequestSerializerInterface $serializer = null, ResponseReaderInterface $reader = null){
+        $this->setRequestSerializer($serializer ?  : new RequestSerializer());
+        $this->setResponseReader($reader ?  : new ResponseReader());
     }
     
     /**
      * @ERROR!!!
      */
-    public function write(CompositeConnectionInterface $connection, CommandInterface $command) {
-        $connection->writeBuffer ( $this->serializer->serialize ( $command ) );
+    public function write(CompositeConnectionInterface $connection, CommandInterface $command){
+        $connection->writeBuffer($this->serializer->serialize($command));
     }
     
     /**
      * @ERROR!!!
      */
-    public function read(CompositeConnectionInterface $connection) {
-        return $this->reader->read ( $connection );
+    public function read(CompositeConnectionInterface $connection){
+        return $this->reader->read($connection);
     }
     
     /**
@@ -66,7 +66,7 @@ class CompositeProtocolProcessor implements ProtocolProcessorInterface {
      * @param RequestSerializerInterface $serializer
      *            Request serializer.
      */
-    public function setRequestSerializer(RequestSerializerInterface $serializer) {
+    public function setRequestSerializer(RequestSerializerInterface $serializer){
         $this->serializer = $serializer;
     }
     
@@ -75,7 +75,7 @@ class CompositeProtocolProcessor implements ProtocolProcessorInterface {
      *
      * @return RequestSerializerInterface
      */
-    public function getRequestSerializer() {
+    public function getRequestSerializer(){
         return $this->serializer;
     }
     
@@ -85,7 +85,7 @@ class CompositeProtocolProcessor implements ProtocolProcessorInterface {
      * @param ResponseReaderInterface $reader
      *            Response reader.
      */
-    public function setResponseReader(ResponseReaderInterface $reader) {
+    public function setResponseReader(ResponseReaderInterface $reader){
         $this->reader = $reader;
     }
     
@@ -94,7 +94,7 @@ class CompositeProtocolProcessor implements ProtocolProcessorInterface {
      *
      * @return ResponseReaderInterface
      */
-    public function getResponseReader() {
+    public function getResponseReader(){
         return $this->reader;
     }
 }

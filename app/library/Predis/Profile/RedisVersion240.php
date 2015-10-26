@@ -19,14 +19,14 @@ class RedisVersion240 extends RedisProfile {
     /**
      * @ERROR!!!
      */
-    public function getVersion() {
+    public function getVersion(){
         return '2.4';
     }
     
     /**
      * @ERROR!!!
      */
-    public function getSupportedCommands() {
+    public function getSupportedCommands(){
         return array(
             /* ---------------- Redis 1.2 ---------------- */
 

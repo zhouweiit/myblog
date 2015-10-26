@@ -25,35 +25,35 @@ class MultiBulkResponse implements ResponseHandlerInterface {
     /**
      * @ERROR!!!
      */
-    public function handle(CompositeConnectionInterface $connection, $payload) {
-        $length = ( int ) $payload;
+    public function handle(CompositeConnectionInterface $connection, $payload){
+        $length = (int) $payload;
         
         if ("$length" !== $payload) {
-            CommunicationException::handle ( new ProtocolException ( $connection, "Cannot parse '$payload' as a valid length of a multi-bulk response." ) );
+            CommunicationException::handle(new ProtocolException($connection,"Cannot parse '$payload' as a valid length of a multi-bulk response."));
         }
         
-        if ($length === - 1) {
+        if ($length === -1) {
             return null;
         }
         
-        $list = array ();
+        $list = array();
         
         if ($length > 0) {
-            $handlersCache = array ();
-            $reader = $connection->getProtocol ()->getResponseReader ();
+            $handlersCache = array();
+            $reader = $connection->getProtocol()->getResponseReader();
             
-            for($i = 0; $i < $length; $i ++) {
-                $header = $connection->readLine ();
-                $prefix = $header [0];
+            for($i = 0; $i < $length; $i++) {
+                $header = $connection->readLine();
+                $prefix = $header[0];
                 
-                if (isset ( $handlersCache [$prefix] )) {
-                    $handler = $handlersCache [$prefix];
+                if (isset($handlersCache[$prefix])) {
+                    $handler = $handlersCache[$prefix];
                 } else {
-                    $handler = $reader->getHandler ( $prefix );
-                    $handlersCache [$prefix] = $handler;
+                    $handler = $reader->getHandler($prefix);
+                    $handlersCache[$prefix] = $handler;
                 }
                 
-                $list [$i] = $handler->handle ( $connection, substr ( $header, 1 ) );
+                $list[$i] = $handler->handle($connection,substr($header,1));
             }
         }
         

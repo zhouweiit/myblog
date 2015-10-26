@@ -26,7 +26,7 @@ class StatusResponse implements ResponseHandlerInterface {
     /**
      * @ERROR!!!
      */
-    public function handle(CompositeConnectionInterface $connection, $payload) {
-        return Status::get ( $payload );
+    public function handle(CompositeConnectionInterface $connection, $payload){
+        return Status::get($payload);
     }
 }

@@ -19,7 +19,7 @@ class ServerEvalSHA extends ServerEval {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'EVALSHA';
     }
     
@@ -28,7 +28,7 @@ class ServerEvalSHA extends ServerEval {
      *
      * @return string SHA1 hash.
      */
-    public function getScriptHash() {
-        return $this->getArgument ( 0 );
+    public function getScriptHash(){
+        return $this->getArgument(0);
     }
 }

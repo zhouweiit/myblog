@@ -88,20 +88,20 @@ class Log {
      * @return void
      * @author zhouwei17
      */
-    public function __construct(Ini $config, $prefixName) {
+    public function __construct(Ini $config, $prefixName){
         $this->config = $config;
-        if (is_dir ( $this->config->application->root . $this->config->log->logDir )) {
+        if (is_dir($this->config->application->root . $this->config->log->logDir)) {
             $this->logDir = $this->config->application->root . $this->config->log->logDir;
         } else {
             $this->logDir = $this->config->application->root . $this->logDir;
         }
-        $this->logLevel = isset ( $config->log->logLevel ) ? intval ( $config->log->logLevel ) : 3;
-        $this->isUseLogFile = isset ( $config->log->isUseLogFile ) ? intval ( $config->log->isUseLogFile ) : 0;
-        $this->isEchoLog = isset ( $config->log->isEchoLog ) ? intval ( $config->log->isEchoLog ) : 0;
+        $this->logLevel = isset($config->log->logLevel) ? intval($config->log->logLevel) : 3;
+        $this->isUseLogFile = isset($config->log->isUseLogFile) ? intval($config->log->isUseLogFile) : 0;
+        $this->isEchoLog = isset($config->log->isEchoLog) ? intval($config->log->isEchoLog) : 0;
         $this->serialNumber = $config->application->serialNumber;
         $this->prefixName = $prefixName;
-        $this->date = date ( 'Y-m-d' );
-        $this->initLogFile ();
+        $this->date = date('Y-m-d');
+        $this->initLogFile();
     }
     
     /**
@@ -110,7 +110,7 @@ class Log {
      * @return void
      * @author zhouwei17
      */
-    private function initLogFile() {
+    private function initLogFile(){
         if (1 !== $this->isUseLogFile) {
             return;
         }
@@ -122,10 +122,10 @@ class Log {
         } else if ($this->logLevel >= 1) {
             $logLevel = Logger::ERROR;
         }
-        $this->fileDebug = new File ( $this->logDir . '/' . $this->prefixName . '_debug.log' );
-        $this->fileInfo = new File ( $this->logDir . '/' . $this->prefixName . '_info.log' );
-        $this->fileError = new File ( $this->logDir . '/' . $this->prefixName . '_error.log' );
-        $this->setLogLevel ( $logLevel );
+        $this->fileDebug = new File($this->logDir . '/' . $this->prefixName . '_debug.log');
+        $this->fileInfo = new File($this->logDir . '/' . $this->prefixName . '_info.log');
+        $this->fileError = new File($this->logDir . '/' . $this->prefixName . '_error.log');
+        $this->setLogLevel($logLevel);
     }
     
     /**
@@ -135,10 +135,10 @@ class Log {
      * @return void
      * @author zhouwei17
      */
-    private function setLogLevel($logLevel) {
-        $this->fileDebug->setLogLevel ( $logLevel );
-        $this->fileInfo->setLogLevel ( $logLevel );
-        $this->fileError->setLogLevel ( $logLevel );
+    private function setLogLevel($logLevel){
+        $this->fileDebug->setLogLevel($logLevel);
+        $this->fileInfo->setLogLevel($logLevel);
+        $this->fileError->setLogLevel($logLevel);
     }
     
     /**
@@ -153,14 +153,14 @@ class Log {
      * @return void
      * @author zhouwei17
      */
-    public function debug($message, array $context = array(), $method = null) {
-        $message = '[' . $this->serialNumber . ']' . StringUtils::transferToString ( $message );
+    public function debug($message, array $context = array(), $method = null){
+        $message = '[' . $this->serialNumber . ']' . StringUtils::transferToString($message);
         if ($method !== null) {
             $message = '[' . $method . ']' . $message;
         }
         if (1 === $this->isUseLogFile) {
-            $message = $this->replaceMessageHolder ( $message, $context );
-            $this->fileDebug->debug ( $message );
+            $message = $this->replaceMessageHolder($message,$context);
+            $this->fileDebug->debug($message);
         }
     }
     
@@ -176,16 +176,16 @@ class Log {
      * @return void
      * @author zhouwei17
      */
-    public function info($message, array $context = array(), $method = null) {
-        $message = '[' . $this->serialNumber . ']' . StringUtils::transferToString ( $message );
+    public function info($message, array $context = array(), $method = null){
+        $message = '[' . $this->serialNumber . ']' . StringUtils::transferToString($message);
         if ($method !== null) {
             $message = '[' . $method . ']' . $message;
         }
         if (1 === $this->isUseLogFile) {
-            $message = $this->replaceMessageHolder ( $message, $context );
-            $this->fileInfo->info ( $message );
+            $message = $this->replaceMessageHolder($message,$context);
+            $this->fileInfo->info($message);
             if ($this->logLevel >= 3) {
-                $this->fileDebug->info ( $message );
+                $this->fileDebug->info($message);
             }
         }
     }
@@ -202,19 +202,19 @@ class Log {
      * @return void
      * @author zhouwei17
      */
-    public function error($message, array $context = array(), $method = null) {
-        $message = '[' . $this->serialNumber . ']' . StringUtils::transferToString ( $message );
+    public function error($message, array $context = array(), $method = null){
+        $message = '[' . $this->serialNumber . ']' . StringUtils::transferToString($message);
         if ($method !== null) {
             $message = '[' . $method . ']' . $message;
         }
         if (1 === $this->isUseLogFile) {
-            $message = $this->replaceMessageHolder ( $message, $context );
-            $this->fileError->error ( $message );
+            $message = $this->replaceMessageHolder($message,$context);
+            $this->fileError->error($message);
             if ($this->logLevel >= 2) {
-                $this->fileInfo->error ( $message );
+                $this->fileInfo->error($message);
             }
             if ($this->logLevel >= 3) {
-                $this->fileDebug->error ( $message );
+                $this->fileDebug->error($message);
             }
         }
     }
@@ -231,11 +231,11 @@ class Log {
      * @return void
      * @author zhouwei17
      */
-    public function echoLog($message, array $context = array(), $method = null) {
+    public function echoLog($message, array $context = array(), $method = null){
         if (1 === $this->isEchoLog) {
-            $message = StringUtils::transferToString ( $message );
+            $message = StringUtils::transferToString($message);
             $message = '[' . $method . ']' . $message;
-            echo $this->replaceMessageHolder ( $message, $context );
+            echo $this->replaceMessageHolder($message,$context);
         }
     }
     
@@ -247,17 +247,17 @@ class Log {
      * @return string
      * @author zhouwei17
      */
-    private function replaceMessageHolder(&$message, array &$context = array()) {
-        $messageArray = explode ( '{}', $message );
-        if (count ( $messageArray ) === 1 || empty ( $context )) {
+    private function replaceMessageHolder(&$message, array &$context = array()){
+        $messageArray = explode('{}',$message);
+        if (count($messageArray) === 1 || empty($context)) {
             return $message;
         }
         foreach ( $messageArray as $key => $value ) {
-            if (count ( $context ) === 0) {
+            if (count($context) === 0) {
                 break;
             }
-            $messageArray [$key] = $value . strval ( StringUtils::transferToString ( array_shift ( $context ) ) );
+            $messageArray[$key] = $value . strval(StringUtils::transferToString(array_shift($context)));
         }
-        return implode ( '', $messageArray );
+        return implode('',$messageArray);
     }
 }

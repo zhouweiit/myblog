@@ -31,13 +31,13 @@ class MultiBulkTuple extends MultiBulk implements OuterIterator {
      * @param MultiBulk $iterator
      *            Inner multibulk response iterator.
      */
-    public function __construct(MultiBulk $iterator) {
-        $this->checkPreconditions ( $iterator );
+    public function __construct(MultiBulk $iterator){
+        $this->checkPreconditions($iterator);
         
-        $this->size = count ( $iterator ) / 2;
+        $this->size = count($iterator) / 2;
         $this->iterator = $iterator;
-        $this->position = $iterator->getPosition ();
-        $this->current = $this->size > 0 ? $this->getValue () : null;
+        $this->position = $iterator->getPosition();
+        $this->current = $this->size > 0 ? $this->getValue() : null;
     }
     
     /**
@@ -49,41 +49,41 @@ class MultiBulkTuple extends MultiBulk implements OuterIterator {
      * @throws \InvalidArgumentException
      * @throws \UnexpectedValueException
      */
-    protected function checkPreconditions(MultiBulk $iterator) {
-        if ($iterator->getPosition () !== 0) {
-            throw new InvalidArgumentException ( 'Cannot initialize a tuple iterator using an already initiated iterator.' );
+    protected function checkPreconditions(MultiBulk $iterator){
+        if ($iterator->getPosition() !== 0) {
+            throw new InvalidArgumentException('Cannot initialize a tuple iterator using an already initiated iterator.');
         }
         
-        if (($size = count ( $iterator )) % 2 !== 0) {
-            throw new UnexpectedValueException ( "Invalid response size for a tuple iterator." );
+        if (($size = count($iterator)) % 2 !== 0) {
+            throw new UnexpectedValueException("Invalid response size for a tuple iterator.");
         }
     }
     
     /**
      * @ERROR!!!
      */
-    public function getInnerIterator() {
+    public function getInnerIterator(){
         return $this->iterator;
     }
     
     /**
      * @ERROR!!!
      */
-    public function __destruct() {
-        $this->iterator->drop ( true );
+    public function __destruct(){
+        $this->iterator->drop(true);
     }
     
     /**
      * @ERROR!!!
      */
-    protected function getValue() {
-        $k = $this->iterator->current ();
-        $this->iterator->next ();
+    protected function getValue(){
+        $k = $this->iterator->current();
+        $this->iterator->next();
         
-        $v = $this->iterator->current ();
-        $this->iterator->next ();
+        $v = $this->iterator->current();
+        $this->iterator->next();
         
-        return array (
+        return array(
                 $k,
                 $v 
         );

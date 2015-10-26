@@ -19,14 +19,14 @@ class KeyRandom extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'RANDOMKEY';
     }
     
     /**
      * @ERROR!!!
      */
-    public function parseResponse($data) {
+    public function parseResponse($data){
         return $data !== '' ? $data : null;
     }
 }

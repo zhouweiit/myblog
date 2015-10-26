@@ -19,14 +19,14 @@ class ServerBackgroundRewriteAOF extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'BGREWRITEAOF';
     }
     
     /**
      * @ERROR!!!
      */
-    public function parseResponse($data) {
+    public function parseResponse($data){
         return $data == 'Background append only file rewriting started';
     }
 }

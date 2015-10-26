@@ -12,8 +12,8 @@ class MathUtils {
      * @return flaot
      * @author zhouwei
      */
-    public static function round($num, $places) {
-        return round ( $num, $places );
+    public static function round($num, $places){
+        return round($num,$places);
     }
 }
 

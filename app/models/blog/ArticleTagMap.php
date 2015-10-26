@@ -45,8 +45,8 @@ class ArticleTagMap {
      * @var date
      */
     private $lastChangedDate;
-    public static function columnMap() {
-        return array (
+    public static function columnMap(){
+        return array(
             'id' => 'id',
             'article_id' => 'articleId',
             'tag_id' => 'tagId',
@@ -60,7 +60,7 @@ class ArticleTagMap {
      *
      * @return the $id
      */
-    public function getId() {
+    public function getId(){
         return $this->id;
     }
     
@@ -68,7 +68,7 @@ class ArticleTagMap {
      *
      * @return the $articleId
      */
-    public function getArticleId() {
+    public function getArticleId(){
         return $this->articleId;
     }
     
@@ -76,7 +76,7 @@ class ArticleTagMap {
      *
      * @return the $tagId
      */
-    public function getTagId() {
+    public function getTagId(){
         return $this->tagId;
     }
     
@@ -84,7 +84,7 @@ class ArticleTagMap {
      *
      * @return the $isDelete
      */
-    public function getIsDelete() {
+    public function getIsDelete(){
         return $this->isDelete;
     }
     
@@ -92,7 +92,7 @@ class ArticleTagMap {
      *
      * @return the $creationDate
      */
-    public function getCreationDate() {
+    public function getCreationDate(){
         return $this->creationDate;
     }
     
@@ -100,7 +100,7 @@ class ArticleTagMap {
      *
      * @return the $lastChangedDate
      */
-    public function getLastChangedDate() {
+    public function getLastChangedDate(){
         return $this->lastChangedDate;
     }
     
@@ -108,7 +108,7 @@ class ArticleTagMap {
      *
      * @param number $id            
      */
-    public function setId($id) {
+    public function setId($id){
         $this->id = $id;
     }
     
@@ -116,7 +116,7 @@ class ArticleTagMap {
      *
      * @param number $articleId            
      */
-    public function setArticleId($articleId) {
+    public function setArticleId($articleId){
         $this->articleId = $articleId;
     }
     
@@ -124,7 +124,7 @@ class ArticleTagMap {
      *
      * @param number $tagId            
      */
-    public function setTagId($tagId) {
+    public function setTagId($tagId){
         $this->tagId = $tagId;
     }
     
@@ -132,7 +132,7 @@ class ArticleTagMap {
      *
      * @param number $isDelete            
      */
-    public function setIsDelete($isDelete) {
+    public function setIsDelete($isDelete){
         $this->isDelete = $isDelete;
     }
     
@@ -140,7 +140,7 @@ class ArticleTagMap {
      *
      * @param \models\blog\date $creationDate            
      */
-    public function setCreationDate($creationDate) {
+    public function setCreationDate($creationDate){
         $this->creationDate = $creationDate;
     }
     
@@ -148,7 +148,7 @@ class ArticleTagMap {
      *
      * @param \models\blog\date $lastChangedDate            
      */
-    public function setLastChangedDate($lastChangedDate) {
+    public function setLastChangedDate($lastChangedDate){
         $this->lastChangedDate = $lastChangedDate;
     }
 }

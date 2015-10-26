@@ -10,6 +10,6 @@ use Phalcon\Mvc\Controller;
  * @author zhouwei
  */
 abstract class ControllerBase extends Controller {
-    protected function initialize() {
+    protected function initialize(){
     }
 }

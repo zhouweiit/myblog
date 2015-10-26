@@ -25,9 +25,9 @@ class ArticleDao extends DaoBase {
      * @return void
      * @author zhouwei
      */
-    protected function init() {
-        parent::init ();
-        $this->persistent = $this->di->get ( 'blogPersistent' );
+    protected function init(){
+        parent::init();
+        $this->persistent = $this->di->get('blogPersistent');
     }
     
     /**
@@ -44,27 +44,27 @@ class ArticleDao extends DaoBase {
      * @return array
      * @author zhouwei
      */
-    public function listByPage($startdate = null, $enddate = null, array $articleIds = null, $categoryIds = null, $orderBy = 1, $page = 0, $pageSize = 10, $count = true) {
+    public function listByPage($startdate = null, $enddate = null, array $articleIds = null, $categoryIds = null, $orderBy = 1, $page = 0, $pageSize = 10, $count = true){
         if ($count) {
             $sql = 'select count(*) as count from article where is_delete = 0';
         } else {
             $sql = 'select * from article where is_delete = 0';
         }
-        $bind = array ();
-        if (isset ( $startdate ) && isset ( $enddate )) {
+        $bind = array();
+        if (isset($startdate) && isset($enddate)) {
             $sql .= ' and release_datetime >= ? and release_datetime <= ?';
-            $bind [] = $startdate;
-            $bind [] = $enddate;
+            $bind[] = $startdate;
+            $bind[] = $enddate;
         }
-        if (isset ( $articleIds ) && ! empty ( $articleIds )) {
-            $inSqlCondition = SqlUtils::getInSqlCondition ( $articleIds );
-            $bind = array_merge ( $bind, $inSqlCondition ['bindArray'] );
-            $sql .= ' and id in (' . $inSqlCondition ['conditinSql'] . ')';
+        if (isset($articleIds) && !empty($articleIds)) {
+            $inSqlCondition = SqlUtils::getInSqlCondition($articleIds);
+            $bind = array_merge($bind,$inSqlCondition['bindArray']);
+            $sql .= ' and id in (' . $inSqlCondition['conditinSql'] . ')';
         }
-        if (isset ( $categoryIds ) && ! empty ( $categoryIds )) {
-            $inSqlCondition = SqlUtils::getInSqlCondition ( $categoryIds );
-            $bind = array_merge ( $bind, $inSqlCondition ['bindArray'] );
-            $sql .= ' and category_id in (' . $inSqlCondition ['conditinSql'] . ')';
+        if (isset($categoryIds) && !empty($categoryIds)) {
+            $inSqlCondition = SqlUtils::getInSqlCondition($categoryIds);
+            $bind = array_merge($bind,$inSqlCondition['bindArray']);
+            $sql .= ' and category_id in (' . $inSqlCondition['conditinSql'] . ')';
         }
         $order = null;
         if ($orderBy == 2) {
@@ -77,13 +77,13 @@ class ArticleDao extends DaoBase {
             $order = 'id';
         }
         if ($count) {
-            $result = $this->persistent->query ( $sql, $bind );
-            return $result->fetchOne ( 'models\common\SpecialColumn' );
+            $result = $this->persistent->query($sql,$bind);
+            return $result->fetchOne('models\common\SpecialColumn');
         } else {
             $sql .= ' order by ' . $order;
             $sql .= ' limit ' . $page * $pageSize . ',' . $pageSize;
-            $result = $this->persistent->query ( $sql, $bind );
-            return $result->fetchAll ( $this->className );
+            $result = $this->persistent->query($sql,$bind);
+            return $result->fetchAll($this->className);
         }
     }
     
@@ -98,7 +98,7 @@ class ArticleDao extends DaoBase {
      * @return array
      * @author zhouwei
      */
-    public function listByContentPage($content, $orderBy = 1, $page = 0, $pageSize = 10, $count = true) {
+    public function listByContentPage($content, $orderBy = 1, $page = 0, $pageSize = 10, $count = true){
         if ($count) {
             $sql = 'select count(*) as count from article where is_delete = 0';
         } else {
@@ -106,7 +106,7 @@ class ArticleDao extends DaoBase {
         }
         
         $sql .= ' and (title like :title or content like :content)';
-        $bind = array (
+        $bind = array(
             ':title' => '%' . $content . '%',
             ':content' => '%' . $content . '%' 
         );
@@ -122,13 +122,13 @@ class ArticleDao extends DaoBase {
             $order = 'id';
         }
         if ($count) {
-            $result = $this->persistent->query ( $sql, $bind );
-            return $result->fetchOne ( 'models\common\SpecialColumn' );
+            $result = $this->persistent->query($sql,$bind);
+            return $result->fetchOne('models\common\SpecialColumn');
         } else {
             $sql .= ' order by ' . $order;
             $sql .= ' limit ' . $page * $pageSize . ',' . $pageSize;
-            $result = $this->persistent->query ( $sql, $bind );
-            return $result->fetchAll ( $this->className );
+            $result = $this->persistent->query($sql,$bind);
+            return $result->fetchAll($this->className);
         }
     }
     
@@ -140,10 +140,10 @@ class ArticleDao extends DaoBase {
      * @return array
      * @author zhouwei
      */
-    public function newestByLimit($limit) {
+    public function newestByLimit($limit){
         $sql = 'select * from article where is_delete = 0 order by release_datetime,creation_date limit ' . $limit;
-        $result = $this->persistent->query ( $sql );
-        return $result->fetchAll ( $this->className );
+        $result = $this->persistent->query($sql);
+        return $result->fetchAll($this->className);
     }
     
     /**
@@ -153,13 +153,13 @@ class ArticleDao extends DaoBase {
      * @return array
      * @author zhouwei
      */
-    public function getById($id) {
+    public function getById($id){
         $sql = 'select * from article where id = :id and is_delete = 0';
-        $bind = array (
+        $bind = array(
             ':id' => $id 
         );
-        $result = $this->persistent->query ( $sql, $bind );
-        return $result->fetchOne ( $this->className );
+        $result = $this->persistent->query($sql,$bind);
+        return $result->fetchOne($this->className);
     }
     
     /**
@@ -171,7 +171,7 @@ class ArticleDao extends DaoBase {
      * @return array
      * @author zhouwei
      */
-    public function getByIds(array $ids, $orderBy = 1) {
+    public function getByIds(array $ids, $orderBy = 1){
         $order = null;
         if ($orderBy == 2) {
             $order = 'read_times';
@@ -182,11 +182,11 @@ class ArticleDao extends DaoBase {
         } else {
             $order = 'id';
         }
-        $inSqlCondition = SqlUtils::getInSqlCondition ( $ids );
-        $bind = $inSqlCondition ['bindArray'];
-        $sql = 'select * from article where id in (' . $inSqlCondition ['conditinSql'] . ') and is_delete = 0 order by ' . $order;
-        $result = $this->persistent->query ( $sql, $bind );
-        return $result->fetchAll ( $this->className );
+        $inSqlCondition = SqlUtils::getInSqlCondition($ids);
+        $bind = $inSqlCondition['bindArray'];
+        $sql = 'select * from article where id in (' . $inSqlCondition['conditinSql'] . ') and is_delete = 0 order by ' . $order;
+        $result = $this->persistent->query($sql,$bind);
+        return $result->fetchAll($this->className);
     }
     
     /**
@@ -195,9 +195,9 @@ class ArticleDao extends DaoBase {
      * @return array
      * @author zhouwei
      */
-    public function getAllAticle() {
+    public function getAllAticle(){
         $sql = 'select id,title,category_id,comment_times,read_times,release_datetime from article where is_delete = 0 order by release_datetime desc';
-        $result = $this->persistent->query ( $sql );
-        return $result->fetchAll ( $this->className );
+        $result = $this->persistent->query($sql);
+        return $result->fetchAll($this->className);
     }
 }

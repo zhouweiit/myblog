@@ -19,14 +19,14 @@ class StringSetMultiplePreserve extends StringSetMultiple {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'MSETNX';
     }
     
     /**
      * @ERROR!!!
      */
-    public function parseResponse($data) {
-        return ( bool ) $data;
+    public function parseResponse($data){
+        return (bool) $data;
     }
 }

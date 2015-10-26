@@ -19,7 +19,7 @@ class SetUnion extends SetIntersection {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'SUNION';
     }
 }

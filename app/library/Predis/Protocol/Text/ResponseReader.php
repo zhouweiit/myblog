@@ -26,8 +26,8 @@ class ResponseReader implements ResponseReaderInterface {
     
     /**
      */
-    public function __construct() {
-        $this->handlers = $this->getDefaultHandlers ();
+    public function __construct(){
+        $this->handlers = $this->getDefaultHandlers();
     }
     
     /**
@@ -35,13 +35,13 @@ class ResponseReader implements ResponseReaderInterface {
      *
      * @return array
      */
-    protected function getDefaultHandlers() {
-        return array (
-                '+' => new Handler\StatusResponse (),
-                '-' => new Handler\ErrorResponse (),
-                ':' => new Handler\IntegerResponse (),
-                '$' => new Handler\BulkResponse (),
-                '*' => new Handler\MultiBulkResponse () 
+    protected function getDefaultHandlers(){
+        return array(
+                '+' => new Handler\StatusResponse(),
+                '-' => new Handler\ErrorResponse(),
+                ':' => new Handler\IntegerResponse(),
+                '$' => new Handler\BulkResponse(),
+                '*' => new Handler\MultiBulkResponse() 
         );
     }
     
@@ -53,8 +53,8 @@ class ResponseReader implements ResponseReaderInterface {
      * @param Handler\ResponseHandlerInterface $handler
      *            Response handler.
      */
-    public function setHandler($prefix, Handler\ResponseHandlerInterface $handler) {
-        $this->handlers [$prefix] = $handler;
+    public function setHandler($prefix, Handler\ResponseHandlerInterface $handler){
+        $this->handlers[$prefix] = $handler;
     }
     
     /**
@@ -65,9 +65,9 @@ class ResponseReader implements ResponseReaderInterface {
      *            
      * @return Handler\ResponseHandlerInterface
      */
-    public function getHandler($prefix) {
-        if (isset ( $this->handlers [$prefix] )) {
-            return $this->handlers [$prefix];
+    public function getHandler($prefix){
+        if (isset($this->handlers[$prefix])) {
+            return $this->handlers[$prefix];
         }
         
         return null;
@@ -76,20 +76,20 @@ class ResponseReader implements ResponseReaderInterface {
     /**
      * @ERROR!!!
      */
-    public function read(CompositeConnectionInterface $connection) {
-        $header = $connection->readLine ();
+    public function read(CompositeConnectionInterface $connection){
+        $header = $connection->readLine();
         
         if ($header === '') {
-            $this->onProtocolError ( $connection, 'Unexpected empty reponse header.' );
+            $this->onProtocolError($connection,'Unexpected empty reponse header.');
         }
         
-        $prefix = $header [0];
+        $prefix = $header[0];
         
-        if (! isset ( $this->handlers [$prefix] )) {
-            $this->onProtocolError ( $connection, "Unknown response prefix: '$prefix'." );
+        if (!isset($this->handlers[$prefix])) {
+            $this->onProtocolError($connection,"Unknown response prefix: '$prefix'.");
         }
         
-        $payload = $this->handlers [$prefix]->handle ( $connection, substr ( $header, 1 ) );
+        $payload = $this->handlers[$prefix]->handle($connection,substr($header,1));
         
         return $payload;
     }
@@ -103,7 +103,7 @@ class ResponseReader implements ResponseReaderInterface {
      * @param string $message
      *            Error message.
      */
-    protected function onProtocolError(CompositeConnectionInterface $connection, $message) {
-        CommunicationException::handle ( new ProtocolException ( $connection, $message ) );
+    protected function onProtocolError(CompositeConnectionInterface $connection, $message){
+        CommunicationException::handle(new ProtocolException($connection,$message));
     }
 }

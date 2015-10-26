@@ -17,8 +17,8 @@ class SpecialColumn {
      * @var int
      */
     private $count;
-    public static function columnMap() {
-        return array (
+    public static function columnMap(){
+        return array(
             'count' => 'count' 
         );
     }
@@ -27,7 +27,7 @@ class SpecialColumn {
      *
      * @return the $count
      */
-    public function getCount() {
+    public function getCount(){
         return $this->count;
     }
     
@@ -35,7 +35,7 @@ class SpecialColumn {
      *
      * @param number $count            
      */
-    public function setCount($count) {
+    public function setCount($count){
         $this->count = $count;
     }
 }

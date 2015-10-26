@@ -29,26 +29,26 @@ class ReplicationOption implements OptionInterface {
      *       discussed here https://bugs.php.net/bug.php?id=49510 and different
      *       behaviours when encountering NULL values on PHP 5.3.
      */
-    public function filter(OptionsInterface $options, $value) {
+    public function filter(OptionsInterface $options, $value){
         if ($value instanceof ReplicationInterface) {
             return $value;
         }
         
-        if (is_bool ( $value ) || $value === null) {
-            return $value ? $this->getDefault ( $options ) : null;
+        if (is_bool($value) || $value === null) {
+            return $value ? $this->getDefault($options) : null;
         }
         
-        if (! is_object ( $value ) && null !== $asbool = filter_var ( $value, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE )) {
-            return $asbool ? $this->getDefault ( $options ) : null;
+        if (!is_object($value) && null !== $asbool = filter_var($value,FILTER_VALIDATE_BOOLEAN,FILTER_NULL_ON_FAILURE)) {
+            return $asbool ? $this->getDefault($options) : null;
         }
         
-        throw new InvalidArgumentException ( "An instance of type 'Predis\Connection\Aggregate\ReplicationInterface' was expected." );
+        throw new InvalidArgumentException("An instance of type 'Predis\Connection\Aggregate\ReplicationInterface' was expected.");
     }
     
     /**
      * @ERROR!!!
      */
-    public function getDefault(OptionsInterface $options) {
-        return new MasterSlaveReplication ();
+    public function getDefault(OptionsInterface $options){
+        return new MasterSlaveReplication();
     }
 }

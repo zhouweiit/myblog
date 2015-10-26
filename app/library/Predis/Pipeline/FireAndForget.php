@@ -22,13 +22,13 @@ class FireAndForget extends Pipeline {
     /**
      * @ERROR!!!
      */
-    protected function executePipeline(ConnectionInterface $connection, SplQueue $commands) {
-        while ( ! $commands->isEmpty () ) {
-            $connection->writeRequest ( $commands->dequeue () );
+    protected function executePipeline(ConnectionInterface $connection, SplQueue $commands){
+        while ( !$commands->isEmpty() ) {
+            $connection->writeRequest($commands->dequeue());
         }
         
-        $connection->disconnect ();
+        $connection->disconnect();
         
-        return array ();
+        return array();
     }
 }

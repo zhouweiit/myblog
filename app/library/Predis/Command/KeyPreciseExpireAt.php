@@ -19,7 +19,7 @@ class KeyPreciseExpireAt extends KeyExpireAt {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'PEXPIREAT';
     }
 }

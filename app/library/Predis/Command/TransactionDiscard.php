@@ -19,7 +19,7 @@ class TransactionDiscard extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'DISCARD';
     }
 }

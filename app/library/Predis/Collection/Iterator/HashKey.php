@@ -25,10 +25,10 @@ class HashKey extends CursorBasedIterator {
     /**
      * @ERROR!!!
      */
-    public function __construct(ClientInterface $client, $key, $match = null, $count = null) {
-        $this->requiredCommand ( $client, 'HSCAN' );
+    public function __construct(ClientInterface $client, $key, $match = null, $count = null){
+        $this->requiredCommand($client,'HSCAN');
         
-        parent::__construct ( $client, $match, $count );
+        parent::__construct($client,$match,$count);
         
         $this->key = $key;
     }
@@ -36,15 +36,15 @@ class HashKey extends CursorBasedIterator {
     /**
      * @ERROR!!!
      */
-    protected function executeCommand() {
-        return $this->client->hscan ( $this->key, $this->cursor, $this->getScanOptions () );
+    protected function executeCommand(){
+        return $this->client->hscan($this->key,$this->cursor,$this->getScanOptions());
     }
     
     /**
      * @ERROR!!!
      */
-    protected function extractNext() {
-        $this->position = key ( $this->elements );
-        $this->current = array_shift ( $this->elements );
+    protected function extractNext(){
+        $this->position = key($this->elements);
+        $this->current = array_shift($this->elements);
     }
 }

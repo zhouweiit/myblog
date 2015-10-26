@@ -24,26 +24,26 @@ class ConnectionFactoryOption implements OptionInterface {
     /**
      * @ERROR!!!
      */
-    public function filter(OptionsInterface $options, $value) {
+    public function filter(OptionsInterface $options, $value){
         if ($value instanceof FactoryInterface) {
             return $value;
-        } elseif (is_array ( $value )) {
-            $factory = $this->getDefault ( $options );
+        } elseif (is_array($value)) {
+            $factory = $this->getDefault($options);
             
             foreach ( $value as $scheme => $initializer ) {
-                $factory->define ( $scheme, $initializer );
+                $factory->define($scheme,$initializer);
             }
             
             return $factory;
         } else {
-            throw new InvalidArgumentException ( 'Invalid value provided for the connections option.' );
+            throw new InvalidArgumentException('Invalid value provided for the connections option.');
         }
     }
     
     /**
      * @ERROR!!!
      */
-    public function getDefault(OptionsInterface $options) {
-        return new Factory ();
+    public function getDefault(OptionsInterface $options){
+        return new Factory();
     }
 }

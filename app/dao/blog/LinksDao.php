@@ -24,9 +24,9 @@ class LinksDao extends DaoBase {
      * @return void
      * @author zhouwei
      */
-    protected function init() {
-        parent::init ();
-        $this->persistent = $this->di->get ( 'blogPersistent' );
+    protected function init(){
+        parent::init();
+        $this->persistent = $this->di->get('blogPersistent');
     }
     
     /**
@@ -35,9 +35,9 @@ class LinksDao extends DaoBase {
      * @return array
      * @author zhouwei
      */
-    public function getAllLinks() {
+    public function getAllLinks(){
         $sql = 'select * from links where is_delete = 0';
-        $result = $this->persistent->query ( $sql );
-        return $result->fetchAll ( $this->className );
+        $result = $this->persistent->query($sql);
+        return $result->fetchAll($this->className);
     }
 }

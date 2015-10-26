@@ -19,18 +19,18 @@ class ServerInfoV26x extends ServerInfo {
     /**
      * @ERROR!!!
      */
-    public function parseResponse($data) {
+    public function parseResponse($data){
         if ($data === '') {
-            return array ();
+            return array();
         }
         
-        $info = array ();
+        $info = array();
         
         $current = null;
-        $infoLines = preg_split ( '/\r?\n/', $data );
+        $infoLines = preg_split('/\r?\n/',$data);
         
-        if (isset ( $infoLines [0] ) && $infoLines [0] [0] !== '#') {
-            return parent::parseResponse ( $data );
+        if (isset($infoLines[0]) && $infoLines[0][0] !== '#') {
+            return parent::parseResponse($data);
         }
         
         foreach ( $infoLines as $row ) {
@@ -38,14 +38,14 @@ class ServerInfoV26x extends ServerInfo {
                 continue;
             }
             
-            if (preg_match ( '/^# (\w+)$/', $row, $matches )) {
-                $info [$matches [1]] = array ();
-                $current = &$info [$matches [1]];
+            if (preg_match('/^# (\w+)$/',$row,$matches)) {
+                $info[$matches[1]] = array();
+                $current = &$info[$matches[1]];
                 continue;
             }
             
-            list ( $k, $v ) = $this->parseRow ( $row );
-            $current [$k] = $v;
+            list($k,$v) = $this->parseRow($row);
+            $current[$k] = $v;
         }
         
         return $info;

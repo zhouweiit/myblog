@@ -19,14 +19,14 @@ class KeyExists extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'EXISTS';
     }
     
     /**
      * @ERROR!!!
      */
-    public function parseResponse($data) {
-        return ( bool ) $data;
+    public function parseResponse($data){
+        return (bool) $data;
     }
 }

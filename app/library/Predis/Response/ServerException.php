@@ -23,8 +23,8 @@ class ServerException extends PredisException implements ErrorInterface {
      *
      * @return string
      */
-    public function getErrorType() {
-        list ( $errorType, ) = explode ( ' ', $this->getMessage (), 2 );
+    public function getErrorType(){
+        list($errorType,) = explode(' ',$this->getMessage(),2);
         
         return $errorType;
     }
@@ -34,7 +34,7 @@ class ServerException extends PredisException implements ErrorInterface {
      *
      * @return Error
      */
-    public function toErrorResponse() {
-        return new Error ( $this->getMessage () );
+    public function toErrorResponse(){
+        return new Error($this->getMessage());
     }
 }

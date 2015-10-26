@@ -19,7 +19,7 @@ class PubSubSubscribeByPattern extends PubSubSubscribe {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'PSUBSCRIBE';
     }
 }

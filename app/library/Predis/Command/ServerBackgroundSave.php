@@ -19,14 +19,14 @@ class ServerBackgroundSave extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'BGSAVE';
     }
     
     /**
      * @ERROR!!!
      */
-    public function parseResponse($data) {
+    public function parseResponse($data){
         return $data === 'Background saving started' ? true : $data;
     }
 }

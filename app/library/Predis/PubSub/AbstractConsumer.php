@@ -34,8 +34,8 @@ abstract class AbstractConsumer implements Iterator {
     /**
      * Automatically stops the consumer when the garbage collector kicks in.
      */
-    public function __destruct() {
-        $this->stop ( true );
+    public function __destruct(){
+        $this->stop(true);
     }
     
     /**
@@ -46,7 +46,7 @@ abstract class AbstractConsumer implements Iterator {
      *            
      * @return bool
      */
-    protected function isFlagSet($value) {
+    protected function isFlagSet($value){
         return ($this->statusFlags & $value) === $value;
     }
     
@@ -58,7 +58,7 @@ abstract class AbstractConsumer implements Iterator {
      */
     public function subscribe($channel /*, ... */)
     {
-        $this->writeRequest ( self::SUBSCRIBE, func_get_args () );
+        $this->writeRequest(self::SUBSCRIBE,func_get_args());
         $this->statusFlags |= self::STATUS_SUBSCRIBED;
     }
     
@@ -70,7 +70,7 @@ abstract class AbstractConsumer implements Iterator {
      */
     public function unsubscribe(/* ... */)
     {
-        $this->writeRequest ( self::UNSUBSCRIBE, func_get_args () );
+        $this->writeRequest(self::UNSUBSCRIBE,func_get_args());
     }
     
     /**
@@ -81,7 +81,7 @@ abstract class AbstractConsumer implements Iterator {
      */
     public function psubscribe($pattern /* ... */)
     {
-        $this->writeRequest ( self::PSUBSCRIBE, func_get_args () );
+        $this->writeRequest(self::PSUBSCRIBE,func_get_args());
         $this->statusFlags |= self::STATUS_PSUBSCRIBED;
     }
     
@@ -93,7 +93,7 @@ abstract class AbstractConsumer implements Iterator {
      */
     public function punsubscribe(/* ... */)
     {
-        $this->writeRequest ( self::PUNSUBSCRIBE, func_get_args () );
+        $this->writeRequest(self::PUNSUBSCRIBE,func_get_args());
     }
     
     /**
@@ -103,10 +103,10 @@ abstract class AbstractConsumer implements Iterator {
      * @param string $payload
      *            Optional PING payload.
      */
-    public function ping($payload = null) {
-        $this->writeRequest ( 'PING', array (
+    public function ping($payload = null){
+        $this->writeRequest('PING',array(
                 $payload 
-        ) );
+        ));
     }
     
     /**
@@ -119,24 +119,24 @@ abstract class AbstractConsumer implements Iterator {
      *            
      * @return bool Returns false when there are no pending messages.
      */
-    public function stop($drop = false) {
-        if (! $this->valid ()) {
+    public function stop($drop = false){
+        if (!$this->valid()) {
             return false;
         }
         
         if ($drop) {
-            $this->invalidate ();
-            $this->disconnect ();
+            $this->invalidate();
+            $this->disconnect();
         } else {
-            if ($this->isFlagSet ( self::STATUS_SUBSCRIBED )) {
-                $this->unsubscribe ();
+            if ($this->isFlagSet(self::STATUS_SUBSCRIBED)) {
+                $this->unsubscribe();
             }
-            if ($this->isFlagSet ( self::STATUS_PSUBSCRIBED )) {
-                $this->punsubscribe ();
+            if ($this->isFlagSet(self::STATUS_PSUBSCRIBED)) {
+                $this->punsubscribe();
             }
         }
         
-        return ! $drop;
+        return !$drop;
     }
     
     /**
@@ -157,7 +157,7 @@ abstract class AbstractConsumer implements Iterator {
     /**
      * @ERROR!!!
      */
-    public function rewind() {
+    public function rewind(){
         // NOOP
     }
     
@@ -167,23 +167,23 @@ abstract class AbstractConsumer implements Iterator {
      *
      * @return array
      */
-    public function current() {
-        return $this->getValue ();
+    public function current(){
+        return $this->getValue();
     }
     
     /**
      * @ERROR!!!
      */
-    public function key() {
+    public function key(){
         return $this->position;
     }
     
     /**
      * @ERROR!!!
      */
-    public function next() {
-        if ($this->valid ()) {
-            $this->position ++;
+    public function next(){
+        if ($this->valid()) {
+            $this->position++;
         }
         
         return $this->position;
@@ -194,8 +194,8 @@ abstract class AbstractConsumer implements Iterator {
      *
      * @return bool
      */
-    public function valid() {
-        $isValid = $this->isFlagSet ( self::STATUS_VALID );
+    public function valid(){
+        $isValid = $this->isFlagSet(self::STATUS_VALID);
         $subscriptionFlags = self::STATUS_SUBSCRIBED | self::STATUS_PSUBSCRIBED;
         $hasSubscriptions = ($this->statusFlags & $subscriptionFlags) > 0;
         
@@ -205,7 +205,7 @@ abstract class AbstractConsumer implements Iterator {
     /**
      * Resets the state of the consumer.
      */
-    protected function invalidate() {
+    protected function invalidate(){
         $this->statusFlags = 0; // 0b0000;
     }
     

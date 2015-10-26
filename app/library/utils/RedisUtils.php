@@ -23,24 +23,24 @@ class RedisUtils {
      * @return string
      * @author zhouwei
      */
-    public static function getRedisKey($redisKey, $retainKey = null, $keys = null) {
-        $args = func_get_args ();
+    public static function getRedisKey($redisKey, $retainKey = null, $keys = null){
+        $args = func_get_args();
         $retainKey = $retainKey === null ? '' : $retainKey;
-        unset ( $args [0], $args [1] );
+        unset($args[0],$args[1]);
         $otherKesStr = '';
-        if (! empty ( $args )) {
+        if (!empty($args)) {
             foreach ( $args as $key => $value ) {
-                self::checkIsOrHaveObject ( $value );
-                if (is_array ( $value )) {
-                    $value = self::getArrayToString ( $value );
+                self::checkIsOrHaveObject($value);
+                if (is_array($value)) {
+                    $value = self::getArrayToString($value);
                 }
-                $args [$key] = strval ( $value );
+                $args[$key] = strval($value);
             }
-            sort ( $args );
-            if (intval ( $redisKey->ismd5 ) === 1) {
-                $otherKesStr = md5 ( implode ( '', $args ) );
+            sort($args);
+            if (intval($redisKey->ismd5) === 1) {
+                $otherKesStr = md5(implode('',$args));
             } else {
-                $otherKesStr = implode ( '', $args );
+                $otherKesStr = implode('',$args);
             }
         }
         return $redisKey->key . RedisUtils::KEY_SEPERATOR . $retainKey . RedisUtils::KEY_SEPERATOR . $otherKesStr;
@@ -53,15 +53,15 @@ class RedisUtils {
      * @return string
      * @author zhouwei
      */
-    private static function getArrayToString(array $array) {
+    private static function getArrayToString(array $array){
         foreach ( $array as $key => $value ) {
-            if (is_array ( $value )) {
-                $value = self::getArrayToString ( $value );
+            if (is_array($value)) {
+                $value = self::getArrayToString($value);
             }
-            $array [$key] = strval ( $value );
+            $array[$key] = strval($value);
         }
-        sort ( $array );
-        return implode ( '', $array );
+        sort($array);
+        return implode('',$array);
     }
     
     /**
@@ -72,12 +72,12 @@ class RedisUtils {
      * @return void
      * @author zhouwei
      */
-    private static function checkIsOrHaveObject($value) {
-        if (is_object ( $value )) {
-            throw new \Exception ( 'rediskey 不能含有对象' );
-        } else if (is_array ( $value )) {
+    private static function checkIsOrHaveObject($value){
+        if (is_object($value)) {
+            throw new \Exception('rediskey 不能含有对象');
+        } else if (is_array($value)) {
             foreach ( $value as $v ) {
-                self::checkIsOrHaveObject ( $v );
+                self::checkIsOrHaveObject($v);
             }
         }
     }

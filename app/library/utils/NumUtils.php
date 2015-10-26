@@ -12,8 +12,8 @@ class NumUtils {
      * @return number
      * @author zhouwei
      */
-    public static function getNullDefault($num, $default = 0) {
-        if (isset ( $num )) {
+    public static function getNullDefault($num, $default = 0){
+        if (isset($num)) {
             return $num;
         }
         return $default;

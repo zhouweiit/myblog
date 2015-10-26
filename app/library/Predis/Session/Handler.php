@@ -34,49 +34,49 @@ class Handler implements SessionHandlerInterface {
      * @param array $options
      *            Session handler options.
      */
-    public function __construct(ClientInterface $client, array $options = array()) {
+    public function __construct(ClientInterface $client, array $options = array()){
         $this->client = $client;
         
-        if (isset ( $options ['gc_maxlifetime'] )) {
-            $this->ttl = ( int ) $options ['gc_maxlifetime'];
+        if (isset($options['gc_maxlifetime'])) {
+            $this->ttl = (int) $options['gc_maxlifetime'];
         } else {
-            $this->ttl = ini_get ( 'session.gc_maxlifetime' );
+            $this->ttl = ini_get('session.gc_maxlifetime');
         }
     }
     
     /**
      * Registers this instance as the current session handler.
      */
-    public function register() {
-        if (version_compare ( PHP_VERSION, '5.4.0' ) >= 0) {
-            session_set_save_handler ( $this, true );
+    public function register(){
+        if (version_compare(PHP_VERSION,'5.4.0') >= 0) {
+            session_set_save_handler($this,true);
         } else {
-            session_set_save_handler ( array (
+            session_set_save_handler(array(
                     $this,
                     'open' 
-            ), array (
+            ),array(
                     $this,
                     'close' 
-            ), array (
+            ),array(
                     $this,
                     'read' 
-            ), array (
+            ),array(
                     $this,
                     'write' 
-            ), array (
+            ),array(
                     $this,
                     'destroy' 
-            ), array (
+            ),array(
                     $this,
                     'gc' 
-            ) );
+            ));
         }
     }
     
     /**
      * @ERROR!!!
      */
-    public function open($save_path, $session_id) {
+    public function open($save_path, $session_id){
         // NOOP
         return true;
     }
@@ -84,7 +84,7 @@ class Handler implements SessionHandlerInterface {
     /**
      * @ERROR!!!
      */
-    public function close() {
+    public function close(){
         // NOOP
         return true;
     }
@@ -92,7 +92,7 @@ class Handler implements SessionHandlerInterface {
     /**
      * @ERROR!!!
      */
-    public function gc($maxlifetime) {
+    public function gc($maxlifetime){
         // NOOP
         return true;
     }
@@ -100,8 +100,8 @@ class Handler implements SessionHandlerInterface {
     /**
      * @ERROR!!!
      */
-    public function read($session_id) {
-        if ($data = $this->client->get ( $session_id )) {
+    public function read($session_id){
+        if ($data = $this->client->get($session_id)) {
             return $data;
         }
         
@@ -110,8 +110,8 @@ class Handler implements SessionHandlerInterface {
     /**
      * @ERROR!!!
      */
-    public function write($session_id, $session_data) {
-        $this->client->setex ( $session_id, $this->ttl, $session_data );
+    public function write($session_id, $session_data){
+        $this->client->setex($session_id,$this->ttl,$session_data);
         
         return true;
     }
@@ -119,8 +119,8 @@ class Handler implements SessionHandlerInterface {
     /**
      * @ERROR!!!
      */
-    public function destroy($session_id) {
-        $this->client->del ( $session_id );
+    public function destroy($session_id){
+        $this->client->del($session_id);
         
         return true;
     }
@@ -130,7 +130,7 @@ class Handler implements SessionHandlerInterface {
      *
      * @return ClientInterface
      */
-    public function getClient() {
+    public function getClient(){
         return $this->client;
     }
     
@@ -139,7 +139,7 @@ class Handler implements SessionHandlerInterface {
      *
      * @return int
      */
-    public function getMaxLifeTime() {
+    public function getMaxLifeTime(){
         return $this->ttl;
     }
 }

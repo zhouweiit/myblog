@@ -45,8 +45,8 @@ class Links {
      * @var date
      */
     private $lastChangedDate;
-    public static function columnMap() {
-        return array (
+    public static function columnMap(){
+        return array(
             'id' => 'id',
             'url' => 'url',
             'name' => 'name',
@@ -60,7 +60,7 @@ class Links {
      *
      * @return the $id
      */
-    public function getId() {
+    public function getId(){
         return $this->id;
     }
     
@@ -68,7 +68,7 @@ class Links {
      *
      * @return the $name
      */
-    public function getName() {
+    public function getName(){
         return $this->name;
     }
     
@@ -76,7 +76,7 @@ class Links {
      *
      * @return the $url
      */
-    public function getUrl() {
+    public function getUrl(){
         return $this->url;
     }
     
@@ -84,7 +84,7 @@ class Links {
      *
      * @return the $isDelete
      */
-    public function getIsDelete() {
+    public function getIsDelete(){
         return $this->isDelete;
     }
     
@@ -92,7 +92,7 @@ class Links {
      *
      * @return the $creationDate
      */
-    public function getCreationDate() {
+    public function getCreationDate(){
         return $this->creationDate;
     }
     
@@ -100,7 +100,7 @@ class Links {
      *
      * @return the $lastChangedDate
      */
-    public function getLastChangedDate() {
+    public function getLastChangedDate(){
         return $this->lastChangedDate;
     }
     
@@ -108,7 +108,7 @@ class Links {
      *
      * @param number $id            
      */
-    public function setId($id) {
+    public function setId($id){
         $this->id = $id;
     }
     
@@ -117,7 +117,7 @@ class Links {
      * @param
      *            Ambigous <number, string> $name
      */
-    public function setName($name) {
+    public function setName($name){
         $this->name = $name;
     }
     
@@ -125,7 +125,7 @@ class Links {
      *
      * @param string $url            
      */
-    public function setUrl($url) {
+    public function setUrl($url){
         $this->url = $url;
     }
     
@@ -133,7 +133,7 @@ class Links {
      *
      * @param number $isDelete            
      */
-    public function setIsDelete($isDelete) {
+    public function setIsDelete($isDelete){
         $this->isDelete = $isDelete;
     }
     
@@ -141,7 +141,7 @@ class Links {
      *
      * @param \models\blog\date $creationDate            
      */
-    public function setCreationDate($creationDate) {
+    public function setCreationDate($creationDate){
         $this->creationDate = $creationDate;
     }
     
@@ -149,7 +149,7 @@ class Links {
      *
      * @param \models\blog\date $lastChangedDate            
      */
-    public function setLastChangedDate($lastChangedDate) {
+    public function setLastChangedDate($lastChangedDate){
         $this->lastChangedDate = $lastChangedDate;
     }
 }

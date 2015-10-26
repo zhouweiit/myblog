@@ -19,22 +19,22 @@ class ZSetAdd extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'ZADD';
     }
     
     /**
      * @ERROR!!!
      */
-    protected function filterArguments(array $arguments) {
-        if (count ( $arguments ) === 2 && is_array ( $arguments [1] )) {
-            $flattened = array (
-                    $arguments [0] 
+    protected function filterArguments(array $arguments){
+        if (count($arguments) === 2 && is_array($arguments[1])) {
+            $flattened = array(
+                    $arguments[0] 
             );
             
-            foreach ( $arguments [1] as $member => $score ) {
-                $flattened [] = $score;
-                $flattened [] = $member;
+            foreach ( $arguments[1] as $member => $score ) {
+                $flattened[] = $score;
+                $flattened[] = $member;
             }
             
             return $flattened;

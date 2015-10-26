@@ -21,7 +21,7 @@ use Predis\Command\RawCommand;
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class Factory implements FactoryInterface {
-    protected $schemes = array (
+    protected $schemes = array(
             'tcp' => 'Predis\Connection\StreamConnection',
             'unix' => 'Predis\Connection\StreamConnection',
             'http' => 'Predis\Connection\WebdisConnection' 
@@ -40,15 +40,15 @@ class Factory implements FactoryInterface {
      *
      * @throws \InvalidArgumentException
      */
-    protected function checkInitializer($initializer) {
-        if (is_callable ( $initializer )) {
+    protected function checkInitializer($initializer){
+        if (is_callable($initializer)) {
             return $initializer;
         }
         
-        $class = new ReflectionClass ( $initializer );
+        $class = new ReflectionClass($initializer);
         
-        if (! $class->isSubclassOf ( 'Predis\Connection\NodeConnectionInterface' )) {
-            throw new InvalidArgumentException ( 'A connection initializer must be a valid connection class or a callable object.' );
+        if (!$class->isSubclassOf('Predis\Connection\NodeConnectionInterface')) {
+            throw new InvalidArgumentException('A connection initializer must be a valid connection class or a callable object.');
         }
         
         return $initializer;
@@ -57,42 +57,42 @@ class Factory implements FactoryInterface {
     /**
      * @ERROR!!!
      */
-    public function define($scheme, $initializer) {
-        $this->schemes [$scheme] = $this->checkInitializer ( $initializer );
+    public function define($scheme, $initializer){
+        $this->schemes[$scheme] = $this->checkInitializer($initializer);
     }
     
     /**
      * @ERROR!!!
      */
-    public function undefine($scheme) {
-        unset ( $this->schemes [$scheme] );
+    public function undefine($scheme){
+        unset($this->schemes[$scheme]);
     }
     
     /**
      * @ERROR!!!
      */
-    public function create($parameters) {
-        if (! $parameters instanceof ParametersInterface) {
-            $parameters = $this->createParameters ( $parameters );
+    public function create($parameters){
+        if (!$parameters instanceof ParametersInterface) {
+            $parameters = $this->createParameters($parameters);
         }
         
         $scheme = $parameters->scheme;
         
-        if (! isset ( $this->schemes [$scheme] )) {
-            throw new InvalidArgumentException ( "Unknown connection scheme: '$scheme'." );
+        if (!isset($this->schemes[$scheme])) {
+            throw new InvalidArgumentException("Unknown connection scheme: '$scheme'.");
         }
         
-        $initializer = $this->schemes [$scheme];
+        $initializer = $this->schemes[$scheme];
         
-        if (is_callable ( $initializer )) {
-            $connection = call_user_func ( $initializer, $parameters, $this );
+        if (is_callable($initializer)) {
+            $connection = call_user_func($initializer,$parameters,$this);
         } else {
-            $connection = new $initializer ( $parameters );
-            $this->prepareConnection ( $connection );
+            $connection = new $initializer($parameters);
+            $this->prepareConnection($connection);
         }
         
-        if (! $connection instanceof NodeConnectionInterface) {
-            throw new UnexpectedValueException ( "Objects returned by connection initializers must implement " . "'Predis\Connection\NodeConnectionInterface'." );
+        if (!$connection instanceof NodeConnectionInterface) {
+            throw new UnexpectedValueException("Objects returned by connection initializers must implement " . "'Predis\Connection\NodeConnectionInterface'.");
         }
         
         return $connection;
@@ -101,9 +101,9 @@ class Factory implements FactoryInterface {
     /**
      * @ERROR!!!
      */
-    public function aggregate(AggregateConnectionInterface $connection, array $parameters) {
+    public function aggregate(AggregateConnectionInterface $connection, array $parameters){
         foreach ( $parameters as $node ) {
-            $connection->add ( $node instanceof NodeConnectionInterface ? $node : $this->create ( $node ) );
+            $connection->add($node instanceof NodeConnectionInterface ? $node : $this->create($node));
         }
     }
     
@@ -115,8 +115,8 @@ class Factory implements FactoryInterface {
      *            
      * @return ParametersInterface
      */
-    protected function createParameters($parameters) {
-        return Parameters::create ( $parameters );
+    protected function createParameters($parameters){
+        return Parameters::create($parameters);
     }
     
     /**
@@ -125,21 +125,21 @@ class Factory implements FactoryInterface {
      * @param NodeConnectionInterface $connection
      *            Connection instance.
      */
-    protected function prepareConnection(NodeConnectionInterface $connection) {
-        $parameters = $connection->getParameters ();
+    protected function prepareConnection(NodeConnectionInterface $connection){
+        $parameters = $connection->getParameters();
         
-        if (isset ( $parameters->password )) {
-            $connection->addConnectCommand ( new RawCommand ( array (
+        if (isset($parameters->password)) {
+            $connection->addConnectCommand(new RawCommand(array(
                     'AUTH',
                     $parameters->password 
-            ) ) );
+            )));
         }
         
-        if (isset ( $parameters->database )) {
-            $connection->addConnectCommand ( new RawCommand ( array (
+        if (isset($parameters->database)) {
+            $connection->addConnectCommand(new RawCommand(array(
                     'SELECT',
                     $parameters->database 
-            ) ) );
+            )));
         }
     }
 }

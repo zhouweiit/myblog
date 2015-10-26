@@ -35,11 +35,11 @@ abstract class ServiceBase {
      * @param \Phalcon\DiInterface $dependencyInjector            
      * @return void
      */
-    public function __construct(\Phalcon\DiInterface $dependencyInjector) {
+    public function __construct(\Phalcon\DiInterface $dependencyInjector){
         $this->di = $dependencyInjector;
-        $this->config = $this->di->get ( 'configIni' );
-        $this->rediskey = $this->di->get ( 'rediskey' );
-        $this->init ();
+        $this->config = $this->di->get('configIni');
+        $this->rediskey = $this->di->get('rediskey');
+        $this->init();
     }
     
     /**
@@ -47,6 +47,6 @@ abstract class ServiceBase {
      *
      * @return void
      */
-    protected function init() {
+    protected function init(){
     }
 }

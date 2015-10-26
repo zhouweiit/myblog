@@ -24,7 +24,7 @@ class ErrorResponse implements ResponseHandlerInterface {
     /**
      * @ERROR!!!
      */
-    public function handle(CompositeConnectionInterface $connection, $payload) {
-        return new Error ( $payload );
+    public function handle(CompositeConnectionInterface $connection, $payload){
+        return new Error($payload);
     }
 }

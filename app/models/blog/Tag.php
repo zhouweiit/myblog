@@ -45,8 +45,8 @@ class Tag {
      * @var date
      */
     private $lastChangedDate;
-    public static function columnMap() {
-        return array (
+    public static function columnMap(){
+        return array(
             'id' => 'id',
             'category_id' => 'categoryId',
             'name' => 'name',
@@ -60,7 +60,7 @@ class Tag {
      *
      * @return the $id
      */
-    public function getId() {
+    public function getId(){
         return $this->id;
     }
     
@@ -68,7 +68,7 @@ class Tag {
      *
      * @return the $categoryId
      */
-    public function getCategoryId() {
+    public function getCategoryId(){
         return $this->categoryId;
     }
     
@@ -76,7 +76,7 @@ class Tag {
      *
      * @return the $name
      */
-    public function getName() {
+    public function getName(){
         return $this->name;
     }
     
@@ -84,7 +84,7 @@ class Tag {
      *
      * @return the $isDelete
      */
-    public function getIsDelete() {
+    public function getIsDelete(){
         return $this->isDelete;
     }
     
@@ -92,7 +92,7 @@ class Tag {
      *
      * @return the $creationDate
      */
-    public function getCreationDate() {
+    public function getCreationDate(){
         return $this->creationDate;
     }
     
@@ -100,7 +100,7 @@ class Tag {
      *
      * @return the $lastChangedDate
      */
-    public function getLastChangedDate() {
+    public function getLastChangedDate(){
         return $this->lastChangedDate;
     }
     
@@ -108,7 +108,7 @@ class Tag {
      *
      * @param number $id            
      */
-    public function setId($id) {
+    public function setId($id){
         $this->id = $id;
     }
     
@@ -116,7 +116,7 @@ class Tag {
      *
      * @param number $categoryId            
      */
-    public function setCategoryId($categoryId) {
+    public function setCategoryId($categoryId){
         $this->categoryId = $categoryId;
     }
     
@@ -124,7 +124,7 @@ class Tag {
      *
      * @param string $name            
      */
-    public function setName($name) {
+    public function setName($name){
         $this->name = $name;
     }
     
@@ -132,7 +132,7 @@ class Tag {
      *
      * @param number $isDelete            
      */
-    public function setIsDelete($isDelete) {
+    public function setIsDelete($isDelete){
         $this->isDelete = $isDelete;
     }
     
@@ -140,7 +140,7 @@ class Tag {
      *
      * @param \models\blog\date $creationDate            
      */
-    public function setCreationDate($creationDate) {
+    public function setCreationDate($creationDate){
         $this->creationDate = $creationDate;
     }
     
@@ -148,7 +148,7 @@ class Tag {
      *
      * @param \models\blog\date $lastChangedDate            
      */
-    public function setLastChangedDate($lastChangedDate) {
+    public function setLastChangedDate($lastChangedDate){
         $this->lastChangedDate = $lastChangedDate;
     }
 }

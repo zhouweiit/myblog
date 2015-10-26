@@ -11,22 +11,22 @@ class SqlUtils {
      * @return array (conditinSql => sql语句,bindArray=>绑定的参数)
      * @author zhouwei
      */
-    public static function getInSqlCondition(array $condition) {
+    public static function getInSqlCondition(array $condition){
         $conditionSql = '';
-        $bindArray = array ();
+        $bindArray = array();
         $holderNum = 1;
-        if (empty ( $condition )) {
-            return array (
+        if (empty($condition)) {
+            return array(
                     'conditinSql' => '',
-                    'bindArray' => array () 
+                    'bindArray' => array() 
             );
         }
         foreach ( $condition as $value ) {
             $conditionSql .= '?,';
-            $bindArray [] = $value;
+            $bindArray[] = $value;
         }
-        return array (
-                'conditinSql' => substr ( $conditionSql, 0, - 1 ),
+        return array(
+                'conditinSql' => substr($conditionSql,0,-1),
                 'bindArray' => $bindArray 
         );
     }

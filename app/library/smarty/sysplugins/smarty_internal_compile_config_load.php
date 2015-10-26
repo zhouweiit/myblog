@@ -21,7 +21,7 @@ class Smarty_Internal_Compile_Config_Load extends Smarty_Internal_CompileBase {
      * @var array
      * @see Smarty_Internal_CompileBase
      */
-    public $required_attributes = array (
+    public $required_attributes = array(
             'file' 
     );
     /**
@@ -30,7 +30,7 @@ class Smarty_Internal_Compile_Config_Load extends Smarty_Internal_CompileBase {
      * @var array
      * @see Smarty_Internal_CompileBase
      */
-    public $shorttag_order = array (
+    public $shorttag_order = array(
             'file',
             'section' 
     );
@@ -40,7 +40,7 @@ class Smarty_Internal_Compile_Config_Load extends Smarty_Internal_CompileBase {
      * @var array
      * @see Smarty_Internal_CompileBase
      */
-    public $optional_attributes = array (
+    public $optional_attributes = array(
             'section',
             'scope' 
     );
@@ -55,35 +55,35 @@ class Smarty_Internal_Compile_Config_Load extends Smarty_Internal_CompileBase {
      *            
      * @return string compiled code
      */
-    public function compile($args, $compiler) {
-        static $_is_legal_scope = array (
+    public function compile($args, $compiler){
+        static $_is_legal_scope = array(
                 'local' => true,
                 'parent' => true,
                 'root' => true,
                 'global' => true 
         );
         // check and get attributes
-        $_attr = $this->getAttributes ( $compiler, $args );
+        $_attr = $this->getAttributes($compiler,$args);
         
-        if ($_attr ['nocache'] === true) {
-            $compiler->trigger_template_error ( 'nocache option not allowed', $compiler->lex->taglineno );
+        if ($_attr['nocache'] === true) {
+            $compiler->trigger_template_error('nocache option not allowed',$compiler->lex->taglineno);
         }
         
         // save possible attributes
-        $conf_file = $_attr ['file'];
-        if (isset ( $_attr ['section'] )) {
-            $section = $_attr ['section'];
+        $conf_file = $_attr['file'];
+        if (isset($_attr['section'])) {
+            $section = $_attr['section'];
         } else {
             $section = 'null';
         }
         $scope = 'local';
         // scope setup
-        if (isset ( $_attr ['scope'] )) {
-            $_attr ['scope'] = trim ( $_attr ['scope'], "'\"" );
-            if (isset ( $_is_legal_scope [$_attr ['scope']] )) {
-                $scope = $_attr ['scope'];
+        if (isset($_attr['scope'])) {
+            $_attr['scope'] = trim($_attr['scope'],"'\"");
+            if (isset($_is_legal_scope[$_attr['scope']])) {
+                $scope = $_attr['scope'];
             } else {
-                $compiler->trigger_template_error ( 'illegal value for "scope" attribute', $compiler->lex->taglineno );
+                $compiler->trigger_template_error('illegal value for "scope" attribute',$compiler->lex->taglineno);
             }
         }
         // create config object

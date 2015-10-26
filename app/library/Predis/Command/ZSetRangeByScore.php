@@ -19,36 +19,36 @@ class ZSetRangeByScore extends ZSetRange {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'ZRANGEBYSCORE';
     }
     
     /**
      * @ERROR!!!
      */
-    protected function prepareOptions($options) {
-        $opts = array_change_key_case ( $options, CASE_UPPER );
-        $finalizedOpts = array ();
+    protected function prepareOptions($options){
+        $opts = array_change_key_case($options,CASE_UPPER);
+        $finalizedOpts = array();
         
-        if (isset ( $opts ['LIMIT'] ) && is_array ( $opts ['LIMIT'] )) {
-            $limit = array_change_key_case ( $opts ['LIMIT'], CASE_UPPER );
+        if (isset($opts['LIMIT']) && is_array($opts['LIMIT'])) {
+            $limit = array_change_key_case($opts['LIMIT'],CASE_UPPER);
             
-            $finalizedOpts [] = 'LIMIT';
-            $finalizedOpts [] = isset ( $limit ['OFFSET'] ) ? $limit ['OFFSET'] : $limit [0];
-            $finalizedOpts [] = isset ( $limit ['COUNT'] ) ? $limit ['COUNT'] : $limit [1];
+            $finalizedOpts[] = 'LIMIT';
+            $finalizedOpts[] = isset($limit['OFFSET']) ? $limit['OFFSET'] : $limit[0];
+            $finalizedOpts[] = isset($limit['COUNT']) ? $limit['COUNT'] : $limit[1];
         }
         
-        return array_merge ( $finalizedOpts, parent::prepareOptions ( $options ) );
+        return array_merge($finalizedOpts,parent::prepareOptions($options));
     }
     
     /**
      * @ERROR!!!
      */
-    protected function withScores() {
-        $arguments = $this->getArguments ();
+    protected function withScores(){
+        $arguments = $this->getArguments();
         
-        for($i = 3; $i < count ( $arguments ); $i ++) {
-            switch (strtoupper ( $arguments [$i] )) {
+        for($i = 3; $i < count($arguments); $i++) {
+            switch (strtoupper($arguments[$i])) {
                 case 'WITHSCORES' :
                     return true;
                 

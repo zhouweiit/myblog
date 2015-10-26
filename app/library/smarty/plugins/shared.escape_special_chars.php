@@ -5,7 +5,7 @@
  * @package    Smarty
  * @subpackage PluginsShared
  */
-if (version_compare ( PHP_VERSION, '5.2.3', '>=' )) {
+if (version_compare(PHP_VERSION,'5.2.3','>=')) {
     /**
      * escape_special_chars common function
      * Function: smarty_function_escape_special_chars<br>
@@ -19,9 +19,9 @@ if (version_compare ( PHP_VERSION, '5.2.3', '>=' )) {
      *            
      * @return string
      */
-    function smarty_function_escape_special_chars($string) {
-        if (! is_array ( $string )) {
-            $string = htmlspecialchars ( $string, ENT_COMPAT, Smarty::$_CHARSET, false );
+    function smarty_function_escape_special_chars($string){
+        if (!is_array($string)) {
+            $string = htmlspecialchars($string,ENT_COMPAT,Smarty::$_CHARSET,false);
         }
         
         return $string;
@@ -40,17 +40,17 @@ if (version_compare ( PHP_VERSION, '5.2.3', '>=' )) {
      *            
      * @return string
      */
-    function smarty_function_escape_special_chars($string) {
-        if (! is_array ( $string )) {
-            $string = preg_replace ( '!&(#?\w+);!', '%%%SMARTY_START%%%\\1%%%SMARTY_END%%%', $string );
-            $string = htmlspecialchars ( $string );
-            $string = str_replace ( array (
+    function smarty_function_escape_special_chars($string){
+        if (!is_array($string)) {
+            $string = preg_replace('!&(#?\w+);!','%%%SMARTY_START%%%\\1%%%SMARTY_END%%%',$string);
+            $string = htmlspecialchars($string);
+            $string = str_replace(array(
                     '%%%SMARTY_START%%%',
                     '%%%SMARTY_END%%%' 
-            ), array (
+            ),array(
                     '&',
                     ';' 
-            ), $string );
+            ),$string);
         }
         
         return $string;

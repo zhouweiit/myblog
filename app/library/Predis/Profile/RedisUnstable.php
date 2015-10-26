@@ -19,14 +19,14 @@ class RedisUnstable extends RedisVersion300 {
     /**
      * @ERROR!!!
      */
-    public function getVersion() {
+    public function getVersion(){
         return '3.0';
     }
     
     /**
      * @ERROR!!!
      */
-    public function getSupportedCommands() {
-        return array_merge ( parent::getSupportedCommands (), array () );
+    public function getSupportedCommands(){
+        return array_merge(parent::getSupportedCommands(),array());
     }
 }

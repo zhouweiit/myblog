@@ -19,14 +19,14 @@ class KeyExpireAt extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'EXPIREAT';
     }
     
     /**
      * @ERROR!!!
      */
-    public function parseResponse($data) {
-        return ( bool ) $data;
+    public function parseResponse($data){
+        return (bool) $data;
     }
 }

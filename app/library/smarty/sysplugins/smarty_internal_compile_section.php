@@ -21,7 +21,7 @@ class Smarty_Internal_Compile_Section extends Smarty_Internal_CompileBase {
      * @var array
      * @see Smarty_Internal_CompileBase
      */
-    public $required_attributes = array (
+    public $required_attributes = array(
             'name',
             'loop' 
     );
@@ -31,7 +31,7 @@ class Smarty_Internal_Compile_Section extends Smarty_Internal_CompileBase {
      * @var array
      * @see Smarty_Internal_CompileBase
      */
-    public $shorttag_order = array (
+    public $shorttag_order = array(
             'name',
             'loop' 
     );
@@ -41,7 +41,7 @@ class Smarty_Internal_Compile_Section extends Smarty_Internal_CompileBase {
      * @var array
      * @see Smarty_Internal_CompileBase
      */
-    public $optional_attributes = array (
+    public $optional_attributes = array(
             'start',
             'step',
             'max',
@@ -58,20 +58,20 @@ class Smarty_Internal_Compile_Section extends Smarty_Internal_CompileBase {
      *            
      * @return string compiled code
      */
-    public function compile($args, $compiler) {
+    public function compile($args, $compiler){
         // check and get attributes
-        $_attr = $this->getAttributes ( $compiler, $args );
+        $_attr = $this->getAttributes($compiler,$args);
         
-        $this->openTag ( $compiler, 'section', array (
+        $this->openTag($compiler,'section',array(
                 'section',
                 $compiler->nocache 
-        ) );
+        ));
         // maybe nocache because of nocache variables
         $compiler->nocache = $compiler->nocache | $compiler->tag_nocache;
         
         $output = "<?php ";
         
-        $section_name = $_attr ['name'];
+        $section_name = $_attr['name'];
         
         $output .= "if (isset(\$_smarty_tpl->tpl_vars['smarty']->value['section'][$section_name])) unset(\$_smarty_tpl->tpl_vars['smarty']->value['section'][$section_name]);\n";
         $section_props = "\$_smarty_tpl->tpl_vars['smarty']->value['section'][$section_name]";
@@ -83,7 +83,7 @@ class Smarty_Internal_Compile_Section extends Smarty_Internal_CompileBase {
                     break;
                 
                 case 'show' :
-                    if (is_bool ( $attr_value )) {
+                    if (is_bool($attr_value)) {
                         $show_attr_value = $attr_value ? 'true' : 'false';
                     } else {
                         $show_attr_value = "(bool) $attr_value";
@@ -106,32 +106,32 @@ class Smarty_Internal_Compile_Section extends Smarty_Internal_CompileBase {
             }
         }
         
-        if (! isset ( $_attr ['show'] )) {
+        if (!isset($_attr['show'])) {
             $output .= "{$section_props}['show'] = true;\n";
         }
         
-        if (! isset ( $_attr ['loop'] )) {
+        if (!isset($_attr['loop'])) {
             $output .= "{$section_props}['loop'] = 1;\n";
         }
         
-        if (! isset ( $_attr ['max'] )) {
+        if (!isset($_attr['max'])) {
             $output .= "{$section_props}['max'] = {$section_props}['loop'];\n";
         } else {
             $output .= "if ({$section_props}['max'] < 0)\n" . "    {$section_props}['max'] = {$section_props}['loop'];\n";
         }
         
-        if (! isset ( $_attr ['step'] )) {
+        if (!isset($_attr['step'])) {
             $output .= "{$section_props}['step'] = 1;\n";
         }
         
-        if (! isset ( $_attr ['start'] )) {
+        if (!isset($_attr['start'])) {
             $output .= "{$section_props}['start'] = {$section_props}['step'] > 0 ? 0 : {$section_props}['loop']-1;\n";
         } else {
             $output .= "if ({$section_props}['start'] < 0)\n" . "    {$section_props}['start'] = max({$section_props}['step'] > 0 ? 0 : -1, {$section_props}['loop'] + {$section_props}['start']);\n" . "else\n" . "    {$section_props}['start'] = min({$section_props}['start'], {$section_props}['step'] > 0 ? {$section_props}['loop'] : {$section_props}['loop']-1);\n";
         }
         
         $output .= "if ({$section_props}['show']) {\n";
-        if (! isset ( $_attr ['start'] ) && ! isset ( $_attr ['step'] ) && ! isset ( $_attr ['max'] )) {
+        if (!isset($_attr['start']) && !isset($_attr['step']) && !isset($_attr['max'])) {
             $output .= "    {$section_props}['total'] = {$section_props}['loop'];\n";
         } else {
             $output .= "    {$section_props}['total'] = min(ceil(({$section_props}['step'] > 0 ? {$section_props}['loop'] - {$section_props}['start'] : {$section_props}['start']+1)/abs({$section_props}['step'])), {$section_props}['max']);\n";
@@ -172,17 +172,17 @@ class Smarty_Internal_Compile_Sectionelse extends Smarty_Internal_CompileBase {
      *            
      * @return string compiled code
      */
-    public function compile($args, $compiler) {
+    public function compile($args, $compiler){
         // check and get attributes
-        $_attr = $this->getAttributes ( $compiler, $args );
+        $_attr = $this->getAttributes($compiler,$args);
         
-        list ( $openTag, $nocache ) = $this->closeTag ( $compiler, array (
+        list($openTag,$nocache) = $this->closeTag($compiler,array(
                 'section' 
-        ) );
-        $this->openTag ( $compiler, 'sectionelse', array (
+        ));
+        $this->openTag($compiler,'sectionelse',array(
                 'sectionelse',
                 $nocache 
-        ) );
+        ));
         
         return "<?php endfor; else: ?>";
     }
@@ -205,19 +205,19 @@ class Smarty_Internal_Compile_Sectionclose extends Smarty_Internal_CompileBase {
      *            
      * @return string compiled code
      */
-    public function compile($args, $compiler) {
+    public function compile($args, $compiler){
         // check and get attributes
-        $_attr = $this->getAttributes ( $compiler, $args );
+        $_attr = $this->getAttributes($compiler,$args);
         
         // must endblock be nocache?
         if ($compiler->nocache) {
             $compiler->tag_nocache = true;
         }
         
-        list ( $openTag, $compiler->nocache ) = $this->closeTag ( $compiler, array (
+        list($openTag,$compiler->nocache) = $this->closeTag($compiler,array(
                 'section',
                 'sectionelse' 
-        ) );
+        ));
         
         if ($openTag == 'sectionelse') {
             return "<?php endif; ?>";

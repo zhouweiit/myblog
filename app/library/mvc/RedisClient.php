@@ -34,8 +34,8 @@ class RedisClient extends Client {
      * @return void
      * @author zhouwei17
      */
-    public function __construct($config, $parameters = null, $options = null, $redisSession = false) {
-        parent::__construct ( $parameters, $options );
+    public function __construct($config, $parameters = null, $options = null, $redisSession = false){
+        parent::__construct($parameters,$options);
         $this->config = $config;
         $this->redisSession = $redisSession;
     }
@@ -48,9 +48,9 @@ class RedisClient extends Client {
      * @return mix 静止后都是返回null，应用层注意check
      * @author zhouwei17
      */
-    public function __call($commandID, $arguments) {
-        if (1 === intval ( $this->config->application->isUseRedis ) || true === $this->redisSession) {
-            return parent::__call ( $commandID, $arguments );
+    public function __call($commandID, $arguments){
+        if (1 === intval($this->config->application->isUseRedis) || true === $this->redisSession) {
+            return parent::__call($commandID,$arguments);
         }
         return null;
     }

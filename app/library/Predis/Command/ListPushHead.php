@@ -19,7 +19,7 @@ class ListPushHead extends ListPushTail {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'LPUSH';
     }
 }

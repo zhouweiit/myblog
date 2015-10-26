@@ -34,7 +34,7 @@ use Predis\Response\ServerException;
 class Pipeline implements ClientContextInterface {
     private $client;
     private $pipeline;
-    private $responses = array ();
+    private $responses = array();
     private $running = false;
     
     /**
@@ -42,9 +42,9 @@ class Pipeline implements ClientContextInterface {
      * @param ClientInterface $client
      *            Client instance used by the context.
      */
-    public function __construct(ClientInterface $client) {
+    public function __construct(ClientInterface $client){
         $this->client = $client;
-        $this->pipeline = new SplQueue ();
+        $this->pipeline = new SplQueue();
     }
     
     /**
@@ -57,9 +57,9 @@ class Pipeline implements ClientContextInterface {
      *            
      * @return $this
      */
-    public function __call($method, $arguments) {
-        $command = $this->client->createCommand ( $method, $arguments );
-        $this->recordCommand ( $command );
+    public function __call($method, $arguments){
+        $command = $this->client->createCommand($method,$arguments);
+        $this->recordCommand($command);
         
         return $this;
     }
@@ -70,8 +70,8 @@ class Pipeline implements ClientContextInterface {
      * @param CommandInterface $command
      *            Command to be queued in the buffer.
      */
-    protected function recordCommand(CommandInterface $command) {
-        $this->pipeline->enqueue ( $command );
+    protected function recordCommand(CommandInterface $command){
+        $this->pipeline->enqueue($command);
     }
     
     /**
@@ -82,8 +82,8 @@ class Pipeline implements ClientContextInterface {
      *            
      * @return $this
      */
-    public function executeCommand(CommandInterface $command) {
-        $this->recordCommand ( $command );
+    public function executeCommand(CommandInterface $command){
+        $this->recordCommand($command);
         
         return $this;
     }
@@ -98,11 +98,11 @@ class Pipeline implements ClientContextInterface {
      *            
      * @throws ServerException
      */
-    protected function exception(ConnectionInterface $connection, ErrorResponseInterface $response) {
-        $connection->disconnect ();
-        $message = $response->getMessage ();
+    protected function exception(ConnectionInterface $connection, ErrorResponseInterface $response){
+        $connection->disconnect();
+        $message = $response->getMessage();
         
-        throw new ServerException ( $message );
+        throw new ServerException($message);
     }
     
     /**
@@ -110,11 +110,11 @@ class Pipeline implements ClientContextInterface {
      *
      * @return ConnectionInterface
      */
-    protected function getConnection() {
-        $connection = $this->getClient ()->getConnection ();
+    protected function getConnection(){
+        $connection = $this->getClient()->getConnection();
         
         if ($connection instanceof ReplicationInterface) {
-            $connection->switchTo ( 'master' );
+            $connection->switchTo('master');
         }
         
         return $connection;
@@ -131,24 +131,24 @@ class Pipeline implements ClientContextInterface {
      *            
      * @return array
      */
-    protected function executePipeline(ConnectionInterface $connection, SplQueue $commands) {
+    protected function executePipeline(ConnectionInterface $connection, SplQueue $commands){
         foreach ( $commands as $command ) {
-            $connection->writeRequest ( $command );
+            $connection->writeRequest($command);
         }
         
-        $responses = array ();
-        $exceptions = $this->throwServerExceptions ();
+        $responses = array();
+        $exceptions = $this->throwServerExceptions();
         
-        while ( ! $commands->isEmpty () ) {
-            $command = $commands->dequeue ();
-            $response = $connection->readResponse ( $command );
+        while ( !$commands->isEmpty() ) {
+            $command = $commands->dequeue();
+            $response = $connection->readResponse($command);
             
-            if (! $response instanceof ResponseInterface) {
-                $responses [] = $command->parseResponse ( $response );
+            if (!$response instanceof ResponseInterface) {
+                $responses[] = $command->parseResponse($response);
             } elseif ($response instanceof ErrorResponseInterface && $exceptions) {
-                $this->exception ( $connection, $response );
+                $this->exception($connection,$response);
             } else {
-                $responses [] = $response;
+                $responses[] = $response;
             }
         }
         
@@ -163,12 +163,12 @@ class Pipeline implements ClientContextInterface {
      *            
      * @return $this
      */
-    public function flushPipeline($send = true) {
-        if ($send && ! $this->pipeline->isEmpty ()) {
-            $responses = $this->executePipeline ( $this->getConnection (), $this->pipeline );
-            $this->responses = array_merge ( $this->responses, $responses );
+    public function flushPipeline($send = true){
+        if ($send && !$this->pipeline->isEmpty()) {
+            $responses = $this->executePipeline($this->getConnection(),$this->pipeline);
+            $this->responses = array_merge($this->responses,$responses);
         } else {
-            $this->pipeline = new SplQueue ();
+            $this->pipeline = new SplQueue();
         }
         
         return $this;
@@ -182,9 +182,9 @@ class Pipeline implements ClientContextInterface {
      *            
      * @throws ClientException
      */
-    private function setRunning($bool) {
+    private function setRunning($bool){
         if ($bool && $this->running) {
-            throw new ClientException ( 'The current pipeline context is already being executed.' );
+            throw new ClientException('The current pipeline context is already being executed.');
         }
         
         $this->running = $bool;
@@ -201,25 +201,25 @@ class Pipeline implements ClientContextInterface {
      * @throws Exception
      * @throws InvalidArgumentException
      */
-    public function execute($callable = null) {
-        if ($callable && ! is_callable ( $callable )) {
-            throw new InvalidArgumentException ( 'The argument must be a callable object.' );
+    public function execute($callable = null){
+        if ($callable && !is_callable($callable)) {
+            throw new InvalidArgumentException('The argument must be a callable object.');
         }
         
         $exception = null;
-        $this->setRunning ( true );
+        $this->setRunning(true);
         
         try {
             if ($callable) {
-                call_user_func ( $callable, $this );
+                call_user_func($callable,$this);
             }
             
-            $this->flushPipeline ();
+            $this->flushPipeline();
         } catch ( Exception $exception ) {
             // NOOP
         }
         
-        $this->setRunning ( false );
+        $this->setRunning(false);
         
         if ($exception) {
             throw $exception;
@@ -233,8 +233,8 @@ class Pipeline implements ClientContextInterface {
      *
      * @return bool
      */
-    protected function throwServerExceptions() {
-        return ( bool ) $this->client->getOptions ()->exceptions;
+    protected function throwServerExceptions(){
+        return (bool) $this->client->getOptions()->exceptions;
     }
     
     /**
@@ -242,7 +242,7 @@ class Pipeline implements ClientContextInterface {
      *
      * @return ClientInterface
      */
-    public function getClient() {
+    public function getClient(){
         return $this->client;
     }
 }

@@ -19,7 +19,7 @@ class HashIncrementBy extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'HINCRBY';
     }
 }

@@ -24,9 +24,9 @@ class CategoryDao extends DaoBase {
      * @return void
      * @author zhouwei
      */
-    protected function init() {
-        parent::init ();
-        $this->persistent = $this->di->get ( 'blogPersistent' );
+    protected function init(){
+        parent::init();
+        $this->persistent = $this->di->get('blogPersistent');
     }
     
     /**
@@ -36,13 +36,13 @@ class CategoryDao extends DaoBase {
      * @return array
      * @author zhouwei
      */
-    public function getCategoryById($id) {
+    public function getCategoryById($id){
         $sql = 'select * from category where id = :id and is_delete = 0';
-        $bind = array (
+        $bind = array(
             ':id' => $id 
         );
-        $result = $this->persistent->query ( $sql, $bind );
-        return $result->fetchOne ( $this->className );
+        $result = $this->persistent->query($sql,$bind);
+        return $result->fetchOne($this->className);
     }
     
     /**
@@ -51,10 +51,10 @@ class CategoryDao extends DaoBase {
      * @return array
      * @author zhouwei
      */
-    public function getAllCategory() {
+    public function getAllCategory(){
         $sql = 'select * from category where is_delete = 0 order by depth,pid,priority';
-        $result = $this->persistent->query ( $sql );
-        return $result->fetchAll ( $this->className );
+        $result = $this->persistent->query($sql);
+        return $result->fetchAll($this->className);
     }
     
     /**
@@ -64,12 +64,12 @@ class CategoryDao extends DaoBase {
      * @return array
      * @author zhouwei
      */
-    public function getCategoryByPid($pid) {
+    public function getCategoryByPid($pid){
         $sql = 'select * from category where pid = :pid and is_delete = 0 order by priority';
-        $result = $this->persistent->query ( $sql, array (
+        $result = $this->persistent->query($sql,array(
             ':pid' => $pid 
-        ) );
-        return $result->fetchAll ( $this->className );
+        ));
+        return $result->fetchAll($this->className);
     }
     
     /**
@@ -79,11 +79,11 @@ class CategoryDao extends DaoBase {
      * @return array
      * @author zhouwei
      */
-    public function getCategoryByDepth($depth) {
+    public function getCategoryByDepth($depth){
         $sql = 'select * from category where depth = :depth and is_delete = 0 order by priority';
-        $result = $this->persistent->query ( $sql, array (
+        $result = $this->persistent->query($sql,array(
             ':depth' => $depth 
-        ) );
-        return $result->fetchAll ( $this->className );
+        ));
+        return $result->fetchAll($this->className);
     }
 }

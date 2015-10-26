@@ -19,21 +19,21 @@ class StringSetMultiple extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'MSET';
     }
     
     /**
      * @ERROR!!!
      */
-    protected function filterArguments(array $arguments) {
-        if (count ( $arguments ) === 1 && is_array ( $arguments [0] )) {
-            $flattenedKVs = array ();
-            $args = $arguments [0];
+    protected function filterArguments(array $arguments){
+        if (count($arguments) === 1 && is_array($arguments[0])) {
+            $flattenedKVs = array();
+            $args = $arguments[0];
             
             foreach ( $args as $k => $v ) {
-                $flattenedKVs [] = $k;
-                $flattenedKVs [] = $v;
+                $flattenedKVs[] = $k;
+                $flattenedKVs[] = $v;
             }
             
             return $flattenedKVs;

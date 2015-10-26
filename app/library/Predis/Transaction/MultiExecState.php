@@ -25,7 +25,7 @@ class MultiExecState {
     
     /**
      */
-    public function __construct() {
+    public function __construct(){
         $this->flags = 0;
     }
     
@@ -35,7 +35,7 @@ class MultiExecState {
      * @param int $flags
      *            Set of flags
      */
-    public function set($flags) {
+    public function set($flags){
         $this->flags = $flags;
     }
     
@@ -44,7 +44,7 @@ class MultiExecState {
      *
      * @return int
      */
-    public function get() {
+    public function get(){
         return $this->flags;
     }
     
@@ -54,7 +54,7 @@ class MultiExecState {
      * @param int $flags
      *            Set of flags
      */
-    public function flag($flags) {
+    public function flag($flags){
         $this->flags |= $flags;
     }
     
@@ -64,8 +64,8 @@ class MultiExecState {
      * @param int $flags
      *            Set of flags
      */
-    public function unflag($flags) {
-        $this->flags &= ~ $flags;
+    public function unflag($flags){
+        $this->flags &= ~$flags;
     }
     
     /**
@@ -76,14 +76,14 @@ class MultiExecState {
      *            
      * @return bool
      */
-    public function check($flags) {
+    public function check($flags){
         return ($this->flags & $flags) === $flags;
     }
     
     /**
      * Resets the state of a transaction.
      */
-    public function reset() {
+    public function reset(){
         $this->flags = 0;
     }
     
@@ -92,7 +92,7 @@ class MultiExecState {
      *
      * @return bool
      */
-    public function isReset() {
+    public function isReset(){
         return $this->flags === 0;
     }
     
@@ -101,8 +101,8 @@ class MultiExecState {
      *
      * @return bool
      */
-    public function isInitialized() {
-        return $this->check ( self::INITIALIZED );
+    public function isInitialized(){
+        return $this->check(self::INITIALIZED);
     }
     
     /**
@@ -110,8 +110,8 @@ class MultiExecState {
      *
      * @return bool
      */
-    public function isExecuting() {
-        return $this->check ( self::INSIDEBLOCK );
+    public function isExecuting(){
+        return $this->check(self::INSIDEBLOCK);
     }
     
     /**
@@ -119,8 +119,8 @@ class MultiExecState {
      *
      * @return bool
      */
-    public function isCAS() {
-        return $this->check ( self::CAS );
+    public function isCAS(){
+        return $this->check(self::CAS);
     }
     
     /**
@@ -128,8 +128,8 @@ class MultiExecState {
      *
      * @return bool
      */
-    public function isWatchAllowed() {
-        return $this->check ( self::INITIALIZED ) && ! $this->check ( self::CAS );
+    public function isWatchAllowed(){
+        return $this->check(self::INITIALIZED) && !$this->check(self::CAS);
     }
     
     /**
@@ -137,8 +137,8 @@ class MultiExecState {
      *
      * @return bool
      */
-    public function isWatching() {
-        return $this->check ( self::WATCH );
+    public function isWatching(){
+        return $this->check(self::WATCH);
     }
     
     /**
@@ -146,7 +146,7 @@ class MultiExecState {
      *
      * @return bool
      */
-    public function isDiscarded() {
-        return $this->check ( self::DISCARDED );
+    public function isDiscarded(){
+        return $this->check(self::DISCARDED);
     }
 }

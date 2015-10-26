@@ -18,10 +18,10 @@ class ArticleTagMapService extends ServiceBase {
      * @var TagService
      */
     private $tagService;
-    protected function init() {
-        $this->log = $this->di->get ( 'applicationLog' );
-        $this->articleTagMapDao = $this->di->get ( 'dao\blog\ArticleTagMapDao' );
-        $this->tagService = $this->di->get ( 'TagService' );
+    protected function init(){
+        $this->log = $this->di->get('applicationLog');
+        $this->articleTagMapDao = $this->di->get('dao\blog\ArticleTagMapDao');
+        $this->tagService = $this->di->get('TagService');
     }
     
     /**
@@ -31,11 +31,11 @@ class ArticleTagMapService extends ServiceBase {
      * @return array
      * @author zhouwei
      */
-    public function getArticleMapByArticleId($articleId) {
-        $mapInfos = $this->articleTagMapDao->getByArticleId ( $articleId );
-        $result = array ();
+    public function getArticleMapByArticleId($articleId){
+        $mapInfos = $this->articleTagMapDao->getByArticleId($articleId);
+        $result = array();
         foreach ( $mapInfos as $value ) {
-            $result [$value->getId ()] = $value;
+            $result[$value->getId()] = $value;
         }
         return $result;
     }
@@ -47,11 +47,11 @@ class ArticleTagMapService extends ServiceBase {
      * @return array
      * @author zhouwei
      */
-    public function getArticleMapByArticleIds(array $articleIds) {
-        $mapInfos = $this->articleTagMapDao->getByArticleIds ( $articleIds );
-        $result = array ();
+    public function getArticleMapByArticleIds(array $articleIds){
+        $mapInfos = $this->articleTagMapDao->getByArticleIds($articleIds);
+        $result = array();
         foreach ( $mapInfos as $value ) {
-            $result [$value->getArticleId ()] [$value->getTagId ()] = $value;
+            $result[$value->getArticleId()][$value->getTagId()] = $value;
         }
         return $result;
     }
@@ -63,11 +63,11 @@ class ArticleTagMapService extends ServiceBase {
      * @return array
      * @author zhouwei
      */
-    public function getArticleMapByTagId($tagId) {
-        $mapInfos = $this->articleTagMapDao->getByTagId ( $tagId );
-        $result = array ();
+    public function getArticleMapByTagId($tagId){
+        $mapInfos = $this->articleTagMapDao->getByTagId($tagId);
+        $result = array();
         foreach ( $mapInfos as $value ) {
-            $result [$value->getArticleId ()] = $value;
+            $result[$value->getArticleId()] = $value;
         }
         return $result;
     }
@@ -79,19 +79,19 @@ class ArticleTagMapService extends ServiceBase {
      * @return array
      * @author zhouwei
      */
-    public function getArticleMapByTagIds(array $tagIds, $articleId) {
-        if (empty ( $tagIds )) {
-            return array ();
+    public function getArticleMapByTagIds(array $tagIds, $articleId){
+        if (empty($tagIds)) {
+            return array();
         }
-        $mapInfos = $this->articleTagMapDao->getByTagIds ( $tagIds );
-        $articleIds = array ();
+        $mapInfos = $this->articleTagMapDao->getByTagIds($tagIds);
+        $articleIds = array();
         foreach ( $mapInfos as $value ) {
-            if ($articleId == $value->getArticleId ()) {
+            if ($articleId == $value->getArticleId()) {
                 continue;
             }
-            $articleIds [] = $value->getArticleId ();
+            $articleIds[] = $value->getArticleId();
         }
-        return array_unique ( $articleIds );
+        return array_unique($articleIds);
     }
     
     /**
@@ -100,20 +100,20 @@ class ArticleTagMapService extends ServiceBase {
      * @return array
      * @author zhouwei
      */
-    public function getArchiveTag() {
-        $tagMaps = $this->articleTagMapDao->getAllMapInfos ();
-        $allTag = $this->tagService->getAllTag ();
-        $result = array ();
+    public function getArchiveTag(){
+        $tagMaps = $this->articleTagMapDao->getAllMapInfos();
+        $allTag = $this->tagService->getAllTag();
+        $result = array();
         foreach ( $tagMaps as $value ) {
-            if (! isset ( $allTag [$value->getTagId ()] )) {
+            if (!isset($allTag[$value->getTagId()])) {
                 continue;
             }
-            if (isset ( $result [$value->getTagId ()] )) {
-                $result [$value->getTagId ()] ['times'] = $result [$value->getTagId ()] ['times'] + 1;
+            if (isset($result[$value->getTagId()])) {
+                $result[$value->getTagId()]['times'] = $result[$value->getTagId()]['times'] + 1;
             } else {
-                $result [$value->getTagId ()] = array (
+                $result[$value->getTagId()] = array(
                     'times' => 1,
-                    'tag_name' => $allTag [$value->getTagId ()]->getName () 
+                    'tag_name' => $allTag[$value->getTagId()]->getName() 
                 );
             }
         }

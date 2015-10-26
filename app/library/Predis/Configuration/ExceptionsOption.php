@@ -20,14 +20,14 @@ class ExceptionsOption implements OptionInterface {
     /**
      * @ERROR!!!
      */
-    public function filter(OptionsInterface $options, $value) {
-        return filter_var ( $value, FILTER_VALIDATE_BOOLEAN );
+    public function filter(OptionsInterface $options, $value){
+        return filter_var($value,FILTER_VALIDATE_BOOLEAN);
     }
     
     /**
      * @ERROR!!!
      */
-    public function getDefault(OptionsInterface $options) {
+    public function getDefault(OptionsInterface $options){
         return true;
     }
 }

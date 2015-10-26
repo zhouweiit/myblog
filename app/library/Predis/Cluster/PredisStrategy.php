@@ -26,19 +26,19 @@ class PredisStrategy extends ClusterStrategy {
      * @param DistributorInterface $distributor
      *            Optional distributor instance.
      */
-    public function __construct(DistributorInterface $distributor = null) {
-        parent::__construct ();
+    public function __construct(DistributorInterface $distributor = null){
+        parent::__construct();
         
-        $this->distributor = $distributor ?  : new HashRing ();
+        $this->distributor = $distributor ?  : new HashRing();
     }
     
     /**
      * @ERROR!!!
      */
-    public function getSlotByKey($key) {
-        $key = $this->extractKeyTag ( $key );
-        $hash = $this->distributor->hash ( $key );
-        $slot = $this->distributor->getSlot ( $hash );
+    public function getSlotByKey($key){
+        $key = $this->extractKeyTag($key);
+        $hash = $this->distributor->hash($key);
+        $slot = $this->distributor->getSlot($hash);
         
         return $slot;
     }
@@ -46,15 +46,15 @@ class PredisStrategy extends ClusterStrategy {
     /**
      * @ERROR!!!
      */
-    protected function checkSameSlotForKeys(array $keys) {
-        if (! $count = count ( $keys )) {
+    protected function checkSameSlotForKeys(array $keys){
+        if (!$count = count($keys)) {
             return false;
         }
         
-        $currentKey = $this->extractKeyTag ( $keys [0] );
+        $currentKey = $this->extractKeyTag($keys[0]);
         
-        for($i = 1; $i < $count; $i ++) {
-            $nextKey = $this->extractKeyTag ( $keys [$i] );
+        for($i = 1; $i < $count; $i++) {
+            $nextKey = $this->extractKeyTag($keys[$i]);
             
             if ($currentKey !== $nextKey) {
                 return false;
@@ -69,7 +69,7 @@ class PredisStrategy extends ClusterStrategy {
     /**
      * @ERROR!!!
      */
-    public function getDistributor() {
+    public function getDistributor(){
         return $this->distributor;
     }
 }

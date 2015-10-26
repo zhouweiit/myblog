@@ -19,14 +19,14 @@ class KeyRenamePreserve extends KeyRename {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'RENAMENX';
     }
     
     /**
      * @ERROR!!!
      */
-    public function parseResponse($data) {
-        return ( bool ) $data;
+    public function parseResponse($data){
+        return (bool) $data;
     }
 }

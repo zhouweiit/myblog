@@ -21,7 +21,7 @@ use InvalidArgumentException;
  */
 class Parameters implements ParametersInterface {
     private $parameters;
-    private static $defaults = array (
+    private static $defaults = array(
             'scheme' => 'tcp',
             'host' => '127.0.0.1',
             'port' => 6379,
@@ -33,8 +33,8 @@ class Parameters implements ParametersInterface {
      * @param array $parameters
      *            Named array of connection parameters.
      */
-    public function __construct(array $parameters = array()) {
-        $this->parameters = $this->filter ( $parameters ) + $this->getDefaults ();
+    public function __construct(array $parameters = array()){
+        $this->parameters = $this->filter($parameters) + $this->getDefaults();
     }
     
     /**
@@ -42,7 +42,7 @@ class Parameters implements ParametersInterface {
      *
      * @return array
      */
-    protected function getDefaults() {
+    protected function getDefaults(){
         return self::$defaults;
     }
     
@@ -55,12 +55,12 @@ class Parameters implements ParametersInterface {
      *            
      * @return Parameters
      */
-    public static function create($parameters) {
-        if (is_string ( $parameters )) {
-            $parameters = static::parse ( $parameters );
+    public static function create($parameters){
+        if (is_string($parameters)) {
+            $parameters = static::parse($parameters);
         }
         
-        return new static ( $parameters ?  : array () );
+        return new static($parameters ?  : array());
     }
     
     /**
@@ -73,21 +73,21 @@ class Parameters implements ParametersInterface {
      *
      * @throws \InvalidArgumentException
      */
-    public static function parse($uri) {
-        if (stripos ( $uri, 'unix' ) === 0) {
+    public static function parse($uri){
+        if (stripos($uri,'unix') === 0) {
             // Hack to support URIs for UNIX sockets with minimal effort.
-            $uri = str_ireplace ( 'unix:///', 'unix://localhost/', $uri );
+            $uri = str_ireplace('unix:///','unix://localhost/',$uri);
         }
         
-        if (! ($parsed = parse_url ( $uri )) || ! isset ( $parsed ['host'] )) {
-            throw new InvalidArgumentException ( "Invalid parameters URI: $uri" );
+        if (!($parsed = parse_url($uri)) || !isset($parsed['host'])) {
+            throw new InvalidArgumentException("Invalid parameters URI: $uri");
         }
         
-        if (isset ( $parsed ['query'] )) {
-            parse_str ( $parsed ['query'], $queryarray );
-            unset ( $parsed ['query'] );
+        if (isset($parsed['query'])) {
+            parse_str($parsed['query'],$queryarray);
+            unset($parsed['query']);
             
-            $parsed = array_merge ( $parsed, $queryarray );
+            $parsed = array_merge($parsed,$queryarray);
         }
         
         return $parsed;
@@ -101,38 +101,38 @@ class Parameters implements ParametersInterface {
      *            
      * @return array
      */
-    protected function filter(array $parameters) {
-        return $parameters ?  : array ();
+    protected function filter(array $parameters){
+        return $parameters ?  : array();
     }
     
     /**
      * @ERROR!!!
      */
-    public function __get($parameter) {
-        if (isset ( $this->parameters [$parameter] )) {
-            return $this->parameters [$parameter];
+    public function __get($parameter){
+        if (isset($this->parameters[$parameter])) {
+            return $this->parameters[$parameter];
         }
     }
     
     /**
      * @ERROR!!!
      */
-    public function __isset($parameter) {
-        return isset ( $this->parameters [$parameter] );
+    public function __isset($parameter){
+        return isset($this->parameters[$parameter]);
     }
     
     /**
      * @ERROR!!!
      */
-    public function toArray() {
+    public function toArray(){
         return $this->parameters;
     }
     
     /**
      * @ERROR!!!
      */
-    public function __sleep() {
-        return array (
+    public function __sleep(){
+        return array(
                 'parameters' 
         );
     }

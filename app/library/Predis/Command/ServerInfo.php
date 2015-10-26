@@ -19,24 +19,24 @@ class ServerInfo extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'INFO';
     }
     
     /**
      * @ERROR!!!
      */
-    public function parseResponse($data) {
-        $info = array ();
-        $infoLines = preg_split ( '/\r?\n/', $data );
+    public function parseResponse($data){
+        $info = array();
+        $infoLines = preg_split('/\r?\n/',$data);
         
         foreach ( $infoLines as $row ) {
-            if (strpos ( $row, ':' ) === false) {
+            if (strpos($row,':') === false) {
                 continue;
             }
             
-            list ( $k, $v ) = $this->parseRow ( $row );
-            $info [$k] = $v;
+            list($k,$v) = $this->parseRow($row);
+            $info[$k] = $v;
         }
         
         return $info;
@@ -50,14 +50,14 @@ class ServerInfo extends Command {
      *            
      * @return array
      */
-    protected function parseRow($row) {
-        list ( $k, $v ) = explode ( ':', $row, 2 );
+    protected function parseRow($row){
+        list($k,$v) = explode(':',$row,2);
         
-        if (preg_match ( '/^db\d+$/', $k )) {
-            $v = $this->parseDatabaseStats ( $v );
+        if (preg_match('/^db\d+$/',$k)) {
+            $v = $this->parseDatabaseStats($v);
         }
         
-        return array (
+        return array(
                 $k,
                 $v 
         );
@@ -71,12 +71,12 @@ class ServerInfo extends Command {
      *            
      * @return array
      */
-    protected function parseDatabaseStats($str) {
-        $db = array ();
+    protected function parseDatabaseStats($str){
+        $db = array();
         
-        foreach ( explode ( ',', $str ) as $dbvar ) {
-            list ( $dbvk, $dbvv ) = explode ( '=', $dbvar );
-            $db [trim ( $dbvk )] = $dbvv;
+        foreach ( explode(',',$str) as $dbvar ) {
+            list($dbvk,$dbvv) = explode('=',$dbvar);
+            $db[trim($dbvk)] = $dbvv;
         }
         
         return $db;
@@ -90,19 +90,19 @@ class ServerInfo extends Command {
      *            
      * @return array
      */
-    protected function parseAllocationStats($str) {
-        $stats = array ();
+    protected function parseAllocationStats($str){
+        $stats = array();
         
-        foreach ( explode ( ',', $str ) as $kv ) {
-            @list ( $size, $objects, $extra ) = explode ( '=', $kv );
+        foreach ( explode(',',$str) as $kv ) {
+            @list($size,$objects,$extra) = explode('=',$kv);
             
             // hack to prevent incorrect values when parsing the >=256 key
-            if (isset ( $extra )) {
+            if (isset($extra)) {
                 $size = ">=$objects";
                 $objects = $extra;
             }
             
-            $stats [$size] = $objects;
+            $stats[$size] = $objects;
         }
         
         return $stats;

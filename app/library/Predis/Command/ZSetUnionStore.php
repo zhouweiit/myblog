@@ -19,29 +19,29 @@ class ZSetUnionStore extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'ZUNIONSTORE';
     }
     
     /**
      * @ERROR!!!
      */
-    protected function filterArguments(array $arguments) {
-        $options = array ();
-        $argc = count ( $arguments );
+    protected function filterArguments(array $arguments){
+        $options = array();
+        $argc = count($arguments);
         
-        if ($argc > 2 && is_array ( $arguments [$argc - 1] )) {
-            $options = $this->prepareOptions ( array_pop ( $arguments ) );
+        if ($argc > 2 && is_array($arguments[$argc - 1])) {
+            $options = $this->prepareOptions(array_pop($arguments));
         }
         
-        if (is_array ( $arguments [1] )) {
-            $arguments = array_merge ( array (
-                    $arguments [0],
-                    count ( $arguments [1] ) 
-            ), $arguments [1] );
+        if (is_array($arguments[1])) {
+            $arguments = array_merge(array(
+                    $arguments[0],
+                    count($arguments[1]) 
+            ),$arguments[1]);
         }
         
-        return array_merge ( $arguments, $options );
+        return array_merge($arguments,$options);
     }
     
     /**
@@ -52,21 +52,21 @@ class ZSetUnionStore extends Command {
      *            
      * @return array
      */
-    private function prepareOptions($options) {
-        $opts = array_change_key_case ( $options, CASE_UPPER );
-        $finalizedOpts = array ();
+    private function prepareOptions($options){
+        $opts = array_change_key_case($options,CASE_UPPER);
+        $finalizedOpts = array();
         
-        if (isset ( $opts ['WEIGHTS'] ) && is_array ( $opts ['WEIGHTS'] )) {
-            $finalizedOpts [] = 'WEIGHTS';
+        if (isset($opts['WEIGHTS']) && is_array($opts['WEIGHTS'])) {
+            $finalizedOpts[] = 'WEIGHTS';
             
-            foreach ( $opts ['WEIGHTS'] as $weight ) {
-                $finalizedOpts [] = $weight;
+            foreach ( $opts['WEIGHTS'] as $weight ) {
+                $finalizedOpts[] = $weight;
             }
         }
         
-        if (isset ( $opts ['AGGREGATE'] )) {
-            $finalizedOpts [] = 'AGGREGATE';
-            $finalizedOpts [] = $opts ['AGGREGATE'];
+        if (isset($opts['AGGREGATE'])) {
+            $finalizedOpts[] = 'AGGREGATE';
+            $finalizedOpts[] = $opts['AGGREGATE'];
         }
         
         return $finalizedOpts;

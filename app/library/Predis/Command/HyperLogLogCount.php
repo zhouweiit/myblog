@@ -19,14 +19,14 @@ class HyperLogLogCount extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'PFCOUNT';
     }
     
     /**
      * @ERROR!!!
      */
-    protected function filterArguments(array $arguments) {
-        return self::normalizeArguments ( $arguments );
+    protected function filterArguments(array $arguments){
+        return self::normalizeArguments($arguments);
     }
 }

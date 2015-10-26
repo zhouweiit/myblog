@@ -19,7 +19,7 @@ class ZSetIntersectionStore extends ZSetUnionStore {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'ZINTERSTORE';
     }
 }

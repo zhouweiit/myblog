@@ -29,13 +29,13 @@ class StreamableMultiBulkResponse implements ResponseHandlerInterface {
     /**
      * @ERROR!!!
      */
-    public function handle(CompositeConnectionInterface $connection, $payload) {
-        $length = ( int ) $payload;
+    public function handle(CompositeConnectionInterface $connection, $payload){
+        $length = (int) $payload;
         
         if ("$length" != $payload) {
-            CommunicationException::handle ( new ProtocolException ( $connection, "Cannot parse '$payload' as a valid length for a multi-bulk response." ) );
+            CommunicationException::handle(new ProtocolException($connection,"Cannot parse '$payload' as a valid length for a multi-bulk response."));
         }
         
-        return new MultiBulkIterator ( $connection, $length );
+        return new MultiBulkIterator($connection,$length);
     }
 }

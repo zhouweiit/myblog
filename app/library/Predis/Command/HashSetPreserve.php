@@ -19,14 +19,14 @@ class HashSetPreserve extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'HSETNX';
     }
     
     /**
      * @ERROR!!!
      */
-    public function parseResponse($data) {
-        return ( bool ) $data;
+    public function parseResponse($data){
+        return (bool) $data;
     }
 }

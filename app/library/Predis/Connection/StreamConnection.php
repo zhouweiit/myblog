@@ -36,20 +36,20 @@ class StreamConnection extends AbstractConnection {
      * garbage collector kicks in only if the connection has not been marked as
      * persistent.
      */
-    public function __destruct() {
-        if (isset ( $this->parameters->persistent ) && $this->parameters->persistent) {
+    public function __destruct(){
+        if (isset($this->parameters->persistent) && $this->parameters->persistent) {
             return;
         }
         
-        $this->disconnect ();
+        $this->disconnect();
     }
     
     /**
      * @ERROR!!!
      */
-    protected function createResource() {
+    protected function createResource(){
         $initializer = "{$this->parameters->scheme}StreamInitializer";
-        $resource = $this->$initializer ( $this->parameters );
+        $resource = $this->$initializer($this->parameters);
         
         return $resource;
     }
@@ -62,36 +62,36 @@ class StreamConnection extends AbstractConnection {
      *            
      * @return resource
      */
-    protected function tcpStreamInitializer(ParametersInterface $parameters) {
+    protected function tcpStreamInitializer(ParametersInterface $parameters){
         $uri = "tcp://{$parameters->host}:{$parameters->port}";
         $flags = STREAM_CLIENT_CONNECT;
         
-        if (isset ( $parameters->async_connect ) && ( bool ) $parameters->async_connect) {
+        if (isset($parameters->async_connect) && (bool) $parameters->async_connect) {
             $flags |= STREAM_CLIENT_ASYNC_CONNECT;
         }
         
-        if (isset ( $parameters->persistent ) && ( bool ) $parameters->persistent) {
+        if (isset($parameters->persistent) && (bool) $parameters->persistent) {
             $flags |= STREAM_CLIENT_PERSISTENT;
-            $uri .= strpos ( $path = $parameters->path, '/' ) === 0 ? $path : "/$path";
+            $uri .= strpos($path = $parameters->path,'/') === 0 ? $path : "/$path";
         }
         
-        $resource = @stream_socket_client ( $uri, $errno, $errstr, ( float ) $parameters->timeout, $flags );
+        $resource = @stream_socket_client($uri,$errno,$errstr,(float) $parameters->timeout,$flags);
         
-        if (! $resource) {
-            $this->onConnectionError ( trim ( $errstr ), $errno );
+        if (!$resource) {
+            $this->onConnectionError(trim($errstr),$errno);
         }
         
-        if (isset ( $parameters->read_write_timeout )) {
-            $rwtimeout = ( float ) $parameters->read_write_timeout;
-            $rwtimeout = $rwtimeout > 0 ? $rwtimeout : - 1;
-            $timeoutSeconds = floor ( $rwtimeout );
+        if (isset($parameters->read_write_timeout)) {
+            $rwtimeout = (float) $parameters->read_write_timeout;
+            $rwtimeout = $rwtimeout > 0 ? $rwtimeout : -1;
+            $timeoutSeconds = floor($rwtimeout);
             $timeoutUSeconds = ($rwtimeout - $timeoutSeconds) * 1000000;
-            stream_set_timeout ( $resource, $timeoutSeconds, $timeoutUSeconds );
+            stream_set_timeout($resource,$timeoutSeconds,$timeoutUSeconds);
         }
         
-        if (isset ( $parameters->tcp_nodelay ) && function_exists ( 'socket_import_stream' )) {
-            $socket = socket_import_stream ( $resource );
-            socket_set_option ( $socket, SOL_TCP, TCP_NODELAY, ( int ) $parameters->tcp_nodelay );
+        if (isset($parameters->tcp_nodelay) && function_exists('socket_import_stream')) {
+            $socket = socket_import_stream($resource);
+            socket_set_option($socket,SOL_TCP,TCP_NODELAY,(int) $parameters->tcp_nodelay);
         }
         
         return $resource;
@@ -105,26 +105,26 @@ class StreamConnection extends AbstractConnection {
      *            
      * @return resource
      */
-    protected function unixStreamInitializer(ParametersInterface $parameters) {
+    protected function unixStreamInitializer(ParametersInterface $parameters){
         $uri = "unix://{$parameters->path}";
         $flags = STREAM_CLIENT_CONNECT;
         
-        if (( bool ) $parameters->persistent) {
+        if ((bool) $parameters->persistent) {
             $flags |= STREAM_CLIENT_PERSISTENT;
         }
         
-        $resource = @stream_socket_client ( $uri, $errno, $errstr, ( float ) $parameters->timeout, $flags );
+        $resource = @stream_socket_client($uri,$errno,$errstr,(float) $parameters->timeout,$flags);
         
-        if (! $resource) {
-            $this->onConnectionError ( trim ( $errstr ), $errno );
+        if (!$resource) {
+            $this->onConnectionError(trim($errstr),$errno);
         }
         
-        if (isset ( $parameters->read_write_timeout )) {
-            $rwtimeout = ( float ) $parameters->read_write_timeout;
-            $rwtimeout = $rwtimeout > 0 ? $rwtimeout : - 1;
-            $timeoutSeconds = floor ( $rwtimeout );
+        if (isset($parameters->read_write_timeout)) {
+            $rwtimeout = (float) $parameters->read_write_timeout;
+            $rwtimeout = $rwtimeout > 0 ? $rwtimeout : -1;
+            $timeoutSeconds = floor($rwtimeout);
             $timeoutUSeconds = ($rwtimeout - $timeoutSeconds) * 1000000;
-            stream_set_timeout ( $resource, $timeoutSeconds, $timeoutUSeconds );
+            stream_set_timeout($resource,$timeoutSeconds,$timeoutUSeconds);
         }
         
         return $resource;
@@ -133,10 +133,10 @@ class StreamConnection extends AbstractConnection {
     /**
      * @ERROR!!!
      */
-    public function connect() {
-        if (parent::connect () && $this->initCommands) {
+    public function connect(){
+        if (parent::connect() && $this->initCommands) {
             foreach ( $this->initCommands as $command ) {
-                $this->executeCommand ( $command );
+                $this->executeCommand($command);
             }
         }
     }
@@ -144,10 +144,10 @@ class StreamConnection extends AbstractConnection {
     /**
      * @ERROR!!!
      */
-    public function disconnect() {
-        if ($this->isConnected ()) {
-            fclose ( $this->getResource () );
-            parent::disconnect ();
+    public function disconnect(){
+        if ($this->isConnected()) {
+            fclose($this->getResource());
+            parent::disconnect();
         }
     }
     
@@ -158,46 +158,46 @@ class StreamConnection extends AbstractConnection {
      * @param string $buffer
      *            Representation of a command in the Redis wire protocol.
      */
-    protected function write($buffer) {
-        $socket = $this->getResource ();
+    protected function write($buffer){
+        $socket = $this->getResource();
         
-        while ( ($length = strlen ( $buffer )) > 0 ) {
-            $written = @fwrite ( $socket, $buffer );
+        while ( ($length = strlen($buffer)) > 0 ) {
+            $written = @fwrite($socket,$buffer);
             
             if ($length === $written) {
                 return;
             }
             
             if ($written === false || $written === 0) {
-                $this->onConnectionError ( 'Error while writing bytes to the server.' );
+                $this->onConnectionError('Error while writing bytes to the server.');
             }
             
-            $buffer = substr ( $buffer, $written );
+            $buffer = substr($buffer,$written);
         }
     }
     
     /**
      * @ERROR!!!
      */
-    public function read() {
-        $socket = $this->getResource ();
-        $chunk = fgets ( $socket );
+    public function read(){
+        $socket = $this->getResource();
+        $chunk = fgets($socket);
         
         if ($chunk === false || $chunk === '') {
-            $this->onConnectionError ( 'Error while reading line from the server.' );
+            $this->onConnectionError('Error while reading line from the server.');
         }
         
-        $prefix = $chunk [0];
-        $payload = substr ( $chunk, 1, - 2 );
+        $prefix = $chunk[0];
+        $payload = substr($chunk,1,-2);
         
         switch ($prefix) {
             case '+' :
-                return StatusResponse::get ( $payload );
+                return StatusResponse::get($payload);
             
             case '$' :
-                $size = ( int ) $payload;
+                $size = (int) $payload;
                 
-                if ($size === - 1) {
+                if ($size === -1) {
                     return null;
                 }
                 
@@ -205,41 +205,41 @@ class StreamConnection extends AbstractConnection {
                 $bytesLeft = ($size += 2);
                 
                 do {
-                    $chunk = fread ( $socket, min ( $bytesLeft, 4096 ) );
+                    $chunk = fread($socket,min($bytesLeft,4096));
                     
                     if ($chunk === false || $chunk === '') {
-                        $this->onConnectionError ( 'Error while reading bytes from the server.' );
+                        $this->onConnectionError('Error while reading bytes from the server.');
                     }
                     
                     $bulkData .= $chunk;
-                    $bytesLeft = $size - strlen ( $bulkData );
+                    $bytesLeft = $size - strlen($bulkData);
                 } while ( $bytesLeft > 0 );
                 
-                return substr ( $bulkData, 0, - 2 );
+                return substr($bulkData,0,-2);
             
             case '*' :
-                $count = ( int ) $payload;
+                $count = (int) $payload;
                 
-                if ($count === - 1) {
+                if ($count === -1) {
                     return null;
                 }
                 
-                $multibulk = array ();
+                $multibulk = array();
                 
-                for($i = 0; $i < $count; $i ++) {
-                    $multibulk [$i] = $this->read ();
+                for($i = 0; $i < $count; $i++) {
+                    $multibulk[$i] = $this->read();
                 }
                 
                 return $multibulk;
             
             case ':' :
-                return ( int ) $payload;
+                return (int) $payload;
             
             case '-' :
-                return new ErrorResponse ( $payload );
+                return new ErrorResponse($payload);
             
             default :
-                $this->onProtocolError ( "Unknown response prefix: '$prefix'." );
+                $this->onProtocolError("Unknown response prefix: '$prefix'.");
                 
                 return;
         }
@@ -248,21 +248,21 @@ class StreamConnection extends AbstractConnection {
     /**
      * @ERROR!!!
      */
-    public function writeRequest(CommandInterface $command) {
-        $commandID = $command->getId ();
-        $arguments = $command->getArguments ();
+    public function writeRequest(CommandInterface $command){
+        $commandID = $command->getId();
+        $arguments = $command->getArguments();
         
-        $cmdlen = strlen ( $commandID );
-        $reqlen = count ( $arguments ) + 1;
+        $cmdlen = strlen($commandID);
+        $reqlen = count($arguments) + 1;
         
         $buffer = "*{$reqlen}\r\n\${$cmdlen}\r\n{$commandID}\r\n";
         
-        for($i = 0, $reqlen --; $i < $reqlen; $i ++) {
-            $argument = $arguments [$i];
-            $arglen = strlen ( $argument );
+        for($i = 0, $reqlen--; $i < $reqlen; $i++) {
+            $argument = $arguments[$i];
+            $arglen = strlen($argument);
             $buffer .= "\${$arglen}\r\n{$argument}\r\n";
         }
         
-        $this->write ( $buffer );
+        $this->write($buffer);
     }
 }

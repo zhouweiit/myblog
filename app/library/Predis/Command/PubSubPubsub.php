@@ -19,17 +19,17 @@ class PubSubPubsub extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'PUBSUB';
     }
     
     /**
      * @ERROR!!!
      */
-    public function parseResponse($data) {
-        switch (strtolower ( $this->getArgument ( 0 ) )) {
+    public function parseResponse($data){
+        switch (strtolower($this->getArgument(0))) {
             case 'numsub' :
-                return self::processNumsub ( $data );
+                return self::processNumsub($data);
             
             default :
                 return $data;
@@ -44,12 +44,12 @@ class PubSubPubsub extends Command {
      *            
      * @return array
      */
-    protected static function processNumsub(array $channels) {
-        $processed = array ();
-        $count = count ( $channels );
+    protected static function processNumsub(array $channels){
+        $processed = array();
+        $count = count($channels);
         
-        for($i = 0; $i < $count; $i ++) {
-            $processed [$channels [$i]] = $channels [++ $i];
+        for($i = 0; $i < $count; $i++) {
+            $processed[$channels[$i]] = $channels[++$i];
         }
         
         return $processed;

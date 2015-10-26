@@ -26,8 +26,8 @@ abstract class RedisProfile implements ProfileInterface {
     
     /**
      */
-    public function __construct() {
-        $this->commands = $this->getSupportedCommands ();
+    public function __construct(){
+        $this->commands = $this->getSupportedCommands();
     }
     
     /**
@@ -41,16 +41,16 @@ abstract class RedisProfile implements ProfileInterface {
     /**
      * @ERROR!!!
      */
-    public function supportsCommand($commandID) {
-        return isset ( $this->commands [strtoupper ( $commandID )] );
+    public function supportsCommand($commandID){
+        return isset($this->commands[strtoupper($commandID)]);
     }
     
     /**
      * @ERROR!!!
      */
-    public function supportsCommands(array $commandIDs) {
+    public function supportsCommands(array $commandIDs){
         foreach ( $commandIDs as $commandID ) {
-            if (! $this->supportsCommand ( $commandID )) {
+            if (!$this->supportsCommand($commandID)) {
                 return false;
             }
         }
@@ -67,28 +67,28 @@ abstract class RedisProfile implements ProfileInterface {
      *            
      * @return string|null
      */
-    public function getCommandClass($commandID) {
-        if (isset ( $this->commands [$commandID = strtoupper ( $commandID )] )) {
-            return $this->commands [$commandID];
+    public function getCommandClass($commandID){
+        if (isset($this->commands[$commandID = strtoupper($commandID)])) {
+            return $this->commands[$commandID];
         }
     }
     
     /**
      * @ERROR!!!
      */
-    public function createCommand($commandID, array $arguments = array()) {
-        $commandID = strtoupper ( $commandID );
+    public function createCommand($commandID, array $arguments = array()){
+        $commandID = strtoupper($commandID);
         
-        if (! isset ( $this->commands [$commandID] )) {
-            throw new ClientException ( "Command '$commandID' is not a registered Redis command." );
+        if (!isset($this->commands[$commandID])) {
+            throw new ClientException("Command '$commandID' is not a registered Redis command.");
         }
         
-        $commandClass = $this->commands [$commandID];
-        $command = new $commandClass ();
-        $command->setArguments ( $arguments );
+        $commandClass = $this->commands[$commandID];
+        $command = new $commandClass();
+        $command->setArguments($arguments);
         
-        if (isset ( $this->processor )) {
-            $this->processor->process ( $command );
+        if (isset($this->processor)) {
+            $this->processor->process($command);
         }
         
         return $command;
@@ -104,27 +104,27 @@ abstract class RedisProfile implements ProfileInterface {
      *            
      * @throws \InvalidArgumentException
      */
-    public function defineCommand($commandID, $class) {
-        $reflection = new ReflectionClass ( $class );
+    public function defineCommand($commandID, $class){
+        $reflection = new ReflectionClass($class);
         
-        if (! $reflection->isSubclassOf ( 'Predis\Command\CommandInterface' )) {
-            throw new InvalidArgumentException ( "The class '$class' is not a valid command class." );
+        if (!$reflection->isSubclassOf('Predis\Command\CommandInterface')) {
+            throw new InvalidArgumentException("The class '$class' is not a valid command class.");
         }
         
-        $this->commands [strtoupper ( $commandID )] = $class;
+        $this->commands[strtoupper($commandID)] = $class;
     }
     
     /**
      * @ERROR!!!
      */
-    public function setProcessor(ProcessorInterface $processor = null) {
+    public function setProcessor(ProcessorInterface $processor = null){
         $this->processor = $processor;
     }
     
     /**
      * @ERROR!!!
      */
-    public function getProcessor() {
+    public function getProcessor(){
         return $this->processor;
     }
     
@@ -133,7 +133,7 @@ abstract class RedisProfile implements ProfileInterface {
      *
      * @return string
      */
-    public function __toString() {
-        return $this->getVersion ();
+    public function __toString(){
+        return $this->getVersion();
     }
 }

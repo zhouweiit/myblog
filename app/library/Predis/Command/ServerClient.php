@@ -22,19 +22,19 @@ class ServerClient extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'CLIENT';
     }
     
     /**
      * @ERROR!!!
      */
-    public function parseResponse($data) {
-        $args = array_change_key_case ( $this->getArguments (), CASE_UPPER );
+    public function parseResponse($data){
+        $args = array_change_key_case($this->getArguments(),CASE_UPPER);
         
-        switch (strtoupper ( $args [0] )) {
+        switch (strtoupper($args[0])) {
             case 'LIST' :
-                return $this->parseClientList ( $data );
+                return $this->parseClientList($data);
             case 'KILL' :
             case 'GETNAME' :
             case 'SETNAME' :
@@ -51,18 +51,18 @@ class ServerClient extends Command {
      *            
      * @return array
      */
-    protected function parseClientList($data) {
-        $clients = array ();
+    protected function parseClientList($data){
+        $clients = array();
         
-        foreach ( explode ( "\n", $data, - 1 ) as $clientData ) {
-            $client = array ();
+        foreach ( explode("\n",$data,-1) as $clientData ) {
+            $client = array();
             
-            foreach ( explode ( ' ', $clientData ) as $kv ) {
-                @list ( $k, $v ) = explode ( '=', $kv );
-                $client [$k] = $v;
+            foreach ( explode(' ',$clientData) as $kv ) {
+                @list($k,$v) = explode('=',$kv);
+                $client[$k] = $v;
             }
             
-            $clients [] = $client;
+            $clients[] = $client;
         }
         
         return $clients;

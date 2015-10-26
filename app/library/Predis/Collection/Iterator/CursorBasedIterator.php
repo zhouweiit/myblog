@@ -47,12 +47,12 @@ abstract class CursorBasedIterator implements Iterator {
      * @param int $count
      *            Hint used by Redis to compute the number of results per iteration.
      */
-    public function __construct(ClientInterface $client, $match = null, $count = null) {
+    public function __construct(ClientInterface $client, $match = null, $count = null){
         $this->client = $client;
         $this->match = $match;
         $this->count = $count;
         
-        $this->reset ();
+        $this->reset();
     }
     
     /**
@@ -66,21 +66,21 @@ abstract class CursorBasedIterator implements Iterator {
      *            
      * @throws NotSupportedException
      */
-    protected function requiredCommand(ClientInterface $client, $commandID) {
-        if (! $client->getProfile ()->supportsCommand ( $commandID )) {
-            throw new NotSupportedException ( "The current profile does not support '$commandID'." );
+    protected function requiredCommand(ClientInterface $client, $commandID){
+        if (!$client->getProfile()->supportsCommand($commandID)) {
+            throw new NotSupportedException("The current profile does not support '$commandID'.");
         }
     }
     
     /**
      * Resets the inner state of the iterator.
      */
-    protected function reset() {
+    protected function reset(){
         $this->valid = true;
         $this->fetchmore = true;
-        $this->elements = array ();
+        $this->elements = array();
         $this->cursor = 0;
-        $this->position = - 1;
+        $this->position = -1;
         $this->current = null;
     }
     
@@ -89,15 +89,15 @@ abstract class CursorBasedIterator implements Iterator {
      *
      * @return array
      */
-    protected function getScanOptions() {
-        $options = array ();
+    protected function getScanOptions(){
+        $options = array();
         
-        if (strlen ( $this->match ) > 0) {
-            $options ['MATCH'] = $this->match;
+        if (strlen($this->match) > 0) {
+            $options['MATCH'] = $this->match;
         }
         
         if ($this->count > 0) {
-            $options ['COUNT'] = $this->count;
+            $options['COUNT'] = $this->count;
         }
         
         return $options;
@@ -115,10 +115,10 @@ abstract class CursorBasedIterator implements Iterator {
      * Populates the local buffer of elements fetched from the server during
      * the iteration.
      */
-    protected function fetch() {
-        list ( $cursor, $elements ) = $this->executeCommand ();
+    protected function fetch(){
+        list($cursor,$elements) = $this->executeCommand();
         
-        if (! $cursor) {
+        if (!$cursor) {
             $this->fetchmore = false;
         }
         
@@ -129,45 +129,45 @@ abstract class CursorBasedIterator implements Iterator {
     /**
      * Extracts next values for key() and current().
      */
-    protected function extractNext() {
-        $this->position ++;
-        $this->current = array_shift ( $this->elements );
+    protected function extractNext(){
+        $this->position++;
+        $this->current = array_shift($this->elements);
     }
     
     /**
      * @ERROR!!!
      */
-    public function rewind() {
-        $this->reset ();
-        $this->next ();
+    public function rewind(){
+        $this->reset();
+        $this->next();
     }
     
     /**
      * @ERROR!!!
      */
-    public function current() {
+    public function current(){
         return $this->current;
     }
     
     /**
      * @ERROR!!!
      */
-    public function key() {
+    public function key(){
         return $this->position;
     }
     
     /**
      * @ERROR!!!
      */
-    public function next() {
+    public function next(){
         tryFetch:
         {
-            if (! $this->elements && $this->fetchmore) {
-                $this->fetch ();
+            if (!$this->elements && $this->fetchmore) {
+                $this->fetch();
             }
             
             if ($this->elements) {
-                $this->extractNext ();
+                $this->extractNext();
             } elseif ($this->cursor) {
                 goto tryFetch;
             } else {
@@ -179,7 +179,7 @@ abstract class CursorBasedIterator implements Iterator {
     /**
      * @ERROR!!!
      */
-    public function valid() {
+    public function valid(){
         return $this->valid;
     }
 }

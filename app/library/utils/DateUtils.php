@@ -18,8 +18,8 @@ class DateUtils {
      * @return int 月的天数
      * @author zhouwei
      */
-    public static function getMonDays($date) {
-        return date ( 't', strtotime ( $date ) );
+    public static function getMonDays($date){
+        return date('t',strtotime($date));
     }
     
     /**
@@ -30,8 +30,8 @@ class DateUtils {
      * @return array 如array(2015,05,03)
      * @author zhouwei
      */
-    public static function getDateArrayByReduceOrAddMonth($monthNum) {
-        return explode ( '-', date ( 'Y-m-d', strtotime ( "{$monthNum} month" ) ) );
+    public static function getDateArrayByReduceOrAddMonth($monthNum){
+        return explode('-',date('Y-m-d',strtotime("{$monthNum} month")));
     }
     
     /**
@@ -42,8 +42,8 @@ class DateUtils {
      * @return array
      * @author zhouwei
      */
-    public static function getDateArrayByReduceOrAddMonthDate($date, $monthNum) {
-        return explode ( '-', date ( 'Y-m-d', strtotime ( "{$monthNum} month", strtotime ( $date ) ) ) );
+    public static function getDateArrayByReduceOrAddMonthDate($date, $monthNum){
+        return explode('-',date('Y-m-d',strtotime("{$monthNum} month",strtotime($date))));
     }
     
     /**
@@ -52,8 +52,8 @@ class DateUtils {
      * @return array
      * @author zhouwei
      */
-    public static function getNowDateArray() {
-        return explode ( '-', date ( 'Y-m-d' ) );
+    public static function getNowDateArray(){
+        return explode('-',date('Y-m-d'));
     }
     
     /**
@@ -66,12 +66,12 @@ class DateUtils {
      * @return array('head'=> '月头日期','end'=>'月尾日期')
      * @author zhouwei
      */
-    public static function getDateByMonth($date, $spreator = '-') {
-        $dataArray = explode ( '-', date ( 'Y-m-d', strtotime ( $date ) ) );
-        $monthDays = self::getMonDays ( $date );
-        return array (
-                'head' => $dataArray [0] . $spreator . $dataArray [1] . $spreator . '01',
-                'end' => $dataArray [0] . $spreator . $dataArray [1] . $spreator . $monthDays 
+    public static function getDateByMonth($date, $spreator = '-'){
+        $dataArray = explode('-',date('Y-m-d',strtotime($date)));
+        $monthDays = self::getMonDays($date);
+        return array(
+                'head' => $dataArray[0] . $spreator . $dataArray[1] . $spreator . '01',
+                'end' => $dataArray[0] . $spreator . $dataArray[1] . $spreator . $monthDays 
         );
     }
     
@@ -83,34 +83,34 @@ class DateUtils {
      * @return array 从小到大排的日期
      * @author zhouwei
      */
-    public static function getDateMonthRangeArray($startDate, $endDate) {
-        if (empty ( $startDate ) || empty ( $endDate )) {
-            return array ();
+    public static function getDateMonthRangeArray($startDate, $endDate){
+        if (empty($startDate) || empty($endDate)) {
+            return array();
         }
-        $endDateTmp = date ( 'Y-m', strtotime ( $endDate ) );
-        $startDateTmp = date ( 'Y-m', strtotime ( $startDate ) );
-        if (strtotime ( $startDate ) > strtotime ( $endDate )) {
-            return array ();
+        $endDateTmp = date('Y-m',strtotime($endDate));
+        $startDateTmp = date('Y-m',strtotime($startDate));
+        if (strtotime($startDate) > strtotime($endDate)) {
+            return array();
         }
-        $dateArray = array (
+        $dateArray = array(
                 $startDateTmp . '-01' 
         );
         if ($endDateTmp == $startDateTmp) {
             return $dateArray;
         }
-        $startArray = explode ( '-', $startDateTmp );
-        $endArray = explode ( '-', $endDateTmp );
-        $mark = ($endArray [0] - $startArray [0]) * 12 + $endArray [1] - $startArray [1];
-        $year = $startArray [0];
-        $mon = $startArray [1];
-        for($i = 1; $i <= $mark; $i ++) {
-            if (intval ( $mon ) == 12) {
+        $startArray = explode('-',$startDateTmp);
+        $endArray = explode('-',$endDateTmp);
+        $mark = ($endArray[0] - $startArray[0]) * 12 + $endArray[1] - $startArray[1];
+        $year = $startArray[0];
+        $mon = $startArray[1];
+        for($i = 1; $i <= $mark; $i++) {
+            if (intval($mon) == 12) {
                 $year = $year + 1;
                 $mon = 1;
             } else {
                 $mon = $mon + 1;
             }
-            $dateArray [] = $year . '-' . ($mon < 10 ? '0' . $mon : $mon) . '-01';
+            $dateArray[] = $year . '-' . ($mon < 10 ? '0' . $mon : $mon) . '-01';
         }
         
         return $dateArray;
@@ -124,13 +124,13 @@ class DateUtils {
      * @return array
      * @author zhouwei
      */
-    public static function getExplodeDate(array $dateArray, $explode = '-') {
-        $array = array ();
+    public static function getExplodeDate(array $dateArray, $explode = '-'){
+        $array = array();
         foreach ( $dateArray as $value ) {
-            $date = explode ( $explode, $value );
-            $array ['year'] [] = $date [0];
-            $array ['mon'] [] = $date [1];
-            $array ['day'] [] = $date [2];
+            $date = explode($explode,$value);
+            $array['year'][] = $date[0];
+            $array['mon'][] = $date[1];
+            $array['day'][] = $date[2];
         }
         return $array;
     }

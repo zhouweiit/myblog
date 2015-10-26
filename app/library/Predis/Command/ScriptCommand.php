@@ -34,7 +34,7 @@ abstract class ScriptCommand extends ServerEvalSHA {
      *
      * @return int
      */
-    protected function getKeysCount() {
+    protected function getKeysCount(){
         return 0;
     }
     
@@ -43,31 +43,31 @@ abstract class ScriptCommand extends ServerEvalSHA {
      *
      * @return array
      */
-    public function getKeys() {
-        return array_slice ( $this->getArguments (), 2, $this->getKeysCount () );
+    public function getKeys(){
+        return array_slice($this->getArguments(),2,$this->getKeysCount());
     }
     
     /**
      * @ERROR!!!
      */
-    protected function filterArguments(array $arguments) {
-        if (($numkeys = $this->getKeysCount ()) && $numkeys < 0) {
-            $numkeys = count ( $arguments ) + $numkeys;
+    protected function filterArguments(array $arguments){
+        if (($numkeys = $this->getKeysCount()) && $numkeys < 0) {
+            $numkeys = count($arguments) + $numkeys;
         }
         
-        return array_merge ( array (
-                sha1 ( $this->getScript () ),
-                ( int ) $numkeys 
-        ), $arguments );
+        return array_merge(array(
+                sha1($this->getScript()),
+                (int) $numkeys 
+        ),$arguments);
     }
     
     /**
      *
      * @return array
      */
-    public function getEvalArguments() {
-        $arguments = $this->getArguments ();
-        $arguments [0] = $this->getScript ();
+    public function getEvalArguments(){
+        $arguments = $this->getArguments();
+        $arguments[0] = $this->getScript();
         
         return $arguments;
     }

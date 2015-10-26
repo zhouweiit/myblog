@@ -19,7 +19,7 @@ class SetUnionStore extends SetIntersectionStore {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'SUNIONSTORE';
     }
 }

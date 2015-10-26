@@ -19,16 +19,16 @@ class TransactionWatch extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'WATCH';
     }
     
     /**
      * @ERROR!!!
      */
-    protected function filterArguments(array $arguments) {
-        if (isset ( $arguments [0] ) && is_array ( $arguments [0] )) {
-            return $arguments [0];
+    protected function filterArguments(array $arguments){
+        if (isset($arguments[0]) && is_array($arguments[0])) {
+            return $arguments[0];
         }
         
         return $arguments;

@@ -22,19 +22,19 @@ class ServerConfig extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'CONFIG';
     }
     
     /**
      * @ERROR!!!
      */
-    public function parseResponse($data) {
-        if (is_array ( $data )) {
-            $result = array ();
+    public function parseResponse($data){
+        if (is_array($data)) {
+            $result = array();
             
-            for($i = 0; $i < count ( $data ); $i ++) {
-                $result [$data [$i]] = $data [++ $i];
+            for($i = 0; $i < count($data); $i++) {
+                $result[$data[$i]] = $data[++$i];
             }
             
             return $result;

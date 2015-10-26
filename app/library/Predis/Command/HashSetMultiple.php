@@ -19,23 +19,23 @@ class HashSetMultiple extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'HMSET';
     }
     
     /**
      * @ERROR!!!
      */
-    protected function filterArguments(array $arguments) {
-        if (count ( $arguments ) === 2 && is_array ( $arguments [1] )) {
-            $flattenedKVs = array (
-                    $arguments [0] 
+    protected function filterArguments(array $arguments){
+        if (count($arguments) === 2 && is_array($arguments[1])) {
+            $flattenedKVs = array(
+                    $arguments[0] 
             );
-            $args = $arguments [1];
+            $args = $arguments[1];
             
             foreach ( $args as $k => $v ) {
-                $flattenedKVs [] = $k;
-                $flattenedKVs [] = $v;
+                $flattenedKVs[] = $k;
+                $flattenedKVs[] = $v;
             }
             
             return $flattenedKVs;

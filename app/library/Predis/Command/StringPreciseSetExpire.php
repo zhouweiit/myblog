@@ -19,7 +19,7 @@ class StringPreciseSetExpire extends StringSetExpire {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'PSETEX';
     }
 }

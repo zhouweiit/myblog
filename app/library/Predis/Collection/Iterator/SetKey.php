@@ -25,10 +25,10 @@ class SetKey extends CursorBasedIterator {
     /**
      * @ERROR!!!
      */
-    public function __construct(ClientInterface $client, $key, $match = null, $count = null) {
-        $this->requiredCommand ( $client, 'SSCAN' );
+    public function __construct(ClientInterface $client, $key, $match = null, $count = null){
+        $this->requiredCommand($client,'SSCAN');
         
-        parent::__construct ( $client, $match, $count );
+        parent::__construct($client,$match,$count);
         
         $this->key = $key;
     }
@@ -36,7 +36,7 @@ class SetKey extends CursorBasedIterator {
     /**
      * @ERROR!!!
      */
-    protected function executeCommand() {
-        return $this->client->sscan ( $this->key, $this->cursor, $this->getScanOptions () );
+    protected function executeCommand(){
+        return $this->client->sscan($this->key,$this->cursor,$this->getScanOptions());
     }
 }

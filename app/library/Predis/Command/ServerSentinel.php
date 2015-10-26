@@ -19,18 +19,18 @@ class ServerSentinel extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'SENTINEL';
     }
     
     /**
      * @ERROR!!!
      */
-    public function parseResponse($data) {
-        switch (strtolower ( $this->getArgument ( 0 ) )) {
+    public function parseResponse($data){
+        switch (strtolower($this->getArgument(0))) {
             case 'masters' :
             case 'slaves' :
-                return self::processMastersOrSlaves ( $data );
+                return self::processMastersOrSlaves($data);
             
             default :
                 return $data;
@@ -45,16 +45,16 @@ class ServerSentinel extends Command {
      *            
      * @return array
      */
-    protected static function processMastersOrSlaves(array $servers) {
+    protected static function processMastersOrSlaves(array $servers){
         foreach ( $servers as $idx => $node ) {
-            $processed = array ();
-            $count = count ( $node );
+            $processed = array();
+            $count = count($node);
             
-            for($i = 0; $i < $count; $i ++) {
-                $processed [$node [$i]] = $node [++ $i];
+            for($i = 0; $i < $count; $i++) {
+                $processed[$node[$i]] = $node[++$i];
             }
             
-            $servers [$idx] = $processed;
+            $servers[$idx] = $processed;
         }
         
         return $servers;

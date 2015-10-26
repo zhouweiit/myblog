@@ -19,18 +19,18 @@ class SetIntersectionStore extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'SINTERSTORE';
     }
     
     /**
      * @ERROR!!!
      */
-    protected function filterArguments(array $arguments) {
-        if (count ( $arguments ) === 2 && is_array ( $arguments [1] )) {
-            return array_merge ( array (
-                    $arguments [0] 
-            ), $arguments [1] );
+    protected function filterArguments(array $arguments){
+        if (count($arguments) === 2 && is_array($arguments[1])) {
+            return array_merge(array(
+                    $arguments[0] 
+            ),$arguments[1]);
         }
         
         return $arguments;

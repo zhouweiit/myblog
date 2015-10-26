@@ -30,26 +30,26 @@ class ProfileOption implements OptionInterface {
      * @param ProfileInterface $profile
      *            Server profile.
      */
-    protected function setProcessors(OptionsInterface $options, ProfileInterface $profile) {
-        if (isset ( $options->prefix ) && $profile instanceof RedisProfile) {
+    protected function setProcessors(OptionsInterface $options, ProfileInterface $profile){
+        if (isset($options->prefix) && $profile instanceof RedisProfile) {
             // NOTE: directly using __get('prefix') is actually a workaround for
             // HHVM 2.3.0. It's correct and respects the options interface, it's
             // just ugly. We will remove this hack when HHVM will fix re-entrant
             // calls to __get() once and for all.
             
-            $profile->setProcessor ( $options->__get ( 'prefix' ) );
+            $profile->setProcessor($options->__get('prefix'));
         }
     }
     
     /**
      * @ERROR!!!
      */
-    public function filter(OptionsInterface $options, $value) {
-        if (is_string ( $value )) {
-            $value = Factory::get ( $value );
-            $this->setProcessors ( $options, $value );
-        } elseif (! $value instanceof ProfileInterface) {
-            throw new InvalidArgumentException ( 'Invalid value for the profile option.' );
+    public function filter(OptionsInterface $options, $value){
+        if (is_string($value)) {
+            $value = Factory::get($value);
+            $this->setProcessors($options,$value);
+        } elseif (!$value instanceof ProfileInterface) {
+            throw new InvalidArgumentException('Invalid value for the profile option.');
         }
         
         return $value;
@@ -58,9 +58,9 @@ class ProfileOption implements OptionInterface {
     /**
      * @ERROR!!!
      */
-    public function getDefault(OptionsInterface $options) {
-        $profile = Factory::getDefault ();
-        $this->setProcessors ( $options, $profile );
+    public function getDefault(OptionsInterface $options){
+        $profile = Factory::getDefault();
+        $this->setProcessors($options,$profile);
         
         return $profile;
     }

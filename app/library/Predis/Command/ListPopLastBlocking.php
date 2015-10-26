@@ -19,7 +19,7 @@ class ListPopLastBlocking extends ListPopFirstBlocking {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'BRPOP';
     }
 }

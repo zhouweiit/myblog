@@ -19,7 +19,7 @@ class ServerEval extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'EVAL';
     }
     
@@ -28,7 +28,7 @@ class ServerEval extends Command {
      *
      * @return string SHA1 hash.
      */
-    public function getScriptHash() {
-        return sha1 ( $this->getArgument ( 0 ) );
+    public function getScriptHash(){
+        return sha1($this->getArgument(0));
     }
 }

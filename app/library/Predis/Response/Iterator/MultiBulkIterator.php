@@ -34,37 +34,37 @@ abstract class MultiBulkIterator implements Iterator, Countable, ResponseInterfa
     /**
      * @ERROR!!!
      */
-    public function rewind() {
+    public function rewind(){
         // NOOP
     }
     
     /**
      * @ERROR!!!
      */
-    public function current() {
+    public function current(){
         return $this->current;
     }
     
     /**
      * @ERROR!!!
      */
-    public function key() {
+    public function key(){
         return $this->position;
     }
     
     /**
      * @ERROR!!!
      */
-    public function next() {
-        if (++ $this->position < $this->size) {
-            $this->current = $this->getValue ();
+    public function next(){
+        if (++$this->position < $this->size) {
+            $this->current = $this->getValue();
         }
     }
     
     /**
      * @ERROR!!!
      */
-    public function valid() {
+    public function valid(){
         return $this->position < $this->size;
     }
     
@@ -77,7 +77,7 @@ abstract class MultiBulkIterator implements Iterator, Countable, ResponseInterfa
      *
      * @return int
      */
-    public function count() {
+    public function count(){
         return $this->size;
     }
     
@@ -86,7 +86,7 @@ abstract class MultiBulkIterator implements Iterator, Countable, ResponseInterfa
      *
      * @return int
      */
-    public function getPosition() {
+    public function getPosition(){
         return $this->position;
     }
     

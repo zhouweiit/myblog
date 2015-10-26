@@ -32,8 +32,8 @@ abstract class CommunicationException extends PredisException {
      * @param Exception $innerException
      *            Inner exception for wrapping the original error.
      */
-    public function __construct(NodeConnectionInterface $connection, $message = null, $code = null, Exception $innerException = null) {
-        parent::__construct ( $message, $code, $innerException );
+    public function __construct(NodeConnectionInterface $connection, $message = null, $code = null, Exception $innerException = null){
+        parent::__construct($message,$code,$innerException);
         $this->connection = $connection;
     }
     
@@ -42,7 +42,7 @@ abstract class CommunicationException extends PredisException {
      *
      * @return NodeConnectionInterface
      */
-    public function getConnection() {
+    public function getConnection(){
         return $this->connection;
     }
     
@@ -51,7 +51,7 @@ abstract class CommunicationException extends PredisException {
      *
      * @return bool
      */
-    public function shouldResetConnection() {
+    public function shouldResetConnection(){
         return true;
     }
     
@@ -63,12 +63,12 @@ abstract class CommunicationException extends PredisException {
      *            
      * @throws CommunicationException
      */
-    public static function handle(CommunicationException $exception) {
-        if ($exception->shouldResetConnection ()) {
-            $connection = $exception->getConnection ();
+    public static function handle(CommunicationException $exception){
+        if ($exception->shouldResetConnection()) {
+            $connection = $exception->getConnection();
             
-            if ($connection->isConnected ()) {
-                $connection->disconnect ();
+            if ($connection->isConnected()) {
+                $connection->disconnect();
             }
         }
         

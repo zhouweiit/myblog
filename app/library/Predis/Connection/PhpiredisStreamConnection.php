@@ -50,72 +50,72 @@ class PhpiredisStreamConnection extends StreamConnection {
     /**
      * @ERROR!!!
      */
-    public function __construct(ParametersInterface $parameters) {
-        $this->assertExtensions ();
+    public function __construct(ParametersInterface $parameters){
+        $this->assertExtensions();
         
-        parent::__construct ( $parameters );
+        parent::__construct($parameters);
         
-        $this->reader = $this->createReader ();
+        $this->reader = $this->createReader();
     }
     
     /**
      * @ERROR!!!
      */
-    public function __destruct() {
-        phpiredis_reader_destroy ( $this->reader );
+    public function __destruct(){
+        phpiredis_reader_destroy($this->reader);
         
-        parent::__destruct ();
+        parent::__destruct();
     }
     
     /**
      * Checks if the phpiredis extension is loaded in PHP.
      */
-    private function assertExtensions() {
-        if (! extension_loaded ( 'phpiredis' )) {
-            throw new NotSupportedException ( 'The "phpiredis" extension is required by this connection backend.' );
+    private function assertExtensions(){
+        if (!extension_loaded('phpiredis')) {
+            throw new NotSupportedException('The "phpiredis" extension is required by this connection backend.');
         }
     }
     
     /**
      * @ERROR!!!
      */
-    protected function tcpStreamInitializer(ParametersInterface $parameters) {
+    protected function tcpStreamInitializer(ParametersInterface $parameters){
         $uri = "tcp://{$parameters->host}:{$parameters->port}";
         $flags = STREAM_CLIENT_CONNECT;
         $socket = null;
         
-        if (isset ( $parameters->async_connect ) && ( bool ) $parameters->async_connect) {
+        if (isset($parameters->async_connect) && (bool) $parameters->async_connect) {
             $flags |= STREAM_CLIENT_ASYNC_CONNECT;
         }
         
-        if (isset ( $parameters->persistent ) && ( bool ) $parameters->persistent) {
+        if (isset($parameters->persistent) && (bool) $parameters->persistent) {
             $flags |= STREAM_CLIENT_PERSISTENT;
-            $uri .= strpos ( $path = $parameters->path, '/' ) === 0 ? $path : "/$path";
+            $uri .= strpos($path = $parameters->path,'/') === 0 ? $path : "/$path";
         }
         
-        $resource = @stream_socket_client ( $uri, $errno, $errstr, ( float ) $parameters->timeout, $flags );
+        $resource = @stream_socket_client($uri,$errno,$errstr,(float) $parameters->timeout,$flags);
         
-        if (! $resource) {
-            $this->onConnectionError ( trim ( $errstr ), $errno );
+        if (!$resource) {
+            $this->onConnectionError(trim($errstr),$errno);
         }
         
-        if (isset ( $parameters->read_write_timeout ) && function_exists ( 'socket_import_stream' )) {
-            $rwtimeout = ( float ) $parameters->read_write_timeout;
-            $rwtimeout = $rwtimeout > 0 ? $rwtimeout : - 1;
+        if (isset($parameters->read_write_timeout) && function_exists('socket_import_stream')) {
+            $rwtimeout = (float) $parameters->read_write_timeout;
+            $rwtimeout = $rwtimeout > 0 ? $rwtimeout : -1;
             
-            $timeout = array (
-                    'sec' => $timeoutSeconds = floor ( $rwtimeout ),
+            $timeout = array(
+                    'sec' => $timeoutSeconds = floor($rwtimeout),
                     'usec' => ($rwtimeout - $timeoutSeconds) * 1000000 
             );
             
-            $socket = $socket ?  : socket_import_stream ( $resource );
-            @socket_set_option ( $socket, SOL_SOCKET, SO_SNDTIMEO, $timeout );
-            @socket_set_option ( $socket, SOL_SOCKET, SO_RCVTIMEO, $timeout );
+            $socket = $socket ?  : socket_import_stream($resource);
+            @socket_set_option($socket,SOL_SOCKET,SO_SNDTIMEO,$timeout);
+            @socket_set_option($socket,SOL_SOCKET,SO_RCVTIMEO,$timeout);
         }
         
-        if (isset ( $parameters->tcp_nodelay ) && function_exists ( 'socket_import_stream' )) {
-            $socket = $socket ?  : socket_import_stream ( $resource );
-            socket_set_option ( $socket, SOL_TCP, TCP_NODELAY, ( int ) $parameters->tcp_nodelay );
+        if (isset($parameters->tcp_nodelay) && function_exists('socket_import_stream')) {
+            $socket = $socket ?  : socket_import_stream($resource);
+            socket_set_option($socket,SOL_TCP,TCP_NODELAY,(int) $parameters->tcp_nodelay);
         }
         
         return $resource;
@@ -126,11 +126,11 @@ class PhpiredisStreamConnection extends StreamConnection {
      *
      * @return resource
      */
-    private function createReader() {
-        $reader = phpiredis_reader_create ();
+    private function createReader(){
+        $reader = phpiredis_reader_create();
         
-        phpiredis_reader_set_status_handler ( $reader, $this->getStatusHandler () );
-        phpiredis_reader_set_error_handler ( $reader, $this->getErrorHandler () );
+        phpiredis_reader_set_status_handler($reader,$this->getStatusHandler());
+        phpiredis_reader_set_error_handler($reader,$this->getErrorHandler());
         
         return $reader;
     }
@@ -140,7 +140,7 @@ class PhpiredisStreamConnection extends StreamConnection {
      *
      * @return resource
      */
-    protected function getReader() {
+    protected function getReader(){
         return $this->reader;
     }
     
@@ -149,9 +149,9 @@ class PhpiredisStreamConnection extends StreamConnection {
      *
      * @return \Closure
      */
-    protected function getStatusHandler() {
-        return function ($payload) {
-            return StatusResponse::get ( $payload );
+    protected function getStatusHandler(){
+        return function ($payload){
+            return StatusResponse::get($payload);
         };
     }
     
@@ -160,33 +160,33 @@ class PhpiredisStreamConnection extends StreamConnection {
      *
      * @return \Closure
      */
-    protected function getErrorHandler() {
-        return function ($errorMessage) {
-            return new ErrorResponse ( $errorMessage );
+    protected function getErrorHandler(){
+        return function ($errorMessage){
+            return new ErrorResponse($errorMessage);
         };
     }
     
     /**
      * @ERROR!!!
      */
-    public function read() {
-        $socket = $this->getResource ();
+    public function read(){
+        $socket = $this->getResource();
         $reader = $this->reader;
         
-        while ( PHPIREDIS_READER_STATE_INCOMPLETE === $state = phpiredis_reader_get_state ( $reader ) ) {
-            $buffer = stream_socket_recvfrom ( $socket, 4096 );
+        while ( PHPIREDIS_READER_STATE_INCOMPLETE === $state = phpiredis_reader_get_state($reader) ) {
+            $buffer = stream_socket_recvfrom($socket,4096);
             
             if ($buffer === false || $buffer === '') {
-                $this->onConnectionError ( 'Error while reading bytes from the server.' );
+                $this->onConnectionError('Error while reading bytes from the server.');
             }
             
-            phpiredis_reader_feed ( $reader, $buffer );
+            phpiredis_reader_feed($reader,$buffer);
         }
         
         if ($state === PHPIREDIS_READER_STATE_COMPLETE) {
-            return phpiredis_reader_get_reply ( $reader );
+            return phpiredis_reader_get_reply($reader);
         } else {
-            $this->onProtocolError ( phpiredis_reader_get_error ( $reader ) );
+            $this->onProtocolError(phpiredis_reader_get_error($reader));
             
             return;
         }
@@ -195,18 +195,18 @@ class PhpiredisStreamConnection extends StreamConnection {
     /**
      * @ERROR!!!
      */
-    public function writeRequest(CommandInterface $command) {
-        $arguments = $command->getArguments ();
-        array_unshift ( $arguments, $command->getId () );
+    public function writeRequest(CommandInterface $command){
+        $arguments = $command->getArguments();
+        array_unshift($arguments,$command->getId());
         
-        $this->write ( phpiredis_format_command ( $arguments ) );
+        $this->write(phpiredis_format_command($arguments));
     }
     
     /**
      * @ERROR!!!
      */
-    public function __wakeup() {
-        $this->assertExtensions ();
-        $this->reader = $this->createReader ();
+    public function __wakeup(){
+        $this->assertExtensions();
+        $this->reader = $this->createReader();
     }
 }

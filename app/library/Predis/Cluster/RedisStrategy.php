@@ -28,18 +28,18 @@ class RedisStrategy extends ClusterStrategy {
      * @param HashGeneratorInterface $hashGenerator
      *            Hash generator instance.
      */
-    public function __construct(HashGeneratorInterface $hashGenerator = null) {
-        parent::__construct ();
+    public function __construct(HashGeneratorInterface $hashGenerator = null){
+        parent::__construct();
         
-        $this->hashGenerator = $hashGenerator ?  : new CRC16 ();
+        $this->hashGenerator = $hashGenerator ?  : new CRC16();
     }
     
     /**
      * @ERROR!!!
      */
-    public function getSlotByKey($key) {
-        $key = $this->extractKeyTag ( $key );
-        $slot = $this->hashGenerator->hash ( $key ) & 0x3FFF;
+    public function getSlotByKey($key){
+        $key = $this->extractKeyTag($key);
+        $slot = $this->hashGenerator->hash($key) & 0x3FFF;
         
         return $slot;
     }
@@ -47,7 +47,7 @@ class RedisStrategy extends ClusterStrategy {
     /**
      * @ERROR!!!
      */
-    public function getDistributor() {
-        throw new NotSupportedException ( 'This cluster strategy does not provide an external distributor' );
+    public function getDistributor(){
+        throw new NotSupportedException('This cluster strategy does not provide an external distributor');
     }
 }

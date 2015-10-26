@@ -49,18 +49,18 @@ class ListKey implements Iterator {
      *            
      * @throws \InvalidArgumentException
      */
-    public function __construct(ClientInterface $client, $key, $count = 10) {
-        $this->requiredCommand ( $client, 'LRANGE' );
+    public function __construct(ClientInterface $client, $key, $count = 10){
+        $this->requiredCommand($client,'LRANGE');
         
-        if ((false === $count = filter_var ( $count, FILTER_VALIDATE_INT )) || $count < 0) {
-            throw new InvalidArgumentException ( 'The $count argument must be a positive integer.' );
+        if ((false === $count = filter_var($count,FILTER_VALIDATE_INT)) || $count < 0) {
+            throw new InvalidArgumentException('The $count argument must be a positive integer.');
         }
         
         $this->client = $client;
         $this->key = $key;
         $this->count = $count;
         
-        $this->reset ();
+        $this->reset();
     }
     
     /**
@@ -74,20 +74,20 @@ class ListKey implements Iterator {
      *            
      * @throws NotSupportedException
      */
-    protected function requiredCommand(ClientInterface $client, $commandID) {
-        if (! $client->getProfile ()->supportsCommand ( $commandID )) {
-            throw new NotSupportedException ( "The current profile does not support '$commandID'." );
+    protected function requiredCommand(ClientInterface $client, $commandID){
+        if (!$client->getProfile()->supportsCommand($commandID)) {
+            throw new NotSupportedException("The current profile does not support '$commandID'.");
         }
     }
     
     /**
      * Resets the inner state of the iterator.
      */
-    protected function reset() {
+    protected function reset(){
         $this->valid = true;
         $this->fetchmore = true;
-        $this->elements = array ();
-        $this->position = - 1;
+        $this->elements = array();
+        $this->position = -1;
         $this->current = null;
     }
     
@@ -97,18 +97,18 @@ class ListKey implements Iterator {
      *
      * @return array
      */
-    protected function executeCommand() {
-        return $this->client->lrange ( $this->key, $this->position + 1, $this->position + $this->count );
+    protected function executeCommand(){
+        return $this->client->lrange($this->key,$this->position + 1,$this->position + $this->count);
     }
     
     /**
      * Populates the local buffer of elements fetched from the server during the
      * iteration.
      */
-    protected function fetch() {
-        $elements = $this->executeCommand ();
+    protected function fetch(){
+        $elements = $this->executeCommand();
         
-        if (count ( $elements ) < $this->count) {
+        if (count($elements) < $this->count) {
             $this->fetchmore = false;
         }
         
@@ -118,43 +118,43 @@ class ListKey implements Iterator {
     /**
      * Extracts next values for key() and current().
      */
-    protected function extractNext() {
-        $this->position ++;
-        $this->current = array_shift ( $this->elements );
+    protected function extractNext(){
+        $this->position++;
+        $this->current = array_shift($this->elements);
     }
     
     /**
      * @ERROR!!!
      */
-    public function rewind() {
-        $this->reset ();
-        $this->next ();
+    public function rewind(){
+        $this->reset();
+        $this->next();
     }
     
     /**
      * @ERROR!!!
      */
-    public function current() {
+    public function current(){
         return $this->current;
     }
     
     /**
      * @ERROR!!!
      */
-    public function key() {
+    public function key(){
         return $this->position;
     }
     
     /**
      * @ERROR!!!
      */
-    public function next() {
-        if (! $this->elements && $this->fetchmore) {
-            $this->fetch ();
+    public function next(){
+        if (!$this->elements && $this->fetchmore) {
+            $this->fetch();
         }
         
         if ($this->elements) {
-            $this->extractNext ();
+            $this->extractNext();
         } else {
             $this->valid = false;
         }
@@ -163,7 +163,7 @@ class ListKey implements Iterator {
     /**
      * @ERROR!!!
      */
-    public function valid() {
+    public function valid(){
         return $this->valid;
     }
 }

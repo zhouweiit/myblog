@@ -19,7 +19,7 @@ class SetDifference extends SetIntersection {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'SDIFF';
     }
 }

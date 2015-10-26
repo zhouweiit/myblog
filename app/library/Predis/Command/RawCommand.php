@@ -34,12 +34,12 @@ class RawCommand implements CommandInterface {
      *            
      * @throws \InvalidArgumentException
      */
-    public function __construct(array $arguments) {
-        if (! $arguments) {
-            throw new InvalidArgumentException ( 'The arguments array must contain at least the command ID.' );
+    public function __construct(array $arguments){
+        if (!$arguments) {
+            throw new InvalidArgumentException('The arguments array must contain at least the command ID.');
         }
         
-        $this->commandID = strtoupper ( array_shift ( $arguments ) );
+        $this->commandID = strtoupper(array_shift($arguments));
         $this->arguments = $arguments;
     }
     
@@ -55,8 +55,8 @@ class RawCommand implements CommandInterface {
      */
     public static function create($commandID /* [ $arg, ... */)
     {
-        $arguments = func_get_args ();
-        $command = new self ( $arguments );
+        $arguments = func_get_args();
+        $command = new self($arguments);
         
         return $command;
     }
@@ -64,53 +64,53 @@ class RawCommand implements CommandInterface {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return $this->commandID;
     }
     
     /**
      * @ERROR!!!
      */
-    public function setArguments(array $arguments) {
+    public function setArguments(array $arguments){
         $this->arguments = $arguments;
-        unset ( $this->slot );
+        unset($this->slot);
     }
     
     /**
      * @ERROR!!!
      */
-    public function setRawArguments(array $arguments) {
-        $this->setArguments ( $arguments );
+    public function setRawArguments(array $arguments){
+        $this->setArguments($arguments);
     }
     
     /**
      * @ERROR!!!
      */
-    public function getArguments() {
+    public function getArguments(){
         return $this->arguments;
     }
     
     /**
      * @ERROR!!!
      */
-    public function getArgument($index) {
-        if (isset ( $this->arguments [$index] )) {
-            return $this->arguments [$index];
+    public function getArgument($index){
+        if (isset($this->arguments[$index])) {
+            return $this->arguments[$index];
         }
     }
     
     /**
      * @ERROR!!!
      */
-    public function setSlot($slot) {
+    public function setSlot($slot){
         $this->slot = $slot;
     }
     
     /**
      * @ERROR!!!
      */
-    public function getSlot() {
-        if (isset ( $this->slot )) {
+    public function getSlot(){
+        if (isset($this->slot)) {
             return $this->slot;
         }
     }
@@ -118,7 +118,7 @@ class RawCommand implements CommandInterface {
     /**
      * @ERROR!!!
      */
-    public function parseResponse($data) {
+    public function parseResponse($data){
         return $data;
     }
 }

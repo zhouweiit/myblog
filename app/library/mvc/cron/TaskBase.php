@@ -25,10 +25,10 @@ abstract class TaskBase {
      * @param Ini $config            
      * @return void
      */
-    public function __construct(\Phalcon\DiInterface $dependencyInjector, Ini $config) {
+    public function __construct(\Phalcon\DiInterface $dependencyInjector, Ini $config){
         $this->di = $dependencyInjector;
         $this->taskConfig = $config;
-        $this->init ();
+        $this->init();
     }
     
     /**
@@ -37,7 +37,7 @@ abstract class TaskBase {
      * @return void
      * @author zhouwei17
      */
-    public function init() {
+    public function init(){
     }
     
     /**

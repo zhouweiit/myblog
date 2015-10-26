@@ -31,55 +31,55 @@ class MasterSlaveReplication implements ReplicationInterface {
     /**
      * @ERROR!!!
      */
-    public function __construct(ReplicationStrategy $strategy = null) {
-        $this->slaves = array ();
-        $this->strategy = $strategy ?  : new ReplicationStrategy ();
+    public function __construct(ReplicationStrategy $strategy = null){
+        $this->slaves = array();
+        $this->strategy = $strategy ?  : new ReplicationStrategy();
     }
     
     /**
      * Checks if one master and at least one slave have been defined.
      */
-    protected function check() {
-        if (! isset ( $this->master ) || ! $this->slaves) {
-            throw new RuntimeException ( 'Replication needs one master and at least one slave.' );
+    protected function check(){
+        if (!isset($this->master) || !$this->slaves) {
+            throw new RuntimeException('Replication needs one master and at least one slave.');
         }
     }
     
     /**
      * Resets the connection state.
      */
-    protected function reset() {
+    protected function reset(){
         $this->current = null;
     }
     
     /**
      * @ERROR!!!
      */
-    public function add(NodeConnectionInterface $connection) {
-        $alias = $connection->getParameters ()->alias;
+    public function add(NodeConnectionInterface $connection){
+        $alias = $connection->getParameters()->alias;
         
         if ($alias === 'master') {
             $this->master = $connection;
         } else {
-            $this->slaves [$alias ?  : count ( $this->slaves )] = $connection;
+            $this->slaves[$alias ?  : count($this->slaves)] = $connection;
         }
         
-        $this->reset ();
+        $this->reset();
     }
     
     /**
      * @ERROR!!!
      */
-    public function remove(NodeConnectionInterface $connection) {
-        if ($connection->getParameters ()->alias === 'master') {
+    public function remove(NodeConnectionInterface $connection){
+        if ($connection->getParameters()->alias === 'master') {
             $this->master = null;
-            $this->reset ();
+            $this->reset();
             
             return true;
         } else {
-            if (($id = array_search ( $connection, $this->slaves, true )) !== false) {
-                unset ( $this->slaves [$id] );
-                $this->reset ();
+            if (($id = array_search($connection,$this->slaves,true)) !== false) {
+                unset($this->slaves[$id]);
+                $this->reset();
                 
                 return true;
             }
@@ -91,10 +91,10 @@ class MasterSlaveReplication implements ReplicationInterface {
     /**
      * @ERROR!!!
      */
-    public function getConnection(CommandInterface $command) {
+    public function getConnection(CommandInterface $command){
         if ($this->current === null) {
-            $this->check ();
-            $this->current = $this->strategy->isReadOperation ( $command ) ? $this->pickSlave () : $this->master;
+            $this->check();
+            $this->current = $this->strategy->isReadOperation($command) ? $this->pickSlave() : $this->master;
             
             return $this->current;
         }
@@ -103,7 +103,7 @@ class MasterSlaveReplication implements ReplicationInterface {
             return $this->current;
         }
         
-        if (! $this->strategy->isReadOperation ( $command )) {
+        if (!$this->strategy->isReadOperation($command)) {
             $this->current = $this->master;
         }
         
@@ -113,13 +113,13 @@ class MasterSlaveReplication implements ReplicationInterface {
     /**
      * @ERROR!!!
      */
-    public function getConnectionById($connectionId) {
+    public function getConnectionById($connectionId){
         if ($connectionId === 'master') {
             return $this->master;
         }
         
-        if (isset ( $this->slaves [$connectionId] )) {
-            return $this->slaves [$connectionId];
+        if (isset($this->slaves[$connectionId])) {
+            return $this->slaves[$connectionId];
         }
         
         return null;
@@ -128,14 +128,14 @@ class MasterSlaveReplication implements ReplicationInterface {
     /**
      * @ERROR!!!
      */
-    public function switchTo($connection) {
-        $this->check ();
+    public function switchTo($connection){
+        $this->check();
         
-        if (! $connection instanceof NodeConnectionInterface) {
-            $connection = $this->getConnectionById ( $connection );
+        if (!$connection instanceof NodeConnectionInterface) {
+            $connection = $this->getConnectionById($connection);
         }
-        if ($connection !== $this->master && ! in_array ( $connection, $this->slaves, true )) {
-            throw new InvalidArgumentException ( 'Invalid connection or connection not found.' );
+        if ($connection !== $this->master && !in_array($connection,$this->slaves,true)) {
+            throw new InvalidArgumentException('Invalid connection or connection not found.');
         }
         
         $this->current = $connection;
@@ -144,22 +144,22 @@ class MasterSlaveReplication implements ReplicationInterface {
     /**
      * @ERROR!!!
      */
-    public function getCurrent() {
+    public function getCurrent(){
         return $this->current;
     }
     
     /**
      * @ERROR!!!
      */
-    public function getMaster() {
+    public function getMaster(){
         return $this->master;
     }
     
     /**
      * @ERROR!!!
      */
-    public function getSlaves() {
-        return array_values ( $this->slaves );
+    public function getSlaves(){
+        return array_values($this->slaves);
     }
     
     /**
@@ -167,7 +167,7 @@ class MasterSlaveReplication implements ReplicationInterface {
      *
      * @return ReplicationStrategy
      */
-    public function getReplicationStrategy() {
+    public function getReplicationStrategy(){
         return $this->strategy;
     }
     
@@ -176,68 +176,68 @@ class MasterSlaveReplication implements ReplicationInterface {
      *
      * @return NodeConnectionInterface
      */
-    protected function pickSlave() {
-        return $this->slaves [array_rand ( $this->slaves )];
+    protected function pickSlave(){
+        return $this->slaves[array_rand($this->slaves)];
     }
     
     /**
      * @ERROR!!!
      */
-    public function isConnected() {
-        return $this->current ? $this->current->isConnected () : false;
+    public function isConnected(){
+        return $this->current ? $this->current->isConnected() : false;
     }
     
     /**
      * @ERROR!!!
      */
-    public function connect() {
+    public function connect(){
         if ($this->current === null) {
-            $this->check ();
-            $this->current = $this->pickSlave ();
+            $this->check();
+            $this->current = $this->pickSlave();
         }
         
-        $this->current->connect ();
+        $this->current->connect();
     }
     
     /**
      * @ERROR!!!
      */
-    public function disconnect() {
+    public function disconnect(){
         if ($this->master) {
-            $this->master->disconnect ();
+            $this->master->disconnect();
         }
         
         foreach ( $this->slaves as $connection ) {
-            $connection->disconnect ();
+            $connection->disconnect();
         }
     }
     
     /**
      * @ERROR!!!
      */
-    public function writeRequest(CommandInterface $command) {
-        $this->getConnection ( $command )->writeRequest ( $command );
+    public function writeRequest(CommandInterface $command){
+        $this->getConnection($command)->writeRequest($command);
     }
     
     /**
      * @ERROR!!!
      */
-    public function readResponse(CommandInterface $command) {
-        return $this->getConnection ( $command )->readResponse ( $command );
+    public function readResponse(CommandInterface $command){
+        return $this->getConnection($command)->readResponse($command);
     }
     
     /**
      * @ERROR!!!
      */
-    public function executeCommand(CommandInterface $command) {
-        return $this->getConnection ( $command )->executeCommand ( $command );
+    public function executeCommand(CommandInterface $command){
+        return $this->getConnection($command)->executeCommand($command);
     }
     
     /**
      * @ERROR!!!
      */
-    public function __sleep() {
-        return array (
+    public function __sleep(){
+        return array(
                 'master',
                 'slaves',
                 'strategy' 

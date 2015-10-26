@@ -57,9 +57,9 @@ class PersistenResult {
      * @return void
      * @author zhouwei17
      */
-    public function __construct($result, $fetchModel = 1) {
+    public function __construct($result, $fetchModel = 1){
         $this->pdoResult = $result;
-        $this->pdoResult->setFetchMode ( Db::FETCH_ASSOC );
+        $this->pdoResult->setFetchMode(Db::FETCH_ASSOC);
         $this->fetchMode = $fetchModel;
     }
     
@@ -71,12 +71,12 @@ class PersistenResult {
      * @return array|object
      * @author zhouwei17
      */
-    public function fetchOne($className) {
-        $result = $this->pdoResult->fetch ();
+    public function fetchOne($className){
+        $result = $this->pdoResult->fetch();
         if (false === $result) {
-            $result = array ();
+            $result = array();
         }
-        return $this->orm ( $result, $className, PersistenResult::FETCH_ONE );
+        return $this->orm($result,$className,PersistenResult::FETCH_ONE);
     }
     
     /**
@@ -87,9 +87,9 @@ class PersistenResult {
      * @return array|object
      * @author zhouwei17
      */
-    public function fetchAll($className) {
-        $result = $this->pdoResult->fetchAll ();
-        return $this->orm ( $result, $className, PersistenResult::FETCH_ALL );
+    public function fetchAll($className){
+        $result = $this->pdoResult->fetchAll();
+        return $this->orm($result,$className,PersistenResult::FETCH_ALL);
     }
     
     /**
@@ -102,12 +102,12 @@ class PersistenResult {
      * @return Object | array
      * @author zhouwei17
      */
-    private function orm(&$result, $className, $fetchType) {
-        if (empty ( $className )) {
-            throw new ExceptionOrm ( 'ORM映射的类名称不能为空' );
+    private function orm(&$result, $className, $fetchType){
+        if (empty($className)) {
+            throw new ExceptionOrm('ORM映射的类名称不能为空');
         }
-        $objectOrm = new ObjectOrm ( $result, $this->fetchMode, $className, $fetchType );
-        return $objectOrm->ormObject ();
+        $objectOrm = new ObjectOrm($result,$this->fetchMode,$className,$fetchType);
+        return $objectOrm->ormObject();
     }
     
     /**
@@ -117,7 +117,7 @@ class PersistenResult {
      * @return PersistenResult
      * @author zhouwei17
      */
-    public function setFetchMode($fetchMode) {
+    public function setFetchMode($fetchMode){
         $this->fetchMode = $fetchMode;
         return $this;
     }

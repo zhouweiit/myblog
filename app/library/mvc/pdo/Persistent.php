@@ -27,7 +27,7 @@ class Persistent {
      * @return void
      * @author zhouwei17
      */
-    public function __construct(Mysql $pdo, $ormType = 1) {
+    public function __construct(Mysql $pdo, $ormType = 1){
         $this->pdo = $pdo;
         $this->ormType = $ormType;
     }
@@ -41,9 +41,9 @@ class Persistent {
      * @return PersistenResult
      * @author zhouwei17
      */
-    public function query($sqlStatement, $bindParams = null, $bindTypes = null) {
-        $result = $this->pdo->query ( $sqlStatement, $bindParams, $bindTypes );
-        return new PersistenResult ( $result, $this->ormType );
+    public function query($sqlStatement, $bindParams = null, $bindTypes = null){
+        $result = $this->pdo->query($sqlStatement,$bindParams,$bindTypes);
+        return new PersistenResult($result,$this->ormType);
     }
     
     /**
@@ -55,8 +55,8 @@ class Persistent {
      * @return boolean
      * @author zhouwei17
      */
-    public function execute($sqlStatement, $bindParams = null, $bindTypes = null) {
-        return $this->pdo->execute ( $sqlStatement, $bindParams, $bindTypes );
+    public function execute($sqlStatement, $bindParams = null, $bindTypes = null){
+        return $this->pdo->execute($sqlStatement,$bindParams,$bindTypes);
     }
     
     /**
@@ -65,8 +65,8 @@ class Persistent {
      * @return int
      * @author zhouwei17
      */
-    public function affectedRows() {
-        return $this->pdo->affectedRows ();
+    public function affectedRows(){
+        return $this->pdo->affectedRows();
     }
     
     /**
@@ -76,8 +76,8 @@ class Persistent {
      * @return string
      * @author zhouwei17
      */
-    public function escapeIdentifier($identifier) {
-        return $this->pdo->escapeIdentifier ( $identifier );
+    public function escapeIdentifier($identifier){
+        return $this->pdo->escapeIdentifier($identifier);
     }
     
     /**
@@ -87,8 +87,8 @@ class Persistent {
      * @return string
      * @author zhouwei17
      */
-    public function escapeString($str) {
-        return $this->pdo->escapeString ( $str );
+    public function escapeString($str){
+        return $this->pdo->escapeString($str);
     }
     
     /**
@@ -97,8 +97,8 @@ class Persistent {
      * @return int
      * @author zhouwei17
      */
-    public function lastInsertId() {
-        return $this->pdo->lastInsertId ();
+    public function lastInsertId(){
+        return $this->pdo->lastInsertId();
     }
     
     /**
@@ -107,8 +107,8 @@ class Persistent {
      * @return boolean
      * @author zhouwei17
      */
-    public function begin() {
-        return $this->pdo->begin ();
+    public function begin(){
+        return $this->pdo->begin();
     }
     
     /**
@@ -117,8 +117,8 @@ class Persistent {
      * @return boolean
      * @author zhouwei17
      */
-    public function rollback() {
-        return $this->pdo->rollback ();
+    public function rollback(){
+        return $this->pdo->rollback();
     }
     
     /**
@@ -127,7 +127,7 @@ class Persistent {
      * @return boolean
      * @author zhouwei17
      */
-    public function commit() {
-        return $this->pdo->commit ();
+    public function commit(){
+        return $this->pdo->commit();
     }
 }

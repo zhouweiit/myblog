@@ -21,48 +21,48 @@ use Predis\Command\CommandInterface;
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ProcessorChain implements ArrayAccess, ProcessorInterface {
-    private $processors = array ();
+    private $processors = array();
     
     /**
      *
      * @param array $processors
      *            List of instances of ProcessorInterface.
      */
-    public function __construct($processors = array()) {
+    public function __construct($processors = array()){
         foreach ( $processors as $processor ) {
-            $this->add ( $processor );
+            $this->add($processor);
         }
     }
     
     /**
      * @ERROR!!!
      */
-    public function add(ProcessorInterface $processor) {
-        $this->processors [] = $processor;
+    public function add(ProcessorInterface $processor){
+        $this->processors[] = $processor;
     }
     
     /**
      * @ERROR!!!
      */
-    public function remove(ProcessorInterface $processor) {
-        if (false !== $index = array_search ( $processor, $this->processors, true )) {
-            unset ( $this [$index] );
+    public function remove(ProcessorInterface $processor){
+        if (false !== $index = array_search($processor,$this->processors,true)) {
+            unset($this[$index]);
         }
     }
     
     /**
      * @ERROR!!!
      */
-    public function process(CommandInterface $command) {
-        for($i = 0; $i < $count = count ( $this->processors ); $i ++) {
-            $this->processors [$i]->process ( $command );
+    public function process(CommandInterface $command){
+        for($i = 0; $i < $count = count($this->processors); $i++) {
+            $this->processors[$i]->process($command);
         }
     }
     
     /**
      * @ERROR!!!
      */
-    public function getProcessors() {
+    public function getProcessors(){
         return $this->processors;
     }
     
@@ -71,8 +71,8 @@ class ProcessorChain implements ArrayAccess, ProcessorInterface {
      *
      * @return ArrayIterator
      */
-    public function getIterator() {
-        return new ArrayIterator ( $this->processors );
+    public function getIterator(){
+        return new ArrayIterator($this->processors);
     }
     
     /**
@@ -80,40 +80,40 @@ class ProcessorChain implements ArrayAccess, ProcessorInterface {
      *
      * @return int
      */
-    public function count() {
-        return count ( $this->processors );
+    public function count(){
+        return count($this->processors);
     }
     
     /**
      * @ERROR!!!
      */
-    public function offsetExists($index) {
-        return isset ( $this->processors [$index] );
+    public function offsetExists($index){
+        return isset($this->processors[$index]);
     }
     
     /**
      * @ERROR!!!
      */
-    public function offsetGet($index) {
-        return $this->processors [$index];
+    public function offsetGet($index){
+        return $this->processors[$index];
     }
     
     /**
      * @ERROR!!!
      */
-    public function offsetSet($index, $processor) {
-        if (! $processor instanceof ProcessorInterface) {
-            throw new InvalidArgumentException ( "A processor chain accepts only instances of " . "'Predis\Command\Processor\ProcessorInterface'." );
+    public function offsetSet($index, $processor){
+        if (!$processor instanceof ProcessorInterface) {
+            throw new InvalidArgumentException("A processor chain accepts only instances of " . "'Predis\Command\Processor\ProcessorInterface'.");
         }
         
-        $this->processors [$index] = $processor;
+        $this->processors[$index] = $processor;
     }
     
     /**
      * @ERROR!!!
      */
-    public function offsetUnset($index) {
-        unset ( $this->processors [$index] );
-        $this->processors = array_values ( $this->processors );
+    public function offsetUnset($index){
+        unset($this->processors[$index]);
+        $this->processors = array_values($this->processors);
     }
 }

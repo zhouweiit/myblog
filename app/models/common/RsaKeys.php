@@ -13,7 +13,7 @@ class RsaKeys {
      * @return void
      * @author zhouwei17
      */
-    public function __construct($privateKey, $publicKey) {
+    public function __construct($privateKey, $publicKey){
         $this->privateKey = $privateKey;
         $this->publicKey = $publicKey;
     }
@@ -22,7 +22,7 @@ class RsaKeys {
      *
      * @return the $publicKey
      */
-    public function getPublicKey() {
+    public function getPublicKey(){
         return $this->publicKey;
     }
     
@@ -30,7 +30,7 @@ class RsaKeys {
      *
      * @return the $privateKey
      */
-    public function getPrivateKey() {
+    public function getPrivateKey(){
         return $this->privateKey;
     }
     
@@ -38,7 +38,7 @@ class RsaKeys {
      *
      * @param field_type $publicKey            
      */
-    public function setPublicKey($publicKey) {
+    public function setPublicKey($publicKey){
         $this->publicKey = $publicKey;
     }
     
@@ -46,7 +46,7 @@ class RsaKeys {
      *
      * @param field_type $privateKey            
      */
-    public function setPrivateKey($privateKey) {
+    public function setPrivateKey($privateKey){
         $this->privateKey = $privateKey;
     }
 }

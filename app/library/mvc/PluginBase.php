@@ -22,15 +22,15 @@ abstract class PluginBase {
      * @param \Phalcon\DiInterface $dependencyInjector            
      * @return void
      */
-    public function __construct(\Phalcon\DiInterface $dependencyInjector) {
+    public function __construct(\Phalcon\DiInterface $dependencyInjector){
         $this->di = $dependencyInjector;
-        $this->init ();
+        $this->init();
     }
     
     /**
      *
      * @return void
      */
-    public function init() {
+    public function init(){
     }
 }

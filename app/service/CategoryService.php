@@ -20,9 +20,9 @@ class CategoryService extends ServiceBase {
      * @var CategoryDao
      */
     private $categoryDao;
-    protected function init() {
-        $this->log = $this->di->get ( 'applicationLog' );
-        $this->categoryDao = $this->di->get ( 'dao\\blog\\CategoryDao' );
+    protected function init(){
+        $this->log = $this->di->get('applicationLog');
+        $this->categoryDao = $this->di->get('dao\\blog\\CategoryDao');
     }
     
     /**
@@ -32,8 +32,8 @@ class CategoryService extends ServiceBase {
      * @return Category
      * @author zhouwei
      */
-    public function getCategoryById($id) {
-        return $this->categoryDao->getCategoryById ( $id );
+    public function getCategoryById($id){
+        return $this->categoryDao->getCategoryById($id);
     }
     
     /**
@@ -42,11 +42,11 @@ class CategoryService extends ServiceBase {
      * @return array
      * @author zhouwei
      */
-    public function getAllCategory() {
-        $categorys = $this->categoryDao->getAllCategory ();
-        $result = array ();
+    public function getAllCategory(){
+        $categorys = $this->categoryDao->getAllCategory();
+        $result = array();
         foreach ( $categorys as $value ) {
-            $result [$value->getId ()] = $value;
+            $result[$value->getId()] = $value;
         }
         return $result;
     }
@@ -57,14 +57,14 @@ class CategoryService extends ServiceBase {
      * @return array
      * @author zhouwei
      */
-    public function getCategoryTree() {
-        $categorys = $this->getAllCategory ();
-        $categoryTree = array ();
+    public function getCategoryTree(){
+        $categorys = $this->getAllCategory();
+        $categoryTree = array();
         foreach ( $categorys as $value ) {
-            if ($value->getDepth () == Category::FIRST_CATEGORY_DEPTH) {
-                $categoryTree [$value->getId ()] = $value;
-            } else if ($value->getDepth () == Category::SECOND_CATEGORY_DEPTH) {
-                $categoryTree [$value->getPid ()] ['child'] [$value->getId ()] = $value;
+            if ($value->getDepth() == Category::FIRST_CATEGORY_DEPTH) {
+                $categoryTree[$value->getId()] = $value;
+            } else if ($value->getDepth() == Category::SECOND_CATEGORY_DEPTH) {
+                $categoryTree[$value->getPid()]['child'][$value->getId()] = $value;
             }
         }
         return $categoryTree;
@@ -78,11 +78,11 @@ class CategoryService extends ServiceBase {
      * @return array
      * @author zhouwei
      */
-    public function getCategoryByPid($pid) {
-        $categorys = $this->categoryDao->getCategoryByPid ( $pid );
-        $result = array ();
+    public function getCategoryByPid($pid){
+        $categorys = $this->categoryDao->getCategoryByPid($pid);
+        $result = array();
         foreach ( $categorys as $value ) {
-            $result [$value->getId ()] = $value;
+            $result[$value->getId()] = $value;
         }
         return $result;
     }
@@ -93,13 +93,13 @@ class CategoryService extends ServiceBase {
      * @return array
      * @author zhouwei
      */
-    public function getFirstCategory() {
-        $categorys = $this->categoryDao->getCategoryByDepth ( Category::FIRST_CATEGORY_DEPTH );
-        $result = array ();
+    public function getFirstCategory(){
+        $categorys = $this->categoryDao->getCategoryByDepth(Category::FIRST_CATEGORY_DEPTH);
+        $result = array();
         foreach ( $categorys as $value ) {
-            $result [$value->getId ()] = array (
-                'name' => $value->getName (),
-                'id' => $value->getId () 
+            $result[$value->getId()] = array(
+                'name' => $value->getName(),
+                'id' => $value->getId() 
             );
         }
         return $result;

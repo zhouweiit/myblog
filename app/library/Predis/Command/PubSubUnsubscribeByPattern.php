@@ -19,7 +19,7 @@ class PubSubUnsubscribeByPattern extends PubSubUnsubscribe {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'PUNSUBSCRIBE';
     }
 }

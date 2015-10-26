@@ -21,7 +21,7 @@ class Smarty_Internal_Compile_Function extends Smarty_Internal_CompileBase {
      * @var array
      * @see Smarty_Internal_CompileBase
      */
-    public $required_attributes = array (
+    public $required_attributes = array(
             'name' 
     );
     /**
@@ -30,7 +30,7 @@ class Smarty_Internal_Compile_Function extends Smarty_Internal_CompileBase {
      * @var array
      * @see Smarty_Internal_CompileBase
      */
-    public $shorttag_order = array (
+    public $shorttag_order = array(
             'name' 
     );
     /**
@@ -39,7 +39,7 @@ class Smarty_Internal_Compile_Function extends Smarty_Internal_CompileBase {
      * @var array
      * @see Smarty_Internal_CompileBase
      */
-    public $optional_attributes = array (
+    public $optional_attributes = array(
             '_any' 
     );
     
@@ -55,26 +55,26 @@ class Smarty_Internal_Compile_Function extends Smarty_Internal_CompileBase {
      *            
      * @return boolean true
      */
-    public function compile($args, $compiler, $parameter) {
+    public function compile($args, $compiler, $parameter){
         // check and get attributes
-        $_attr = $this->getAttributes ( $compiler, $args );
+        $_attr = $this->getAttributes($compiler,$args);
         
-        if ($_attr ['nocache'] === true) {
-            $compiler->trigger_template_error ( 'nocache option not allowed', $compiler->lex->taglineno );
+        if ($_attr['nocache'] === true) {
+            $compiler->trigger_template_error('nocache option not allowed',$compiler->lex->taglineno);
         }
-        unset ( $_attr ['nocache'] );
-        $save = array (
+        unset($_attr['nocache']);
+        $save = array(
                 $_attr,
                 $compiler->parser->current_buffer,
                 $compiler->template->has_nocache_code,
                 $compiler->template->required_plugins 
         );
-        $this->openTag ( $compiler, 'function', $save );
-        $_name = trim ( $_attr ['name'], "'\"" );
-        unset ( $_attr ['name'] );
+        $this->openTag($compiler,'function',$save);
+        $_name = trim($_attr['name'],"'\"");
+        unset($_attr['name']);
         // set flag that we are compiling a template function
         $compiler->compiles_template_function = true;
-        $compiler->template->properties ['function'] [$_name] ['parameter'] = array ();
+        $compiler->template->properties['function'][$_name]['parameter'] = array();
         /**
          *
          * @var Smarty_Internal_Template $_smarty_tpl
@@ -82,10 +82,10 @@ class Smarty_Internal_Compile_Function extends Smarty_Internal_CompileBase {
          */
         $_smarty_tpl = $compiler->template;
         foreach ( $_attr as $_key => $_data ) {
-            eval ( '$tmp=' . $_data . ';' );
-            $compiler->template->properties ['function'] [$_name] ['parameter'] [$_key] = $tmp;
+            eval('$tmp=' . $_data . ';');
+            $compiler->template->properties['function'][$_name]['parameter'][$_key] = $tmp;
         }
-        $compiler->smarty->template_functions [$_name] ['parameter'] = $compiler->template->properties ['function'] [$_name] ['parameter'];
+        $compiler->smarty->template_functions[$_name]['parameter'] = $compiler->template->properties['function'][$_name]['parameter'];
         if ($compiler->template->caching) {
             $output = '';
         } else {
@@ -96,15 +96,15 @@ class Smarty_Internal_Compile_Function extends Smarty_Internal_CompileBase {
     foreach (\$params as \$key => \$value) {\$_smarty_tpl->tpl_vars[\$key] = new Smarty_variable(\$value);}?>";
         }
         // Init temporary context
-        $compiler->template->required_plugins = array (
-                'compiled' => array (),
-                'nocache' => array () 
+        $compiler->template->required_plugins = array(
+                'compiled' => array(),
+                'nocache' => array() 
         );
-        $compiler->parser->current_buffer = new _smarty_template_buffer ( $compiler->parser );
-        $compiler->parser->current_buffer->append_subtree ( new _smarty_tag ( $compiler->parser, $output ) );
+        $compiler->parser->current_buffer = new _smarty_template_buffer($compiler->parser);
+        $compiler->parser->current_buffer->append_subtree(new _smarty_tag($compiler->parser,$output));
         $compiler->template->has_nocache_code = false;
         $compiler->has_code = false;
-        $compiler->template->properties ['function'] [$_name] ['compiled'] = '';
+        $compiler->template->properties['function'][$_name]['compiled'] = '';
         return true;
     }
 }
@@ -128,26 +128,26 @@ class Smarty_Internal_Compile_Functionclose extends Smarty_Internal_CompileBase 
      *            
      * @return boolean true
      */
-    public function compile($args, $compiler, $parameter) {
-        $_attr = $this->getAttributes ( $compiler, $args );
-        $saved_data = $this->closeTag ( $compiler, array (
+    public function compile($args, $compiler, $parameter){
+        $_attr = $this->getAttributes($compiler,$args);
+        $saved_data = $this->closeTag($compiler,array(
                 'function' 
-        ) );
-        $_name = trim ( $saved_data [0] ['name'], "'\"" );
+        ));
+        $_name = trim($saved_data[0]['name'],"'\"");
         // build plugin include code
         $plugins_string = '';
-        if (! empty ( $compiler->template->required_plugins ['compiled'] )) {
+        if (!empty($compiler->template->required_plugins['compiled'])) {
             $plugins_string = '<?php ';
-            foreach ( $compiler->template->required_plugins ['compiled'] as $tmp ) {
+            foreach ( $compiler->template->required_plugins['compiled'] as $tmp ) {
                 foreach ( $tmp as $data ) {
                     $plugins_string .= "if (!is_callable('{$data['function']}')) include '{$data['file']}';\n";
                 }
             }
             $plugins_string .= '?>';
         }
-        if (! empty ( $compiler->template->required_plugins ['nocache'] )) {
+        if (!empty($compiler->template->required_plugins['nocache'])) {
             $plugins_string .= "<?php echo '/*%%SmartyNocache:{$compiler->template->properties['nocache_hash']}%%*/<?php ";
-            foreach ( $compiler->template->required_plugins ['nocache'] as $tmp ) {
+            foreach ( $compiler->template->required_plugins['nocache'] as $tmp ) {
                 foreach ( $tmp as $data ) {
                     $plugins_string .= "if (!is_callable(\'{$data['function']}\')) include \'{$data['file']}\';\n";
                 }
@@ -156,24 +156,24 @@ class Smarty_Internal_Compile_Functionclose extends Smarty_Internal_CompileBase 
         }
         // if caching save template function for possible nocache call
         if ($compiler->template->caching) {
-            $compiler->template->properties ['function'] [$_name] ['compiled'] .= $plugins_string . $compiler->parser->current_buffer->to_smarty_php ();
-            $compiler->template->properties ['function'] [$_name] ['nocache_hash'] = $compiler->template->properties ['nocache_hash'];
-            $compiler->template->properties ['function'] [$_name] ['has_nocache_code'] = $compiler->template->has_nocache_code;
-            $compiler->template->properties ['function'] [$_name] ['called_functions'] = $compiler->called_functions;
-            $compiler->called_functions = array ();
-            $compiler->smarty->template_functions [$_name] = $compiler->template->properties ['function'] [$_name];
+            $compiler->template->properties['function'][$_name]['compiled'] .= $plugins_string . $compiler->parser->current_buffer->to_smarty_php();
+            $compiler->template->properties['function'][$_name]['nocache_hash'] = $compiler->template->properties['nocache_hash'];
+            $compiler->template->properties['function'][$_name]['has_nocache_code'] = $compiler->template->has_nocache_code;
+            $compiler->template->properties['function'][$_name]['called_functions'] = $compiler->called_functions;
+            $compiler->called_functions = array();
+            $compiler->smarty->template_functions[$_name] = $compiler->template->properties['function'][$_name];
             $compiler->has_code = false;
             $output = true;
         } else {
-            $output = $plugins_string . $compiler->parser->current_buffer->to_smarty_php () . "<?php \$_smarty_tpl->tpl_vars = \$saved_tpl_vars;
+            $output = $plugins_string . $compiler->parser->current_buffer->to_smarty_php() . "<?php \$_smarty_tpl->tpl_vars = \$saved_tpl_vars;
 foreach (Smarty::\$global_tpl_vars as \$key => \$value) if(!isset(\$_smarty_tpl->tpl_vars[\$key])) \$_smarty_tpl->tpl_vars[\$key] = \$value;}}?>\n";
         }
         // reset flag that we are compiling a template function
         $compiler->compiles_template_function = false;
         // restore old compiler status
-        $compiler->parser->current_buffer = $saved_data [1];
-        $compiler->template->has_nocache_code = $compiler->template->has_nocache_code | $saved_data [2];
-        $compiler->template->required_plugins = $saved_data [3];
+        $compiler->parser->current_buffer = $saved_data[1];
+        $compiler->template->has_nocache_code = $compiler->template->has_nocache_code | $saved_data[2];
+        $compiler->template->required_plugins = $saved_data[3];
         
         return $output;
     }

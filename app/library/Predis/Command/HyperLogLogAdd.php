@@ -19,21 +19,21 @@ class HyperLogLogAdd extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'PFADD';
     }
     
     /**
      * @ERROR!!!
      */
-    protected function filterArguments(array $arguments) {
-        return self::normalizeVariadic ( $arguments );
+    protected function filterArguments(array $arguments){
+        return self::normalizeVariadic($arguments);
     }
     
     /**
      * @ERROR!!!
      */
-    public function parseResponse($data) {
-        return ( bool ) $data;
+    public function parseResponse($data){
+        return (bool) $data;
     }
 }

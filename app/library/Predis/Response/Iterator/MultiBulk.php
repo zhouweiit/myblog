@@ -27,11 +27,11 @@ class MultiBulk extends MultiBulkIterator {
      * @param int $size
      *            Number of elements of the multibulk response.
      */
-    public function __construct(NodeConnectionInterface $connection, $size) {
+    public function __construct(NodeConnectionInterface $connection, $size){
         $this->connection = $connection;
         $this->size = $size;
         $this->position = 0;
-        $this->current = $size > 0 ? $this->getValue () : null;
+        $this->current = $size > 0 ? $this->getValue() : null;
     }
     
     /**
@@ -40,8 +40,8 @@ class MultiBulk extends MultiBulkIterator {
      * when the iterator goes out of the
      * scope of a foreach or it is unset).
      */
-    public function __destruct() {
-        $this->drop ( true );
+    public function __destruct(){
+        $this->drop(true);
     }
     
     /**
@@ -52,15 +52,15 @@ class MultiBulk extends MultiBulkIterator {
      * @param bool $disconnect
      *            Consume the iterator or drop the connection.
      */
-    public function drop($disconnect = false) {
+    public function drop($disconnect = false){
         if ($disconnect) {
-            if ($this->valid ()) {
+            if ($this->valid()) {
                 $this->position = $this->size;
-                $this->connection->disconnect ();
+                $this->connection->disconnect();
             }
         } else {
-            while ( $this->valid () ) {
-                $this->next ();
+            while ( $this->valid() ) {
+                $this->next();
             }
         }
     }
@@ -70,7 +70,7 @@ class MultiBulk extends MultiBulkIterator {
      *
      * @return mixed
      */
-    protected function getValue() {
-        return $this->connection->read ();
+    protected function getValue(){
+        return $this->connection->read();
     }
 }

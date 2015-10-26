@@ -79,8 +79,8 @@ class Category {
      * @var date
      */
     private $lastChangedDate;
-    public static function columnMap() {
-        return array (
+    public static function columnMap(){
+        return array(
             'id' => 'id',
             'pid' => 'pid',
             'name' => 'name',
@@ -96,7 +96,7 @@ class Category {
      *
      * @return the $id
      */
-    public function getId() {
+    public function getId(){
         return $this->id;
     }
     
@@ -104,7 +104,7 @@ class Category {
      *
      * @return the $pid
      */
-    public function getPid() {
+    public function getPid(){
         return $this->pid;
     }
     
@@ -112,7 +112,7 @@ class Category {
      *
      * @return the $name
      */
-    public function getName() {
+    public function getName(){
         return $this->name;
     }
     
@@ -120,7 +120,7 @@ class Category {
      *
      * @return the $depth
      */
-    public function getDepth() {
+    public function getDepth(){
         return $this->depth;
     }
     
@@ -128,7 +128,7 @@ class Category {
      *
      * @return the $priority
      */
-    public function getPriority() {
+    public function getPriority(){
         return $this->priority;
     }
     
@@ -136,7 +136,7 @@ class Category {
      *
      * @return the $isDelete
      */
-    public function getIsDelete() {
+    public function getIsDelete(){
         return $this->isDelete;
     }
     
@@ -144,7 +144,7 @@ class Category {
      *
      * @return the $creationDate
      */
-    public function getCreationDate() {
+    public function getCreationDate(){
         return $this->creationDate;
     }
     
@@ -152,7 +152,7 @@ class Category {
      *
      * @return the $lastChangedDate
      */
-    public function getLastChangedDate() {
+    public function getLastChangedDate(){
         return $this->lastChangedDate;
     }
     
@@ -160,7 +160,7 @@ class Category {
      *
      * @param number $id            
      */
-    public function setId($id) {
+    public function setId($id){
         $this->id = $id;
     }
     
@@ -168,7 +168,7 @@ class Category {
      *
      * @param number $pid            
      */
-    public function setPid($pid) {
+    public function setPid($pid){
         $this->pid = $pid;
     }
     
@@ -176,7 +176,7 @@ class Category {
      *
      * @param string $name            
      */
-    public function setName($name) {
+    public function setName($name){
         $this->name = $name;
     }
     
@@ -184,7 +184,7 @@ class Category {
      *
      * @param number $depth            
      */
-    public function setDepth($depth) {
+    public function setDepth($depth){
         $this->depth = $depth;
     }
     
@@ -192,7 +192,7 @@ class Category {
      *
      * @param number $priority            
      */
-    public function setPriority($priority) {
+    public function setPriority($priority){
         $this->priority = $priority;
     }
     
@@ -200,7 +200,7 @@ class Category {
      *
      * @param number $isDelete            
      */
-    public function setIsDelete($isDelete) {
+    public function setIsDelete($isDelete){
         $this->isDelete = $isDelete;
     }
     
@@ -208,7 +208,7 @@ class Category {
      *
      * @param \models\blog\date $creationDate            
      */
-    public function setCreationDate($creationDate) {
+    public function setCreationDate($creationDate){
         $this->creationDate = $creationDate;
     }
     
@@ -216,7 +216,7 @@ class Category {
      *
      * @param \models\blog\date $lastChangedDate            
      */
-    public function setLastChangedDate($lastChangedDate) {
+    public function setLastChangedDate($lastChangedDate){
         $this->lastChangedDate = $lastChangedDate;
     }
 }

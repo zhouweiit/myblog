@@ -19,7 +19,7 @@ class ConnectionEcho extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'ECHO';
     }
 }

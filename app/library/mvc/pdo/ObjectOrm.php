@@ -63,14 +63,14 @@ class ObjectOrm {
      *
      * @var array
      */
-    private $properties = array ();
+    private $properties = array();
     
     /**
      * 反射出来的对象属性的set方法
      *
      * @var array
      */
-    private $methods = array ();
+    private $methods = array();
     
     /**
      *
@@ -79,12 +79,12 @@ class ObjectOrm {
      * @return void
      * @author zhouwei17
      */
-    public function __construct(&$result, $fetchModel, $className, $fetchType) {
+    public function __construct(&$result, $fetchModel, $className, $fetchType){
         $this->className = $className;
         $this->result = $result;
         $this->fetchModel = $fetchModel;
         $this->fetchType = $fetchType;
-        $this->init ();
+        $this->init();
     }
     
     /**
@@ -93,13 +93,13 @@ class ObjectOrm {
      * @return void
      * @author zhouwei17
      */
-    private function init() {
-        $this->setReflectionCalss ();
-        $this->getColumnMap ();
-        $this->setFieldsByResult ();
-        $this->checkFieldIsExist ();
+    private function init(){
+        $this->setReflectionCalss();
+        $this->getColumnMap();
+        $this->setFieldsByResult();
+        $this->checkFieldIsExist();
         if (PersistenResult::ORM_OBJECT == $this->fetchModel) {
-            $this->getObjectSetMethod ();
+            $this->getObjectSetMethod();
         }
     }
     
@@ -110,11 +110,11 @@ class ObjectOrm {
      * @return void
      * @author zhouwei17
      */
-    private function setReflectionCalss() {
+    private function setReflectionCalss(){
         try {
-            $this->reflectionClass = new \ReflectionClass ( $this->className );
+            $this->reflectionClass = new \ReflectionClass($this->className);
         } catch ( \Exception $e ) {
-            throw new ExceptionOrm ( '类' . $this->className . '不存在' );
+            throw new ExceptionOrm('类' . $this->className . '不存在');
         }
     }
     
@@ -124,13 +124,13 @@ class ObjectOrm {
      * @return void
      * @author zhouwei17
      */
-    private function setFieldsByResult() {
-        if (empty ( $this->result )) {
-            $this->fields = array ();
-        } else if (isset ( $this->result [0] ) && is_array ( $this->result [0] )) {
-            $this->fields = array_keys ( $this->result [0] );
+    private function setFieldsByResult(){
+        if (empty($this->result)) {
+            $this->fields = array();
+        } else if (isset($this->result[0]) && is_array($this->result[0])) {
+            $this->fields = array_keys($this->result[0]);
         } else {
-            $this->fields = array_keys ( $this->result );
+            $this->fields = array_keys($this->result);
         }
     }
     
@@ -142,18 +142,18 @@ class ObjectOrm {
      * @return array
      * @author zhouwei17
      */
-    public function getColumnMap() {
-        $method = new \ReflectionMethod ( $this->className, 'columnMap' );
-        $columnMap = $method->invoke ( null );
-        if (empty ( $columnMap )) {
-            throw new ExceptionOrm ( $this->className . '的columnMap不存在或者为空' );
+    public function getColumnMap(){
+        $method = new \ReflectionMethod($this->className,'columnMap');
+        $columnMap = $method->invoke(null);
+        if (empty($columnMap)) {
+            throw new ExceptionOrm($this->className . '的columnMap不存在或者为空');
         }
         $this->columnMap = $columnMap;
         try {
-            $method = new \ReflectionMethod ( $this->className, 'noStandardColumnMap' );
-            if (! empty ( $method )) {
-                $columnMap = $method->invoke ( null );
-                $this->columnMap = array_merge ( $this->columnMap, $columnMap );
+            $method = new \ReflectionMethod($this->className,'noStandardColumnMap');
+            if (!empty($method)) {
+                $columnMap = $method->invoke(null);
+                $this->columnMap = array_merge($this->columnMap,$columnMap);
             }
         } catch ( \Exception $e ) {
         }
@@ -168,10 +168,10 @@ class ObjectOrm {
      * @return void
      * @author zhouwei17
      */
-    private function checkFieldIsExist() {
+    private function checkFieldIsExist(){
         foreach ( $this->fields as $field ) {
-            if (empty ( $this->columnMap [$field] )) {
-                throw new ExceptionOrm ( '字段:' . $field . '未在' . $this->className . '的columnMap中找到或者为空' );
+            if (empty($this->columnMap[$field])) {
+                throw new ExceptionOrm('字段:' . $field . '未在' . $this->className . '的columnMap中找到或者为空');
             }
         }
     }
@@ -182,11 +182,11 @@ class ObjectOrm {
      * @return void
      * @author zhouwei17
      */
-    private function getObjectSetMethod() {
+    private function getObjectSetMethod(){
         foreach ( $this->fields as $field ) {
-            $property = $this->columnMap [$field];
-            $this->properties [$field] = $property;
-            $this->methods [$property] = $this->checkMethodIsExist ( $this->createSetMethodNameByField ( $property ) );
+            $property = $this->columnMap[$field];
+            $this->properties[$field] = $property;
+            $this->methods[$property] = $this->checkMethodIsExist($this->createSetMethodNameByField($property));
         }
     }
     
@@ -196,13 +196,13 @@ class ObjectOrm {
      * @return object | array
      * @author zhouwei17
      */
-    public function ormObject() {
+    public function ormObject(){
         if (PersistenResult::FETCH_ONE === $this->fetchType) {
-            return PersistenResult::ORM_OBJECT == $this->fetchModel ? $this->objectOrm ( $this->result ) : $this->arrayOrm ( $this->result );
+            return PersistenResult::ORM_OBJECT == $this->fetchModel ? $this->objectOrm($this->result) : $this->arrayOrm($this->result);
         } else {
-            $objects = array ();
+            $objects = array();
             foreach ( $this->result as $value ) {
-                $objects [] = PersistenResult::ORM_OBJECT == $this->fetchModel ? $this->objectOrm ( $value ) : $this->arrayOrm ( $value );
+                $objects[] = PersistenResult::ORM_OBJECT == $this->fetchModel ? $this->objectOrm($value) : $this->arrayOrm($value);
             }
             return $objects;
         }
@@ -215,13 +215,13 @@ class ObjectOrm {
      * @return object
      * @author zhouwei17
      */
-    private function objectOrm(array &$result) {
-        if (empty ( $result )) {
+    private function objectOrm(array &$result){
+        if (empty($result)) {
             return null;
         }
-        $object = $this->reflectionClass->newInstance ();
+        $object = $this->reflectionClass->newInstance();
         foreach ( $result as $key => $value ) {
-            $this->methods [$this->properties [$key]]->invoke ( $object, $value );
+            $this->methods[$this->properties[$key]]->invoke($object,$value);
         }
         return $object;
     }
@@ -233,10 +233,10 @@ class ObjectOrm {
      * @return array
      * @author zhouwei17
      */
-    private function arrayOrm(array $result) {
-        $array = array ();
+    private function arrayOrm(array $result){
+        $array = array();
         foreach ( $result as $key => $value ) {
-            $array [$this->columnMap [$key]] = $value;
+            $array[$this->columnMap[$key]] = $value;
         }
         return $array;
     }
@@ -248,8 +248,8 @@ class ObjectOrm {
      * @return string
      * @author zhouwei17
      */
-    private function createSetMethodNameByField($field) {
-        return 'set' . ucfirst ( $field );
+    private function createSetMethodNameByField($field){
+        return 'set' . ucfirst($field);
     }
     
     /**
@@ -261,11 +261,11 @@ class ObjectOrm {
      * @return \ReflectionMethod
      * @author zhouwei17
      */
-    private function checkMethodIsExist($methodName) {
+    private function checkMethodIsExist($methodName){
         try {
-            return $this->reflectionClass->getMethod ( $methodName );
+            return $this->reflectionClass->getMethod($methodName);
         } catch ( \Exception $e ) {
-            throw new ExceptionOrm ( $this->className . '中不存在方法' . $methodName );
+            throw new ExceptionOrm($this->className . '中不存在方法' . $methodName);
         }
     }
 }

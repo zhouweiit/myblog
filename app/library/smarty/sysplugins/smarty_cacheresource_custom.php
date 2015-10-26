@@ -50,7 +50,7 @@ abstract class Smarty_CacheResource_Custom extends Smarty_CacheResource {
      *            
      * @return integer|boolean timestamp (epoch) the template was modified, or false if not found
      */
-    protected function fetchTimestamp($id, $name, $cache_id, $compile_id) {
+    protected function fetchTimestamp($id, $name, $cache_id, $compile_id){
         return null;
     }
     
@@ -100,12 +100,12 @@ abstract class Smarty_CacheResource_Custom extends Smarty_CacheResource {
      *            
      * @return void
      */
-    public function populate(Smarty_Template_Cached $cached, Smarty_Internal_Template $_template) {
-        $_cache_id = isset ( $cached->cache_id ) ? preg_replace ( '![^\w\|]+!', '_', $cached->cache_id ) : null;
-        $_compile_id = isset ( $cached->compile_id ) ? preg_replace ( '![^\w\|]+!', '_', $cached->compile_id ) : null;
+    public function populate(Smarty_Template_Cached $cached, Smarty_Internal_Template $_template){
+        $_cache_id = isset($cached->cache_id) ? preg_replace('![^\w\|]+!','_',$cached->cache_id) : null;
+        $_compile_id = isset($cached->compile_id) ? preg_replace('![^\w\|]+!','_',$cached->compile_id) : null;
         
-        $cached->filepath = sha1 ( $cached->source->filepath . $_cache_id . $_compile_id );
-        $this->populateTimestamp ( $cached );
+        $cached->filepath = sha1($cached->source->filepath . $_cache_id . $_compile_id);
+        $this->populateTimestamp($cached);
     }
     
     /**
@@ -115,18 +115,18 @@ abstract class Smarty_CacheResource_Custom extends Smarty_CacheResource {
      *
      * @return void
      */
-    public function populateTimestamp(Smarty_Template_Cached $cached) {
-        $mtime = $this->fetchTimestamp ( $cached->filepath, $cached->source->name, $cached->cache_id, $cached->compile_id );
+    public function populateTimestamp(Smarty_Template_Cached $cached){
+        $mtime = $this->fetchTimestamp($cached->filepath,$cached->source->name,$cached->cache_id,$cached->compile_id);
         if ($mtime !== null) {
             $cached->timestamp = $mtime;
-            $cached->exists = ! ! $cached->timestamp;
+            $cached->exists = !!$cached->timestamp;
             
             return;
         }
         $timestamp = null;
-        $this->fetch ( $cached->filepath, $cached->source->name, $cached->cache_id, $cached->compile_id, $cached->content, $timestamp );
-        $cached->timestamp = isset ( $timestamp ) ? $timestamp : false;
-        $cached->exists = ! ! $cached->timestamp;
+        $this->fetch($cached->filepath,$cached->source->name,$cached->cache_id,$cached->compile_id,$cached->content,$timestamp);
+        $cached->timestamp = isset($timestamp) ? $timestamp : false;
+        $cached->exists = !!$cached->timestamp;
     }
     
     /**
@@ -139,23 +139,23 @@ abstract class Smarty_CacheResource_Custom extends Smarty_CacheResource {
      *            
      * @return boolean true or false if the cached content does not exist
      */
-    public function process(Smarty_Internal_Template $_template, Smarty_Template_Cached $cached = null) {
-        if (! $cached) {
+    public function process(Smarty_Internal_Template $_template, Smarty_Template_Cached $cached = null){
+        if (!$cached) {
             $cached = $_template->cached;
         }
         $content = $cached->content ? $cached->content : null;
         $timestamp = $cached->timestamp ? $cached->timestamp : null;
-        if ($content === null || ! $timestamp) {
-            $this->fetch ( $_template->cached->filepath, $_template->source->name, $_template->cache_id, $_template->compile_id, $content, $timestamp );
+        if ($content === null || !$timestamp) {
+            $this->fetch($_template->cached->filepath,$_template->source->name,$_template->cache_id,$_template->compile_id,$content,$timestamp);
         }
-        if (isset ( $content )) {
+        if (isset($content)) {
             /**
              *
              * @var Smarty_Internal_Template $_smarty_tpl
              *      used in evaluated code
              */
             $_smarty_tpl = $_template;
-            eval ( "?>" . $content );
+            eval("?>" . $content);
             
             return true;
         }
@@ -173,8 +173,8 @@ abstract class Smarty_CacheResource_Custom extends Smarty_CacheResource {
      *            
      * @return boolean success
      */
-    public function writeCachedContent(Smarty_Internal_Template $_template, $content) {
-        return $this->save ( $_template->cached->filepath, $_template->source->name, $_template->cache_id, $_template->compile_id, $_template->properties ['cache_lifetime'], $content );
+    public function writeCachedContent(Smarty_Internal_Template $_template, $content){
+        return $this->save($_template->cached->filepath,$_template->source->name,$_template->cache_id,$_template->compile_id,$_template->properties['cache_lifetime'],$content);
     }
     
     /**
@@ -187,10 +187,10 @@ abstract class Smarty_CacheResource_Custom extends Smarty_CacheResource {
      *            
      * @return integer number of cache files deleted
      */
-    public function clearAll(Smarty $smarty, $exp_time = null) {
-        $this->cache = array ();
+    public function clearAll(Smarty $smarty, $exp_time = null){
+        $this->cache = array();
         
-        return $this->delete ( null, null, null, $exp_time );
+        return $this->delete(null,null,null,$exp_time);
     }
     
     /**
@@ -209,14 +209,14 @@ abstract class Smarty_CacheResource_Custom extends Smarty_CacheResource {
      *            
      * @return integer number of cache files deleted
      */
-    public function clear(Smarty $smarty, $resource_name, $cache_id, $compile_id, $exp_time) {
-        $this->cache = array ();
+    public function clear(Smarty $smarty, $resource_name, $cache_id, $compile_id, $exp_time){
+        $this->cache = array();
         $cache_name = null;
         
-        if (isset ( $resource_name )) {
+        if (isset($resource_name)) {
             $_save_stat = $smarty->caching;
             $smarty->caching = true;
-            $tpl = new $smarty->template_class ( $resource_name, $smarty );
+            $tpl = new $smarty->template_class($resource_name,$smarty);
             $smarty->caching = $_save_stat;
             
             if ($tpl->source->exists) {
@@ -230,15 +230,15 @@ abstract class Smarty_CacheResource_Custom extends Smarty_CacheResource {
             } else {
                 $_templateId = $smarty->joined_template_dir . '#' . $resource_name . $tpl->cache_id . $tpl->compile_id;
             }
-            if (isset ( $_templateId [150] )) {
-                $_templateId = sha1 ( $_templateId );
+            if (isset($_templateId[150])) {
+                $_templateId = sha1($_templateId);
             }
-            unset ( $smarty->template_objects [$_templateId] );
+            unset($smarty->template_objects[$_templateId]);
             // template object no longer needed
-            unset ( $tpl );
+            unset($tpl);
         }
         
-        return $this->delete ( $cache_name, $cache_id, $compile_id, $exp_time );
+        return $this->delete($cache_name,$cache_id,$compile_id,$exp_time);
     }
     
     /**
@@ -251,16 +251,16 @@ abstract class Smarty_CacheResource_Custom extends Smarty_CacheResource {
      *            
      * @return boolean true or false if cache is locked
      */
-    public function hasLock(Smarty $smarty, Smarty_Template_Cached $cached) {
+    public function hasLock(Smarty $smarty, Smarty_Template_Cached $cached){
         $id = $cached->filepath;
         $name = $cached->source->name . '.lock';
         
-        $mtime = $this->fetchTimestamp ( $id, $name, null, null );
+        $mtime = $this->fetchTimestamp($id,$name,null,null);
         if ($mtime === null) {
-            $this->fetch ( $id, $name, null, null, $content, $mtime );
+            $this->fetch($id,$name,null,null,$content,$mtime);
         }
         
-        return $mtime && time () - $mtime < $smarty->locking_timeout;
+        return $mtime && time() - $mtime < $smarty->locking_timeout;
     }
     
     /**
@@ -273,12 +273,12 @@ abstract class Smarty_CacheResource_Custom extends Smarty_CacheResource {
      *            
      * @return bool|void
      */
-    public function acquireLock(Smarty $smarty, Smarty_Template_Cached $cached) {
+    public function acquireLock(Smarty $smarty, Smarty_Template_Cached $cached){
         $cached->is_locked = true;
         
         $id = $cached->filepath;
         $name = $cached->source->name . '.lock';
-        $this->save ( $id, $name, null, null, $smarty->locking_timeout, '' );
+        $this->save($id,$name,null,null,$smarty->locking_timeout,'');
     }
     
     /**
@@ -291,10 +291,10 @@ abstract class Smarty_CacheResource_Custom extends Smarty_CacheResource {
      *            
      * @return bool|void
      */
-    public function releaseLock(Smarty $smarty, Smarty_Template_Cached $cached) {
+    public function releaseLock(Smarty $smarty, Smarty_Template_Cached $cached){
         $cached->is_locked = false;
         
         $name = $cached->source->name . '.lock';
-        $this->delete ( $name, null, null, null );
+        $this->delete($name,null,null,null);
     }
 }

@@ -11,11 +11,11 @@ class StringUtils {
      * @return array
      * @author zhouwei
      */
-    public static function getRandString($strlength, $strdata = 'abcdefghijkmnpqrstuvwxyz123456789') {
-        $captchCode = array ();
-        for($i = 0; $i < $strlength; $i ++) {
-            $fontcontent = substr ( $strdata, rand ( 0, strlen ( $strdata ) - 1 ), 1 );
-            $captchCode [] = $fontcontent;
+    public static function getRandString($strlength, $strdata = 'abcdefghijkmnpqrstuvwxyz123456789'){
+        $captchCode = array();
+        for($i = 0; $i < $strlength; $i++) {
+            $fontcontent = substr($strdata,rand(0,strlen($strdata) - 1),1);
+            $captchCode[] = $fontcontent;
         }
         return $captchCode;
     }
@@ -27,27 +27,27 @@ class StringUtils {
      * @return string
      * @author zhouwei
      */
-    public static function transferToString($value) {
-        if (is_null ( $value )) {
+    public static function transferToString($value){
+        if (is_null($value)) {
             return 'NULL';
-        } else if (is_bool ( $value )) {
+        } else if (is_bool($value)) {
             if (true === $value) {
                 return 'true';
             } else {
                 return 'false';
             }
-        } else if (is_object ( $value )) {
+        } else if (is_object($value)) {
             try {
-                $reflection = new \ReflectionClass ( $value );
-                $method = $reflection->getMethod ( '__toString' );
-                return $value->__toString ();
+                $reflection = new \ReflectionClass($value);
+                $method = $reflection->getMethod('__toString');
+                return $value->__toString();
             } catch ( \Exception $e ) {
-                return print_r ( $value, 1 );
+                return print_r($value,1);
             }
-        } else if (is_array ( $value )) {
-            return print_r ( $value, 1 );
+        } else if (is_array($value)) {
+            return print_r($value,1);
         } else {
-            return strval ( $value );
+            return strval($value);
         }
     }
 }

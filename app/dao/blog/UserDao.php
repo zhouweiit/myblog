@@ -24,9 +24,9 @@ class UserDao extends DaoBase {
      * @return void
      * @author zhouwei
      */
-    protected function init() {
-        parent::init ();
-        $this->persistent = $this->di->get ( 'blogPersistent' );
+    protected function init(){
+        parent::init();
+        $this->persistent = $this->di->get('blogPersistent');
     }
 }
 

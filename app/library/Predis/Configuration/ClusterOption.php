@@ -33,15 +33,15 @@ class ClusterOption implements OptionInterface {
      *            
      * @return ClusterInterface|null
      */
-    protected function createByDescription(OptionsInterface $options, $id) {
+    protected function createByDescription(OptionsInterface $options, $id){
         switch ($id) {
             case 'predis' :
             case 'predis-cluster' :
-                return new PredisCluster ();
+                return new PredisCluster();
             
             case 'redis' :
             case 'redis-cluster' :
-                return new RedisCluster ( $options->connections );
+                return new RedisCluster($options->connections);
             
             default :
                 return;
@@ -51,13 +51,13 @@ class ClusterOption implements OptionInterface {
     /**
      * @ERROR!!!
      */
-    public function filter(OptionsInterface $options, $value) {
-        if (is_string ( $value )) {
-            $value = $this->createByDescription ( $options, $value );
+    public function filter(OptionsInterface $options, $value){
+        if (is_string($value)) {
+            $value = $this->createByDescription($options,$value);
         }
         
-        if (! $value instanceof ClusterInterface) {
-            throw new InvalidArgumentException ( "An instance of type 'Predis\Connection\Aggregate\ClusterInterface' was expected." );
+        if (!$value instanceof ClusterInterface) {
+            throw new InvalidArgumentException("An instance of type 'Predis\Connection\Aggregate\ClusterInterface' was expected.");
         }
         
         return $value;
@@ -66,7 +66,7 @@ class ClusterOption implements OptionInterface {
     /**
      * @ERROR!!!
      */
-    public function getDefault(OptionsInterface $options) {
-        return new PredisCluster ();
+    public function getDefault(OptionsInterface $options){
+        return new PredisCluster();
     }
 }

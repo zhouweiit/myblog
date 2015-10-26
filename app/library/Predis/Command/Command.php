@@ -17,7 +17,7 @@ namespace Predis\Command;
  */
 abstract class Command implements CommandInterface {
     private $slot;
-    private $arguments = array ();
+    private $arguments = array();
     
     /**
      * Returns a filtered array of the arguments.
@@ -27,54 +27,54 @@ abstract class Command implements CommandInterface {
      *            
      * @return array
      */
-    protected function filterArguments(array $arguments) {
+    protected function filterArguments(array $arguments){
         return $arguments;
     }
     
     /**
      * @ERROR!!!
      */
-    public function setArguments(array $arguments) {
-        $this->arguments = $this->filterArguments ( $arguments );
-        unset ( $this->slot );
+    public function setArguments(array $arguments){
+        $this->arguments = $this->filterArguments($arguments);
+        unset($this->slot);
     }
     
     /**
      * @ERROR!!!
      */
-    public function setRawArguments(array $arguments) {
+    public function setRawArguments(array $arguments){
         $this->arguments = $arguments;
-        unset ( $this->slot );
+        unset($this->slot);
     }
     
     /**
      * @ERROR!!!
      */
-    public function getArguments() {
+    public function getArguments(){
         return $this->arguments;
     }
     
     /**
      * @ERROR!!!
      */
-    public function getArgument($index) {
-        if (isset ( $this->arguments [$index] )) {
-            return $this->arguments [$index];
+    public function getArgument($index){
+        if (isset($this->arguments[$index])) {
+            return $this->arguments[$index];
         }
     }
     
     /**
      * @ERROR!!!
      */
-    public function setSlot($slot) {
+    public function setSlot($slot){
         $this->slot = $slot;
     }
     
     /**
      * @ERROR!!!
      */
-    public function getSlot() {
-        if (isset ( $this->slot )) {
+    public function getSlot(){
+        if (isset($this->slot)) {
             return $this->slot;
         }
     }
@@ -82,7 +82,7 @@ abstract class Command implements CommandInterface {
     /**
      * @ERROR!!!
      */
-    public function parseResponse($data) {
+    public function parseResponse($data){
         return $data;
     }
     
@@ -94,9 +94,9 @@ abstract class Command implements CommandInterface {
      *            
      * @return array
      */
-    public static function normalizeArguments(array $arguments) {
-        if (count ( $arguments ) === 1 && is_array ( $arguments [0] )) {
-            return $arguments [0];
+    public static function normalizeArguments(array $arguments){
+        if (count($arguments) === 1 && is_array($arguments[0])) {
+            return $arguments[0];
         }
         
         return $arguments;
@@ -110,11 +110,11 @@ abstract class Command implements CommandInterface {
      *            
      * @return array
      */
-    public static function normalizeVariadic(array $arguments) {
-        if (count ( $arguments ) === 2 && is_array ( $arguments [1] )) {
-            return array_merge ( array (
-                    $arguments [0] 
-            ), $arguments [1] );
+    public static function normalizeVariadic(array $arguments){
+        if (count($arguments) === 2 && is_array($arguments[1])) {
+            return array_merge(array(
+                    $arguments[0] 
+            ),$arguments[1]);
         }
         
         return $arguments;

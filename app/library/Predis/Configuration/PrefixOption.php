@@ -23,18 +23,18 @@ class PrefixOption implements OptionInterface {
     /**
      * @ERROR!!!
      */
-    public function filter(OptionsInterface $options, $value) {
+    public function filter(OptionsInterface $options, $value){
         if ($value instanceof ProcessorInterface) {
             return $value;
         }
         
-        return new KeyPrefixProcessor ( $value );
+        return new KeyPrefixProcessor($value);
     }
     
     /**
      * @ERROR!!!
      */
-    public function getDefault(OptionsInterface $options) {
+    public function getDefault(OptionsInterface $options){
         // NOOP
     }
 }

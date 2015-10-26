@@ -33,9 +33,9 @@ class DatabaseLogPlugin extends PluginBase {
      *
      * @return void
      */
-    public function init() {
-        $this->profiler = $this->di->get ( 'profiler' );
-        $this->log = $this->di->get ( 'databaseLog' );
+    public function init(){
+        $this->profiler = $this->di->get('profiler');
+        $this->log = $this->di->get('databaseLog');
     }
     
     /**
@@ -46,9 +46,9 @@ class DatabaseLogPlugin extends PluginBase {
      * @return void
      * @author zhouwei17
      */
-    public function beforeQuery(Event $event, Mysql $pdo) {
-        $this->profiler->startProfile ( $pdo->getSQLStatement () );
-        $this->params = func_get_args ()[2];
+    public function beforeQuery(Event $event, Mysql $pdo){
+        $this->profiler->startProfile($pdo->getSQLStatement());
+        $this->params = func_get_args()[2];
     }
     
     /**
@@ -59,29 +59,29 @@ class DatabaseLogPlugin extends PluginBase {
      * @return void
      * @author zhouwei17
      */
-    public function afterQuery(Event $event, Mysql $pdo) {
-        $this->profiler->stopProfile ();
-        $profiles = $this->profiler->getProfiles ();
+    public function afterQuery(Event $event, Mysql $pdo){
+        $this->profiler->stopProfile();
+        $profiles = $this->profiler->getProfiles();
         foreach ( $profiles as $profile ) {
-            $elapsesecondes = $profile->getTotalElapsedSeconds ();
+            $elapsesecondes = $profile->getTotalElapsedSeconds();
             if ($elapsesecondes > 0.5) {
-                $this->log->error ( '消耗时间:{},sql:{},参数信息:{}', array (
+                $this->log->error('消耗时间:{},sql:{},参数信息:{}',array(
                     $elapsesecondes,
-                    $profile->getSQLStatement (),
+                    $profile->getSQLStatement(),
                     $this->params 
-                ) );
+                ));
             } else if ($elapsesecondes > 0.2) {
-                $this->log->info ( '消耗时间:{},sql:{},参数信息:{}', array (
+                $this->log->info('消耗时间:{},sql:{},参数信息:{}',array(
                     $elapsesecondes,
-                    $profile->getSQLStatement (),
+                    $profile->getSQLStatement(),
                     $this->params 
-                ) );
+                ));
             } else {
-                $this->log->debug ( '消耗时间:{},sql:{},参数信息:{}', array (
+                $this->log->debug('消耗时间:{},sql:{},参数信息:{}',array(
                     $elapsesecondes,
-                    $profile->getSQLStatement (),
+                    $profile->getSQLStatement(),
                     $this->params 
-                ) );
+                ));
             }
         }
     }

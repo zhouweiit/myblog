@@ -19,17 +19,17 @@ class SetScan extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'SSCAN';
     }
     
     /**
      * @ERROR!!!
      */
-    protected function filterArguments(array $arguments) {
-        if (count ( $arguments ) === 3 && is_array ( $arguments [2] )) {
-            $options = $this->prepareOptions ( array_pop ( $arguments ) );
-            $arguments = array_merge ( $arguments, $options );
+    protected function filterArguments(array $arguments){
+        if (count($arguments) === 3 && is_array($arguments[2])) {
+            $options = $this->prepareOptions(array_pop($arguments));
+            $arguments = array_merge($arguments,$options);
         }
         
         return $arguments;
@@ -43,18 +43,18 @@ class SetScan extends Command {
      *            
      * @return array
      */
-    protected function prepareOptions($options) {
-        $options = array_change_key_case ( $options, CASE_UPPER );
-        $normalized = array ();
+    protected function prepareOptions($options){
+        $options = array_change_key_case($options,CASE_UPPER);
+        $normalized = array();
         
-        if (! empty ( $options ['MATCH'] )) {
-            $normalized [] = 'MATCH';
-            $normalized [] = $options ['MATCH'];
+        if (!empty($options['MATCH'])) {
+            $normalized[] = 'MATCH';
+            $normalized[] = $options['MATCH'];
         }
         
-        if (! empty ( $options ['COUNT'] )) {
-            $normalized [] = 'COUNT';
-            $normalized [] = $options ['COUNT'];
+        if (!empty($options['COUNT'])) {
+            $normalized[] = 'COUNT';
+            $normalized[] = $options['COUNT'];
         }
         
         return $normalized;

@@ -106,8 +106,8 @@ class Article {
      * @var date
      */
     private $lastChangedDate;
-    public static function columnMap() {
-        return array (
+    public static function columnMap(){
+        return array(
             'id' => 'id',
             'title' => 'title',
             'content' => 'content',
@@ -129,7 +129,7 @@ class Article {
      *
      * @return the $id
      */
-    public function getId() {
+    public function getId(){
         return $this->id;
     }
     
@@ -137,7 +137,7 @@ class Article {
      *
      * @return the $title
      */
-    public function getTitle() {
+    public function getTitle(){
         return $this->title;
     }
     
@@ -145,7 +145,7 @@ class Article {
      *
      * @return the $content
      */
-    public function getContent() {
+    public function getContent(){
         return $this->content;
     }
     
@@ -153,7 +153,7 @@ class Article {
      *
      * @return the $userId
      */
-    public function getUserId() {
+    public function getUserId(){
         return $this->userId;
     }
     
@@ -161,7 +161,7 @@ class Article {
      *
      * @return the $categoryId
      */
-    public function getCategoryId() {
+    public function getCategoryId(){
         return $this->categoryId;
     }
     
@@ -169,7 +169,7 @@ class Article {
      *
      * @return the $headcontent
      */
-    public function getHeadcontent() {
+    public function getHeadcontent(){
         return $this->headcontent;
     }
     
@@ -177,7 +177,7 @@ class Article {
      *
      * @return the $headimage
      */
-    public function getHeadimage() {
+    public function getHeadimage(){
         return $this->headimage;
     }
     
@@ -185,7 +185,7 @@ class Article {
      *
      * @return the $commentTimes
      */
-    public function getCommentTimes() {
+    public function getCommentTimes(){
         return $this->commentTimes;
     }
     
@@ -193,7 +193,7 @@ class Article {
      *
      * @return the $readTimes
      */
-    public function getReadTimes() {
+    public function getReadTimes(){
         return $this->readTimes;
     }
     
@@ -201,7 +201,7 @@ class Article {
      *
      * @return the $tag
      */
-    public function getTag() {
+    public function getTag(){
         return $this->tag;
     }
     
@@ -209,7 +209,7 @@ class Article {
      *
      * @return the $releaseDatetime
      */
-    public function getReleaseDatetime() {
+    public function getReleaseDatetime(){
         return $this->releaseDatetime;
     }
     
@@ -217,7 +217,7 @@ class Article {
      *
      * @return the $isDelete
      */
-    public function getIsDelete() {
+    public function getIsDelete(){
         return $this->isDelete;
     }
     
@@ -225,7 +225,7 @@ class Article {
      *
      * @return the $creationDate
      */
-    public function getCreationDate() {
+    public function getCreationDate(){
         return $this->creationDate;
     }
     
@@ -233,7 +233,7 @@ class Article {
      *
      * @return the $lastChangedDate
      */
-    public function getLastChangedDate() {
+    public function getLastChangedDate(){
         return $this->lastChangedDate;
     }
     
@@ -241,7 +241,7 @@ class Article {
      *
      * @param number $id            
      */
-    public function setId($id) {
+    public function setId($id){
         $this->id = $id;
     }
     
@@ -249,7 +249,7 @@ class Article {
      *
      * @param string $title            
      */
-    public function setTitle($title) {
+    public function setTitle($title){
         $this->title = $title;
     }
     
@@ -257,7 +257,7 @@ class Article {
      *
      * @param string $content            
      */
-    public function setContent($content) {
+    public function setContent($content){
         $this->content = $content;
     }
     
@@ -265,7 +265,7 @@ class Article {
      *
      * @param number $userId            
      */
-    public function setUserId($userId) {
+    public function setUserId($userId){
         $this->userId = $userId;
     }
     
@@ -273,7 +273,7 @@ class Article {
      *
      * @param number $categoryId            
      */
-    public function setCategoryId($categoryId) {
+    public function setCategoryId($categoryId){
         $this->categoryId = $categoryId;
     }
     
@@ -281,7 +281,7 @@ class Article {
      *
      * @param string $headcontent            
      */
-    public function setHeadcontent($headcontent) {
+    public function setHeadcontent($headcontent){
         $this->headcontent = $headcontent;
     }
     
@@ -289,7 +289,7 @@ class Article {
      *
      * @param string $headimage            
      */
-    public function setHeadimage($headimage) {
+    public function setHeadimage($headimage){
         $this->headimage = $headimage;
     }
     
@@ -297,7 +297,7 @@ class Article {
      *
      * @param number $commentTimes            
      */
-    public function setCommentTimes($commentTimes) {
+    public function setCommentTimes($commentTimes){
         $this->commentTimes = $commentTimes;
     }
     
@@ -305,7 +305,7 @@ class Article {
      *
      * @param number $readTimes            
      */
-    public function setReadTimes($readTimes) {
+    public function setReadTimes($readTimes){
         $this->readTimes = $readTimes;
     }
     
@@ -313,7 +313,7 @@ class Article {
      *
      * @param string $tag            
      */
-    public function setTag($tag) {
+    public function setTag($tag){
         $this->tag = $tag;
     }
     
@@ -321,7 +321,7 @@ class Article {
      *
      * @param \models\blog\date $releaseDatetime            
      */
-    public function setReleaseDatetime($releaseDatetime) {
+    public function setReleaseDatetime($releaseDatetime){
         $this->releaseDatetime = $releaseDatetime;
     }
     
@@ -329,7 +329,7 @@ class Article {
      *
      * @param number $isDelete            
      */
-    public function setIsDelete($isDelete) {
+    public function setIsDelete($isDelete){
         $this->isDelete = $isDelete;
     }
     
@@ -337,7 +337,7 @@ class Article {
      *
      * @param \models\blog\date $creationDate            
      */
-    public function setCreationDate($creationDate) {
+    public function setCreationDate($creationDate){
         $this->creationDate = $creationDate;
     }
     
@@ -345,7 +345,7 @@ class Article {
      *
      * @param \models\blog\date $lastChangedDate            
      */
-    public function setLastChangedDate($lastChangedDate) {
+    public function setLastChangedDate($lastChangedDate){
         $this->lastChangedDate = $lastChangedDate;
     }
 }

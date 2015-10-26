@@ -25,9 +25,9 @@ class ArticleTagMapDao extends DaoBase {
      * @return void
      * @author zhouwei
      */
-    protected function init() {
-        parent::init ();
-        $this->persistent = $this->di->get ( 'blogPersistent' );
+    protected function init(){
+        parent::init();
+        $this->persistent = $this->di->get('blogPersistent');
     }
     
     /**
@@ -37,13 +37,13 @@ class ArticleTagMapDao extends DaoBase {
      * @return array
      * @author zhouwei
      */
-    public function getByArticleId($articleId) {
+    public function getByArticleId($articleId){
         $sql = 'select * from article_tag_map where article_id = :article_id and is_delete = 0 order by id';
-        $bind = array (
+        $bind = array(
             ':article_id' => $articleId 
         );
-        $result = $this->persistent->query ( $sql, $bind );
-        return $result->fetchAll ( $this->className );
+        $result = $this->persistent->query($sql,$bind);
+        return $result->fetchAll($this->className);
     }
     
     /**
@@ -53,12 +53,12 @@ class ArticleTagMapDao extends DaoBase {
      * @return array
      * @author zhouwei
      */
-    public function getByArticleIds(array $articleIds) {
-        $inSqlCondition = SqlUtils::getInSqlCondition ( $articleIds );
-        $bind = $inSqlCondition ['bindArray'];
-        $sql = 'select * from article_tag_map where article_id in (' . $inSqlCondition ['conditinSql'] . ') and is_delete = 0';
-        $result = $this->persistent->query ( $sql, $bind );
-        return $result->fetchAll ( $this->className );
+    public function getByArticleIds(array $articleIds){
+        $inSqlCondition = SqlUtils::getInSqlCondition($articleIds);
+        $bind = $inSqlCondition['bindArray'];
+        $sql = 'select * from article_tag_map where article_id in (' . $inSqlCondition['conditinSql'] . ') and is_delete = 0';
+        $result = $this->persistent->query($sql,$bind);
+        return $result->fetchAll($this->className);
     }
     
     /**
@@ -68,13 +68,13 @@ class ArticleTagMapDao extends DaoBase {
      * @return array
      * @author zhouwei
      */
-    public function getByTagId($tagId) {
+    public function getByTagId($tagId){
         $sql = 'select * from article_tag_map where tag_id = :tag_id and is_delete = 0';
-        $bind = array (
+        $bind = array(
             ':tag_id' => $tagId 
         );
-        $result = $this->persistent->query ( $sql, $bind );
-        return $result->fetchAll ( $this->className );
+        $result = $this->persistent->query($sql,$bind);
+        return $result->fetchAll($this->className);
     }
     
     /**
@@ -84,12 +84,12 @@ class ArticleTagMapDao extends DaoBase {
      * @return array
      * @author zhouwei
      */
-    public function getByTagIds(array $tagIds) {
-        $inSqlCondition = SqlUtils::getInSqlCondition ( $tagIds );
-        $bind = $inSqlCondition ['bindArray'];
-        $sql = 'select * from article_tag_map where tag_id in (' . $inSqlCondition ['conditinSql'] . ') and is_delete = 0';
-        $result = $this->persistent->query ( $sql, $bind );
-        return $result->fetchAll ( $this->className );
+    public function getByTagIds(array $tagIds){
+        $inSqlCondition = SqlUtils::getInSqlCondition($tagIds);
+        $bind = $inSqlCondition['bindArray'];
+        $sql = 'select * from article_tag_map where tag_id in (' . $inSqlCondition['conditinSql'] . ') and is_delete = 0';
+        $result = $this->persistent->query($sql,$bind);
+        return $result->fetchAll($this->className);
     }
     
     /**
@@ -98,9 +98,9 @@ class ArticleTagMapDao extends DaoBase {
      * @return array
      * @author zhouwei
      */
-    public function getAllMapInfos() {
+    public function getAllMapInfos(){
         $sql = 'select * from article_tag_map where is_delete = 0';
-        $result = $this->persistent->query ( $sql );
-        return $result->fetchAll ( $this->className );
+        $result = $this->persistent->query($sql);
+        return $result->fetchAll($this->className);
     }
 }

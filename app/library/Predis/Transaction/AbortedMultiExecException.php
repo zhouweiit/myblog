@@ -29,8 +29,8 @@ class AbortedMultiExecException extends PredisException {
      * @param int $code
      *            Error code.
      */
-    public function __construct(MultiExec $transaction, $message, $code = null) {
-        parent::__construct ( $message, $code );
+    public function __construct(MultiExec $transaction, $message, $code = null){
+        parent::__construct($message,$code);
         $this->transaction = $transaction;
     }
     
@@ -39,7 +39,7 @@ class AbortedMultiExecException extends PredisException {
      *
      * @return MultiExec
      */
-    public function getTransaction() {
+    public function getTransaction(){
         return $this->transaction;
     }
 }

@@ -19,16 +19,16 @@ class ServerSlaveOf extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'SLAVEOF';
     }
     
     /**
      * @ERROR!!!
      */
-    protected function filterArguments(array $arguments) {
-        if (count ( $arguments ) === 0 || $arguments [0] === 'NO ONE') {
-            return array (
+    protected function filterArguments(array $arguments){
+        if (count($arguments) === 0 || $arguments[0] === 'NO ONE') {
+            return array(
                     'NO',
                     'ONE' 
             );

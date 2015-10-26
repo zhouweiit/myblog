@@ -40,11 +40,11 @@ class DispatchPlugin extends PluginBase {
      *
      * @return void
      */
-    public function init() {
-        $this->request = $this->di->get ( 'request' );
-        $this->log = $this->di->get ( 'applicationLog' );
-        $this->session = $this->di->get ( 'session' );
-        $this->config = $this->di->get ( 'configIni' );
+    public function init(){
+        $this->request = $this->di->get('request');
+        $this->log = $this->di->get('applicationLog');
+        $this->session = $this->di->get('session');
+        $this->config = $this->di->get('configIni');
     }
     
     /**
@@ -55,8 +55,8 @@ class DispatchPlugin extends PluginBase {
      * @return null | false
      * @author zhouwei17
      */
-    public function beforeDispatch(Event $event, Dispatcher $dispatcher) {
-        $this->applicationLog ( $event, $dispatcher );
+    public function beforeDispatch(Event $event, Dispatcher $dispatcher){
+        $this->applicationLog($event,$dispatcher);
         return true;
     }
     
@@ -68,7 +68,7 @@ class DispatchPlugin extends PluginBase {
      * @return void
      * @author zhouwei17
      */
-    public function afterDispatch(Event $event, Dispatcher $dispatcher) {
+    public function afterDispatch(Event $event, Dispatcher $dispatcher){
     }
     
     /**
@@ -79,17 +79,17 @@ class DispatchPlugin extends PluginBase {
      * @return void
      * @author zhouwei17
      */
-    private function applicationLog(Event $event, Dispatcher $dispatcher) {
-        $moduleName = $dispatcher->getModuleName ();
-        $controllerName = $dispatcher->getControllerName ();
-        $actionName = $dispatcher->getActionName ();
-        $this->log->info ( '请求的路径信息:module_name:{},controller_name:{},action_name:{}', array (
+    private function applicationLog(Event $event, Dispatcher $dispatcher){
+        $moduleName = $dispatcher->getModuleName();
+        $controllerName = $dispatcher->getControllerName();
+        $actionName = $dispatcher->getActionName();
+        $this->log->info('请求的路径信息:module_name:{},controller_name:{},action_name:{}',array(
             $moduleName,
             $controllerName,
             $actionName 
-        ) );
-        $this->log->debug ( '请求的参数信息:request_params:{}', array (
-            $this->request->get () 
-        ) );
+        ));
+        $this->log->debug('请求的参数信息:request_params:{}',array(
+            $this->request->get() 
+        ));
     }
 }

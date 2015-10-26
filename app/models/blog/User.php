@@ -65,8 +65,8 @@ class User {
      * @var date
      */
     private $lastChangedDate;
-    public static function columnMap() {
-        return array (
+    public static function columnMap(){
+        return array(
             'id' => 'id',
             'name' => 'name',
             'password' => 'password',
@@ -81,7 +81,7 @@ class User {
      *
      * @return the $id
      */
-    public function getId() {
+    public function getId(){
         return $this->id;
     }
     
@@ -89,7 +89,7 @@ class User {
      *
      * @return the $name
      */
-    public function getName() {
+    public function getName(){
         return $this->name;
     }
     
@@ -97,7 +97,7 @@ class User {
      *
      * @return the $password
      */
-    public function getPassword() {
+    public function getPassword(){
         return $this->password;
     }
     
@@ -105,7 +105,7 @@ class User {
      *
      * @return the $nicename
      */
-    public function getNicename() {
+    public function getNicename(){
         return $this->nicename;
     }
     
@@ -113,7 +113,7 @@ class User {
      *
      * @return the $status
      */
-    public function getStatus() {
+    public function getStatus(){
         return $this->status;
     }
     
@@ -121,7 +121,7 @@ class User {
      *
      * @return the $isDelete
      */
-    public function getIsDelete() {
+    public function getIsDelete(){
         return $this->isDelete;
     }
     
@@ -129,7 +129,7 @@ class User {
      *
      * @return the $creationDate
      */
-    public function getCreationDate() {
+    public function getCreationDate(){
         return $this->creationDate;
     }
     
@@ -137,7 +137,7 @@ class User {
      *
      * @return the $lastChangedDate
      */
-    public function getLastChangedDate() {
+    public function getLastChangedDate(){
         return $this->lastChangedDate;
     }
     
@@ -145,7 +145,7 @@ class User {
      *
      * @param number $id            
      */
-    public function setId($id) {
+    public function setId($id){
         $this->id = $id;
     }
     
@@ -153,7 +153,7 @@ class User {
      *
      * @param string $name            
      */
-    public function setName($name) {
+    public function setName($name){
         $this->name = $name;
     }
     
@@ -161,7 +161,7 @@ class User {
      *
      * @param string $password            
      */
-    public function setPassword($password) {
+    public function setPassword($password){
         $this->password = $password;
     }
     
@@ -169,7 +169,7 @@ class User {
      *
      * @param string $nicename            
      */
-    public function setNicename($nicename) {
+    public function setNicename($nicename){
         $this->nicename = $nicename;
     }
     
@@ -177,7 +177,7 @@ class User {
      *
      * @param string $status            
      */
-    public function setStatus($status) {
+    public function setStatus($status){
         $this->status = $status;
     }
     
@@ -185,7 +185,7 @@ class User {
      *
      * @param number $isDelete            
      */
-    public function setIsDelete($isDelete) {
+    public function setIsDelete($isDelete){
         $this->isDelete = $isDelete;
     }
     
@@ -193,7 +193,7 @@ class User {
      *
      * @param \models\blog\date $creationDate            
      */
-    public function setCreationDate($creationDate) {
+    public function setCreationDate($creationDate){
         $this->creationDate = $creationDate;
     }
     
@@ -201,7 +201,7 @@ class User {
      *
      * @param \models\blog\date $lastChangedDate            
      */
-    public function setLastChangedDate($lastChangedDate) {
+    public function setLastChangedDate($lastChangedDate){
         $this->lastChangedDate = $lastChangedDate;
     }
 }

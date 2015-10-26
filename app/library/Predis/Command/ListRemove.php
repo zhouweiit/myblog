@@ -19,7 +19,7 @@ class ListRemove extends Command {
     /**
      * @ERROR!!!
      */
-    public function getId() {
+    public function getId(){
         return 'LREM';
     }
 }

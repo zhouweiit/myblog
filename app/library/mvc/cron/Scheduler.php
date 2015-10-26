@@ -50,7 +50,7 @@ class Scheduler {
      *
      * @var array
      */
-    private $taskConfig = array ();
+    private $taskConfig = array();
     
     /**
      *
@@ -58,7 +58,7 @@ class Scheduler {
      * @return void
      * @author zhouwei17
      */
-    public function __construct(\Phalcon\DiInterface $di, Ini $config) {
+    public function __construct(\Phalcon\DiInterface $di, Ini $config){
         $this->di = $di;
         $this->config = $config;
     }
@@ -69,11 +69,11 @@ class Scheduler {
      * @return void
      * @author zhouwei17
      */
-    private function init() {
+    private function init(){
         try {
-            $this->reflection = new \ReflectionClass ( $this->taskNamespace . '\\' . $this->taskClassName );
+            $this->reflection = new \ReflectionClass($this->taskNamespace . '\\' . $this->taskClassName);
         } catch ( \Exception $e ) {
-            throw new ExceptionCron ( '作业任务类:' . $this->taskNamespace . '\\' . $this->taskClassName . '不存在' );
+            throw new ExceptionCron('作业任务类:' . $this->taskNamespace . '\\' . $this->taskClassName . '不存在');
         }
     }
     
@@ -84,10 +84,10 @@ class Scheduler {
      * @return void
      * @author zhouwei17
      */
-    private function check() {
-        $this->task = $this->reflection->newInstance ( $this->di, $this->config );
-        if (! $this->task instanceof TaskBase) {
-            throw new ExceptionCron ( '作业任务类必须继承library\mvc\cron\TaskBase' );
+    private function check(){
+        $this->task = $this->reflection->newInstance($this->di,$this->config);
+        if (!$this->task instanceof TaskBase) {
+            throw new ExceptionCron('作业任务类必须继承library\mvc\cron\TaskBase');
         }
     }
     
@@ -97,11 +97,11 @@ class Scheduler {
      * @return void
      * @author zhouwei17
      */
-    public function run() {
-        $this->init ();
-        $this->check ();
-        $method = $this->reflection->getMethod ( 'run' );
-        $method->invoke ( $this->task, $this->taskConfig );
+    public function run(){
+        $this->init();
+        $this->check();
+        $method = $this->reflection->getMethod('run');
+        $method->invoke($this->task,$this->taskConfig);
     }
     
     /**
@@ -111,7 +111,7 @@ class Scheduler {
      * @return void
      * @author zhouwei17
      */
-    public function setTaskNamespace($namespace) {
+    public function setTaskNamespace($namespace){
         $this->taskNamespace = $namespace;
     }
     
@@ -122,7 +122,7 @@ class Scheduler {
      * @return void
      * @author zhouwei17
      */
-    public function setTaskClassName($className) {
+    public function setTaskClassName($className){
         $this->taskClassName = $className;
     }
     
@@ -133,14 +133,14 @@ class Scheduler {
      * @return void
      * @author zhouwei17
      */
-    public function setTaskConfig(array $config) {
-        unset ( $config [0], $config [1] );
+    public function setTaskConfig(array $config){
+        unset($config[0],$config[1]);
         foreach ( $config as $value ) {
-            $keyValue = explode ( '=', $value );
-            if (count ( $keyValue ) != 2) {
+            $keyValue = explode('=',$value);
+            if (count($keyValue) != 2) {
                 continue;
             }
-            $this->taskConfig [$keyValue [0]] = $keyValue [1];
+            $this->taskConfig[$keyValue[0]] = $keyValue[1];
         }
     }
 }

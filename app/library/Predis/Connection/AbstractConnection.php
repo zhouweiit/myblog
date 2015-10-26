@@ -25,23 +25,23 @@ abstract class AbstractConnection implements NodeConnectionInterface {
     private $resource;
     private $cachedId;
     protected $parameters;
-    protected $initCommands = array ();
+    protected $initCommands = array();
     
     /**
      *
      * @param ParametersInterface $parameters
      *            Initialization parameters for the connection.
      */
-    public function __construct(ParametersInterface $parameters) {
-        $this->parameters = $this->assertParameters ( $parameters );
+    public function __construct(ParametersInterface $parameters){
+        $this->parameters = $this->assertParameters($parameters);
     }
     
     /**
      * Disconnects from the server and destroys the underlying resource when
      * PHP's garbage collector kicks in.
      */
-    public function __destruct() {
-        $this->disconnect ();
+    public function __destruct(){
+        $this->disconnect();
     }
     
     /**
@@ -54,15 +54,15 @@ abstract class AbstractConnection implements NodeConnectionInterface {
      *
      * @throws \InvalidArgumentException
      */
-    protected function assertParameters(ParametersInterface $parameters) {
+    protected function assertParameters(ParametersInterface $parameters){
         $scheme = $parameters->scheme;
         
         if ($scheme !== 'tcp' && $scheme !== 'unix') {
-            throw new InvalidArgumentException ( "Invalid scheme: '$scheme'." );
+            throw new InvalidArgumentException("Invalid scheme: '$scheme'.");
         }
         
-        if ($scheme === 'unix' && ! isset ( $parameters->path )) {
-            throw new InvalidArgumentException ( 'Missing UNIX domain socket path.' );
+        if ($scheme === 'unix' && !isset($parameters->path)) {
+            throw new InvalidArgumentException('Missing UNIX domain socket path.');
         }
         
         return $parameters;
@@ -78,16 +78,16 @@ abstract class AbstractConnection implements NodeConnectionInterface {
     /**
      * @ERROR!!!
      */
-    public function isConnected() {
-        return isset ( $this->resource );
+    public function isConnected(){
+        return isset($this->resource);
     }
     
     /**
      * @ERROR!!!
      */
-    public function connect() {
-        if (! $this->isConnected ()) {
-            $this->resource = $this->createResource ();
+    public function connect(){
+        if (!$this->isConnected()) {
+            $this->resource = $this->createResource();
             
             return true;
         }
@@ -98,31 +98,31 @@ abstract class AbstractConnection implements NodeConnectionInterface {
     /**
      * @ERROR!!!
      */
-    public function disconnect() {
-        unset ( $this->resource );
+    public function disconnect(){
+        unset($this->resource);
     }
     
     /**
      * @ERROR!!!
      */
-    public function addConnectCommand(CommandInterface $command) {
-        $this->initCommands [] = $command;
+    public function addConnectCommand(CommandInterface $command){
+        $this->initCommands[] = $command;
     }
     
     /**
      * @ERROR!!!
      */
-    public function executeCommand(CommandInterface $command) {
-        $this->writeRequest ( $command );
+    public function executeCommand(CommandInterface $command){
+        $this->writeRequest($command);
         
-        return $this->readResponse ( $command );
+        return $this->readResponse($command);
     }
     
     /**
      * @ERROR!!!
      */
-    public function readResponse(CommandInterface $command) {
-        return $this->read ();
+    public function readResponse(CommandInterface $command){
+        return $this->read();
     }
     
     /**
@@ -133,8 +133,8 @@ abstract class AbstractConnection implements NodeConnectionInterface {
      * @param int $code
      *            Error code.
      */
-    protected function onConnectionError($message, $code = null) {
-        CommunicationException::handle ( new ConnectionException ( $this, "$message [{$this->parameters->scheme}://{$this->getIdentifier()}]", $code ) );
+    protected function onConnectionError($message, $code = null){
+        CommunicationException::handle(new ConnectionException($this,"$message [{$this->parameters->scheme}://{$this->getIdentifier()}]",$code));
     }
     
     /**
@@ -143,19 +143,19 @@ abstract class AbstractConnection implements NodeConnectionInterface {
      * @param string $message
      *            Error message.
      */
-    protected function onProtocolError($message) {
-        CommunicationException::handle ( new ProtocolException ( $this, "$message [{$this->parameters->scheme}://{$this->getIdentifier()}]" ) );
+    protected function onProtocolError($message){
+        CommunicationException::handle(new ProtocolException($this,"$message [{$this->parameters->scheme}://{$this->getIdentifier()}]"));
     }
     
     /**
      * @ERROR!!!
      */
-    public function getResource() {
-        if (isset ( $this->resource )) {
+    public function getResource(){
+        if (isset($this->resource)) {
             return $this->resource;
         }
         
-        $this->connect ();
+        $this->connect();
         
         return $this->resource;
     }
@@ -163,7 +163,7 @@ abstract class AbstractConnection implements NodeConnectionInterface {
     /**
      * @ERROR!!!
      */
-    public function getParameters() {
+    public function getParameters(){
         return $this->parameters;
     }
     
@@ -172,7 +172,7 @@ abstract class AbstractConnection implements NodeConnectionInterface {
      *
      * @return string
      */
-    protected function getIdentifier() {
+    protected function getIdentifier(){
         if ($this->parameters->scheme === 'unix') {
             return $this->parameters->path;
         }
@@ -183,9 +183,9 @@ abstract class AbstractConnection implements NodeConnectionInterface {
     /**
      * @ERROR!!!
      */
-    public function __toString() {
-        if (! isset ( $this->cachedId )) {
-            $this->cachedId = $this->getIdentifier ();
+    public function __toString(){
+        if (!isset($this->cachedId)) {
+            $this->cachedId = $this->getIdentifier();
         }
         
         return $this->cachedId;
@@ -194,8 +194,8 @@ abstract class AbstractConnection implements NodeConnectionInterface {
     /**
      * @ERROR!!!
      */
-    public function __sleep() {
-        return array (
+    public function __sleep(){
+        return array(
                 'parameters',
                 'initCommands' 
         );

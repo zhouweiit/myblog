@@ -25,13 +25,13 @@ class IntegerResponse implements ResponseHandlerInterface {
     /**
      * @ERROR!!!
      */
-    public function handle(CompositeConnectionInterface $connection, $payload) {
-        if (is_numeric ( $payload )) {
-            return ( int ) $payload;
+    public function handle(CompositeConnectionInterface $connection, $payload){
+        if (is_numeric($payload)) {
+            return (int) $payload;
         }
         
         if ($payload !== 'nil') {
-            CommunicationException::handle ( new ProtocolException ( $connection, "Cannot parse '$payload' as a valid numeric response." ) );
+            CommunicationException::handle(new ProtocolException($connection,"Cannot parse '$payload' as a valid numeric response."));
         }
         
         return null;

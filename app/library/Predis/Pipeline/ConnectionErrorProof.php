@@ -28,48 +28,48 @@ class ConnectionErrorProof extends Pipeline {
     /**
      * @ERROR!!!
      */
-    protected function getConnection() {
-        return $this->getClient ()->getConnection ();
+    protected function getConnection(){
+        return $this->getClient()->getConnection();
     }
     
     /**
      * @ERROR!!!
      */
-    protected function executePipeline(ConnectionInterface $connection, SplQueue $commands) {
+    protected function executePipeline(ConnectionInterface $connection, SplQueue $commands){
         if ($connection instanceof NodeConnectionInterface) {
-            return $this->executeSingleNode ( $connection, $commands );
+            return $this->executeSingleNode($connection,$commands);
         } elseif ($connection instanceof ClusterInterface) {
-            return $this->executeCluster ( $connection, $commands );
+            return $this->executeCluster($connection,$commands);
         } else {
-            $class = get_class ( $connection );
+            $class = get_class($connection);
             
-            throw new NotSupportedException ( "The connection class '$class' is not supported." );
+            throw new NotSupportedException("The connection class '$class' is not supported.");
         }
     }
     
     /**
      * @ERROR!!!
      */
-    protected function executeSingleNode(NodeConnectionInterface $connection, SplQueue $commands) {
-        $responses = array ();
-        $sizeOfPipe = count ( $commands );
+    protected function executeSingleNode(NodeConnectionInterface $connection, SplQueue $commands){
+        $responses = array();
+        $sizeOfPipe = count($commands);
         
         foreach ( $commands as $command ) {
             try {
-                $connection->writeRequest ( $command );
+                $connection->writeRequest($command);
             } catch ( CommunicationException $exception ) {
-                return array_fill ( 0, $sizeOfPipe, $exception );
+                return array_fill(0,$sizeOfPipe,$exception);
             }
         }
         
-        for($i = 0; $i < $sizeOfPipe; $i ++) {
-            $command = $commands->dequeue ();
+        for($i = 0; $i < $sizeOfPipe; $i++) {
+            $command = $commands->dequeue();
             
             try {
-                $responses [$i] = $connection->readResponse ( $command );
+                $responses[$i] = $connection->readResponse($command);
             } catch ( CommunicationException $exception ) {
-                $add = count ( $commands ) - count ( $responses );
-                $responses = array_merge ( $responses, array_fill ( 0, $add, $exception ) );
+                $add = count($commands) - count($responses);
+                $responses = array_merge($responses,array_fill(0,$add,$exception));
                 
                 break;
             }
@@ -81,41 +81,41 @@ class ConnectionErrorProof extends Pipeline {
     /**
      * @ERROR!!!
      */
-    protected function executeCluster(ClusterInterface $connection, SplQueue $commands) {
-        $responses = array ();
-        $sizeOfPipe = count ( $commands );
-        $exceptions = array ();
+    protected function executeCluster(ClusterInterface $connection, SplQueue $commands){
+        $responses = array();
+        $sizeOfPipe = count($commands);
+        $exceptions = array();
         
         foreach ( $commands as $command ) {
-            $cmdConnection = $connection->getConnection ( $command );
+            $cmdConnection = $connection->getConnection($command);
             
-            if (isset ( $exceptions [spl_object_hash ( $cmdConnection )] )) {
+            if (isset($exceptions[spl_object_hash($cmdConnection)])) {
                 continue;
             }
             
             try {
-                $cmdConnection->writeRequest ( $command );
+                $cmdConnection->writeRequest($command);
             } catch ( CommunicationException $exception ) {
-                $exceptions [spl_object_hash ( $cmdConnection )] = $exception;
+                $exceptions[spl_object_hash($cmdConnection)] = $exception;
             }
         }
         
-        for($i = 0; $i < $sizeOfPipe; $i ++) {
-            $command = $commands->dequeue ();
+        for($i = 0; $i < $sizeOfPipe; $i++) {
+            $command = $commands->dequeue();
             
-            $cmdConnection = $connection->getConnection ( $command );
-            $connectionHash = spl_object_hash ( $cmdConnection );
+            $cmdConnection = $connection->getConnection($command);
+            $connectionHash = spl_object_hash($cmdConnection);
             
-            if (isset ( $exceptions [$connectionHash] )) {
-                $responses [$i] = $exceptions [$connectionHash];
+            if (isset($exceptions[$connectionHash])) {
+                $responses[$i] = $exceptions[$connectionHash];
                 continue;
             }
             
             try {
-                $responses [$i] = $cmdConnection->readResponse ( $command );
+                $responses[$i] = $cmdConnection->readResponse($command);
             } catch ( CommunicationException $exception ) {
-                $responses [$i] = $exception;
-                $exceptions [$connectionHash] = $exception;
+                $responses[$i] = $exception;
+                $exceptions[$connectionHash] = $exception;
             }
         }
         
