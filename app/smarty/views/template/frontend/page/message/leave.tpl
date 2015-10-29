@@ -95,4 +95,4 @@
   <!-- 清除浮动 --> 
 </div>
 
-{%/block%}
+{%require name='frontend:page/message/leave.tpl'%}{%/block%}

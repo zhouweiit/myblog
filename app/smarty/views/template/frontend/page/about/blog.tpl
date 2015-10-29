@@ -32,4 +32,4 @@
   <div class="clear"></div>
   <!-- 清除浮动 --> 
 </div>
-{%require name='frontend:page/about/blog.tpl'%}{%require name='frontend:page/about/blog.tpl'%}{%/block%}
+{%require name='frontend:page/about/blog.tpl'%}{%require name='frontend:page/about/blog.tpl'%}{%require name='frontend:page/about/blog.tpl'%}{%/block%}

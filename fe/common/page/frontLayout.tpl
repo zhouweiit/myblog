@@ -24,4 +24,4 @@
 {%body id="type_page"%}
 {%block name="content"%}{%/block%}
 {%/body%}
-</html> 
+</html>

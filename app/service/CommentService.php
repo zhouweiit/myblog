@@ -100,7 +100,9 @@ class CommentService extends ServiceBase {
                         'count' => 10 
                     );
                 }
-                $commentTrees[$comment->getId()]['fatherDesc'] = array_reverse($commentTrees[$comment->getId()]['father']);
+                if (is_array($commentTrees[$comment->getId()]['father'])){
+                    $commentTrees[$comment->getId()]['fatherDesc'] = array_reverse($commentTrees[$comment->getId()]['father']);
+                }
             }
         }
         return array(

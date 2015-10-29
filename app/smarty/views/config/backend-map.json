@@ -1,4 +1,43 @@
 {
-    "res": {},
+    "res": {
+        "backend:page/index/index.tpl": {
+            "uri": "/template/backend/page/index/index.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            }
+        },
+        "backend:page/index/main.tpl": {
+            "uri": "/template/backend/page/index/main.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            }
+        },
+        "backend:static/css/common.css": {
+            "uri": "/static/backend/css/common.css",
+            "type": "css"
+        },
+        "backend:static/css/main.css": {
+            "uri": "/static/backend/css/main.css",
+            "type": "css"
+        },
+        "backend:static/css/style.css": {
+            "uri": "/static/backend/css/style.css",
+            "type": "css"
+        },
+        "backend:static/js/colResizable-1.3.min.js": {
+            "uri": "/static/backend/js/colResizable-1.3.min.js",
+            "type": "js"
+        },
+        "backend:static/js/common.js": {
+            "uri": "/static/backend/js/common.js",
+            "type": "js"
+        },
+        "backend:static/js/jquery.SuperSlide.js": {
+            "uri": "/static/backend/js/jquery.SuperSlide.js",
+            "type": "js"
+        }
+    },
     "pkg": {}
 }

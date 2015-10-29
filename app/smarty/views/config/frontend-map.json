@@ -14,13 +14,6 @@
                 "isPage": true
             }
         },
-        "frontend:page/article/list.tpl": {
-            "uri": "/template/frontend/page/article/list.tpl",
-            "type": "tpl",
-            "extras": {
-                "isPage": true
-            }
-        },
         "frontend:page/demo/blog.tpl": {
             "uri": "/template/frontend/page/demo/blog.tpl",
             "type": "tpl",
@@ -44,6 +37,13 @@
         },
         "frontend:page/index/index.tpl": {
             "uri": "/template/frontend/page/index/index.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            }
+        },
+        "frontend:page/message/leave.tpl": {
+            "uri": "/template/frontend/page/message/leave.tpl",
             "type": "tpl",
             "extras": {
                 "isPage": true
