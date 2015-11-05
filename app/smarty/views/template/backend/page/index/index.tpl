@@ -9,7 +9,7 @@
   <script src="{%uri name="backend:static/js/common.js"%}"></script>
   <script type="text/javascript">
   </script>
-  <title>后台首页</title>
+  <title>zwiter博客管理后台</title>
 </head>
 <body>
     <div class="top">
@@ -17,24 +17,17 @@
         <div id="logo" class="fl"></div>
         <div id="photo_info" class="fr">
           <div id="photo" class="fl">
-            
           </div>
           <div id="base_info" class="fr">
             <div class="help_info">
-              <a href="1" id="hp">&nbsp;</a>
-              <a href="2" id="gy">&nbsp;</a>
-              <a href="3" id="out">&nbsp;</a>
             </div>
             <div class="info_center">
-              admin
-              <span id="nt">通知</span><span><a href="#" id="notice">3</a></span>
             </div>
           </div>
         </div>
       </div>
       <div id="side_here">
         <div id="side_here_l" class="fl"></div>
-        
       </div>
     </div>
     <div class="side">
@@ -89,11 +82,11 @@
        <iframe name="right" id="rightMain" src="main.html" frameborder="no" scrolling="auto" width="100%" height="auto" allowtransparency="true"></iframe>
     </div>
     <div class="bottom">
-      <div id="bottom_bg">版权</div>
+      <div id="bottom_bg">zwiter博客管理后台</div>
     </div>
     <div class="scroll">
-          <a href="javascript:;" class="per" title="使用鼠标滚轴滚动侧栏" onclick="menuScroll(1);"></a>
-          <a href="javascript:;" class="next" title="使用鼠标滚轴滚动侧栏" onclick="menuScroll(2);"></a>
+        <a href="javascript:;" class="per" title="使用鼠标滚轴滚动侧栏" onclick="menuScroll(1);"></a>
+        <a href="javascript:;" class="next" title="使用鼠标滚轴滚动侧栏" onclick="menuScroll(2);"></a>
     </div>
 </body>
 </html>

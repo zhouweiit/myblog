@@ -1,5 +1,12 @@
 {
     "res": {
+        "common:page/backMainLayout.tpl": {
+            "uri": "/template/common/page/backMainLayout.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            }
+        },
         "common:page/frontLayout.tpl": {
             "uri": "/template/common/page/frontLayout.tpl",
             "type": "tpl",
