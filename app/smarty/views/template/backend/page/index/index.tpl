@@ -8,13 +8,14 @@
   <script src="{%uri name="backend:static/js/jquery.SuperSlide.js"%}"></script>
   <script src="{%uri name="backend:static/js/common.js"%}"></script>
   <script type="text/javascript">
+  
   </script>
   <title>zwiter博客管理后台</title>
 </head>
 <body>
     <div class="top">
       <div id="top_t">
-        <div id="logo" class="fl"></div>
+        <div id="logo" class="fl">只有逆风的方向，才更适合飞翔</div>
         <div id="photo_info" class="fr">
           <div id="photo" class="fl">
           </div>
@@ -28,58 +29,25 @@
       </div>
       <div id="side_here">
         <div id="side_here_l" class="fl"></div>
+        <div id="side_here_r">欢迎您</div>
       </div>
     </div>
     <div class="side">
         <div class="sideMenu" style="margin:0 auto">
-          <h3>导航菜单</h3>
+          <h3>文章管理</h3>
           <ul>
-            <li>导航菜单</li>
-            <li>导航菜单</li>
-            <li>导航菜单</li>
-            <li class="on">导航菜单</li>
-            <li>导航菜单</li>
+            <li>文章列表</li>
           </ul>
-          <h3> 导航菜单</h3>
+          <h3>字典管理</h3>
           <ul>
-            <li>导航菜单</li>
-            <li>导航菜单</li>
-            <li>导航菜单</li>
-            <li>导航菜单</li>
-            <li>导航菜单</li>
-          </ul>
-          <h3> 导航菜单</h3>
-          <ul>
-            <li>导航菜单</li>
-            <li>导航菜单</li>
-            <li>导航菜单</li>
-          </ul>
-          <h3>导航菜单</h3>
-          <ul>
-            <li >导航菜单</li>
-            <li>导航菜单</li>
-            <li>导航菜单</li>
-            <li class="on">导航菜单</li>
-            <li>导航菜单</li>
-          </ul>
-          <h3> 导航菜单</h3>
-          <ul>
-            <li>导航菜单</li>
-            <li>导航菜单</li>
-            <li>导航菜单</li>
-            <li>导航菜单</li>
-            <li>导航菜单</li>
-          </ul>
-          <h3> 导航菜单</h3>
-          <ul>
-            <li>导航菜单</li>
-            <li>导航菜单</li>
-            <li>导航菜单</li>
+            <li>分类管理</li>
+            <li>标签管理</li>
+            <li>友情链接管理</li>
           </ul>
        </div>
     </div>
     <div class="main">
-       <iframe name="right" id="rightMain" src="main.html" frameborder="no" scrolling="auto" width="100%" height="auto" allowtransparency="true"></iframe>
+       <iframe name="right" id="rightMain" src="/backend/index/main" frameborder="no" scrolling="auto" width="100%" height="auto" allowtransparency="true"></iframe>
     </div>
     <div class="bottom">
       <div id="bottom_bg">zwiter博客管理后台</div>

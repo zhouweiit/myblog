@@ -29,7 +29,7 @@ $(function(){
     $(".sideMenu").slide({
        titCell:"h3", 
        targetCell:"ul",
-       defaultIndex:0, 
+       defaultIndex:false, 
        effect:'slideDown', 
        delayTime:'500' , 
        trigger:'click', 
@@ -38,13 +38,25 @@ $(function(){
        returnDefault:false,
        easing:'easeInQuint',
        endFun:function(){
-            scrollWW();
+    	   scrollWW();
        }
      });
+    
     $(window).resize(function() {
         scrollWW();
     });
  
+    $(".sideMenu ul li").click(function(){
+    	var href = $(this).attr('href');
+    	$("#rightMain").attr('src',href);
+    	$(".sideMenu ul li").removeClass('on');
+    	$(this).addClass('on');
+    	var first = $(this).parent().prev().html();
+    	var second = $(this).html();
+    	var navigation = first + ' >> ' + second;
+    	$("#side_here_r").html(navigation);
+    });
+    
 });
 
 function scrollWW(){

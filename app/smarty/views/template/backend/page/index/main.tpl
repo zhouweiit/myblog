@@ -26,6 +26,7 @@
 			</div>
 		</div>
 	</div>
+    
 	<div class="clear"></div>
 </div>
 <div class="main_center">
@@ -342,4 +343,39 @@
 		</div>
 	</div>
 </div>
-{%require name='backend:page/index/main.tpl'%}{%/block%}
+
+<textarea name="editor1" id="editor1" rows="10" cols="80">
+    This is my textarea to be replaced with CKEditor.
+</textarea>
+
+
+<script>
+CKEDITOR.replace( 'editor1');
+CKEDITOR.editorConfig = function( config ) {
+    config.toolbarGroups = [
+        { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+        { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+        { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+        { name: 'forms', groups: [ 'forms' ] },
+        '/',
+        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+        { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+        { name: 'links', groups: [ 'links' ] },
+        { name: 'insert', groups: [ 'insert' ] },
+        '/',
+        { name: 'styles', groups: [ 'styles' ] },
+        { name: 'colors', groups: [ 'colors' ] },
+        { name: 'tools', groups: [ 'tools' ] },
+        { name: 'others', groups: [ 'others' ] },
+        { name: 'about', groups: [ 'about' ] }
+    ];
+};
+</script>
+
+<pre class="brush: js;">
+function helloSyntaxHighlighter()
+{
+    return "hi!";
+}
+</pre>
+{%/block%}
