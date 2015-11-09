@@ -75,7 +75,7 @@ class MessageController extends ControllerBase {
         $this->view->setVar('userInfo',$userInfo);
         
         //分页信息
-        $this->view->setVar('pages',$pages);
+        $this->view->setVar('pages',$pages['pages']);
         $this->view->setVar('pageUrl',$pageUrl);
         $this->view->setVar('pageUrlOther','#comment');
     }

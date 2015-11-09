@@ -120,7 +120,13 @@ border-left: 1px solid #d3dbde;
 }
 .form_table td{
 	padding: 5px 5px;
+	text-align:left;
 }
+
+.form_table td.header{
+    text-align:right;
+}
+
 .td_center{text-align: center;}
 .td_left{text-align: left;}
 .td_right{text-align: right;}
@@ -141,7 +147,7 @@ border-left: 1px solid #d3dbde;
 
 /*分页*/
 .pagination{
-
+    text-align:right;
 }
 .pagination ul {
 	display: inline-block;

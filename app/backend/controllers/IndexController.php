@@ -13,8 +13,12 @@ class IndexController extends ControllerBase {
         
     }
     
+    public function welcomAction(){
+        
+    }
+    
     public function mainAction(){
-        echo 'main';
+        
     }
     
 }

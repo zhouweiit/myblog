@@ -21,13 +21,19 @@ class PageService extends ServiceBase {
      * @param int $countNum            
      * @param int $nowpage            
      * @param int $pageSize            
-     * @return array
+     * @return array type = 1，页码； type = 2，当前页；type = 3，省略号
      * @author zhouwei
      */
     public function createPageArray($countNum, $nowpage, $pageSize){
         $count = ceil($countNum / $pageSize);
         $pagesArray = array();
-        if ($count <= 9) { // 总页数小于等于9
+        $lastpage = $nowpage - 1 <= 0 ? 0 : $nowpage - 1;
+        $nextpage = $nowpage + 1 > $count ? 0 : $nowpage + 1;
+        $lastnext = array(
+            'next'  => $nextpage,
+            'last'  => $lastpage,
+        );
+        if ($count <= 7) { // 总页数小于等于9
             for($i = 1; $i <= $count; $i++) {
                 if ($i == $nowpage) {
                     $pagesArray[] = array(
@@ -44,7 +50,7 @@ class PageService extends ServiceBase {
         } else { // 总页数大于9
             if ($nowpage <= 4) { // 左边无省略号
                 
-                for($i = 1; $i <= 7; $i++) {
+                for($i = 1; $i <= 5; $i++) {
                     
                     if ($i == $nowpage) {
                         $pagesArray[] = array(
@@ -76,7 +82,7 @@ class PageService extends ServiceBase {
                     'type' => '3',
                     'value' => '...' 
                 );
-                for($i = $count - 6; $i <= $count; $i++) {
+                for($i = $count - 4; $i <= $count; $i++) {
                     if ($i == $nowpage) {
                         $pagesArray[] = array(
                             'type' => '2',
@@ -101,10 +107,6 @@ class PageService extends ServiceBase {
                 );
                 $pagesArray[] = array(
                     'type' => '1',
-                    'value' => $nowpage - 2 
-                );
-                $pagesArray[] = array(
-                    'type' => '1',
                     'value' => $nowpage - 1 
                 );
                 $pagesArray[] = array(
@@ -116,10 +118,6 @@ class PageService extends ServiceBase {
                     'value' => $nowpage + 1 
                 );
                 $pagesArray[] = array(
-                    'type' => '1',
-                    'value' => $nowpage + 2 
-                );
-                $pagesArray[] = array(
                     'type' => '3',
                     'value' => '...' 
                 );
@@ -129,7 +127,10 @@ class PageService extends ServiceBase {
                 );
             }
         }
-        return $pagesArray;
+        return array(
+            'pages'     => $pagesArray,
+            'lastnext'  => $lastnext,
+        );
     }
     
     /**

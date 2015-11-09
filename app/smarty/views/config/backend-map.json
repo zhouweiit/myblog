@@ -1,5 +1,12 @@
 {
     "res": {
+        "backend:page/article/list.tpl": {
+            "uri": "/template/backend/page/article/list.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            }
+        },
         "backend:page/index/index.tpl": {
             "uri": "/template/backend/page/index/index.tpl",
             "type": "tpl",
@@ -38,21 +45,9 @@
             "uri": "/static/backend/js/jquery.SuperSlide.js",
             "type": "js"
         },
-        "backend:static/js/ckeditor.js": {
-            "uri": "/static/common/plugin/ckeditor/ckeditor.js",
-            "type": "js"
-        },
-        "backend:static/js/sh_main.js": {
-            "uri": "/static/common/plugin/shjs/sh_main.js",
-            "type": "js"
-        },
-        "backend:static/js/sh_php.js": {
-            "uri": "/static/common/plugin/shjs/js/sh_php.js",
-            "type": "js"
-        },
-        "backend:static/css/sh_style.css": {
-            "uri": "/static/common/plugin/shjs/sh_style.css",
-            "type": "css"
+        "backend:widget/page.tpl": {
+            "uri": "backend/widget/page.tpl",
+            "type": "tpl"
         }
     },
     "pkg": {}

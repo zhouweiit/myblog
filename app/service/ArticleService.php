@@ -73,7 +73,7 @@ class ArticleService extends ServiceBase {
             $categoryIds = null;
             if (empty($categoryInfos)) {
                 $categoryIds = array(
-                        $categoryId 
+                    $categoryId 
                 );
             } else {
                 $categoryIds = array_keys($categoryInfos);
@@ -108,9 +108,12 @@ class ArticleService extends ServiceBase {
         }
         $articleInfo = $this->bindArticlesTags($articleInfo);
         $tags = $this->tagService->getAllTag();
+        $categorys = $this->categoryService->getAllCategory();
+        $categoryTree = $this->categoryService->getCategoryTree($categorys);
         $result = array();
         foreach ( $articleInfo as $aid => $value ) {
             
+            //组合文章的tag信息
             $tagResult = array();
             if (!empty($value['tag'])) {
                 foreach ( $value['tag'] as $tid => $tag ) {
@@ -125,15 +128,35 @@ class ArticleService extends ServiceBase {
                 $tagResult[count($tagResult) - 1]['last'] = true;
             }
             
+            //组合文章的分类信息
+            $categoryInfo = $categorys[$value['article']->getCategoryId()];
+            if (!empty($categoryInfo)){
+                $fatherCategoryInfo = $categoryTree[$categoryInfo->getPid()]['category'];
+            }
+            $categoryResult = array();
+            if (!empty($categoryInfo) && !empty($fatherCategoryInfo)){
+                $categoryResult = array(
+                    'frist' => array(
+                        'name'  => $fatherCategoryInfo->getName(),
+                        'id'    => $fatherCategoryInfo->getId(),
+                    ),
+                    'second'    => array(
+                        'name'  => $categoryInfo->getName(),
+                        'id'    => $categoryInfo->getId(),
+                    ),
+                );
+            }
+            
             $articleArrayInfo = array(
-                'title' => $value['article']->getTitle(),
-                'headcontent' => $value['article']->getHeadcontent(),
-                'headimage' => $value['article']->getHeadimage(),
+                'title'         => $value['article']->getTitle(),
+                'headcontent'   => $value['article']->getHeadcontent(),
+                'headimage'     => $value['article']->getHeadimage(),
                 'release_datetime' => date('Y-m-d H:i',strtotime($value['article']->getReleaseDatetime())),
                 'comment_times' => $value['article']->getCommentTimes(),
-                'read_times' => $value['article']->getReadTimes(),
-                'id' => $value['article']->getId(),
-                'tag' => $tagResult 
+                'read_times'    => $value['article']->getReadTimes(),
+                'id'            => $value['article']->getId(),
+                'tag'           => $tagResult,
+                'category'      => $categoryResult,
             );
             
             $result[$aid] = $articleArrayInfo;
@@ -413,7 +436,7 @@ class ArticleService extends ServiceBase {
     /**
      * 根据文章获取文章的标签信息
      *
-     * @param unknown $articleId            
+     * @param int $articleId            
      */
     public function getArticleTagsInfo($articleId){
         $maps = $this->articleTagMapService->getArticleMapByArticleId($articleId);

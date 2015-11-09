@@ -36,7 +36,8 @@
         <div class="sideMenu" style="margin:0 auto">
           <h3>文章管理</h3>
           <ul>
-            <li>文章列表</li>
+            <li href="/backend/article/list">文章列表</li>
+            <li href="/backend/article/release">发布文章</li>
           </ul>
           <h3>字典管理</h3>
           <ul>
@@ -44,10 +45,14 @@
             <li>标签管理</li>
             <li>友情链接管理</li>
           </ul>
+          <h3>工具集</h3>
+          <ul>
+            <li href="/backend/index/main">html demo</li>
+          </ul>
        </div>
     </div>
     <div class="main">
-       <iframe name="right" id="rightMain" src="/backend/index/main" frameborder="no" scrolling="auto" width="100%" height="auto" allowtransparency="true"></iframe>
+       <iframe name="right" id="rightMain" src="/backend/index/welcom" frameborder="no" scrolling="auto" width="100%" height="auto" allowtransparency="true"></iframe>
     </div>
     <div class="bottom">
       <div id="bottom_bg">zwiter博客管理后台</div>
@@ -58,5 +63,3 @@
     </div>
 </body>
 </html>
-   
- 

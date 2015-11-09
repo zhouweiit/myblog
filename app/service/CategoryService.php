@@ -53,16 +53,20 @@ class CategoryService extends ServiceBase {
     
     /**
      * 根据分类组成分类树
+     * 
+     * @param array categorys
      *
      * @return array
      * @author zhouwei
      */
-    public function getCategoryTree(){
-        $categorys = $this->getAllCategory();
+    public function getCategoryTree($categorys = null){
+        if (empty($categorys)){
+            $categorys = $this->getAllCategory();
+        }
         $categoryTree = array();
         foreach ( $categorys as $value ) {
             if ($value->getDepth() == Category::FIRST_CATEGORY_DEPTH) {
-                $categoryTree[$value->getId()] = $value;
+                $categoryTree[$value->getId()] = array('category' => $value);
             } else if ($value->getDepth() == Category::SECOND_CATEGORY_DEPTH) {
                 $categoryTree[$value->getPid()]['child'][$value->getId()] = $value;
             }
@@ -99,7 +103,25 @@ class CategoryService extends ServiceBase {
         foreach ( $categorys as $value ) {
             $result[$value->getId()] = array(
                 'name' => $value->getName(),
-                'id' => $value->getId() 
+                'id' => $value->getId(),
+            );
+        }
+        return $result;
+    }
+    
+    /**
+     * 获取所有的二级分类
+     * 
+     * @return array
+     * @author zhouwei
+     */
+    public function getSecondCategory(){
+        $categorys = $this->categoryDao->getCategoryByDepth(Category::SECOND_CATEGORY_DEPTH);
+        $result = array();
+        foreach ( $categorys as $value ) {
+            $result[$value->getId()] = array(
+                'name' => $value->getName(),
+                'id' => $value->getId(),
             );
         }
         return $result;

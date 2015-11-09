@@ -40,6 +40,7 @@ class IndexController extends ControllerBase {
      * @var AsideService
      */
     private $asideService;
+    
     protected function initialize(){
         $this->articleService = $this->di->get('ArticleService');
         $this->pageService = $this->di->get('PageService');
@@ -47,13 +48,14 @@ class IndexController extends ControllerBase {
         $this->categoryService = $this->di->get('CategoryService');
         $this->asideService = $this->di->get('AsideService');
     }
+    
     public function indexAction(){
         $page = $this->request->get('page',null,1);
         $tagid = $this->request->get('tagid');
         $date = $this->request->get('date');
         $categoryId = $this->request->get('categoryid');
         $search = $this->request->getPost('search');
-        $pageSize = 10;
+        $pageSize = 1;
         $params = $this->request->get();
         
         // 获取文章
@@ -65,7 +67,7 @@ class IndexController extends ControllerBase {
         $fristCategory = $this->categoryService->getFirstCategory();
         $asideInfo = $this->asideService->getAsideResult();
         $this->view->setVar('articleInfo',$articleInfo['article']);
-        $this->view->setVar('pages',$pages);
+        $this->view->setVar('pages',$pages['pages']);
         $this->view->setVar('pageUrl',$pageUrl);
         $this->view->setVar('firstCategory',$fristCategory);
         $this->view->setVar('firstCategoryId',$menuInfo['categoryid']);
