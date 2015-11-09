@@ -195,4 +195,4 @@
   <div class="clear"></div>
   <!-- 清除浮动 --> 
 </div>
-{%require name='frontend:page/demo/info.tpl'%}{%require name='frontend:page/demo/info.tpl'%}{%require name='frontend:page/demo/info.tpl'%}{%/block%}
+{%require name='frontend:page/demo/info.tpl'%}{%require name='frontend:page/demo/info.tpl'%}{%require name='frontend:page/demo/info.tpl'%}{%require name='frontend:page/demo/info.tpl'%}{%/block%}

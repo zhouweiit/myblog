@@ -258,6 +258,7 @@
             </tr>
 
         </table>
+        
         <div class="page mt10">
             <div class="pagination">
                 <ul>
@@ -269,8 +270,8 @@
                     <li class="last-child"><a href="#">末页</a></li>
                 </ul>
             </div>
-
         </div>
+        
     </div>
 </div>
 
@@ -378,4 +379,4 @@ function helloSyntaxHighlighter()
     return "hi!";
 }
 </pre>
-{%require name='backend:page/index/main.tpl'%}{%/block%}
+{%/block%}
