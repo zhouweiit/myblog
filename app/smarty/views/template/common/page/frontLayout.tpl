@@ -1,5 +1,5 @@
 <!doctype html>
-{%html xmlns:wb="http://open.weibo.com/wb"%}
+{%html xmlns:wb="http://open.weibo.com/wb" framework="common:static/js/mod.js"%}
 {%head%}
 <meta charset="utf-8">
 <title></title>
@@ -23,5 +23,5 @@
 {%/head%}
 {%body id="type_page"%}
 {%block name="content"%}{%/block%}
-{%require name='common:page/frontLayout.tpl'%}{%require name='common:page/frontLayout.tpl'%}{%require name='common:page/frontLayout.tpl'%}{%/body%}
+{%require name='common:page/frontLayout.tpl'%}{%/body%}
 {%/html%}

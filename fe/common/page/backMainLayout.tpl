@@ -1,5 +1,5 @@
 <!doctype html>
-{%html lang="zh-CN"%}
+{%html lang="zh-CN" framework="common:static/js/mod.js"%}
 {%head%}
 <meta charset="UTF-8"/>
 <link href="{%uri name="backend:static/css/common.css"%}" rel="stylesheet"/>

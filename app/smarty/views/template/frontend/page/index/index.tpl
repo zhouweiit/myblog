@@ -49,4 +49,4 @@
   <div class="clear"></div>
   <!-- 清除浮动 --> 
 </div>
-{%require name='frontend:page/index/index.tpl'%}{%require name='frontend:page/index/index.tpl'%}{%require name='frontend:page/index/index.tpl'%}{%/block%}
+{%require name='frontend:page/index/index.tpl'%}{%/block%}

@@ -55,7 +55,7 @@ class IndexController extends ControllerBase {
         $date = $this->request->get('date');
         $categoryId = $this->request->get('categoryid');
         $search = $this->request->getPost('search');
-        $pageSize = 1;
+        $pageSize = 10;
         $params = $this->request->get();
         
         // 获取文章

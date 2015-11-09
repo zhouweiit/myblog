@@ -126,4 +126,4 @@ $(function(){
     $('#release_time_end').timepicker();
 });
 {%/script%}
-{%require name='backend:page/article/list.tpl'%}{%/block%}
+{%require name='backend:page/article/list.tpl'%}{%require name='backend:page/article/list.tpl'%}{%/block%}
