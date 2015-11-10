@@ -64,10 +64,10 @@ class ArticleService extends ServiceBase {
             $articlesInfo = $this->listPageByContent($content,$orderby,$page,$pageSize);
         } else if (!empty($date)) { // 优先查询日期的文章信息，并且再首页频道显示
             $dateStartEnd = DateUtils::getDateByMonth($date);
-            $articlesInfo = $this->listByPage($dateStartEnd['head'],$dateStartEnd['end'],null,null,$orderby,$page,$pageSize);
+            $articlesInfo = $this->listByPage($dateStartEnd['head'],$dateStartEnd['end'],null,null,null,null,null,null,null,$orderby,$page,$pageSize);
         } else if (!empty($tagid)) { // 根据标签ID查询文章信息，并且根据标签的频道分类再频道显现
             $mapInfos = $this->articleTagMapService->getArticleMapByTagId($tagid);
-            $articlesInfo = $this->listByPage(null,null,array_keys($mapInfos),null,$orderby,$page,$pageSize);
+            $articlesInfo = $this->listByPage(null,null,array_keys($mapInfos),null,null,null,null,null,null,$orderby,$page,$pageSize);
         } else if (!empty($categoryId)) { // 直接查询频道的数据
             $categoryInfos = $this->categoryService->getCategoryByPid($categoryId);
             $categoryIds = null;
@@ -78,14 +78,50 @@ class ArticleService extends ServiceBase {
             } else {
                 $categoryIds = array_keys($categoryInfos);
             }
-            $articlesInfo = $this->listByPage(null,null,null,$categoryIds,$orderby,$page,$pageSize);
+            $articlesInfo = $this->listByPage(null,null,null,$categoryIds,null,null,null,null,null,$orderby,$page,$pageSize);
         } else { // 显示首页的数据
-            $articlesInfo = $this->listByPage(null,null,null,null,$orderby,$page,$pageSize);
+            $articlesInfo = $this->listByPage(null,null,null,null,null,null,null,null,null,$orderby,$page,$pageSize);
         }
         $articleTabInfos = $this->getListByIdsOrArticle(null,$articlesInfo['articles']);
         return array(
             'article' => $articleTabInfos,
             'count' => $articlesInfo['articles_count'] 
+        );
+    }
+    
+    /**
+     * 获取后台文章列表的方法
+     * @param array $articleIds         文章ID
+     * @param string $title             文章标题
+     * @param array $categoryIds        文章分类ID
+     * @param int $readTimesStart       阅读的条数开始
+     * @param int $readTimesEnd         阅读的条数结束
+     * @param int $commentTimesStart    评论的条数开始
+     * @param int $commentTimesEnd      评论的条数结束
+     * @param array $tagIds             标签ID
+     * @param date $releaseTimeStart    发布的开始时间
+     * @param date $releaseTimeEnd      发布的结束时间
+     * @param int $page                 页数
+     * @param int $pageSize             每页显示的条数
+     * @param string $orderby 可选参数，排序的规则，默认:id，可选：2:read_times,3:comment_times,4:release_datetime
+     * @return array
+     * @author zhouwei
+     */
+    public function getBackendArticleList(array $articleIds = array(),$title = null,array $categoryIds = array(),$readTimesStart = null,$readTimesEnd = null,
+            $commentTimesStart = null,$commentTimesEnd = null,array $tagIds = null,$releaseTimeStart = null,$releaseTimeEnd = null,$page = 1, $pageSize = 10,$orderby = null){
+        
+        if (!empty($tagIds)){
+            $tagArticleIds = $this->articleTagMapService->getArticleMapByTagIds($tagIds);
+            $articleIds = array_merge($articleIds,$tagArticleIds);
+        }
+        
+        $articlesInfo = $this->listByPage($releaseTimeStart,$releaseTimeEnd,$articleIds,$categoryIds,$title,
+                                                $readTimesStart,$readTimesEnd,$commentTimesStart,$commentTimesEnd,$orderby,$page,$pageSize);
+        
+        $articleTabInfos = $this->getListByIdsOrArticle(null,$articlesInfo['articles']);
+        return array(
+                'article' => $articleTabInfos,
+                'count' => $articlesInfo['articles_count']
         );
     }
     
@@ -211,9 +247,10 @@ class ArticleService extends ServiceBase {
      * @return array
      * @author zhouwei
      */
-    public function listByPage($startdate = null, $enddate = null, array $articleIds = null, array $categoryIds = null, $orderBy = 1, $page = 0, $pageSize = 10){
-        $articles = $this->articleDao->listByPage($startdate,$enddate,$articleIds,$categoryIds,$orderBy,$page,$pageSize,false);
-        $articlesCount = $this->articleDao->listByPage($startdate,$enddate,$articleIds,$categoryIds,$orderBy,$page,$pageSize);
+    public function listByPage($startdate = null, $enddate = null, array $articleIds = null, array $categoryIds = null,$title = null,
+            $readTimesStart = null,$readTimesEnd = null,$commentTimesStart = null,$commentTimesEnd = null, $orderBy = 1, $page = 0, $pageSize = 10){
+        $articles = $this->articleDao->listByPage($startdate,$enddate,$articleIds,$categoryIds,$title,$readTimesStart,$readTimesEnd,$commentTimesStart,$commentTimesEnd,$orderBy,$page,$pageSize,false);
+        $articlesCount = $this->articleDao->listByPage($startdate,$enddate,$articleIds,$categoryIds,$title,$readTimesStart,$readTimesEnd,$commentTimesStart,$commentTimesEnd,$orderBy,$orderBy,$page,$pageSize);
         $resultArticle = array();
         foreach ( $articles as $article ) {
             $resultArticle[$article->getId()] = $article;
@@ -418,18 +455,18 @@ class ArticleService extends ServiceBase {
         $articleInfo = $this->articleDao->getById($articleId);
         $tagInfo = $this->getArticleTagsInfo($articleId);
         return array(
-                'article' => array(
-                    'title' => $articleInfo->getTitle(),
-                    'category_id' => $articleInfo->getCategoryId(),
-                    'headcontent' => $articleInfo->getHeadcontent(),
-                    'headimage' => $articleInfo->getHeadimage(),
-                    'release_datetime' => date('Y-m-d H:i',strtotime($articleInfo->getReleaseDatetime())),
-                    'comment_times' => $articleInfo->getCommentTimes(),
-                    'read_times' => $articleInfo->getReadTimes(),
-                    'content' => $articleInfo->getContent(),
-                    'id' => $articleInfo->getId() 
-                ),
-                'tag' => $tagInfo 
+            'article' => array(
+            'title' => $articleInfo->getTitle(),
+            'category_id' => $articleInfo->getCategoryId(),
+            'headcontent' => $articleInfo->getHeadcontent(),
+            'headimage' => $articleInfo->getHeadimage(),
+            'release_datetime' => date('Y-m-d H:i',strtotime($articleInfo->getReleaseDatetime())),
+            'comment_times' => $articleInfo->getCommentTimes(),
+            'read_times' => $articleInfo->getReadTimes(),
+            'content' => $articleInfo->getContent(),
+            'id' => $articleInfo->getId() 
+            ),
+            'tag' => $tagInfo 
         );
     }
     

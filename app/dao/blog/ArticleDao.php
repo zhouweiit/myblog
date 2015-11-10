@@ -44,28 +44,55 @@ class ArticleDao extends DaoBase {
      * @return array
      * @author zhouwei
      */
-    public function listByPage($startdate = null, $enddate = null, array $articleIds = null, $categoryIds = null, $orderBy = 1, $page = 0, $pageSize = 10, $count = true){
+    public function listByPage($startdate = null, $enddate = null, array $articleIds = null, $categoryIds = null,$titil = null,
+            $readTimesStart = null,$readTimesEnd = null,$commentTimesStart = null,$commentTimesEnd = null,
+            $orderBy = 1, $page = 0, $pageSize = 10, $count = true){
+        
         if ($count) {
             $sql = 'select count(*) as count from article where is_delete = 0';
         } else {
             $sql = 'select * from article where is_delete = 0';
         }
         $bind = array();
-        if (isset($startdate) && isset($enddate)) {
-            $sql .= ' and release_datetime >= ? and release_datetime <= ?';
+        if (isset($startdate)) {//发布开始时间
+            $sql .= ' and release_datetime >= ?';
             $bind[] = $startdate;
+        }
+        if (isset($enddate)){//发布结束时间
+            $sql .= ' and release_datetime <= ?';
             $bind[] = $enddate;
         }
-        if (isset($articleIds) && !empty($articleIds)) {
+        if (isset($articleIds) && !empty($articleIds)) {//文章ID
             $inSqlCondition = SqlUtils::getInSqlCondition($articleIds);
             $bind = array_merge($bind,$inSqlCondition['bindArray']);
             $sql .= ' and id in (' . $inSqlCondition['conditinSql'] . ')';
         }
-        if (isset($categoryIds) && !empty($categoryIds)) {
+        if (isset($categoryIds) && !empty($categoryIds)) {//分类ID
             $inSqlCondition = SqlUtils::getInSqlCondition($categoryIds);
             $bind = array_merge($bind,$inSqlCondition['bindArray']);
             $sql .= ' and category_id in (' . $inSqlCondition['conditinSql'] . ')';
         }
+        if (isset($readTimesStart)){//阅读次数的开始时间
+            $sql .= ' and read_times >= ?';
+            $bind[] = $readTimesStart;
+        }
+        if (isset($readTimesEnd)){//阅读次数的结束时间
+            $sql .= ' and read_times <= ?';
+            $bind[] = $readTimesEnd;
+        }
+        if (isset($titil)){//文章标题
+            $sql .= ' and title like ?';
+            $bind[] = '%'.$titil.'%';
+        }
+        if (isset($commentTimesStart)){//评论条数的开始
+            $sql .= ' and comment_times >= ?';
+            $bind[] = $commentTimesStart;
+        }
+        if (isset($commentTimesEnd)){//评论条数的结束
+            $sql .= ' and comment_times <= ?';
+            $bind[] = $commentTimesEnd;
+        }
+        
         $order = null;
         if ($orderBy == 2) {
             $order = 'read_times';
@@ -76,6 +103,7 @@ class ArticleDao extends DaoBase {
         } else {
             $order = 'id';
         }
+        
         if ($count) {
             $result = $this->persistent->query($sql,$bind);
             return $result->fetchOne('models\common\SpecialColumn');

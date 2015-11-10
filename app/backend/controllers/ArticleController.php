@@ -7,6 +7,7 @@ use service\CategoryService;
 use service\TagService;
 use service\ArticleService;
 use service\PageService;
+use library\utils\HttpUtils;
 
 class ArticleController extends ControllerBase {
     
@@ -38,12 +39,38 @@ class ArticleController extends ControllerBase {
     }
     
     public function listAction(){
+        $articleId          = HttpUtils::filterInt($this->request->get('article_id'));
+        $title              = HttpUtils::filterString($this->request->get('title'), 0);
+        $readTimesStart     = HttpUtils::filterInt($this->request->get('read_times_start'));
+        $readTimesEnd       = HttpUtils::filterInt($this->request->get('read_times_end'));
+        $firstCategoryId    = HttpUtils::filterInt($this->request->get('first_category'));
+        $secondCategoryId   = HttpUtils::filterInt($this->request->get('second_category'));
+        $commentTimesStart  = HttpUtils::filterInt($this->request->get('comment_times_start'));
+        $commentTimesEnd    = HttpUtils::filterInt($this->request->get('comment_times_end'));
+        $releaseTimeStart   = HttpUtils::filterDateTime($this->request->get('release_time_start'));
+        $releaseTimeEnd     = HttpUtils::filterDateTime($this->request->get('release_time_end'));
+        $tagIds             = $this->request->get('tag');
+        $page = HttpUtils::filterInt($this->request->get('page'),1,array(0));
+        $pageSize = 10;
         
+        //过滤标签ID
+        $newTagIds = array();
+        foreach ($tagIds as $tag){
+            $tag = HttpUtils::filterInt($tag);
+            if (isset($tag)){
+                $newTagIds[] = $tag;
+            }
+        }
         
-        $page = $this->request->get('page',null,1);
-        $pageSize = 3;
+        //过滤分类ID
+        $categoryIds = $this->categoryService->getCategoryIdByPid($firstCategoryId);
+        if (isset($secondCategoryId)){
+            $categoryIds[] = $secondCategoryId;
+        }
+        
         // 获取文章
-        $articleInfo = $this->articleService->getIndexArticleList($page - 1,$pageSize);
+        $articleInfo = $this->articleService->getBackendArticleList(isset($articleId) ? array($articleId) : array(),$title,$categoryIds,$readTimesStart,$readTimesEnd,
+                $commentTimesStart,$commentTimesEnd,$newTagIds,$releaseTimeStart,$releaseTimeEnd,$page - 1,$pageSize);
         
         //分页信息
         $pages = $this->pageService->createPageArray($articleInfo['count'],$page,$pageSize);
@@ -52,9 +79,16 @@ class ArticleController extends ControllerBase {
         //一级分类
         $firstCategory = $this->categoryService->getFirstCategory();
         //二级分类
-        $secondCategory = $this->categoryService->getSecondCategory();
+        $secondCategory = array();
+        if (!empty($firstCategoryId)){
+            $secondCategory = $this->categoryService->getCategoryByPid($firstCategoryId);
+        }
+        
         //标签
-        $tags = $this->tagService->getAllTag();
+        $tags = array();
+        if (!empty($secondCategoryId)){
+            $tags = $this->tagService->getTagByCategoryId($secondCategoryId);
+        }
         
         $this->view->setVar('articleInfo', $articleInfo['article']);
         $this->view->setVar('firstCategorys', $firstCategory);
@@ -62,6 +96,15 @@ class ArticleController extends ControllerBase {
         $this->view->setVar('tags', $tags);
         $this->view->setVar('pages',$pages);
         $this->view->setVar('pageUrl',$pageUrl);
+        $this->view->setVar('request', $this->request->get());
+    }
+    
+    public function editAction(){
+        $articleId = HttpUtils::filterInt($this->request->get('articleid'));
+    }
+    
+    public function releaseAction(){
+        
     }
     
 }

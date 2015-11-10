@@ -64,5 +64,24 @@ class TagService extends ServiceBase {
     public function getTagById($id){
         return $tag = $this->tagDao->getTagById($id);
     }
+    
+    /**
+     * 根据分类ID获取标签信息
+     * @param int $categoryId
+     * 
+     * @return array
+     * @author zhouwei
+     */
+    public function getTagByCategoryId($categoryId){
+        $tags = $this->tagDao->getTagByCategoryId($categoryId);
+        $result = array();
+        foreach ($tags as $value){
+            $result[] = array(
+                'id'    => $value->getId(),
+                'name'  => $value->getName(),
+            );
+        }
+        return $result;
+    }
 }
 

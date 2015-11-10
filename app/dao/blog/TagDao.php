@@ -72,4 +72,16 @@ class TagDao extends DaoBase {
         $result = $this->persistent->query($sql,$bind);
         return $result->fetchAll($this->className);
     }
+    
+    /**
+     * 根据分类ID获取标签信息
+     * @param int $categoryId
+     * @return array
+     * @author zhouwei
+     */
+    public function getTagByCategoryId($categoryId){
+        $sql = 'select * from tag where category_id = :category_id and is_delete = 0 order by id';
+        $result = $this->persistent->query($sql,array(':category_id'=>$categoryId));
+        return $result->fetchAll($this->className);
+    }
 }

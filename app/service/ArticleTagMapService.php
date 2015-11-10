@@ -79,14 +79,14 @@ class ArticleTagMapService extends ServiceBase {
      * @return array
      * @author zhouwei
      */
-    public function getArticleMapByTagIds(array $tagIds, $articleId){
+    public function getArticleMapByTagIds(array $tagIds, $articleId = null){
         if (empty($tagIds)) {
             return array();
         }
         $mapInfos = $this->articleTagMapDao->getByTagIds($tagIds);
         $articleIds = array();
         foreach ( $mapInfos as $value ) {
-            if ($articleId == $value->getArticleId()) {
+            if (isset($articleId) && $articleId == $value->getArticleId()) {
                 continue;
             }
             $articleIds[] = $value->getArticleId();

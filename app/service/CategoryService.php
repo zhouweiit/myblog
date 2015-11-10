@@ -75,6 +75,24 @@ class CategoryService extends ServiceBase {
     }
     
     /**
+     * 根据分类的ID获取子分类ID信息
+     * @param int $pid
+     * @return array
+     * @author zhouwei
+     */
+    public function getCategoryIdByPid($pid){
+        if (!isset($pid)){
+            return array();
+        }
+        $cateogoryTree = $this->getCategoryTree();
+        $child = $cateogoryTree[$pid]['child'];
+        if (isset($child)){
+            return array_keys($child);
+        }
+        return array();
+    }
+    
+    /**
      * 根据父ID获取所有的子分类信息
      *
      * @param int $pid
@@ -85,8 +103,11 @@ class CategoryService extends ServiceBase {
     public function getCategoryByPid($pid){
         $categorys = $this->categoryDao->getCategoryByPid($pid);
         $result = array();
-        foreach ( $categorys as $value ) {
-            $result[$value->getId()] = $value;
+        foreach ($categorys as $value){
+            $result[] = array(
+                'id'    => $value->getId(),
+                'name'  => $value->getName(),
+            );
         }
         return $result;
     }
