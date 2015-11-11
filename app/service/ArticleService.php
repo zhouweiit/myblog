@@ -456,15 +456,15 @@ class ArticleService extends ServiceBase {
         $tagInfo = $this->getArticleTagsInfo($articleId);
         return array(
             'article' => array(
-            'title' => $articleInfo->getTitle(),
-            'category_id' => $articleInfo->getCategoryId(),
-            'headcontent' => $articleInfo->getHeadcontent(),
-            'headimage' => $articleInfo->getHeadimage(),
-            'release_datetime' => date('Y-m-d H:i',strtotime($articleInfo->getReleaseDatetime())),
-            'comment_times' => $articleInfo->getCommentTimes(),
-            'read_times' => $articleInfo->getReadTimes(),
-            'content' => $articleInfo->getContent(),
-            'id' => $articleInfo->getId() 
+                'title' => $articleInfo->getTitle(),
+                'category_id' => $articleInfo->getCategoryId(),
+                'headcontent' => $articleInfo->getHeadcontent(),
+                'headimage' => $articleInfo->getHeadimage(),
+                'release_datetime' => date('Y-m-d H:i',strtotime($articleInfo->getReleaseDatetime())),
+                'comment_times' => $articleInfo->getCommentTimes(),
+                'read_times' => $articleInfo->getReadTimes(),
+                'content' => $articleInfo->getContent(),
+                'id' => $articleInfo->getId(), 
             ),
             'tag' => $tagInfo 
         );

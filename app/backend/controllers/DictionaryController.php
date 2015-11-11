@@ -6,6 +6,7 @@ use library\mvc\ControllerBase;
 use service\TagService;
 use service\CategoryService;
 use library\utils\HttpUtils;
+use Phalcon\Mvc\View;
 
 class DictionaryController extends ControllerBase {
     
@@ -30,6 +31,7 @@ class DictionaryController extends ControllerBase {
      * @author zhouwei
      */
     public function ajaxChildCategoryAction(){
+        $this->view->setRenderLevel(View::LEVEL_NO_RENDER);
         $categoryId = HttpUtils::filterInt($this->request->get('category_id'));
         $category = array();
         if (isset($categoryId)){
@@ -45,6 +47,7 @@ class DictionaryController extends ControllerBase {
      * @author zhouwei
      */
     public function ajaxTagByCategoryIdAction(){
+        $this->view->setRenderLevel(View::LEVEL_NO_RENDER);
         $categoryId = HttpUtils::filterInt($this->request->get('category_id'));
         $tag = array();
         if (isset($categoryId)){

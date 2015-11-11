@@ -4,6 +4,7 @@ use library\mvc\RedisSession;
 use library\mvc\Log;
 use Phalcon\Db\Profiler;
 use plugin\DatabaseLogPlugin;
+use library\mvc\View;
 
 // 设置redisSession
 $di->setShared('session',function () use($di){

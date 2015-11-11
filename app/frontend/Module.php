@@ -8,6 +8,7 @@ use Phalcon\Mvc\Dispatcher;
 use Phalcon\Mvc\View;
 use Phalcon\DiInterface;
 use plugin\DispatchPlugin;
+use library\mvc\SmartyView;
 
 class Module implements ModuleDefinitionInterface {
     /**
@@ -48,7 +49,7 @@ class Module implements ModuleDefinitionInterface {
         
         // Registering the view component
         $di->set('view',function () use($root){
-            $view = new View();
+            $view = new SmartyView();
             $view->registerEngines(array(
                 '.tpl' => 'library\mvc\SmartyEngine' 
             ));

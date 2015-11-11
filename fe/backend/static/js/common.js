@@ -57,6 +57,7 @@ $(function(){
     	$("#side_here_r").html(navigation);
     });
     
+    
 });
 
 function scrollWW(){

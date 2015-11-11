@@ -10,7 +10,7 @@ use frontend;
 /**
  * 实现使用phalcon的view的引擎，这里使用smary做容器
  *
- * @author baidu
+ * @author zhouwei
  *        
  */
 class SmartyEngine extends Engine implements EngineInterface {
@@ -57,9 +57,8 @@ class SmartyEngine extends Engine implements EngineInterface {
     public function render($path, $params, $mustClean = false){
         $childContent = $this->view->getContent();
         $this->phalconSmarty->assign('phalcon_layout_content',$childContent);
-        $tplPath = $this->getSmartyTplPath($path);
         $this->assignTplParams($params);
-        $content = $this->phalconSmarty->fetch($tplPath);
+        $content = $this->phalconSmarty->fetch($path);
         $this->view->setContent($content);
     }
     

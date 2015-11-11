@@ -101,10 +101,34 @@ class ArticleController extends ControllerBase {
     
     public function editAction(){
         $articleId = HttpUtils::filterInt($this->request->get('articleid'));
+        $articleInfo = $this->articleService->getArticleInfoById($articleId);
+        
+        if (empty($articleInfo)){
+            //todo 文章不存在，跳转列表页
+        }
+        
+        $firstCategory = $this->categoryService->getFirstCategory();
+        $categoryInfo = $this->categoryService->getCategoryById($articleInfo['article']['category_id']);
+        $secondCategory = $this->categoryService->getCategoryByPid($categoryInfo->getPid());
+        $tags = $this->tagService->getTagByCategoryId($articleInfo['article']['category_id']);
+        
+        $this->view->setVar('articletag', array_values($articleInfo['tag']));
+        $this->view->setVar('firstCategorys', $firstCategory);
+        $this->view->setVar('secondCategorys', $secondCategory);
+        $this->view->setVar('tags', $tags);
+        $this->view->setVar('firstCategoryId', $categoryInfo->getPid());
+        $this->view->setVar('secondCategoryId', $articleInfo['article']['category_id']);
+        $this->view->setVar('article',$articleInfo['article']);
+        $this->view->setVar('type','edit');
     }
     
     public function releaseAction(){
+        $firstCategory = $this->categoryService->getFirstCategory();
         
+        
+        $this->view->setVar('firstCategorys', $firstCategory);
+        $this->view->setVar('type','release');
+        $this->view->renderFix('article', 'edit');
     }
     
 }

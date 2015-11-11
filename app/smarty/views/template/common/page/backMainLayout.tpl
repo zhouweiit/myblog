@@ -16,6 +16,7 @@
 <script src="{%uri name="common:static/plugin/timepicker/js/jquery-ui.js"%}"></script>
 <script src="{%uri name="common:static/plugin/timepicker/js/jquery-ui-slide.min.js"%}"></script>
 <script src="{%uri name="common:static/plugin/timepicker/js/jquery-ui-timepicker-addon.js"%}"></script>
+<script src="{%uri name="backend:static/js/validata.js"%}"></script>
 
 <script type="text/javascript">
 $(function(){  
@@ -58,5 +59,5 @@ $(function(){
     <div class="container">
     {%block name="content"%}{%/block%}
     </div>
-{%require name='common:page/backMainLayout.tpl'%}{%require name='common:page/backMainLayout.tpl'%}{%require name='common:page/backMainLayout.tpl'%}{%/body%}
+{%/body%}
 {%/html%}

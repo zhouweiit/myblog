@@ -45,6 +45,10 @@
             "uri": "/static/backend/js/jquery.SuperSlide.js",
             "type": "js"
         },
+        "backend:static/js/validata.js": {
+            "uri": "/static/backend/js/validata.js",
+            "type": "js"
+        },
         "backend:widget/page.tpl": {
             "uri": "backend/widget/page.tpl",
             "type": "tpl"

@@ -37,7 +37,7 @@
           <h3>文章管理</h3>
           <ul>
             <li href="/backend/article/list">文章列表</li>
-            <li href="/backend/article/release">发布文章</li>
+            <li href="/backend/article/release">文章发布</li>
           </ul>
           <h3>字典管理</h3>
           <ul>

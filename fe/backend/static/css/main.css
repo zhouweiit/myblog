@@ -385,3 +385,8 @@ input.ext_btn_big,button.ext_btn_big{
 .ext_btn_error:active{
 	background-position:0 -441px
 }
+label.error{
+	padding-left:10px;
+	margin-top:2px;
+	color:#f10202;
+}
