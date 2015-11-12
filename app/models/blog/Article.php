@@ -106,6 +106,7 @@ class Article {
      * @var date
      */
     private $lastChangedDate;
+    
     public static function columnMap(){
         return array(
             'id' => 'id',

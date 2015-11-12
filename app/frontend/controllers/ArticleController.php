@@ -10,6 +10,8 @@ use service\MenuService;
 use service\CommentService;
 use service\UserService;
 use service\PageService;
+use service\ArticleTagMapService;
+use service\TagService;
 
 class ArticleController extends ControllerBase {
     
@@ -50,6 +52,12 @@ class ArticleController extends ControllerBase {
     private $userService;
     
     /**
+     * 
+     * @var TagService
+     */
+    private $tagService;
+    
+    /**
      *
      * @var PageService
      */
@@ -63,6 +71,7 @@ class ArticleController extends ControllerBase {
         $this->commentService = $this->di->get('CommentService');
         $this->userService = $this->di->get('UserService');
         $this->pageService = $this->di->get('PageService');
+        $this->tagService  = $this->di->get('TagService');
     }
     
     /**
@@ -77,6 +86,7 @@ class ArticleController extends ControllerBase {
         
         if (empty($articleInfo)) {
             // todo 文章不存在，跳404
+            return;
         }
         
         $tagids = array_keys($articleInfo['tag']);
@@ -109,6 +119,54 @@ class ArticleController extends ControllerBase {
         $this->view->setVar('pages',$pages['pages']);
         $this->view->setVar('pageUrl',$pageUrl);
         $this->view->setVar('pageUrlOther','#comment');
+    }
+    
+    /**
+     * 预览页面
+     *
+     * @author zhouwei
+     */
+    public function previewAction(){
+        if (!$this->request->get('isprevew') == 'true'){
+            // todo 文章不存在，跳404
+            return;
+        }
+        
+        $articleInfo = array(
+            'article' => array(
+                'id'            => $this->request->get('id'),
+                'title'         => $this->request->get('title'),
+                'category_id'   => $this->request->get('second_category'),
+                'release_datetime' => date('Y-m-d H:i',strtotime($this->request->get('release_datetime'))),
+                'comment_times' => $this->request->get('comment_times'),
+                'read_times'    => $this->request->get('read_times'),
+                'content'       => $this->request->get('content'),
+            ),
+        );
+        
+        $tagIds = $this->request->get('tag');
+        $tagIds = empty($tagIds) ? array() : $tagIds;
+        $tagInfos = $this->tagService->getTagByIds($tagIds);
+        $tag = array();
+        foreach ($tagInfos as $tagInfo){
+            $tag[] = array(
+                'id'    => $tagInfo->getId(),
+                'name'  => $tagInfo->getName(),
+            );
+        }
+        
+        // 相关推荐
+        $relatedArticle = $this->articleService->getRelatedArticlesTop10($tagIds,$this->request->get('id'));
+        
+        $menuInfo = $this->menuService->getMenuInfo($this->request->get('second_category'),null,null);
+        $fristCategory = $this->categoryService->getFirstCategory();
+        $this->view->setVar('firstCategory',$fristCategory);
+        $this->view->setVar('firstCategoryId',$menuInfo['categoryid']);
+        $this->view->setVar('navigation',$menuInfo['navigation']);
+        $this->view->setVar('article',$articleInfo['article']);
+        $this->view->setVar('tags',$tag);
+        $this->view->setVar('relateArticle',$relatedArticle);
+        $this->view->renderFix('article','info');
     }
     
     /**

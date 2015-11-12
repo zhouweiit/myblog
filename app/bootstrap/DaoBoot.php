@@ -6,6 +6,7 @@ use dao\blog\CategoryDao;
 use dao\blog\ArticleTagMapDao;
 use dao\blog\ArticleDao;
 use dao\blog\LinksDao;
+use dao\blog\FileDao;
 
 $di->setShared('dao\\blog\\UserDao',function () use($di){
     return new UserDao($di);
@@ -33,4 +34,8 @@ $di->setShared('dao\\blog\\ArticleDao',function () use($di){
 
 $di->setShared('dao\\blog\\LinksDao',function () use($di){
     return new LinksDao($di);
+});
+
+$di->setShared('dao\\blog\\FileDao',function () use($di){
+    return new FileDao($di);
 });

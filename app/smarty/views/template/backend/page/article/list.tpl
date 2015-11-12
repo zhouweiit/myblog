@@ -89,13 +89,13 @@
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table">
             <tr>
                 <th width="3%">ID</th>
-                <th width="25%">标题</th>
-                <th width="18%">分类</th>
+                <th width="22%">标题</th>
+                <th width="16%">分类</th>
                 <th width="20%">标签</th>
                 <th width="6%">阅读次数</th>
                 <th width="6%">评论次数</th>
                 <th width="12%">发布时间</th>
-                <th width="10%">操作</th>
+                <th width="15%">操作</th>
             </tr>
             {%foreach from=$articleInfo item=article%}
             <tr class="tr">
@@ -120,6 +120,7 @@
                 <td align="center">{%$article.release_datetime%}</td>
                 <td align="center">
                     <input type="submit"  articleid="{%$article.id%}" value="编辑" class="ext_btn ext_btn_submit edit">
+                    <input type="submit"  articleid="{%$article.id%}" value="跳转" onclick='window.open("/article/info?articleid={%$article.id%}")' class="ext_btn ext_btn_submit">
                     <input type="submit"  articleid="{%$article.id%}" value="删除" class="ext_btn ext_btn_submit delete">
                 </td>
             </tr>

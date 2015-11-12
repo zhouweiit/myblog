@@ -39,6 +39,11 @@
             <li href="/backend/article/list">文章列表</li>
             <li href="/backend/article/release">文章发布</li>
           </ul>
+          <h3>文件管理</h3>
+          <ul>
+            <li href="/backend/file/list">文件列表</li>
+            <li href="/backend/file/upload">文件上传</li>
+          </ul>
           <h3>字典管理</h3>
           <ul>
             <li>分类管理</li>

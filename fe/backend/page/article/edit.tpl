@@ -9,7 +9,7 @@
                 <b class="pl15">{%if $type == 'edit'%}文章编辑{%else%}文章发布{%/if%}</b>
             </div>
             <div class="box_center">
-                <form action="" class="jqtransform">
+                <form action="" class="jqtransform" id="articleform">
                     <table class="form_table pt15 pb15" width="100%" border="0" cellpadding="0" cellspacing="0">
                         {%if $type == 'edit'%}
                         <tr>
@@ -107,6 +107,7 @@
                         <tr>
                             <td colspan='2' style="text-align:center;">
                                 <input type="hidden" id="committype" value="{%$type%}"/>
+                                <input type="hidden" name="isprevew" value="true"/>
                                 <input type="button" id="commit" class="ext_btn ext_btn_success" value="提交" >
                                 &nbsp;&nbsp;&nbsp;
                                 <input type="button" id="preview" class="ext_btn ext_btn_success" value="预览" >
@@ -251,6 +252,14 @@ $(function(){
         });
         
     });
+    
+    $("#preview").click(function(){
+        var form = $("#articleform");
+        form.attr('action','/article/preview');
+        form.attr('target', "_blank");
+        form.attr('method', "post");
+        form.submit();
+    }); 
     
     function validata_title(obj,title){
         var title = trim(title);

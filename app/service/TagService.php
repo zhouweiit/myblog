@@ -46,6 +46,9 @@ class TagService extends ServiceBase {
      * @author zhouwei
      */
     public function getTagByIds(array $ids){
+        if (empty($ids)){
+            return array();
+        }
         $tags = $this->tagDao->getTagByIds($ids);
         $result = array();
         foreach ( $tags as $value ) {
