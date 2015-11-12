@@ -148,7 +148,24 @@ $(function(){
     
     $("input.delete").click(function(){
         var articleid = $(this).attr('articleid');
-        
+        if(confirm("确定要删除吗?")){
+	        $.ajax({
+	            url: '/backend/article/ajaxDelete',
+	            type: 'post',
+	            dataType: 'json',
+	            data:'id='+articleid,
+	            success: function( resp, status ) {
+	                if (resp == true){
+	                    alert('删除成功!');
+	                    location.href="/backend/article/list";
+	                } else {
+	                    alert('删除失败!');
+	                }
+	            },
+	            error: function (data, status, e) {
+	            }
+	        });
+        } 
     });
     
     $("#first_category").change(function(){
@@ -165,8 +182,7 @@ $(function(){
                 });
                 $("#second_category").html(html);
             },
-            error: function (data, status, e)
-            {
+            error: function (data, status, e) {
             }
         });
     });

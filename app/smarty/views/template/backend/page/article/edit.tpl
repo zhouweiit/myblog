@@ -100,7 +100,7 @@
                         <tr>
                             <td class="header">文章内容：</td>
                             <td class="">
-                                <textarea name="content" id="content" rows="10" cols="80"></textarea>
+                                <textarea name="content" id="content" rows="10" cols="80">{%$article.content%}</textarea>
 								<label class="error" style="display:block"></label>
                             </td>
                         </tr>
@@ -203,13 +203,53 @@ $(function(){
         var headcontent = $("#headcontent");
         var content = $("#content");
         
-        validata_title(title,title.val());
-        validata_headcontent(headcontent,headcontent.val());
-        validata_content(content,contentck.getData());
-        validata_read_times(read_times,read_times.val());
-        validata_comment_times(comment_times,comment_times.val());
-        validata_release_datetime(release_datetime,release_datetime.val()+":00");
-        validata_second_category(second_category,second_category.val());
+        var checktitle = validata_title(title,title.val());
+        var checkheadcontent = validata_headcontent(headcontent,headcontent.val());
+        var checkcontent = validata_content(content,contentck.getData());
+        var checkreadtimes = validata_read_times(read_times,read_times.val());
+        var checkcommenttimes = validata_comment_times(comment_times,comment_times.val());
+        var releasedatetime = validata_release_datetime(release_datetime,release_datetime.val()+":00");
+        var checksecondcategory = validata_second_category(second_category,second_category.val());
+        
+        var tagval = "";
+        tag.each(function(){
+            var tagid = $(this).val();
+            if (checkInteger(tagid) && parseInt(tagid) > 0){
+                tagval += tagid+',';
+            }  
+        });
+        var requestdata = {
+            'id':id.val(),
+            'title':title.val(),
+            'read_times':read_times.val(),
+            'comment_times':comment_times.val(),
+            'release_datetime':release_datetime.val(),
+            'first_category':first_category.val(),
+            'second_category':second_category.val(),
+            'tag':tagval,
+            'headimage':headimage.val(),
+            'headcontent':headcontent.val(),
+            'content':contentck.getData(),
+            'committype':committype
+        };
+        
+        $.ajax({
+            url: '/backend/article/ajaxSubmit',
+            type: 'post',
+            dataType: 'json',
+            data:requestdata,
+            success: function( resp, status ) {
+                if (resp == true){
+                    alert('操作成功!');
+                    location.href="/backend/article/list";
+                } else {
+                    alert('操作失败!');
+                }
+            },
+            error: function (data, status, e) {
+            }
+        });
+        
     });
     
     function validata_title(obj,title){

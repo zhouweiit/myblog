@@ -6,6 +6,7 @@ use library\mvc\ServiceBase;
 use dao\blog\ArticleDao;
 use library\utils\DateUtils;
 use library\mvc\Log;
+use models\blog\Article;
 
 class ArticleService extends ServiceBase {
     
@@ -103,12 +104,12 @@ class ArticleService extends ServiceBase {
      * @param date $releaseTimeEnd      发布的结束时间
      * @param int $page                 页数
      * @param int $pageSize             每页显示的条数
-     * @param string $orderby 可选参数，排序的规则，默认:id，可选：2:read_times,3:comment_times,4:release_datetime
+     * @param string $orderby 可选参数，排序的规则，默认:id，可选：2:read_times,3:comment_times,4:release_datetime,5:last_changed_date
      * @return array
      * @author zhouwei
      */
     public function getBackendArticleList(array $articleIds = array(),$title = null,array $categoryIds = array(),$readTimesStart = null,$readTimesEnd = null,
-            $commentTimesStart = null,$commentTimesEnd = null,array $tagIds = null,$releaseTimeStart = null,$releaseTimeEnd = null,$page = 1, $pageSize = 10,$orderby = null){
+            $commentTimesStart = null,$commentTimesEnd = null,array $tagIds = null,$releaseTimeStart = null,$releaseTimeEnd = null,$page = 1, $pageSize = 10,$orderby = null,$asc = true){
         
         if (!empty($tagIds)){
             $tagArticleIds = $this->articleTagMapService->getArticleMapByTagIds($tagIds);
@@ -116,7 +117,7 @@ class ArticleService extends ServiceBase {
         }
         
         $articlesInfo = $this->listByPage($releaseTimeStart,$releaseTimeEnd,$articleIds,$categoryIds,$title,
-                                                $readTimesStart,$readTimesEnd,$commentTimesStart,$commentTimesEnd,$orderby,$page,$pageSize);
+                                                $readTimesStart,$readTimesEnd,$commentTimesStart,$commentTimesEnd,$orderby,$page,$pageSize,$asc);
         
         $articleTabInfos = $this->getListByIdsOrArticle(null,$articlesInfo['articles']);
         return array(
@@ -241,16 +242,16 @@ class ArticleService extends ServiceBase {
      * @param array $articleIds            
      * @param string $categoryIds            
      * @param string $orderBy
-     *            可选参数，排序的规则，默认:id，可选：2:read_times,3:comment_times,4:release_datetime
+     *            可选参数，排序的规则，默认:id，可选：2:read_times,3:comment_times,4:release_datetime,5:last_changed_date
      * @param number $page            
      * @param number $pageSize            
      * @return array
      * @author zhouwei
      */
     public function listByPage($startdate = null, $enddate = null, array $articleIds = null, array $categoryIds = null,$title = null,
-            $readTimesStart = null,$readTimesEnd = null,$commentTimesStart = null,$commentTimesEnd = null, $orderBy = 1, $page = 0, $pageSize = 10){
-        $articles = $this->articleDao->listByPage($startdate,$enddate,$articleIds,$categoryIds,$title,$readTimesStart,$readTimesEnd,$commentTimesStart,$commentTimesEnd,$orderBy,$page,$pageSize,false);
-        $articlesCount = $this->articleDao->listByPage($startdate,$enddate,$articleIds,$categoryIds,$title,$readTimesStart,$readTimesEnd,$commentTimesStart,$commentTimesEnd,$orderBy,$orderBy,$page,$pageSize);
+            $readTimesStart = null,$readTimesEnd = null,$commentTimesStart = null,$commentTimesEnd = null, $orderBy = 1, $page = 0, $pageSize = 10,$asc = true){
+        $articles = $this->articleDao->listByPage($startdate,$enddate,$articleIds,$categoryIds,$title,$readTimesStart,$readTimesEnd,$commentTimesStart,$commentTimesEnd,$orderBy,$page,$pageSize,false,$asc);
+        $articlesCount = $this->articleDao->listByPage($startdate,$enddate,$articleIds,$categoryIds,$title,$readTimesStart,$readTimesEnd,$commentTimesStart,$commentTimesEnd,$orderBy,$orderBy,$page,$pageSize,$asc);
         $resultArticle = array();
         foreach ( $articles as $article ) {
             $resultArticle[$article->getId()] = $article;
@@ -453,6 +454,9 @@ class ArticleService extends ServiceBase {
      */
     public function getArticleInfoById($articleId){
         $articleInfo = $this->articleDao->getById($articleId);
+        if (empty($articleInfo)){
+            return array();
+        }
         $tagInfo = $this->getArticleTagsInfo($articleId);
         return array(
             'article' => array(
@@ -489,5 +493,55 @@ class ArticleService extends ServiceBase {
         }
         $result[count($result) - 1]['last'] = true;
         return $result;
+    }
+    
+    /**
+     * 保存文章信息，根据ID有无判断是新增还是更新
+     * 
+     * @return int
+     * @author zhouwei
+     *
+     */
+    public function saveArticle($id,$title,$readTimes,$commentTimes,$releaseDatetime,$firstCategory,$secondCategory,$tag,$headimage,$headcontent,$content){
+        $article = $this->getArticle($id, $title, $readTimes, $commentTimes, $releaseDatetime, $firstCategory, $secondCategory, $tag, $headimage, $headcontent, $content);
+        if (empty($id)){
+            $articleId = $this->articleDao->insert($article);
+            $this->articleTagMapService->saveArticleTagMap($articleId, $tag);
+            return $articleId;
+        } else {
+            $effecRows = $this->articleDao->update($article);
+            $this->articleTagMapService->saveArticleTagMap($id, $tag);
+            return $effecRows;
+        }
+    }
+    
+    /**
+     * 组合文章的pojo的信息
+     * 
+     * @return Article
+     * @author zhouwei
+     */
+    public function getArticle($id,$title,$readTimes,$commentTimes,$releaseDatetime,$firstCategory,$secondCategory,$tag,$headimage,$headcontent,$content){
+        $article = new Article();
+        $article->setId($id);
+        $article->setContent($content);
+        $article->setTitle($title);
+        $article->setReadTimes($readTimes);
+        $article->setCommentTimes($commentTimes);
+        $article->setReleaseDatetime($releaseDatetime);
+        $article->setCategoryId($secondCategory);
+        $article->setHeadimage($headimage);
+        $article->setHeadcontent($headcontent);
+        return $article;
+    }
+    
+    /**
+     * 根据文章ID删除
+     * @param int $id
+     * @return number
+     * @author zhouwei
+     */
+    public function deleteArticle($id){
+        return $this->articleDao->delete($id);
     }
 }

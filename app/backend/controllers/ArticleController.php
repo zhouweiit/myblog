@@ -8,6 +8,7 @@ use service\TagService;
 use service\ArticleService;
 use service\PageService;
 use library\utils\HttpUtils;
+use Phalcon\Mvc\View;
 
 class ArticleController extends ControllerBase {
     
@@ -38,6 +39,11 @@ class ArticleController extends ControllerBase {
         $this->pageService      = $this->di->get('PageService');
     }
     
+    /**
+     * 文章列表
+     * 
+     * @author zhouwei
+     */
     public function listAction(){
         $articleId          = HttpUtils::filterInt($this->request->get('article_id'));
         $title              = HttpUtils::filterString($this->request->get('title'), 0);
@@ -70,7 +76,7 @@ class ArticleController extends ControllerBase {
         
         // 获取文章
         $articleInfo = $this->articleService->getBackendArticleList(isset($articleId) ? array($articleId) : array(),$title,$categoryIds,$readTimesStart,$readTimesEnd,
-                $commentTimesStart,$commentTimesEnd,$newTagIds,$releaseTimeStart,$releaseTimeEnd,$page - 1,$pageSize);
+                $commentTimesStart,$commentTimesEnd,$newTagIds,$releaseTimeStart,$releaseTimeEnd,$page - 1,$pageSize,5);
         
         //分页信息
         $pages = $this->pageService->createPageArray($articleInfo['count'],$page,$pageSize);
@@ -99,12 +105,19 @@ class ArticleController extends ControllerBase {
         $this->view->setVar('request', $this->request->get());
     }
     
+    /**
+     * 编辑页面
+     * 
+     * @author zhouwei
+     */
     public function editAction(){
         $articleId = HttpUtils::filterInt($this->request->get('articleid'));
         $articleInfo = $this->articleService->getArticleInfoById($articleId);
         
+        //文章不存在，跳转至列表页
         if (empty($articleInfo)){
-            //todo 文章不存在，跳转列表页
+            $this->response->redirect('/backend/article/list');
+            return;
         }
         
         $firstCategory = $this->categoryService->getFirstCategory();
@@ -122,13 +135,82 @@ class ArticleController extends ControllerBase {
         $this->view->setVar('type','edit');
     }
     
+    /**
+     * 发布页面
+     * 
+     * @author zhouwei
+     */
     public function releaseAction(){
         $firstCategory = $this->categoryService->getFirstCategory();
-        
-        
         $this->view->setVar('firstCategorys', $firstCategory);
         $this->view->setVar('type','release');
         $this->view->renderFix('article', 'edit');
+    }
+    
+    /**
+     * ajax提交页面
+     * 
+     * @author zhouwei
+     */
+    public function ajaxSubmitAction(){
+        $this->view->setRenderLevel(View::LEVEL_NO_RENDER);
+        
+        $id             = HttpUtils::filterInt($this->request->get('id'));
+        $title          = HttpUtils::filterString($this->request->get('title'));
+        $readTimes      = HttpUtils::filterInt($this->request->get('read_times'));
+        $commentTimes   = HttpUtils::filterInt($this->request->get('comment_times'));
+        $releaseDatetime= HttpUtils::filterDateTime($this->request->get('release_datetime'));
+        $firstCategory  = HttpUtils::filterInt($this->request->get('first_category'));
+        $secondCategory = HttpUtils::filterInt($this->request->get('second_category'));
+        $tag            = HttpUtils::filterString($this->request->get('tag'),0,'');
+        $headimage      = HttpUtils::filterString($this->request->get('headimage'));
+        $headcontent    = HttpUtils::filterString($this->request->get('headcontent'));
+        $content        = HttpUtils::filterString($this->request->get('content'));
+        
+        //处理tag信息
+        $tags = explode(',', $tag);
+        $tagIds = array();
+        foreach ($tags as $value){
+            if (!empty($value) && is_numeric($value)){
+                $tagIds[] = intval($value);
+            }
+        }
+        
+        //todo 基本类型校验,没时间写了,以后补
+        
+        //todo 业务逻辑校验,没时间写了,以后补
+        
+        try {
+            $this->articleService->saveArticle($id, $title, $readTimes, $commentTimes, $releaseDatetime, $firstCategory, $secondCategory, $tagIds, $headimage, $headcontent, $content);
+            $this->response->setContent('true');
+        } catch (\Exception $e) {
+            $this->response->setContent('false');
+        }
+        $this->response->send();
+    }
+    
+    /**
+     * ajax删除文章
+     * 
+     * @author zhouwe
+     */
+    public function ajaxDeleteAction(){
+        $this->view->setRenderLevel(View::LEVEL_NO_RENDER);
+        
+        $id = HttpUtils::filterInt($this->request->get('id'));
+        try {
+            if (!empty($id)){
+                $result = $this->articleService->deleteArticle($id);
+            }
+            if ($result > 0){
+                $this->response->setContent('true');
+            } else {
+                $this->response->setContent('false');
+            }
+        } catch (\Exception $e) {
+            $this->response->setContent('false');
+        }
+        $this->response->send();
     }
     
 }

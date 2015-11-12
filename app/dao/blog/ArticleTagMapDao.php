@@ -103,4 +103,31 @@ class ArticleTagMapDao extends DaoBase {
         $result = $this->persistent->query($sql);
         return $result->fetchAll($this->className);
     }
+    
+    /**
+     * 根据文章ID删除map
+     * @param int $articleId
+     * 
+     * @return 影响的行数
+     * @author zhouwei
+     */
+    public function deleteByArticleId($articleId){
+        $sql = 'update article_tag_map set is_delete = 1,last_changed_date = now() where article_id = :article_id';
+        $this->persistent->execute($sql,array(':article_id'=>$articleId));
+        return $this->persistent->affectedRows();
+    }
+    
+    /**
+     * 插入一条map信息
+     * @param int $articleId
+     * @param int $tagId
+     * 
+     * @return void
+     * @author
+     */
+    public function insert($articleId,$tagId){
+        $sql = 'insert into article_tag_map (article_id,tag_id,is_delete,creation_date,last_changed_date) 
+                    value (:article_id,:tag_id,0,now(),now())';
+        $this->persistent->execute($sql,array(':article_id'=>$articleId,':tag_id'=>$tagId));
+    }
 }

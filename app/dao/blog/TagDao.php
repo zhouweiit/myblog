@@ -84,4 +84,5 @@ class TagDao extends DaoBase {
         $result = $this->persistent->query($sql,array(':category_id'=>$categoryId));
         return $result->fetchAll($this->className);
     }
+    
 }

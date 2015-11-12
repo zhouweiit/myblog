@@ -5,6 +5,7 @@ namespace dao\blog;
 use library\mvc\DaoBase;
 use library\mvc\pdo\Persistent;
 use library\utils\SqlUtils;
+use models\blog\Article;
 
 class ArticleDao extends DaoBase {
     
@@ -46,7 +47,7 @@ class ArticleDao extends DaoBase {
      */
     public function listByPage($startdate = null, $enddate = null, array $articleIds = null, $categoryIds = null,$titil = null,
             $readTimesStart = null,$readTimesEnd = null,$commentTimesStart = null,$commentTimesEnd = null,
-            $orderBy = 1, $page = 0, $pageSize = 10, $count = true){
+            $orderBy = 1, $page = 0, $pageSize = 10, $count = true,$asc = true){
         
         if ($count) {
             $sql = 'select count(*) as count from article where is_delete = 0';
@@ -100,16 +101,26 @@ class ArticleDao extends DaoBase {
             $order = 'comment_times';
         } else if ($orderBy == 4) {
             $order = 'release_datetime';
+        } else if ($orderBy == 5) {
+            $order = 'last_changed_date';
         } else {
             $order = 'id';
         }
         
+        $asc = null;
+        if ($asc){
+            $desc = 'asc';
+        } else {
+            $desc = 'desc';
+        }
+       
         if ($count) {
             $result = $this->persistent->query($sql,$bind);
             return $result->fetchOne('models\common\SpecialColumn');
         } else {
-            $sql .= ' order by ' . $order;
+            $sql .= ' order by ' . $order . ' ' .$desc;
             $sql .= ' limit ' . $page * $pageSize . ',' . $pageSize;
+            
             $result = $this->persistent->query($sql,$bind);
             return $result->fetchAll($this->className);
         }
@@ -227,5 +238,64 @@ class ArticleDao extends DaoBase {
         $sql = 'select id,title,category_id,comment_times,read_times,release_datetime from article where is_delete = 0 order by release_datetime desc';
         $result = $this->persistent->query($sql);
         return $result->fetchAll($this->className);
+    }
+    
+    /**
+     * 新增一条文章
+     * @param Article $article
+     * @return int 新增的主键ID
+     * @author zhouwei
+     */
+    public function insert(Article $article){
+        $sql = 'insert into article (title,content,user_id,category_id,headcontent,headimage,comment_times,read_times,release_datetime,is_delete,creation_date,last_changed_date)
+                    value (:title,:content,0,:category_id,:headcontent,:headimage,:comment_times,:read_times,:release_datetime,0,now(),now())';
+        $data = array(
+            ':title'        => $article->getTitle(),
+            ':content'      => $article->getContent(),
+            ':category_id'  => $article->getCategoryId(),
+            ':headcontent'  => $article->getHeadcontent(),
+            ':headimage'    => $article->getHeadimage(),
+            ':comment_times'=> $article->getCommentTimes(),
+            ':read_times'   => $article->getReadTimes(),
+            ':release_datetime'=> $article->getReleaseDatetime(),
+        );
+        $this->persistent->execute($sql,$data);
+        return $this->persistent->lastInsertId();
+    }
+    
+    /**
+     * 更新一条文章
+     * @param Article $article
+     * @return 影响的行数
+     * @author zhouwei
+     */
+    public function update(Article $article){
+        $sql = 'update article set title = :title,content = :content,category_id = :category_id,headcontent = :headcontent,headimage = :headimage,comment_times = :comment_times,
+                    read_times = :read_times,release_datetime = :release_datetime,last_changed_date=now() where id = :id';
+        $data = array(
+            ':title'        => $article->getTitle(),
+            ':content'      => $article->getContent(),
+            ':category_id'  => $article->getCategoryId(),
+            ':headcontent'  => $article->getHeadcontent(),
+            ':headimage'    => $article->getHeadimage(),
+            ':comment_times'=> $article->getCommentTimes(),
+            ':read_times'   => $article->getReadTimes(),
+            ':release_datetime'=> $article->getReleaseDatetime(),
+            ':id'           => $article->getId(),
+        );
+        $this->persistent->execute($sql,$data);
+        return $this->persistent->affectedRows();
+    }
+    
+    /**
+     * 根据文章ID删除
+     * @param int $articleId
+     * @return number
+     * @author zhouwei
+     */
+    public function delete($articleId){
+        $sql = 'update article set is_delete = 1,last_changed_date=now() where id = :id';
+        $this->persistent->execute($sql,array(':id'=>$articleId));
+        return $this->persistent->affectedRows();
     }
 }

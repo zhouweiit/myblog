@@ -119,4 +119,19 @@ class ArticleTagMapService extends ServiceBase {
         }
         return $result;
     }
+    
+    /**
+     * 保存文章与tag的map系你先
+     * @param int $articleId
+     * @param array $tagIds
+     * @return void
+     * @author zhouwei
+     */
+    public function saveArticleTagMap($articleId,array $tagIds){
+        $tagIds = array_unique($tagIds);
+        $this->articleTagMapDao->deleteByArticleId($articleId);
+        foreach ($tagIds as $tagId){
+            $this->articleTagMapDao->insert($articleId, $tagId);
+        }
+    }
 }
