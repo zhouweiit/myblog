@@ -137,7 +137,7 @@ class ArticleDao extends DaoBase {
      * @return array
      * @author zhouwei
      */
-    public function listByContentPage($content, $orderBy = 1, $page = 0, $pageSize = 10, $count = true){
+    public function listByContentPage($content, $orderBy = 1, $page = 0, $pageSize = 10, $count = true,$asc = true){
         if ($count) {
             $sql = 'select count(*) as count from article where is_delete = 0';
         } else {
@@ -160,11 +160,19 @@ class ArticleDao extends DaoBase {
         } else {
             $order = 'id';
         }
+        
+        $asc = null;
+        if ($asc){
+            $desc = 'asc';
+        } else {
+            $desc = 'desc';
+        }
+        
         if ($count) {
             $result = $this->persistent->query($sql,$bind);
             return $result->fetchOne('models\common\SpecialColumn');
         } else {
-            $sql .= ' order by ' . $order;
+            $sql .= ' order by ' . $order . ' ' .$desc;
             $sql .= ' limit ' . $page * $pageSize . ',' . $pageSize;
             $result = $this->persistent->query($sql,$bind);
             return $result->fetchAll($this->className);

@@ -5,8 +5,8 @@
 
 <style> 
 
-.divcss5{ border:1px solid #000; width:320px; height:170px;overflow:hidden;margin-top:0px;} 
-.divcss5 img{max-width:320px;_width:expression(this.width > 320 ? "320px" : this.width);} 
+.divcss5{ width:300px; padding:5px;height:230px;display:table-cell;vertical-align:middle;text-align:center;} 
+.divcss5 img{max-width:295px;_width:expression(this.width > 295 ? "295px" : this.width);} 
 div.imageinfo{padding-top:5px;width:320px;text-align:left;color:#53a2e1;}
 </style> 
 
@@ -34,14 +34,23 @@ div.imageinfo{padding-top:5px;width:320px;text-align:left;color:#53a2e1;}
                         <td><input type="text" name="creation_date_end" value="{%$request.creation_date_end%}"  id="creation_date_end" class="input-text lh25" size="30"></td>
                         <td class="header">文件类型</td>
                         <td>
-                            <select name="extension" class="select" id="first_category">
+                            <select name="extension[]" class="select" id="first_category">
                                 <option value="">请选择</option>
+                                {%foreach from=$extensions item=extension%}
+                                <option value="{%$extension%}" {%if $request.extension[0] == $extension%}selected="selected"{%/if%}>{%$extension%}</option>
+                                {%/foreach%}
                             </select>
-                            <select name="extension" class="select" id="first_category">
+                            <select name="extension[]" class="select" id="first_category">
                                 <option value="">请选择</option>
+                                {%foreach from=$extensions item=extension%}
+                                <option value="{%$extension%}" {%if $request.extension[1] == $extension%}selected="selected"{%/if%}>{%$extension%}</option>
+                                {%/foreach%}
                             </select>
-                            <select name="extension" class="select" id="first_category">
+                            <select name="extension[]" class="select" id="first_category">
                                 <option value="">请选择</option>
+                                {%foreach from=$extensions item=extension%}
+                                <option value="{%$extension%}" {%if $request.extension[2] == $extension%}selected="selected"{%/if%}>{%$extension%}</option>
+                                {%/foreach%}
                             </select>
                             &nbsp;&nbsp;&nbsp;
                             <input type="button" id="search" class="ext_btn ext_btn_success" value="搜索" >
@@ -67,12 +76,12 @@ div.imageinfo{padding-top:5px;width:320px;text-align:left;color:#53a2e1;}
 	            <tr class="tr">
 	            {%assign var="count1" value=0%}
 	            {%/if%}
-	            <td height='250' align="center">
-                    <div class="divcss5"><a href="{%$file->getPath()%}" target="_blank"><img src="{%$file->getPath()%}"/></a></div>
-                    <div class="imageinfo">名称：{%$file->getFileName()%}</div>
-                    <div class="imageinfo">路径：{%$file->getPath()%}</div>
-                    <div class="imageinfo">后缀：{%$file->getExtension()%}</div>
-                    <div class="imageinfo">大小：{%$file->getSize()%}KB</div>
+	            <td height='300' align="center">
+                    <div style="border:1px solid #000;width:310px;height:250px;overflow:hidden;"><div class="divcss5"><a href="{%$file->getPath()%}" target="_blank"><img src="{%$file->getPath()%}" onerror="this.src='/static/backend/images/no_image.png'"/></a></div></div>
+                    <div class="imageinfo">名称：<input type="text" class="input-text lh20" readonly="readonly" style="height:18px;" size="44" value="{%$file->getFileName()%}"></div>
+                    <div class="imageinfo">路径：<input type="text" class="input-text lh20" readonly="readonly" style="height:18px;" size="44" value="{%$file->getPath()%}"></div>
+                    <div class="imageinfo">后缀：<input type="text" class="input-text lh20" readonly="readonly" style="height:18px;" size="44" value="{%$file->getExtension()%}"></div>
+                    <div class="imageinfo">大小：<input type="text" class="input-text lh20" readonly="readonly" style="height:18   px;" size="44" value="{%$file->getSize()%}KB"></div>
                 </td>
 	            {%if $count1 > 0 && $count1%3==0%}
 	            </tr>
@@ -110,4 +119,4 @@ $(function(){
     
 })
 {%/script%}
-{%/block%}
+{%require name='backend:page/file/list.tpl'%}{%/block%}

@@ -59,7 +59,7 @@ class IndexController extends ControllerBase {
         $params = $this->request->get();
         
         // 获取文章
-        $articleInfo = $this->articleService->getIndexArticleList($page - 1,$pageSize,$search,$categoryId,$tagid,$date);
+        $articleInfo = $this->articleService->getIndexArticleList($page - 1,$pageSize,$search,$categoryId,$tagid,$date,4);
         
         $pages = $this->pageService->createPageArray($articleInfo['count'],$page,$pageSize);
         $pageUrl = $this->pageService->createPageUrl($this->request->get(),'/index/index');

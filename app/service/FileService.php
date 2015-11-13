@@ -5,8 +5,13 @@ namespace service;
 use library\mvc\ServiceBase;
 use library\mvc\Log;
 use dao\blog\FileDao;
+use models\blog\File;
 
 class FileService extends ServiceBase {
+    
+    const IMAGE_FOLDER = 'image';
+    
+    const OTHER_FOLDER = 'other';
     
     /**
      *
@@ -19,10 +24,23 @@ class FileService extends ServiceBase {
      * @var FileDao
      */
     private $fileDao;
+    
+    /**
+     * @var string
+     */
+    private $uploadFilePath;
 
+    /**
+     * 相对路径
+     * @var string
+     */
+    private $relativePath;
+    
     protected function init(){
-        $this->log = $this->di->get('applicationLog');
-        $this->fileDao = $this->di->get('dao\\blog\\FileDao');
+        $this->log      = $this->di->get('applicationLog');
+        $this->fileDao  = $this->di->get('dao\\blog\\FileDao');
+        $this->uploadFilePath = ROOT.'/public/upload';
+        $this->relativePath = '/upload';
     }
     
     /**
@@ -56,4 +74,59 @@ class FileService extends ServiceBase {
         );
     }
     
+    /**
+     * 插入一条file
+     * @param string $fileName
+     * @param int $size
+     * 
+     * @return int  插入的file的新ID
+     * @author zhouwei
+     */
+    public function insertFile($fileName,$path,$size,$extension){
+        $file = new File();
+        $file->setFileName($fileName);
+        $file->setPath($path);
+        $file->setSize($size);
+        $file->setExtension($extension);
+        return $this->fileDao->insert($file);
+    }
+    
+    /**
+     * 获取文件存的文件夹
+     * @param string $fileName
+     * @param string $extension
+     * @return string
+     * @author zhouwei
+     */
+    public function createPath($fileName,$extension){
+        $folder = null;
+        switch ($extension){
+            case 'jpg':$folder = FileService::IMAGE_FOLDER;break;
+            case 'png':$folder = FileService::IMAGE_FOLDER;break;
+            case 'jpeg':$folder = FileService::IMAGE_FOLDER;break;
+            case 'gif':$folder = FileService::IMAGE_FOLDER;break;
+            default : $folder = FileService::OTHER_FOLDER;
+        }
+        $date = date('Y_m');
+        $fileName = time().$fileName;
+        $dir = $this->uploadFilePath.'/'.$folder.'/'.$date;
+        if (!is_dir($dir)){
+            mkdir($dir);
+        }
+        return array(
+            'fullpath'      => $dir.'/'.$fileName,
+            'relativepath'  => $this->relativePath .'/' .$folder.'/'.$date .'/' .$fileName,
+        );
+    }
+    
+    /**
+     * 根据文件获取文件的扩展名
+     * @param string $fileName
+     * @return string
+     * @author zhouwei
+     */
+    public function getExtension($fileName){
+        $result = explode('.', $fileName);
+        return strtolower(array_pop($result));
+    }
 }

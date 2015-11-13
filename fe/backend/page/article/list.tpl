@@ -210,4 +210,4 @@ $(function(){
     
 });
 {%/script%}
-{%/block%}
+{%require name='backend:page/article/list.tpl'%}{%/block%}

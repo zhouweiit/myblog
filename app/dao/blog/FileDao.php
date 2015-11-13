@@ -4,6 +4,8 @@ namespace dao\blog;
 
 use library\mvc\DaoBase;
 use library\utils\SqlUtils;
+use models\blog\File;
+use library\mvc\pdo\Persistent;
 class FileDao extends DaoBase {
     
     /**
@@ -106,7 +108,26 @@ class FileDao extends DaoBase {
             $result = $this->persistent->query($sql,$data);
             return $result->fetchAll($this->className);
         }
-        
+    }
+    
+    /**
+     * 插入一条file
+     * @param File $file
+     * 
+     * @return int
+     * @author zhouwei
+     */
+    public function insert(File $file){
+        $sql = 'insert into file (file_name,path,size,extension,is_delete,creation_date,last_changed_date) value 
+                    (:file_name,:path,:size,:extension,0,now(),now())';
+        $data = array(
+            ':file_name'    => $file->getFileName(),
+            ':path'         => $file->getPath(),
+            ':size'         => $file->getSize(),
+            ':extension'    => $file->getExtension(),
+        );
+        $this->persistent->execute($sql,$data);
+        return $this->persistent->lastInsertId();
     }
     
 }

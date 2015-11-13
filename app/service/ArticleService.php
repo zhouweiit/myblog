@@ -62,13 +62,13 @@ class ArticleService extends ServiceBase {
      */
     public function getIndexArticleList($page, $pageSize, $content = null, $categoryId = null, $tagid = null, $date = null, $orderby = null){
         if (!empty($content)) { // 全文搜索
-            $articlesInfo = $this->listPageByContent($content,$orderby,$page,$pageSize);
+            $articlesInfo = $this->listPageByContent($content,$orderby,$page,$pageSize,false);
         } else if (!empty($date)) { // 优先查询日期的文章信息，并且再首页频道显示
             $dateStartEnd = DateUtils::getDateByMonth($date);
-            $articlesInfo = $this->listByPage($dateStartEnd['head'],$dateStartEnd['end'],null,null,null,null,null,null,null,$orderby,$page,$pageSize);
+            $articlesInfo = $this->listByPage($dateStartEnd['head'],$dateStartEnd['end'],null,null,null,null,null,null,null,$orderby,$page,$pageSize,false);
         } else if (!empty($tagid)) { // 根据标签ID查询文章信息，并且根据标签的频道分类再频道显现
             $mapInfos = $this->articleTagMapService->getArticleMapByTagId($tagid);
-            $articlesInfo = $this->listByPage(null,null,array_keys($mapInfos),null,null,null,null,null,null,$orderby,$page,$pageSize);
+            $articlesInfo = $this->listByPage(null,null,array_keys($mapInfos),null,null,null,null,null,null,$orderby,$page,$pageSize,false);
         } else if (!empty($categoryId)) { // 直接查询频道的数据
             $categoryInfos = $this->categoryService->getCategoryByPid($categoryId);
             $categoryIds = null;
@@ -79,9 +79,9 @@ class ArticleService extends ServiceBase {
             } else {
                 $categoryIds = array_keys($categoryInfos);
             }
-            $articlesInfo = $this->listByPage(null,null,null,$categoryIds,null,null,null,null,null,$orderby,$page,$pageSize);
+            $articlesInfo = $this->listByPage(null,null,null,$categoryIds,null,null,null,null,null,$orderby,$page,$pageSize,false);
         } else { // 显示首页的数据
-            $articlesInfo = $this->listByPage(null,null,null,null,null,null,null,null,null,$orderby,$page,$pageSize);
+            $articlesInfo = $this->listByPage(null,null,null,null,null,null,null,null,null,$orderby,$page,$pageSize,false);
         }
         $articleTabInfos = $this->getListByIdsOrArticle(null,$articlesInfo['articles']);
         return array(
@@ -274,9 +274,9 @@ class ArticleService extends ServiceBase {
      * @return array
      * @author zhouwei
      */
-    public function listPageByContent($content, $orderBy = 1, $page = 0, $pageSize = 10){
-        $articles = $this->articleDao->listByContentPage($content,$orderBy,$page,$pageSize,false);
-        $articlesCount = $this->articleDao->listByContentPage($content,$orderBy,$page,$pageSize);
+    public function listPageByContent($content, $orderBy = 1, $page = 0, $pageSize = 10,$asc = true){
+        $articles = $this->articleDao->listByContentPage($content,$orderBy,$page,$pageSize,false,$asc);
+        $articlesCount = $this->articleDao->listByContentPage($content,$orderBy,$page,$pageSize,$asc);
         $resultArticle = array();
         foreach ( $articles as $article ) {
             $resultArticle[$article->getId()] = $article;

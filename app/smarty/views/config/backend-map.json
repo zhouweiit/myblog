@@ -1,7 +1,28 @@
 {
     "res": {
+        "backend:page/article/edit.tpl": {
+            "uri": "/template/backend/page/article/edit.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            }
+        },
         "backend:page/article/list.tpl": {
             "uri": "/template/backend/page/article/list.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            }
+        },
+        "backend:page/file/list.tpl": {
+            "uri": "/template/backend/page/file/list.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            }
+        },
+        "backend:page/file/upload.tpl": {
+            "uri": "/template/backend/page/file/upload.tpl",
             "type": "tpl",
             "extras": {
                 "isPage": true

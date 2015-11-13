@@ -379,4 +379,4 @@ function helloSyntaxHighlighter()
     return "hi!";
 }
 </pre>
-{%/block%}
+{%require name='backend:page/index/main.tpl'%}{%/block%}

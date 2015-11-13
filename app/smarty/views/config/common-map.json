@@ -2072,6 +2072,26 @@
         "common:static/plugin/timepicker/js/jquery-ui.js": {
             "uri": "/static/common/plugin/timepicker/js/jquery-ui.js",
             "type": "js"
+        },
+        "common:static/plugin/zyUpload/control/css/zyUpload.css": {
+            "uri": "/static/common/plugin/zyUpload/control/css/zyUpload.css",
+            "type": "css"
+        },
+        "common:static/plugin/zyUpload/control/js/jquery-1.7.2.js": {
+            "uri": "/static/common/plugin/zyUpload/control/js/jquery-1.7.2.js",
+            "type": "js"
+        },
+        "common:static/plugin/zyUpload/control/js/zyUpload.js": {
+            "uri": "/static/common/plugin/zyUpload/control/js/zyUpload.js",
+            "type": "js"
+        },
+        "common:static/plugin/zyUpload/core/zyFile.js": {
+            "uri": "/static/common/plugin/zyUpload/core/zyFile.js",
+            "type": "js"
+        },
+        "common:static/plugin/zyUpload/jquery-1.7.2.js": {
+            "uri": "/static/common/plugin/zyUpload/jquery-1.7.2.js",
+            "type": "js"
         }
     },
     "pkg": {}

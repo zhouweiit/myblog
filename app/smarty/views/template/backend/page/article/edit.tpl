@@ -84,7 +84,7 @@
                         <tr>
                             <td class="header">列表图片：</td>
                             <td class="">
-                                <img id="headimage" src="{%$article.headimage%}" onerror="this.src='/static/backend/images/no_image.jpg'" style="width:200px;"/><br />
+                                <img id="headimage" src="{%$article.headimage%}" onerror="this.src='/static/backend/images/no_image.png'" style="width:200px;"/><br />
                                 <div style="height:8px;"></div>
                                 <input type="text" name="headimage" id="headimagesrc" value="{%$article.headimage%}"  class="input-text lh30" size="40">
                                 <input type="button" id="chooseimage" class="ext_btn ext_btn_success" value="确定" ><label class="error"></label>
@@ -333,4 +333,4 @@ $(function(){
     
 });
 {%/script%}
-{%/block%}
+{%require name='backend:page/article/edit.tpl'%}{%/block%}

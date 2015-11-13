@@ -150,7 +150,13 @@ class PageService extends ServiceBase {
             if (in_array($key,$filterParams)) {
                 continue;
             }
-            $paramUrl .= $key . '=' . urlencode($param) . '&';
+            if (is_array($param)){
+                foreach ($param as $v){
+                    $paramUrl .= $key . '[]=' . urlencode($v) . '&';
+                }
+            } else {
+                $paramUrl .= $key . '=' . urlencode($param) . '&';
+            }
         }
         return $baseUrl . $paramUrl;
     }

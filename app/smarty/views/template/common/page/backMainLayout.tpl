@@ -17,7 +17,7 @@
 <script src="{%uri name="common:static/plugin/timepicker/js/jquery-ui-slide.min.js"%}"></script>
 <script src="{%uri name="common:static/plugin/timepicker/js/jquery-ui-timepicker-addon.js"%}"></script>
 <script src="{%uri name="backend:static/js/validata.js"%}"></script>
-
+{%block name="head"%}{%/block%}
 <script type="text/javascript">
 $(function(){  
     $(".list_table").colResizable({
