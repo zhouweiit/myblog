@@ -50,4 +50,43 @@ class StringUtils {
             return strval($value);
         }
     }
+    
+    /**
+     * 过滤敏感词，讲字符串中的敏感词替换为*
+     * @param int $str
+     * @param array $filterWorld
+     * @return string
+     * @author zhouwei
+     */
+    public static function fitlerWords($str,array $filterWord = array()){
+        if (empty($filterWord)){
+            return $str;
+        }
+        foreach ($filterWord as $value){
+            $value = trim($value);
+            $str = str_replace($value, '***', $str);
+        }
+        return $str;
+    }
+    
+    /**
+     * 再自字符串中检索关键次，并返回
+     * @param string $str
+     * @param array $keyWord
+     * @return array
+     * @author zhouwei
+     */
+    public static function keyWords($str,array $keyWord = array()){
+        if (empty($keyWord)){
+            return array();
+        }
+        $result = array();
+        foreach ($keyWord as $value){
+            $value = trim($value);
+            if (strpos($str,$value) !== false){
+                $result[] = $value;
+            }
+        }
+        return $result;
+    }
 }

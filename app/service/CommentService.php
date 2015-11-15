@@ -4,6 +4,8 @@ namespace service;
 
 use library\mvc\ServiceBase;
 use dao\blog\CommentDao;
+use library\utils\StringUtils;
+use models\blog\Comment;
 
 class CommentService extends ServiceBase {
     
@@ -30,11 +32,26 @@ class CommentService extends ServiceBase {
      * @var PageService
      */
     private $pageService;
+    
+    /**
+     * 敏感词文件配置
+     * @var string
+     */
+    private $filterWordsFilePath;
+    
+    /**
+     * 关键字文件配置
+     * @var string
+     */
+    private $keyWordsFilePath;
+    
     protected function init(){
-        $this->log = $this->di->get('applicationLog');
-        $this->commentDao = $this->di->get('dao\\blog\\CommentDao');
-        $this->articleService = $this->di->get('ArticleService');
-        $this->pageService = $this->di->get('PageService');
+        $this->log                  = $this->di->get('applicationLog');
+        $this->commentDao           = $this->di->get('dao\\blog\\CommentDao');
+        $this->articleService       = $this->di->get('ArticleService');
+        $this->pageService          = $this->di->get('PageService');
+        $this->filterWordsFilePath  = ROOT. '/' . $this->config->application->filterwords;
+        $this->keyWordsFilePath     = ROOT. '/' . $this->config->application->keywords;
     }
     
     /**
@@ -69,7 +86,7 @@ class CommentService extends ServiceBase {
      * @author zhouwei
      */
     public function getCommentTreeByArticleId($articleId, $name, $page, $pageSize){
-        $comments = $this->getCommentByArticleId($articleId,$name,$page,$pageSize);
+        $comments = $this->getCommentByArticleId($articleId,$name,1,$page,$pageSize);
         $commentInfos = $comments['commentInfo'];
         $commentTrees = array();
         foreach ( $commentInfos as $comment ) {
@@ -119,9 +136,9 @@ class CommentService extends ServiceBase {
      *            用户名称
      * @author zhouwei
      */
-    public function getCommentByArticleId($articleId, $name, $page, $pageSize){
-        $commentInfo = $this->commentDao->getCommentByArticleId($articleId,$name,$page,$pageSize,false);
-        $commentCount = $this->commentDao->getCommentByArticleId($articleId,$name,$page,$pageSize);
+    public function getCommentByArticleId($articleId, $name,$ischeck,$page, $pageSize){
+        $commentInfo = $this->commentDao->getCommentByArticleId($articleId,$name,$ischeck,$page,$pageSize,false);
+        $commentCount = $this->commentDao->getCommentByArticleId($articleId,$name,$ischeck,$page,$pageSize);
         $result = array();
         foreach ( $commentInfo as $value ) {
             $result[$value->getId()] = $value;
@@ -157,7 +174,50 @@ class CommentService extends ServiceBase {
         if (empty($pid)) {
             $pid = null;
         }
-        $this->commentDao->insertComment($articleId,$content,$pid,$name,$email);
+        $ischeck = 1;
+        $content = StringUtils::fitlerWords($content,$this->getFilterWordsArray());
+        $keywords = StringUtils::keyWords($content,$this->getKeyWordsArray());
+        if (!empty($keywords)){
+            $ischeck = 0;
+            $keywordsStr = implode('|', $keywords);
+        }
+        $this->commentDao->insertComment($articleId,$content,$pid,$name,$email,$ischeck,$keywordsStr);
+        if ($ischeck === 1){
+            $this->articleService->commentTimesAddUpdate($articleId, 1);
+        }
         return true;
+    }
+    
+    /**
+     * 得到敏感词数组
+     * @return array
+     * @author zhouwei
+     */
+    public function getFilterWordsArray(){
+        return file($this->filterWordsFilePath);
+    }
+    
+    /**
+     * 得到关键字数组
+     * @return array
+     * @author zhouwei
+     */
+    public function getKeyWordsArray(){
+        return file($this->keyWordsFilePath);
+    }
+    
+    /**
+     * 更新评论的审核状态
+     * @param array $id
+     * @param int $isCheck
+     * @return number 影响的行数
+     * @author zhouwei
+     */
+    public function updateCommentCheck(array $id,$isCheck){
+        if (($isCheck != Comment::IS_CHECK_PASS && $isCheck != Comment::IS_CHECK_NOPASS)
+                || empty($id)){
+            return 0;
+        }
+        return $this->commentDao->updateCheck($isCheck,$id);
     }
 }

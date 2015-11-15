@@ -544,4 +544,16 @@ class ArticleService extends ServiceBase {
     public function deleteArticle($id){
         return $this->articleDao->delete($id);
     }
+    
+    /**
+     * 更新文章的评论次数
+     * @param string $id
+     * @param int $times
+     *
+     * @return void
+     * @author zhouwei
+     */
+    public function commentTimesAddUpdate($id,$times){
+        $this->articleDao->commentTimesAddUpdate($id, $times);
+    }
 }

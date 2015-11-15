@@ -55,7 +55,7 @@ class ArticleController extends ControllerBase {
         $commentTimesEnd    = HttpUtils::filterInt($this->request->get('comment_times_end'));
         $releaseTimeStart   = HttpUtils::filterDateTime($this->request->get('release_time_start'));
         $releaseTimeEnd     = HttpUtils::filterDateTime($this->request->get('release_time_end'));
-        $tagIds             = $this->request->get('tag');
+        $tagIds             = $this->request->get('tag',null,array());
         $page = HttpUtils::filterInt($this->request->get('page'),1,array(0));
         $pageSize = 10;
         

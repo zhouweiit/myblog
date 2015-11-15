@@ -38,6 +38,7 @@
           <ul>
             <li href="/backend/article/list">文章列表</li>
             <li href="/backend/article/release">文章发布</li>
+            <li href="/backend/comment/list">评论审核</li>
           </ul>
           <h3>文件管理</h3>
           <ul>
