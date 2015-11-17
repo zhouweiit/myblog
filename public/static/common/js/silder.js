@@ -54,15 +54,16 @@ $(function(){
 		var name = $(this).attr('name');
 		var htmltext = '<textarea class="inputblue" name="content" id="comment_content" style="font-size:12px;color:#756f71;width:550px;height:150px;padding:5px;"></textarea>';
 		$("#comment_content").replaceWith(htmltext);
-		$("#comment_content").html('<div class="atuser">@'+name+'：</div>');
+		$("#comment_content").html('@'+name+'：\n');
 	});
 	
 	$("a.quotebutton").click(function(){
 		var pid = $(this).attr('pid');
 		var pidnum = $(this).attr('pidnum');
+		var quotefloor = $(this).attr('quotefloor');
 		var htmltext = '<textarea class="inputblue" name="content" id="comment_content" style="font-size:12px;color:#756f71;width:550px;height:150px;padding:5px;"></textarea>';
 		$("#comment_content").replaceWith(htmltext);
-		$("#comment_content").html('<div class="comment_quote_hider">'+pid+'</div>');
+		//$("#comment_content").html(''+quotefloor+'');
 		$("#form_comment_pid").val(pidnum);
 	});
 	
@@ -97,10 +98,16 @@ $(function(){
 			email.val("请输入邮箱，谢谢!");
 			error = true;
 		}
+		if (!checkEmail($.trim(email.val()))){
+			email.val("请输入正确的邮箱格式，谢谢!");
+			error = true;
+		}
+		
 		if ($.trim(content.val()) == '' || $.trim(content.val()) == '请输入评论内容，谢谢'){
 			content.val("请输入评论内容，谢谢!");
 			error = true;
 		}
+		
 		if (error){
 			return;
 		} else {

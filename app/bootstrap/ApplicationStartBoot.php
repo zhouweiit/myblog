@@ -5,10 +5,13 @@ use library\mvc\Log;
 use Phalcon\Db\Profiler;
 use plugin\DatabaseLogPlugin;
 use library\mvc\View;
+use Phalcon\Flash\Session;
+use Phalcon\Session\Adapter\Files;
 
-// 设置redisSession
-$di->setShared('session',function () use($di){
-    return new RedisSession($di);
+$di->set('session', function () {
+    $session = new Files();
+    $session->start();
+    return $session;
 });
 
 // 设置事件管理器

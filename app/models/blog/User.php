@@ -46,6 +46,13 @@ class User {
     private $status;
     
     /**
+     * 用户邮箱
+     * 
+     * @var string
+     */
+    private $email;
+    
+    /**
      * 是否删除
      *
      * @var int
@@ -65,18 +72,21 @@ class User {
      * @var date
      */
     private $lastChangedDate;
+    
     public static function columnMap(){
         return array(
             'id' => 'id',
             'name' => 'name',
             'password' => 'password',
             'nicename' => 'nicename',
+            'email' => 'email',
             'status' => 'status',
             'is_delete' => 'isDelete',
             'creation_date' => 'creationDate',
-            'last_changed_date' => 'lastChangedDate' 
+            'last_changed_date' => 'lastChangedDate',
         );
     }
+    
     /**
      *
      * @return the $id
@@ -115,6 +125,14 @@ class User {
      */
     public function getStatus(){
         return $this->status;
+    }
+    
+    /**
+     *
+     * @return the $email
+     */
+    public function getEmail(){
+        return $this->email;
     }
     
     /**
@@ -179,6 +197,14 @@ class User {
      */
     public function setStatus($status){
         $this->status = $status;
+    }
+    
+    /**
+     *
+     * @param string $email            
+     */
+    public function setEmail($email){
+        $this->email = $email;
     }
     
     /**

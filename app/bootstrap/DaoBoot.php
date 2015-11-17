@@ -39,3 +39,4 @@ $di->setShared('dao\\blog\\LinksDao',function () use($di){
 $di->setShared('dao\\blog\\FileDao',function () use($di){
     return new FileDao($di);
 });
+

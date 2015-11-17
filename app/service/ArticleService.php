@@ -71,13 +71,15 @@ class ArticleService extends ServiceBase {
             $articlesInfo = $this->listByPage(null,null,array_keys($mapInfos),null,null,null,null,null,null,$orderby,$page,$pageSize,false);
         } else if (!empty($categoryId)) { // 直接查询频道的数据
             $categoryInfos = $this->categoryService->getCategoryByPid($categoryId);
-            $categoryIds = null;
+            $categoryIds = array();
             if (empty($categoryInfos)) {
                 $categoryIds = array(
                     $categoryId 
                 );
             } else {
-                $categoryIds = array_keys($categoryInfos);
+                foreach ($categoryInfos as $value){
+                    $categoryIds[] = $value['id'];
+                }
             }
             $articlesInfo = $this->listByPage(null,null,null,$categoryIds,null,null,null,null,null,$orderby,$page,$pageSize,false);
         } else { // 显示首页的数据

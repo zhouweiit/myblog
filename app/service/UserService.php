@@ -5,6 +5,8 @@ namespace service;
 use library\mvc\ServiceBase;
 use library\mvc\Log;
 use Phalcon\Http\Response\Cookies;
+use Phalcon\Flash\Session;
+use dao\blog\UserDao;
 
 class UserService extends ServiceBase {
     
@@ -19,9 +21,22 @@ class UserService extends ServiceBase {
      * @var Cookies
      */
     private $cookies;
+    
+    /**
+     * @var Session
+     */
+    private $session;
+    
+    /**
+     * @var UserDao
+     */
+    private $userDao;
+    
     protected function init(){
-        $this->log = $this->di->get('applicationLog');
-        $this->cookies = $this->di->get('cookies');
+        $this->log      = $this->di->get('applicationLog');
+        $this->cookies  = $this->di->get('cookies');
+        $this->session	= $this->di->get('session');
+        $this->userDao  = $this->di->get('dao\\blog\\UserDao');
     }
     
     /**
@@ -58,5 +73,49 @@ class UserService extends ServiceBase {
             $this->cookies->set('username',$name,time() + 3600 * 24 * 365);
             $this->cookies->set('useremail',$email,time() + 3600 * 24 * 365);
         }
+    }
+    
+    /**
+     * 用户登录
+     * @param string $username
+     * @param string $password
+     * @return number  1成功，2用户不存在，3密码错误
+     * @author zhouwei
+     */
+    public function login($username,$password){
+        $this->session->start();
+        $userInfo = $this->userDao->getUserByName($username);
+        if (empty($userInfo)){
+            return 2;
+        }
+        if ($userInfo->getPassword() == md5($password)){
+            return 1;
+        }
+        $this->session->set('isLogin',true);
+        return 3;
+    }
+    
+    /**
+     * 校验是否已经登录
+     * 
+     * @return boolean
+     * @author zhouwei
+     */
+    public function isLogin(){
+        $this->session->start();
+        if (true === $this->session->get('isLogin')){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * 登出
+     * @return void
+     * @author zhouwei
+     */
+    public function logout(){
+        $this->session->start();
+        $this->session->destroy();
     }
 }

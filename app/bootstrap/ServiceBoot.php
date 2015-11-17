@@ -10,6 +10,7 @@ use service\MenuService;
 use service\AsideService;
 use service\LinksService;
 use service\FileService;
+use service\RsaService;
 
 $di->setShared('ArticleService',function () use($di){
     return new ArticleService($di);
@@ -46,6 +47,11 @@ $di->setShared('MenuService',function () use($di){
 $di->setShared('AsideService',function () use($di){
     return new AsideService($di);
 });
+
+$di->setShared('RsaService',function () use($di){
+    return new RsaService($di);
+});
+    
 
 $di->setShared('LinksService',function () use($di){
     return new LinksService($di);

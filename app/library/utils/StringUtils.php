@@ -3,6 +3,16 @@
 namespace library\utils;
 
 class StringUtils {
+    
+    private static $htmlEntityMap = array(
+        '&'     => '&amp;',
+        '<'     => '&lt;',
+        '>'     => '&gt;',
+        '"'     => '&quot;',
+        '\''    => '&#x27;',
+        '/'     => '&#x2f;',
+    );
+    
     /**
      * 得到一个随机的char数组
      *
@@ -88,5 +98,19 @@ class StringUtils {
             }
         }
         return $result;
+    }
+    
+    /**
+     * 过滤html实体标签
+     * @param string str
+     * @return string
+     * @author zhouwei
+     */
+    public static function filterHtmlEntity($str){
+        $htmlEntityMap = self::$htmlEntityMap;
+        foreach ($htmlEntityMap as $key => $value){
+            $str = str_replace($key, $value, $str);
+        }
+        return $str;
     }
 }

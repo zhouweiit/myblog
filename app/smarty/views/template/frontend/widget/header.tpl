@@ -1,12 +1,12 @@
 <header>
 	<div class="writeinfo" style="height:100px;">
 		<div style="float:left;">
-		   	<h1>码农 - www.zwiter.com</h1>
-		   	<h2>如果害怕不能一次成功，那就叫先它1.0版吧...</h2>
+		   	<h1>www.zwiter.com</h1>
+		   	<h2>如果害怕不能一次成功，那就叫先它beta版吧...</h2>
 	   	</div>
 	   	<div style="float:right;padding-top:15px;font:16px '宋体', Arial, Helvetica, sans-serif;color:#bbbbbb;">
 	   		<div style="float:left;">
-	   			<img style="width:70px;" src="/static/frontend/images/s8.jpg"/>
+	   			<img style="width:75px;" src="/static/frontend/images/bloghead.png"/>
 	   		</div>
 	   		<div style="float:left;width:180px;padding-left:3px;">
 	   			<div class="info" style="height:30px;padding-top:8px;padding-left:10px;">

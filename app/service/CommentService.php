@@ -177,6 +177,7 @@ class CommentService extends ServiceBase {
         $ischeck = 1;
         $content = StringUtils::fitlerWords($content,$this->getFilterWordsArray());
         $keywords = StringUtils::keyWords($content,$this->getKeyWordsArray());
+        $content = StringUtils::filterHtmlEntity($content);
         if (!empty($keywords)){
             $ischeck = 0;
             $keywordsStr = implode('|', $keywords);
