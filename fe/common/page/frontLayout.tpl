@@ -1,8 +1,8 @@
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 {%html xmlns:wb="http://open.weibo.com/wb" framework="common:static/js/mod.js"%}
 {%head%}
-<meta charset="utf-8">
-<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>威特 | www.zwiter.com</title>
 <meta name="description"  content="" />
 <meta name="keywords"  content="排序,正则表达式,程序员,算法,软件开发,AJAX,Algorithm,Android,Bash,book,C++,Code Review,Coding,CSS,Database,Debug,ebook,Erlang,Game,Go,Google,HTML,IE,Java,Javascript,jQuery,Linus Torvalds,Linux,Mac,MySQL,Oracle,OS,Perl,PHP,Programmer,programming,language,Python,Ruby,SQL,Ubuntu,UI,Unix,vim,Web,Windows" />
 <link href="{%uri name="frontend:static/css/base.css"%}" rel="stylesheet">

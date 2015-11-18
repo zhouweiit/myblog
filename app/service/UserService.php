@@ -89,9 +89,9 @@ class UserService extends ServiceBase {
             return 2;
         }
         if ($userInfo->getPassword() == md5($password)){
+            $this->session->set('isLogin',true);
             return 1;
         }
-        $this->session->set('isLogin',true);
         return 3;
     }
     

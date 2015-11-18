@@ -45,9 +45,6 @@ try {
     //初始化应用
     require_once ROOT . '/app/bootstrap/ApplicationStartBoot.php';
     
-    //测试使用，上线需要注释掉
-    require_once 'test.php';
-    
     //处理requset
     echo $application->handle()->getContent();
     
@@ -57,7 +54,7 @@ try {
 } catch (Phalcon\Mvc\Dispatcher\Exception $de){
 	
     //404
-    $application->getDI()->get('response')->setHeader("Status Code","404");
+    $application->getDI()->get('response')->setStatusCode(404);
     $application->getDI()->get('response')->sendHeaders();
 	
 } catch(\Exception $e){

@@ -119,4 +119,4 @@ $(function(){
     
 })
 {%/script%}
-{%require name='backend:page/file/list.tpl'%}{%/block%}
+{%/block%}

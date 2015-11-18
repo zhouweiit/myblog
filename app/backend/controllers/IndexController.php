@@ -21,4 +21,8 @@ class IndexController extends ControllerBase {
         
     }
     
+    public function adminerAction(){
+        define('ADMINER', true);
+    }
+    
 }

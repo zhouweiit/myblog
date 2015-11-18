@@ -19,7 +19,7 @@
 	                    </tr>
 	                    <tr>
 	                       <td>&nbsp;&nbsp;密码</td>
-                           <td>&nbsp;&nbsp;<input type="text" id="password" class="input-text lh25" size="30"></td>
+                           <td>&nbsp;&nbsp;<input type="password" id="password" class="input-text lh25" size="30"></td>
 	                    </tr>
 	                    <tr>
 	                       <td>&nbsp;&nbsp;验证码</td>

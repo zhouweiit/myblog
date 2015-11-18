@@ -8,8 +8,22 @@
   <script src="{%uri name="backend:static/js/jquery.SuperSlide.js"%}"></script>
   <script src="{%uri name="backend:static/js/common.js"%}"></script>
   <script type="text/javascript">
-  
+  $(function(){
+      $("#logout").click(function(){
+          $.ajax({
+              url: '/backend/login/logout',
+              type: 'post',
+              success: function( resp, status ) {
+                  window.location = "/backend/login/index";
+              },
+              error: function (data, status, e)
+              {
+              }
+          });
+      });
+  });
   </script>
+	
   <title>zwiter博客管理后台</title>
 </head>
 <body>
@@ -23,6 +37,7 @@
             <div class="help_info">
             </div>
             <div class="info_center">
+                <a href="javascript:void(0)" id="logout" style="color:white;">退出登录</a>
             </div>
           </div>
         </div>

@@ -10,8 +10,9 @@ use service\MenuService;
 use service\CommentService;
 use service\UserService;
 use service\PageService;
-use service\ArticleTagMapService;
 use service\TagService;
+use Phalcon\Mvc\Dispatcher\Exception;
+use Phalcon\Mvc\View;
 
 class ArticleController extends ControllerBase {
     
@@ -85,7 +86,8 @@ class ArticleController extends ControllerBase {
         $articleInfo = $this->articleService->getArticleInfoById($articleid);
         
         if (empty($articleInfo)) {
-            // todo 文章不存在，跳404
+            $this->view->setRenderLevel(View::LEVEL_NO_RENDER);
+            $this->response->redirect('/404.html');
             return;
         }
         
@@ -127,8 +129,9 @@ class ArticleController extends ControllerBase {
      * @author zhouwei
      */
     public function previewAction(){
-        if (!$this->request->get('isprevew') == 'true'){
-            // todo 文章不存在，跳404
+        if (empty($articleInfo)) {
+            $this->view->setRenderLevel(View::LEVEL_NO_RENDER);
+            $this->response->redirect('/404.html');
             return;
         }
         

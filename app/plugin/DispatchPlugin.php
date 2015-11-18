@@ -9,6 +9,7 @@ use library\mvc\Log;
 use Phalcon\Http\Request;
 use Phalcon\Session;
 use Phalcon\Config\Adapter\Ini;
+use service\UserService;
 
 class DispatchPlugin extends PluginBase {
     
@@ -37,14 +38,21 @@ class DispatchPlugin extends PluginBase {
     private $config;
     
     /**
+     * 
+     * @var UserService
+     */
+    private $userService;
+    
+    /**
      *
      * @return void
      */
     public function init(){
-        $this->request = $this->di->get('request');
-        $this->log = $this->di->get('applicationLog');
-        $this->session = $this->di->get('session');
-        $this->config = $this->di->get('configIni');
+        $this->request      = $this->di->get('request');
+        $this->log          = $this->di->get('applicationLog');
+        $this->session      = $this->di->get('session');
+        $this->config       = $this->di->get('configIni');
+        $this->userService  = $this->di->get('UserService');
     }
     
     /**
@@ -56,8 +64,15 @@ class DispatchPlugin extends PluginBase {
      * @author zhouwei17
      */
     public function beforeDispatch(Event $event, Dispatcher $dispatcher){
-        $this->applicationLog($event,$dispatcher);
-        return true;
+        //用户登录页面，不需要校验
+        if ($dispatcher->getControllerName() == 'login'){
+            return true;
+        } else if (!$this->userService->isLogin()){
+            $dispatcher->getDI()->get('response')->redirect("/backend/login/index");
+            return false;
+        } else {
+            return true;
+        }
     }
     
     /**
@@ -69,6 +84,7 @@ class DispatchPlugin extends PluginBase {
      * @author zhouwei17
      */
     public function afterDispatch(Event $event, Dispatcher $dispatcher){
+        
     }
     
     /**

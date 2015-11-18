@@ -8,6 +8,7 @@ use Phalcon\Mvc\Dispatcher;
 use Phalcon\Mvc\View;
 use Phalcon\DiInterface;
 use library\mvc\SmartyView;
+use plugin\DispatchPlugin;
 
 class Module implements ModuleDefinitionInterface {
     
@@ -37,8 +38,11 @@ class Module implements ModuleDefinitionInterface {
     public function registerServices(DiInterface $di){
         $root = $di->get('configIni')->application->root;
         // Registering a dispatcher
-        $di->set('dispatcher',function (){
+        $di->set('dispatcher',function () use ($di){
             $dispatcher = new Dispatcher();
+            $evenstManager = $di->get('eventsManager');
+            $evenstManager->attach('dispatch', new DispatchPlugin($di));
+            $dispatcher->setEventsManager($evenstManager);
             $dispatcher->setDefaultNamespace('backend\controllers');
             return $dispatcher;
         });
