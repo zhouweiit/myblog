@@ -40,9 +40,6 @@ class Module implements ModuleDefinitionInterface {
         
         $di->set('dispatcher',function () use($di){
             $dispatcher = new Dispatcher();
-            $evenstManager = $di->get('eventsManager');
-            $evenstManager->attach('dispatch',new DispatchPlugin($di));
-            $dispatcher->setEventsManager($evenstManager);
             $dispatcher->setDefaultNamespace('frontend\controllers');
             return $dispatcher;
         });

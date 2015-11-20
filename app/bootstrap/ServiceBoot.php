@@ -11,6 +11,7 @@ use service\AsideService;
 use service\LinksService;
 use service\FileService;
 use service\RsaService;
+use service\SEOService;
 
 $di->setShared('ArticleService',function () use($di){
     return new ArticleService($di);
@@ -59,4 +60,8 @@ $di->setShared('LinksService',function () use($di){
 
 $di->setShared('FileService',function () use($di){
     return new FileService($di);
+});
+
+$di->setShared('SEOService',function () use($di){
+    return new SEOService($di);
 });

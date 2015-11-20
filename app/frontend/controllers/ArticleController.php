@@ -11,8 +11,8 @@ use service\CommentService;
 use service\UserService;
 use service\PageService;
 use service\TagService;
-use Phalcon\Mvc\Dispatcher\Exception;
 use Phalcon\Mvc\View;
+use service\SEOService;
 
 class ArticleController extends ControllerBase {
     
@@ -59,20 +59,27 @@ class ArticleController extends ControllerBase {
     private $tagService;
     
     /**
+     * 
+     * @var SEOService
+     */
+    private $seoService;
+    
+    /**
      *
      * @var PageService
      */
     private $pageService;
     
     protected function initialize(){
-        $this->asideService = $this->di->get('AsideService');
-        $this->categoryService = $this->di->get('CategoryService');
-        $this->articleService = $this->di->get('ArticleService');
-        $this->menuService = $this->di->get('MenuService');
-        $this->commentService = $this->di->get('CommentService');
-        $this->userService = $this->di->get('UserService');
-        $this->pageService = $this->di->get('PageService');
-        $this->tagService  = $this->di->get('TagService');
+        $this->asideService     = $this->di->get('AsideService');
+        $this->categoryService  = $this->di->get('CategoryService');
+        $this->articleService   = $this->di->get('ArticleService');
+        $this->menuService      = $this->di->get('MenuService');
+        $this->commentService   = $this->di->get('CommentService');
+        $this->userService      = $this->di->get('UserService');
+        $this->pageService      = $this->di->get('PageService');
+        $this->tagService       = $this->di->get('TagService');
+        $this->seoService       = $this->di->get('SEOService');
     }
     
     /**
@@ -102,6 +109,8 @@ class ArticleController extends ControllerBase {
         $userInfo = $this->userService->getUserCookies();
         // 评论
         $comments = $this->commentService->getCommentTreeByArticleId($articleid,$userInfo['username'],$page - 1,$pageSize);
+        //seo优化信息
+        $tdk = $this->seoService->articleInfoTDK($articleInfo['article'], $articleInfo['tag']);
         
         $pages = $this->pageService->createPageArray($comments['count'],$page,$pageSize);
         $pageUrl = $this->pageService->createPageUrl($this->request->get(),'/article/info');
@@ -116,7 +125,7 @@ class ArticleController extends ControllerBase {
         $this->view->setVar('relateArticle',$relatedArticle);
         $this->view->setVar('comments',$comments['commentTress']);
         $this->view->setVar('userInfo',$userInfo);
-        
+        $this->view->setVar('TDK', $tdk);
         //分页信息
         $this->view->setVar('pages',$pages['pages']);
         $this->view->setVar('pageUrl',$pageUrl);
