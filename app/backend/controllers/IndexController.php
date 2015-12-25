@@ -10,7 +10,6 @@ class IndexController extends ControllerBase {
     }
     
     public function indexAction(){
-        
     }
     
     public function welcomAction(){
@@ -20,9 +19,4 @@ class IndexController extends ControllerBase {
     public function mainAction(){
         
     }
-    
-    public function adminerAction(){
-        define('ADMINER', true);
-    }
-    
 }

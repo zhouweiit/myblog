@@ -5,7 +5,7 @@
 {%block name="content"%}
 
 <div style="height:800px;width:100%;">
-	<div id="search_bar" class="mt10" style="width:280px;display:block;">
+	<div id="search_bar" class="mt10" style="width:350px;display:block;">
 	    <div class="box">
 	        <div class="box_border">
 	            <div class="box_top">

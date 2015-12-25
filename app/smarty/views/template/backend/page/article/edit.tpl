@@ -107,7 +107,7 @@
                         <tr>
                             <td colspan='2' style="text-align:center;">
                                 <input type="hidden" id="committype" value="{%$type%}"/>
-                                <input type="hidden" name="isprevew" value="true"/>
+                                <input type="hidden" name="ispreview" value="true"/>
                                 <input type="button" id="commit" class="ext_btn ext_btn_success" value="提交" >
                                 &nbsp;&nbsp;&nbsp;
                                 <input type="button" id="preview" class="ext_btn ext_btn_success" value="预览" >

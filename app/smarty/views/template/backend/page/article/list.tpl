@@ -15,7 +15,7 @@
                         <td class="header">文章ID</td>
                         <td><input type="text" name="article_id" class="input-text lh25" size="30" value="{%$request.article_id%}"></td>
                         <td class="header">阅读次数</td>
-                        <td><div style="width:165px;"><input type="text" name="read_times_start" value="{%$request.read_times_start%}" class="input-text lh25" size="10"> ~ <input type="text" name="read_times_end" value="{%$request.read_times_end%}" class="input-text lh25" size="10"></div></td>
+                        <td><div style="width:165px;"><input type="text" name="read_times_start" value="{%$request.read_times_start%}" class="input-text lh25" size="5"> ~ <input type="text" name="read_times_end" value="{%$request.read_times_end%}" class="input-text lh25" size="5"></div></td>
                         <td class="header">一级分类</td>
                         <td>
                             <select name="first_category" class="select" id="first_category">
@@ -38,7 +38,7 @@
                         <td class="header">文章名称</td>
                         <td><input type="text" name="title" value="{%$request.title%}" class="input-text lh25" size="30"></td>
                         <td class="header">评论次数</td>
-                        <td><div style="width:165px;"><input type="text" name="comment_times_start" value="{%$request.comment_times_start%}" class="input-text lh25" size="10"> ~ <input type="text" name="comment_times_end" value="{%$request.comment_times_end%}" class="input-text lh25" size="10"></div></td>
+                        <td><div style="width:165px;"><input type="text" name="comment_times_start" value="{%$request.comment_times_start%}" class="input-text lh25" size="5"> ~ <input type="text" name="comment_times_end" value="{%$request.comment_times_end%}" class="input-text lh25" size="5"></div></td>
                         <td class="header">标签多选</td>
                         <td colspan='3'>
                             <select name="tag[]" class="select tag">

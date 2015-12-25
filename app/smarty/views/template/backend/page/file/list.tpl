@@ -23,7 +23,7 @@ div.imageinfo{padding-top:5px;width:320px;text-align:left;color:#53a2e1;}
                         <td class="header">文件名称</td>
                         <td><input type="text" name="file_name" class="input-text lh25" size="30" value="{%$request.file_name%}"></td>
                         <td class="header">文件大小</td>
-                        <td><div style="width:200px;"><input type="text" name="size_start" value="{%$request.size_start%}" class="input-text lh25" size="12"> ~ <input type="text" name="size_end" value="{%$request.size_end%}" class="input-text lh25" size="12"></div></td>
+                        <td><div style="width:200px;"><input type="text" name="size_start" value="{%$request.size_start%}" class="input-text lh25" size="5"> ~ <input type="text" name="size_end" value="{%$request.size_end%}" class="input-text lh25" size="5"></div></td>
                         <td class="header">文件路径</td>
                         <td><input type="text" name="path" value="{%$request.path%}" class="input-text lh25" size="50"></td>
                     </tr>   

@@ -138,7 +138,8 @@ class ArticleController extends ControllerBase {
      * @author zhouwei
      */
     public function previewAction(){
-        if (empty($articleInfo)) {
+		$ispreview = $this->request->get('ispreview');	
+        if ($ispreview !== 'true' || !$this->userService->isLogin()) {
             $this->view->setRenderLevel(View::LEVEL_NO_RENDER);
             $this->response->redirect('/404.html');
             return;
