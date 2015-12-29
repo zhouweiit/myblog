@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21, created on 2015-12-24 17:14:44
+<?php /* Smarty version Smarty-3.1.21, created on 2015-12-29 23:06:46
          compiled from "/home/zhouwei/workspace/myblog/app/smarty/views/template/frontend/page/index/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2141156455567bb7847535a1-54823977%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7c6678bcb6c6c4af387b5ed998cb0f869a7b25b6' => 
     array (
       0 => '/home/zhouwei/workspace/myblog/app/smarty/views/template/common/page/frontLayout.tpl',
-      1 => 1450927308,
+      1 => 1451400529,
       2 => 'file',
     ),
   ),
@@ -21,13 +21,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.21',
+  'unifunc' => 'content_567bb7848a08e4_99171887',
   'variables' => 
   array (
     'TDK' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.21',
-  'unifunc' => 'content_567bb7848a08e4_99171887',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_567bb7848a08e4_99171887')) {function content_567bb7848a08e4_99171887($_smarty_tpl) {?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}FISResource::setFramework(FISResource::getUri("common:static/js/mod.js", $_smarty_tpl->smarty)); ?><html xmlns:wb="<?php echo "http://open.weibo.com/wb";?>">
@@ -37,7 +37,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 echo $_smarty_tpl->tpl_vars['TDK']->value['title'];?>
  | <?php }?>未舟 - zwiter.com</title>
 <?php if (!$_smarty_tpl->tpl_vars['TDK']->value['description']) {?>
-<meta name="description"  content="未舟的IT技术博客，常用语言PHP、C、JAVA。关注架构开发、底层开发、性能优化。真心希望大家阅读后能有所收获。www.zwiter.com" />
+<meta name="description"  content="一个不严谨的技术博客，因为博客内容充满了技术与段子 | www.zwiter.com" />
 <?php } else { ?>
 <meta name="description"  content="<?php echo $_smarty_tpl->tpl_vars['TDK']->value['description'];?>
 " />
@@ -148,4 +148,5 @@ $_smarty_tpl->tpl_vars['tag']->_loop = true;
 </div>
 
 </body><?php if(class_exists('FISResource', false)){echo FISResource::jsHook();}?>
-<?php $_smarty_tpl->registerFilter('output', array('FISResource', 'renderResponse'));?></html><?php }} ?>
+<?php $_smarty_tpl->registerFilter('output', array('FISResource', 'renderResponse'));?></html>
+<?php }} ?>

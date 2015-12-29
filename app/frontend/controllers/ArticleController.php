@@ -91,7 +91,8 @@ class ArticleController extends ControllerBase {
         $pageSize = 30;
         $articleid = $this->request->get('articleid');
         $articleInfo = $this->articleService->getArticleInfoById($articleid);
-        
+		$this->articleService->readTimesAddUpdate($articleid,1);
+
         if (empty($articleInfo)) {
             $this->view->setRenderLevel(View::LEVEL_NO_RENDER);
             $this->response->redirect('/404.html');

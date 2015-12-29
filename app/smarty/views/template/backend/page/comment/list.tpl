@@ -15,7 +15,7 @@
             </tr>
             {%foreach from=$commentInfos item=comment%}
             <tr class="tr">
-                <td align='center'><input type="checkbox" value="{%$comment->getId()%}" class="commentid"/></td>
+                <td align='center'><input type="checkbox" value="{%$comment->getId()%}|{%$comment->getArticleId()%}" class="commentid"/></td>
                 <td align='center'>{%$comment->getId()%}</td>
                 <td>&nbsp;&nbsp;{%$comment->getContent()%}</td>
                 <td>&nbsp;&nbsp;{%$comment->getKeywords()%}</td>
@@ -41,13 +41,14 @@
 {%script%}
 $(function(){
     $("#pass").click(function(){
-        var id='0';
+        var id='';
         $('input.commentid').each(function(){
             if ($(this).attr('checked') == 'checked'){
                 id += "," + $(this).attr('value');
             }
         }); 
         if (id == '0'){
+			alert("请选择内容");
             return;
         }
         $.ajax({
@@ -56,7 +57,7 @@ $(function(){
             dataType: 'json',
             data:'id='+id+"&check=1",
             success: function( resp, status ) {
-                
+               window.location.reload(); 
             },
             error: function (data, status, e){
             }
@@ -64,13 +65,14 @@ $(function(){
     });
     
     $("#nopass").click(function(){
-        var id='0';
+        var id='';
         $('input.commentid').each(function(){
             if ($(this).attr('checked') == 'checked'){
                 id += "," + $(this).attr('value');
             }
         }); 
         if (id == '0'){
+			alert("请选择内容");
             return;
         }
         $.ajax({
@@ -79,7 +81,7 @@ $(function(){
             dataType: 'json',
             data:'id='+id+"&check=0",
             success: function( resp, status ) {
-                
+               window.location.reload(); 
             },
             error: function (data, status, e){
             }

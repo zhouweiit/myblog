@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21, created on 2015-12-24 21:16:10
+<?php /* Smarty version Smarty-3.1.21, created on 2015-12-29 23:47:43
          compiled from "/home/zhouwei/workspace/myblog/app/smarty/views/template/backend/page/comment/list.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1538437361567bf01af0dd06-68034286%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'bb8a3a3d87258924b8d13e7ba9d8a004864819ec' => 
     array (
       0 => '/home/zhouwei/workspace/myblog/app/smarty/views/template/backend/page/comment/list.tpl',
-      1 => 1450927308,
+      1 => 1451403496,
       2 => 'file',
     ),
     '9efcdd2efdffcf6946b52f19c93cf2ba09ea9128' => 
@@ -21,9 +21,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.21',
   'unifunc' => 'content_567bf01b069f31_75463629',
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_567bf01b069f31_75463629')) {function content_567bf01b069f31_75463629($_smarty_tpl) {?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}FISResource::setFramework(FISResource::getUri("common:static/js/mod.js", $_smarty_tpl->smarty)); ?><html lang="<?php echo "zh-CN";?>">
@@ -128,6 +128,7 @@ $_smarty_tpl->tpl_vars['comment']->_loop = true;
 ?>
             <tr class="tr">
                 <td align='center'><input type="checkbox" value="<?php echo $_smarty_tpl->tpl_vars['comment']->value->getId();?>
+|<?php echo $_smarty_tpl->tpl_vars['comment']->value->getArticleId();?>
 " class="commentid"/></td>
                 <td align='center'><?php echo $_smarty_tpl->tpl_vars['comment']->value->getId();?>
 </td>
@@ -159,13 +160,14 @@ $_smarty_tpl->tpl_vars['comment']->_loop = true;
 <?php $fis_script_priority = 0;ob_start();?>
 $(function(){
     $("#pass").click(function(){
-        var id='0';
+        var id='';
         $('input.commentid').each(function(){
             if ($(this).attr('checked') == 'checked'){
                 id += "," + $(this).attr('value');
             }
         }); 
         if (id == '0'){
+			alert("请选择内容");
             return;
         }
         $.ajax({
@@ -174,7 +176,7 @@ $(function(){
             dataType: 'json',
             data:'id='+id+"&check=1",
             success: function( resp, status ) {
-                
+               window.location.reload(); 
             },
             error: function (data, status, e){
             }
@@ -182,13 +184,14 @@ $(function(){
     });
     
     $("#nopass").click(function(){
-        var id='0';
+        var id='';
         $('input.commentid').each(function(){
             if ($(this).attr('checked') == 'checked'){
                 id += "," + $(this).attr('value');
             }
         }); 
         if (id == '0'){
+			alert("请选择内容");
             return;
         }
         $.ajax({
@@ -197,7 +200,7 @@ $(function(){
             dataType: 'json',
             data:'id='+id+"&check=0",
             success: function( resp, status ) {
-                
+               window.location.reload(); 
             },
             error: function (data, status, e){
             }

@@ -45,11 +45,9 @@ class CommentController extends ControllerBase{
      */
     public function ajaxCheckAction(){
         $this->view->setRenderLevel(View::LEVEL_NO_RENDER);
-        $id = HttpUtils::filterString($this->request->get('id'),0);
+        $id = trim(HttpUtils::filterString($this->request->get('id')),",");
         $check = HttpUtils::filterInt($this->request->get('check'));
-        
         $result = $this->commentService->updateCommentCheck(explode(',', $id), $check);
-        
         if ($result > 0){
             $this->response->setContent('true');
         } else {

@@ -556,6 +556,17 @@ class ArticleService extends ServiceBase {
      * @author zhouwei
      */
     public function commentTimesAddUpdate($id,$times){
-        $this->articleDao->commentTimesAddUpdate($id, $times);
+        return $this->articleDao->commentTimesAddUpdate($id, $times);
     }
+
+	/**
+	 * 更新文章的阅读次数
+	 * @param int $id
+	 * @param int $times
+	 * @return void
+	 * @author zhouwei
+	 */ 
+	public function readTimesAddUpdate($id,$times){
+		return $this->articleDao->readTimesAddUpdate($id,$times);
+	}
 }

@@ -174,7 +174,7 @@ class CommentService extends ServiceBase {
         if (empty($pid)) {
             $pid = null;
         }
-        $ischeck = 1;
+        $ischeck = 0;
         $content = StringUtils::fitlerWords($content,$this->getFilterWordsArray());
         $keywords = StringUtils::keyWords($content,$this->getKeyWordsArray());
         $content = StringUtils::filterHtmlEntity($content);
@@ -219,6 +219,13 @@ class CommentService extends ServiceBase {
                 || empty($id)){
             return 0;
         }
-        return $this->commentDao->updateCheck($isCheck,$id);
+		foreach ($id as $commentId){
+			$idArray = explode('|',$commentId);
+			$resultUpdate = $this->commentDao->updateCheckById($idArray[0],$isCheck);
+			if ($isCheck == '1' && !empty($resultUpdate)){
+				$this->articleService->commentTimesAddUpdate($idArray[1],1);
+			}
+		}
+        return $result;
     }
 }

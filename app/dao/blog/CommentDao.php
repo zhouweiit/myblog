@@ -129,4 +129,17 @@ class CommentDao extends DaoBase {
         $this->persistent->execute($sql,$data);
         return $this->persistent->affectedRows();
     }
+
+	/** 
+	 * 更新评论的状态信息
+	 * @param int $id
+	 * @param int $isCheck
+	 * @return int
+	 * @author zhouwei
+     */
+	public function updateCheckById($id,$isCheck){
+		$sql = 'update comment set is_check = :is_check,last_changed_date=now() where id = :id';
+		$this->persistent->execute($sql,array(':id'=>$id,':is_check'=>$isCheck));
+		return $this->persistent->affectedRows();
+	}
 }

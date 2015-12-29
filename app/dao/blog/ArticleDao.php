@@ -297,6 +297,7 @@ class ArticleDao extends DaoBase {
     
     /**
      * 更新评论的条数
+	 * @param int $id
      * @param int $times
      * @return number
      * @author zhouwei
@@ -306,6 +307,20 @@ class ArticleDao extends DaoBase {
         $this->persistent->execute($sql,array(':comment_times'=>$times,':id'=>$id));
         return $this->persistent->affectedRows();
     }
+	
+
+	/**
+	 * 更新浏览的次数
+	 * @param int $id
+	 * @param int times
+	 * @return number
+	 * @author zhouwei
+	 */
+	public function readTimesAddUpdate($id,$times){
+		$sql = 'update article set read_times = read_times + :read_times,last_changed_date=now() where id = :id';
+		$this->persistent->execute($sql,array(':id'=>$id,':read_times'=>$times));
+		return $this->persistent->affectedRows();
+	}
     
     /**
      * 根据文章ID删除
