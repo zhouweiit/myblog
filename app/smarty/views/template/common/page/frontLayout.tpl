@@ -2,16 +2,16 @@
 {%html xmlns:wb="http://open.weibo.com/wb" framework="common:static/js/mod.js"%}
 {%head%}
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>{%if $TDK['title']%}{%$TDK['title']%} | {%/if%}未舟 - zwiter.com</title>
+<title>{%if $TDK['title']%}{%$TDK['title']%} | {%/if%}未舟 - www.zwiter.com</title>
 {%if !$TDK['description']%}
-<meta name="description"  content="一个不严谨的技术博客，因为博客内容充满了技术与段子 | www.zwiter.com" />
+<meta name="description"  content="一个不严谨的技术博客，因为博客内容充满了技术与段子 | 未舟 - www.zwiter.com" />
 {%else%}
 <meta name="description"  content="{%$TDK['description']%}" />
 {%/if%}
 {%if !$TDK['keywords']%}
-<meta name="keywords"  content="排序,正则表达式,程序员,算法,软件开发,AJAX,Algorithm,Android,Bash,book,C++,Code Review,Coding,CSS,Database,Debug,ebook,Erlang,Game,Go,Google,HTML,IE,Java,Javascript,jQuery,Linus Torvalds,Linux,Mac,MySQL,Oracle,OS,Perl,PHP,Programmer,programming,language,Python,Ruby,SQL,Ubuntu,UI,Unix,vim,Web,Windows" />
+<meta name="keywords"  content="{%$aside['tagStr']%}" />
 {%else%}
-<meta name="keywords"  content="{%$TDK['keywords']%},【未舟】"/>
+<meta name="keywords"  content="{%$TDK['keywords']%},未舟 - www.zwiter.com"/>
 {%/if%}
 <link href="{%uri name="frontend:static/css/base.css"%}" rel="stylesheet">
 <link href="{%uri name="frontend:static/css/index.css"%}" rel="stylesheet">

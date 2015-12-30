@@ -30,18 +30,31 @@ class AsideService extends ServiceBase {
      * @var CommentService
      */
     private $commentService;
+
+	/**
+	 * @var CategoryService
+	 */
+	private $categoryService;
+
+	/**
+	 * @var CategoryService
+	 */
+	private $tagService;
     
     /**
      *
      * @var LinksService
      */
     private $linksService;
+
     protected function init(){
         $this->log = $this->di->get('applicationLog');
         $this->articleService = $this->di->get('ArticleService');
         $this->articleTagMapService = $this->di->get('ArticleTagMapService');
         $this->commentService = $this->di->get('CommentService');
         $this->linksService = $this->di->get('LinksService');
+        $this->categoryService = $this->di->get('CategoryService');
+        $this->tagService = $this->di->get('TagService');
     }
     
     /**
@@ -57,14 +70,20 @@ class AsideService extends ServiceBase {
         $archiveInfo = $this->articleService->getArchiveInfo($allArticles);
         $archiveTags = $this->articleTagMapService->getArchiveTag();
         $newComments = $this->commentService->getNewCommentTop10();
-        $links = $this->linksService->getAllLinks();
+        $links       = $this->linksService->getAllLinks();
+		$tags 		 = $this->tagService->getAllTag();
+		$allTagStr   = '';
+		foreach ($tags as $tag){
+			$allTagStr .= $tag->getName().',';	
+		}
         return array(
             'newarticles' => $newArticles,
             'hotArticles' => $hotArticles,
             'archiveInfo' => $archiveInfo,
             'archiveTags' => $archiveTags,
             'newComments' => $newComments,
-            'links' => $links 
+            'links' 	  => $links, 
+			'tagStr'	  => $allTagStr
         );
     }
     

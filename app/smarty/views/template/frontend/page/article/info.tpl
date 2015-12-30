@@ -48,7 +48,7 @@
   				"bdDesc":"{%$article.title%}",
   				"bdUrl":"http://www.zwiter.com/article/info?articleid={%$article.id%}",
   				{%if $article.headimage%}
-  				"bdPic":"{%$article.headimage%}",
+  				"bdPic":"http://www.zwiter.com/{%$article.headimage%}",
   				{%/if%}
   				"bdMini":"2",
   				"bdMiniList":false,
@@ -56,11 +56,6 @@
   				"bdSize":"16"
   			},
   			"share":{},
-  			"image":{
-  				"viewList":["weixin","tsina","tqq","qzone","renren","fbook","douban"],
-  				"viewText":"分享到：",
-  				"viewSize":"16"
-  			},
  			"selectShare":{
  				"bdContainerClass":null,
  				"bdSelectMiniList":["weixin","tsina","tqq","qzone","renren","fbook","douban"]
@@ -106,7 +101,7 @@
         	</div>
         	<div style="float:left;padding-left:23px;font-weight:normal;">
 	        	<label style="float:left;width:200px;">{%$commentInfo.date%} &nbsp;&nbsp;|&nbsp; <a href="#floor-{%$floor%}" class="floor">#{%$floor%}</a></label>
-	        	<label style="float:right;margin-left:275px;"><a class='replay replaybutton' name="{%$commentInfo.comment->getName()%}" href='#form_comment'>回复</a> | <a class='replay quotebutton' pid="{%$commentInfo.comment->getId()%}" quotefloor="#floor-{%$floor%}" pidnum="{%$commentInfo.comment->getId()%},{%$commentInfo.comment->getPid()%}" href='#form_comment'>盖楼</a></label>
+	        	<label style="float:right;margin-left:275px;"><a class='replay replaybutton' name="{%$commentInfo.comment->getName()%}" href='#form_comment'>回复</a> | <a class='replay quotebutton' pid="{%$commentInfo.comment->getId()%}" quotefloor="#{%$floor%}" pidnum="{%$commentInfo.comment->getId()%},{%$commentInfo.comment->getPid()%}" href='#form_comment'>盖楼</a></label>
 	        	<div class="clear"></div>
         	</div>
         	

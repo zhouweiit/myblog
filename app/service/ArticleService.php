@@ -493,7 +493,7 @@ class ArticleService extends ServiceBase {
                 );
             }
         }
-        $result[count($result) - 1]['last'] = true;
+        //$result[count($result) - 1]['last'] = true;
         return $result;
     }
     
@@ -568,5 +568,15 @@ class ArticleService extends ServiceBase {
 	 */ 
 	public function readTimesAddUpdate($id,$times){
 		return $this->articleDao->readTimesAddUpdate($id,$times);
+	}
+
+	/**
+	 * 根据文章的内容获取所有的图片信息
+	 * @param string $string
+	 * @return array
+	 * @author zhouwei
+	 */
+	public function getImageUrlArray($string){
+			
 	}
 }

@@ -83,7 +83,7 @@ opacity:1;
 .blogs figure:hover img { -moz-transform: scale(1.1); -webkit-transform: scale(1.1); -o-transform: scale(1.1); -ms-transform: scale(1.1); }
 .blogs ul { float: right;font-size:12px; line-height: 20px; width: 100%; color: #756f71; }
 .blogs ul p {margin-bottom:10px;}
-.blogs ul:hover { cursor: pointer; }
+.blogs ul:hover { cursor: auto; }
 .blogs ul figure{margin-right:20px;}
 .blogs p.title_meta{ color: #8c8d8d; text-align: left;padding-bottom:13px;margin-top:-5px;margin-bottom:6px;}
 .blogs span { margin-right:10px; }
@@ -94,6 +94,7 @@ opacity:1;
 .autor span a { color: #8c8d8d;font-weight:normal;}
 .autor span a:hover { text-decoration: underline;}
 a.readmore { background: #A9B1D0; color: #FFF; padding: 5px 10px; float: right; margin: 20px 0 0 0 ;margin-left: 10px;}
+a.readmore:hover {background:#53a2e1; }
 /* 右侧栏个人档案 */
 .avatar { margin: 10px auto; width: 160px; height: 160px; border-radius: 100%; overflow: hidden; }
 .avatar a { display: block; padding-top: 100px; width: 160px; background: url(/static/frontend/images/photos.jpg) no-repeat; background-size: 160px 160px; }

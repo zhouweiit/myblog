@@ -1,5 +1,6 @@
 {%extends file="common/page/frontLayout.tpl"%}
 {%block name="head"%}
+<script src="{%uri name="backend:static/js/validata.js"%}"></script>
 {%/block%}
 {%block name="content"%}
 <div class="ibody">
@@ -28,7 +29,7 @@
         	</div>
         	<div style="float:left;padding-left:23px;font-weight:normal;">
 	        	<label style="float:left;width:200px;">{%$commentInfo.date%} &nbsp;&nbsp;|&nbsp; <a href="#floor-{%$floor%}" class="floor">#{%$floor%}</a></label>
-	        	<label style="float:right;margin-left:275px;"><a class='replay replaybutton' name="{%$commentInfo.comment->getName()%}" href='#form_comment'>回复</a> | <a class='replay quotebutton' pid="{%$commentInfo.comment->getId()%}" pidnum="{%$commentInfo.comment->getId()%},{%$commentInfo.comment->getPid()%}" href='#form_comment'>引用</a></label>
+	        	<label style="float:right;margin-left:275px;"><a class='replay replaybutton' name="{%$commentInfo.comment->getName()%}" href='#form_comment'>回复</a> | <a class='replay quotebutton' pid="{%$commentInfo.comment->getId()%}" pidnum="{%$commentInfo.comment->getId()%},{%$commentInfo.comment->getPid()%}" href='#form_comment'>盖楼</a></label>
 	        	<div class="clear"></div>
         	</div>
         	

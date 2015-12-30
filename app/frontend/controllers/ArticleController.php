@@ -112,7 +112,6 @@ class ArticleController extends ControllerBase {
         $comments = $this->commentService->getCommentTreeByArticleId($articleid,$userInfo['username'],$page - 1,$pageSize);
         //seo优化信息
         $tdk = $this->seoService->articleInfoTDK($articleInfo['article'], $articleInfo['tag']);
-        
         $pages = $this->pageService->createPageArray($comments['count'],$page,$pageSize);
         $pageUrl = $this->pageService->createPageUrl($this->request->get(),'/article/info');
         
@@ -131,6 +130,7 @@ class ArticleController extends ControllerBase {
         $this->view->setVar('pages',$pages['pages']);
         $this->view->setVar('pageUrl',$pageUrl);
         $this->view->setVar('pageUrlOther','#comment');
+		//分享的图片
     }
     
     /**

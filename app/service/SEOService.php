@@ -19,9 +19,9 @@ class SEOService extends ServiceBase{
     public function articleInfoTDK($articleInfo,$tag){
         $keywords = '';
         foreach ($tag as $value){
-            $keywords .= '【'.$value['name'].'】,';
+            $keywords .= $value['name'].',';
         }
-        $keywords .= '【程序】';
+		$keywords = trim($keywords,',');
         return array(
             'description' => StringUtils::filterHtmlEntity(mb_substr($articleInfo['content'],0,300,'utf-8')),
             'title'       => $articleInfo['title'],

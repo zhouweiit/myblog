@@ -55,6 +55,7 @@ $(function(){
 		var htmltext = '<textarea class="inputblue" name="content" id="comment_content" style="font-size:12px;color:#756f71;width:550px;height:150px;padding:5px;"></textarea>';
 		$("#comment_content").replaceWith(htmltext);
 		$("#comment_content").html('@'+name+'：\n');
+		setTimeout(function () { $("#comment_content").focus(); }, 1);
 	});
 	
 	$("a.quotebutton").click(function(){
@@ -63,8 +64,8 @@ $(function(){
 		var quotefloor = $(this).attr('quotefloor');
 		var htmltext = '<textarea class="inputblue" name="content" id="comment_content" style="font-size:12px;color:#756f71;width:550px;height:150px;padding:5px;"></textarea>';
 		$("#comment_content").replaceWith(htmltext);
-		//$("#comment_content").html(''+quotefloor+'');
 		$("#form_comment_pid").val(pidnum);
+		setTimeout(function () { $("#comment_content").focus(); }, 1);
 	});
 	
 	$("#comment_name").focus(function(){
