@@ -379,4 +379,12 @@ function helloSyntaxHighlighter()
     return "hi!";
 }
 </pre>
-{%require name='backend:page/index/main.tpl'%}{%/block%}
+<ul class="infos">
+<h1>为什么越来越小1</h1>
+<h2>这个是标题2</h2>
+<h3>这个是标题3</h3>
+<h4>这个是NOTE</h4>
+<h5>这个是引用</h5>
+</ul>
+{%/block%}
+

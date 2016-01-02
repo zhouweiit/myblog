@@ -5,6 +5,7 @@
 <link href="{%uri name="backend:static/css/common.css"%}" rel="stylesheet"/>
 <link href="{%uri name="backend:static/css/main.css"%}" rel="stylesheet"/>
 <link href="{%uri name="common:static/plugin/syntaxhighlighter/styles/shCoreDefault.css"%}" rel="stylesheet"/>
+<link href="{%uri name="frontend:static/css/index.css"%}" rel="stylesheet">
 <link href="{%uri name="common:static/plugin/timepicker/css/jquery-ui.css"%}" rel="stylesheet"/>
 <script src="{%uri name="common:static/js/jquery-1.7.2.min.js"%}"></script>
 <script src="{%uri name="backend:static/js/jquery.SuperSlide.js"%}"></script>
