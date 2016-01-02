@@ -577,6 +577,9 @@ class ArticleService extends ServiceBase {
 	 * @author zhouwei
 	 */
 	public function getImageUrlArray($string){
-			
+		$pattern = '/\/upload\/image\/.*\.(png|gif|jpg)/';
+		preg_match_all($pattern, $string, $matches);
+		$images = $matches[0];
+		return $images;
 	}
 }

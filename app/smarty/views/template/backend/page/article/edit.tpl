@@ -100,7 +100,7 @@
                         <tr>
                             <td class="header">文章内容：</td>
                             <td class="">
-                                <textarea name="content" id="content" rows="10" cols="80">{%$article.content%}</textarea>
+                                <textarea name="content" id="content" rows="20" cols="80">{%$article.content%}</textarea>
 								<label class="error" style="display:block"></label>
                             </td>
                         </tr>
@@ -126,25 +126,6 @@ $(function(){
     
 	$('#release_datetime').datetimepicker();
 	contentck = CKEDITOR.replace( 'content');
-	CKEDITOR.editorConfig = function( config ) {
-	    config.toolbarGroups = [
-	        { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
-	        { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
-	        { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
-	        { name: 'forms', groups: [ 'forms' ] },
-	        '/',
-	        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-	        { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
-	        { name: 'links', groups: [ 'links' ] },
-	        { name: 'insert', groups: [ 'insert' ] },
-	        '/',
-	        { name: 'styles', groups: [ 'styles' ] },
-	        { name: 'colors', groups: [ 'colors' ] },
-	        { name: 'tools', groups: [ 'tools' ] },
-	        { name: 'others', groups: [ 'others' ] },
-	        { name: 'about', groups: [ 'about' ] }
-	    ];
-	};
 	
 	$("#first_category").change(function(){
         var categoryId = $(this).val();
@@ -234,6 +215,10 @@ $(function(){
             'committype':committype
         };
         
+		if (!checktitle || !checkheadcontent || !checkcontent || !checkreadtimes || !checkcommenttimes || !releasedatetime || !checksecondcategory){
+			return false;
+		}
+
         $.ajax({
             url: '/backend/article/ajaxSubmit',
             type: 'post',
@@ -293,8 +278,8 @@ $(function(){
     
     function validata_read_times(obj,times){
         var times = trim(times);
-        if (!checkInteger(times) || parseInt(times) <= 0){
-            error_info(obj,'阅读次数必须是正整数！');
+        if (!checkInteger(times) || parseInt(times) < 0){
+            error_info(obj,'阅读次数必须是整数！');
             return false;
         }
         error_info(obj,'');
@@ -303,8 +288,8 @@ $(function(){
     
     function validata_comment_times(obj,times){
         var times = trim(times);
-        if (!checkInteger(times) || parseInt(times) <= 0){
-            error_info(obj,'评论次数必须是正整数！');
+        if (!checkInteger(times) || parseInt(times) < 0){
+            error_info(obj,'评论次数必须是整数！');
             return false;
         }
         error_info(obj,'');
@@ -333,4 +318,4 @@ $(function(){
     
 });
 {%/script%}
-{%require name='backend:page/article/edit.tpl'%}{%/block%}
+{%/block%}

@@ -12,7 +12,6 @@
 <script src="{%uri name="common:static/plugin/ckeditor/ckeditor.js"%}"></script>
 <script src="{%uri name="common:static/plugin/syntaxhighlighter/scripts/shCore.js"%}"></script>
 <script src="{%uri name="common:static/plugin/syntaxhighlighter/scripts/shAutoloader.js"%}"></script>
-<script src="{%uri name="common:static/plugin/syntaxhighlighter/scripts/config.js"%}"></script>
 <script src="{%uri name="common:static/plugin/timepicker/js/jquery-ui.js"%}"></script>
 <script src="{%uri name="common:static/plugin/timepicker/js/jquery-ui-slide.min.js"%}"></script>
 <script src="{%uri name="common:static/plugin/timepicker/js/jquery-ui-timepicker-addon.js"%}"></script>

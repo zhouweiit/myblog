@@ -114,7 +114,9 @@ class ArticleController extends ControllerBase {
         $tdk = $this->seoService->articleInfoTDK($articleInfo['article'], $articleInfo['tag']);
         $pages = $this->pageService->createPageArray($comments['count'],$page,$pageSize);
         $pageUrl = $this->pageService->createPageUrl($this->request->get(),'/article/info');
-        
+       	//文章中的图片 
+		$images = $this->articleService->getImageUrlArray($articleInfo['article']['content']);
+
         $fristCategory = $this->categoryService->getFirstCategory();
         $this->view->setVar('firstCategory',$fristCategory);
         $this->view->setVar('firstCategoryId',$menuInfo['categoryid']);
