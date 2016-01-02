@@ -76,8 +76,8 @@ opacity:1;
 .bloglist h2 p span { color: #38b3d4; }
 .blogs { margin: 0 20px 20px 20px; position: relative; border-bottom:#dcdcdc 1px dashed;}
 .blogs h3 { font-size: 14px; font-weight: normal; margin-bottom: 15px; transition: all .5s }
-.blogs h3 a { color: #525554; font-size:14px;font-family:"Microsoft Yahei", Arial, Helvetica, sans-serif;}
-.blogs h3:hover { text-decoration: none; }
+.blogs h3 a { color: #53a2e1; font-weight:bold;font-size:14px;font-family:"Microsoft Yahei", Arial, Helvetica, sans-serif;}
+.blogs h3 a:hover { text-decoration: none;color:rgba(133,144,188,0.7);}
 .blogs figure { float: left; width: 25%; overflow: hidden; margin-top:4px;}
 .blogs figure img { width: 100%; margin: auto; -moz-transition: all 0.5s; -webkit-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s; }
 .blogs figure:hover img { -moz-transform: scale(1.1); -webkit-transform: scale(1.1); -o-transform: scale(1.1); -ms-transform: scale(1.1); }
@@ -93,8 +93,8 @@ opacity:1;
 .autor span { margin-right:10px; }
 .autor span a { color: #8c8d8d;font-weight:normal;}
 .autor span a:hover { text-decoration: underline;}
-a.readmore { background: #A9B1D0; color: #FFF; padding: 5px 10px; float: right; margin: 20px 0 0 0 ;margin-left: 10px;}
-a.readmore:hover {background:#53a2e1; }
+a.readmore { background:#53a2e1; color: #FFF; padding: 5px 10px; float: right; margin: 20px 0 0 0 ;margin-left: 10px;}
+a.readmore:hover {background:#A9B1D0;}
 /* 右侧栏个人档案 */
 .avatar { margin: 10px auto; width: 160px; height: 160px; border-radius: 100%; overflow: hidden; }
 .avatar a { display: block; padding-top: 100px; width: 160px; background: url(/static/frontend/images/photos.jpg) no-repeat; background-size: 160px 160px; }
@@ -114,8 +114,7 @@ a.readmore:hover {background:#53a2e1; }
 .bdsharebuttonbox { margin: 20px; clear: both; }/* 百度分享 */
 /* 右侧推荐信息列表 */
 .tj_news h2, .links h2 { font-size: 16px; font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif; color: #FFF; }
-.tj_news h2 p, .links h2 p { height: 40px; line-height: 40px; width: 100px; padding: 0 0 0 30px; border-radius: 0 20px 20px 0; text-shadow: rgba(0,0,0,.65) 1px 1px; }
-.tj_t1 { background: #53a2e1 }
+p.tj_t1 {border-radius: 0 10px 10px 0;line-height:35px;height:35px;width:100px;padding: 0 0 0 30px; text-shadow: rgba(0,0,0,.65) 1px 1px;background:rgba(133,144,188,0.7);}
 .tj_t2 { background: #53a2e1 }
 .tj_news ul { margin: 20px 0 20px 20px }
 .tj_news ul li a:hover, .links ul li a:hover  { text-decoration: underline; color: #FFF;text-decoration: none;}

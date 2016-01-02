@@ -349,7 +349,8 @@ class ArticleService extends ServiceBase {
             }
             $result[$value->getId()] = array(
                 'id' => $value->getId(),
-                'name' => $value->getTitle() 
+			    'name' => $this->getCutTitle($value->getTitle(),39),
+				'all_name' => $value->getTitle(),
             );
             $count++;
         }
@@ -381,7 +382,8 @@ class ArticleService extends ServiceBase {
             $article = $allArticlesTmp[$key];
             $result[] = array(
                 'id' => $article->getId(),
-                'name' => $article->getTitle() 
+                'name' => $this->getCutTitle($article->getTitle(),39), 
+				'all_name' => $article->getTitle(),
             );
             $count++;
         }
@@ -493,7 +495,7 @@ class ArticleService extends ServiceBase {
                 );
             }
         }
-        //$result[count($result) - 1]['last'] = true;
+		$result[$map->getTagId()]['last'] = true;
         return $result;
     }
     
@@ -581,5 +583,19 @@ class ArticleService extends ServiceBase {
 		preg_match_all($pattern, $string, $matches);
 		$images = $matches[0];
 		return $images;
+	}
+
+	/**
+	 * 截取字符串，如果超过指定的长度，则截取加省略号
+	 * @param string $title
+	 * @param int $length
+	 * @return string
+	 * @author zhouwei
+	 */
+	public function getCutTitle($title,$length){
+	    if (strlen($title) > $length){
+		    return mb_strcut($title,0,$length,'utf-8').'...';	
+		}
+		return $title;
 	}
 }

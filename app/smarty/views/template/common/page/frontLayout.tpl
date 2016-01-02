@@ -19,7 +19,6 @@
 <link href="{%uri name="frontend:static/css/style.css"%}" rel="stylesheet">
 <link href="{%uri name="common:static/plugin/syntaxhighlighter/styles/shCoreDefault.css"%}" rel="stylesheet"/>
 <script src="{%uri name="common:static/js/jquery-1.8.1.min.js"%}"></script>
-<script src="{%uri name="common:static/plugin/ckeditor/ckeditor.js"%}"></script>
 <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
 {%block name="head"%}{%/block%}
 <!--[if lt IE 9]>

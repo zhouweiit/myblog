@@ -5,7 +5,7 @@
 	</h2>
 	<ul>
 		{%foreach from=$aside.newarticles item=article%}
-			<li><a href="/article/info?articleid={%$article.id%}">{%$article.name%}</a></li>
+			<li><a href="/article/info?articleid={%$article.id%}" title="{%$article.all_name%}">{%$article.name%}</a></li>
 		{%/foreach%}
 	</ul> 
 	<h2>
@@ -13,7 +13,7 @@
 	</h2>
 	<ul>
 		{%foreach from=$aside.hotArticles item=article%}
-			<li><a href="/article/info?articleid={%$article.id%}">{%$article.name%}</a></li>
+			<li><a href="/article/info?articleid={%$article.id%}" title="{%$article.all_name%}">{%$article.name%}</a></li>
 		{%/foreach%}
 	</ul> 
 </div>	   
