@@ -76,7 +76,7 @@ opacity:1;
 .bloglist h2 p span { color: #38b3d4; }
 .blogs { margin: 0 20px 20px 20px; position: relative; border-bottom:#dcdcdc 1px dashed;}
 .blogs h3 { font-size: 14px; font-weight: normal; margin-bottom: 15px; transition: all .5s }
-.blogs h3 a { color: #53a2e1; font-weight:bold;font-size:14px;font-family:"Microsoft Yahei", Arial, Helvetica, sans-serif;}
+.blogs h3 a { color: #53a2e1; font-weight:bold;font-size:15px;font-family:"Microsoft Yahei", Arial, Helvetica, sans-serif;}
 .blogs h3 a:hover { text-decoration: none;color:rgba(133,144,188,0.7);}
 .blogs figure { float: left; width: 25%; overflow: hidden; margin-top:4px;}
 .blogs figure img { width: 100%; margin: auto; -moz-transition: all 0.5s; -webkit-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s; }

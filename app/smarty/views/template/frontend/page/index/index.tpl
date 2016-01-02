@@ -26,7 +26,7 @@
 	        	</span>
         	{%/if%}
         	<span><a href="/article/info?articleid={%$article.id%}">浏览({%$article.read_times%})</a></span><span><a href="/article/info?articleid={%$article.id%}#comment">评论({%$article.comment_times%})</a></span></p>
-        <ul class="infos">
+        <ul class="infos" style="margin-top:1px;">
         	{%if $article.headimage%}
         		<figure><img src="{%$article.headimage%}"></figure>
         	{%/if%}
