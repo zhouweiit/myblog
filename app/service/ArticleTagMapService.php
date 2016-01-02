@@ -134,4 +134,14 @@ class ArticleTagMapService extends ServiceBase {
             $this->articleTagMapDao->insert($articleId, $tagId);
         }
     }
+
+    /**
+	 * 根据文章ID删除tag的关系
+	 * @param int $articleId
+	 * @return int 影响的行数
+	 * @author zhouwei
+	 */
+	public function deleteByArticleId($articleId){
+		return $this->articleTagMapDao->deleteByArticleId($articleId);
+	}
 }

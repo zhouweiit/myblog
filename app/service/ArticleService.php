@@ -546,6 +546,7 @@ class ArticleService extends ServiceBase {
      * @author zhouwei
      */
     public function deleteArticle($id){
+	    $this->articleTagMapService->deleteByArticleId($id); 
         return $this->articleDao->delete($id);
     }
     
