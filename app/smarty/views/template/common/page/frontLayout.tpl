@@ -48,7 +48,7 @@ $(function(){
 <script src="{%uri name="common:static/js/modernizr.js"%}"></script>
 <script src="{%uri name="common:static/js/silder.js"%}"></script>
 <script src="{%uri name="common:static/js/jquery.tagcanvas.min.js"%}"></script>
-<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
 <script src="{%uri name="common:static/plugin/syntaxhighlighter/scripts/shCore.js"%}"></script>
 <script src="{%uri name="common:static/plugin/syntaxhighlighter/scripts/shAutoloader.js"%}"></script>
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
 {%/html%}
