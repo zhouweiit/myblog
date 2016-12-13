@@ -53,7 +53,6 @@ class CommentController extends ControllerBase{
         } else {
             $this->response->setContent('false');
         }
-        
         $this->response->send();
     }
     

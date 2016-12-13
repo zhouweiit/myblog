@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace backend\controllers;
 
 use library\mvc\ControllerBase;
