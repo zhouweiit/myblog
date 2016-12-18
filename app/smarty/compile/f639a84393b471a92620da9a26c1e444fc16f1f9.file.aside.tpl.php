@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21, created on 2016-12-07 22:44:34
+<?php /* Smarty version Smarty-3.1.21, created on 2016-12-18 17:30:34
          compiled from "/home/zhouwei/workspace/myblog/app/smarty/views/template/frontend/widget/aside.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3807236155682b2ccbcfa18-23442581%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f639a84393b471a92620da9a26c1e444fc16f1f9' => 
     array (
       0 => '/home/zhouwei/workspace/myblog/app/smarty/views/template/frontend/widget/aside.tpl',
-      1 => 1481118904,
+      1 => 1482053433,
       2 => 'file',
     ),
   ),
@@ -42,7 +42,6 @@ foreach ($_from as $_smarty_tpl->tpl_vars['article']->key => $_smarty_tpl->tpl_v
 $_smarty_tpl->tpl_vars['article']->_loop = true;
 ?>
 			<li><a href="/article/info?articleid=<?php echo $_smarty_tpl->tpl_vars['article']->value['id'];?>
-" title="<?php echo $_smarty_tpl->tpl_vars['article']->value['all_name'];?>
 "><?php echo $_smarty_tpl->tpl_vars['article']->value['name'];?>
 </a></li>
 		<?php } ?>
@@ -57,7 +56,6 @@ foreach ($_from as $_smarty_tpl->tpl_vars['article']->key => $_smarty_tpl->tpl_v
 $_smarty_tpl->tpl_vars['article']->_loop = true;
 ?>
 			<li><a href="/article/info?articleid=<?php echo $_smarty_tpl->tpl_vars['article']->value['id'];?>
-" title="<?php echo $_smarty_tpl->tpl_vars['article']->value['all_name'];?>
 "><?php echo $_smarty_tpl->tpl_vars['article']->value['name'];?>
 </a></li>
 		<?php } ?>
@@ -180,7 +178,5 @@ $_smarty_tpl->tpl_vars['link']->_loop = true;
   <ul>
     <p>Copyright © 2015 zwiter</p>
     <p>All Rights Reserved</p>
-    <p>京ICP备15063372号-1</p>
   </ul>
-</div>
-<?php }} ?>
+</div><?php }} ?>

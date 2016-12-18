@@ -11,7 +11,7 @@
     <div class="bloglist">
       {%foreach from=$articleInfo item=article%}
       <div class="blogs">
-        <h3><a href="/article/info?articleid={%$article.id%}">{%$article.title%}</a></h3>
+        <h3><a class="infolist_article_title" href="/article/info?articleid={%$article.id%}">{%$article.title%}</a></h3>
         <p class="title_meta">
         	<span>发布时间：<a href="/index/index?date={%$article.release_datetime%}">{%$article.release_datetime%}</a></span>
         	{%if $article.tag%}

@@ -1,0 +1,2098 @@
+{
+    "res": {
+        "common:page/backMainLayout.tpl": {
+            "uri": "/template/common/page/backMainLayout.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            }
+        },
+        "common:page/frontLayout.tpl": {
+            "uri": "/template/common/page/frontLayout.tpl",
+            "type": "tpl",
+            "extras": {
+                "isPage": true
+            }
+        },
+        "common:static/js/base64.min.js": {
+            "uri": "/static/common/js/base64.min.js",
+            "type": "js",
+            "deps": [
+                "buffer"
+            ]
+        },
+        "common:static/js/jquery-1.7.2.min.js": {
+            "uri": "/static/common/js/jquery-1.7.2.min.js",
+            "type": "js"
+        },
+        "common:static/js/jquery-1.8.1.min.js": {
+            "uri": "/static/common/js/jquery-1.8.1.min.js",
+            "type": "js"
+        },
+        "common:static/js/jquery.tagcanvas.min.js": {
+            "uri": "/static/common/js/jquery.tagcanvas.min.js",
+            "type": "js"
+        },
+        "common:static/js/jsencrypt.min.js": {
+            "uri": "/static/common/js/jsencrypt.min.js",
+            "type": "js"
+        },
+        "common:static/js/mod.js": {
+            "uri": "/static/common/js/mod.js",
+            "type": "js"
+        },
+        "common:static/js/modernizr.js": {
+            "uri": "/static/common/js/modernizr.js",
+            "type": "js"
+        },
+        "common:static/js/silder.js": {
+            "uri": "/static/common/js/silder.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/adapters/jquery.js": {
+            "uri": "/static/common/plugin/ckeditor/adapters/jquery.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/build-config.js": {
+            "uri": "/static/common/plugin/ckeditor/build-config.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/ckeditor.js": {
+            "uri": "/static/common/plugin/ckeditor/ckeditor.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/config.js": {
+            "uri": "/static/common/plugin/ckeditor/config.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/contents.css": {
+            "uri": "/static/common/plugin/ckeditor/contents.css",
+            "type": "css"
+        },
+        "common:static/plugin/ckeditor/lang/af.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/af.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/ar.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/ar.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/bg.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/bg.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/bn.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/bn.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/bs.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/bs.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/ca.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/ca.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/cs.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/cs.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/cy.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/cy.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/da.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/da.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/de.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/de.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/el.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/el.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/en-au.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/en-au.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/en-ca.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/en-ca.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/en-gb.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/en-gb.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/en.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/en.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/eo.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/eo.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/es.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/es.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/et.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/et.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/eu.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/eu.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/fa.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/fa.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/fi.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/fi.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/fo.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/fo.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/fr-ca.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/fr-ca.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/fr.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/fr.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/gl.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/gl.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/gu.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/gu.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/he.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/he.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/hi.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/hi.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/hr.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/hr.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/hu.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/hu.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/id.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/id.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/is.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/is.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/it.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/it.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/ja.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/ja.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/ka.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/ka.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/km.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/km.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/ko.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/ko.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/ku.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/ku.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/lt.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/lt.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/lv.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/lv.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/mk.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/mk.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/mn.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/mn.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/ms.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/ms.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/nb.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/nb.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/nl.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/nl.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/no.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/no.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/pl.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/pl.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/pt-br.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/pt-br.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/pt.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/pt.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/ro.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/ro.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/ru.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/ru.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/si.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/si.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/sk.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/sk.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/sl.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/sl.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/sq.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/sq.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/sr-latn.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/sr-latn.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/sr.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/sr.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/sv.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/sv.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/th.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/th.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/tr.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/tr.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/tt.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/tt.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/ug.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/ug.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/uk.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/uk.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/vi.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/vi.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/zh-cn.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/zh-cn.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/lang/zh.js": {
+            "uri": "/static/common/plugin/ckeditor/lang/zh.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/a11yhelp.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/a11yhelp.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/af.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/af.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/ar.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/ar.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/bg.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/bg.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/ca.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/ca.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/cs.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/cs.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/cy.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/cy.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/da.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/da.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/de.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/de.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/el.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/el.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/en-gb.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/en-gb.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/en.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/en.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/eo.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/eo.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/es.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/es.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/et.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/et.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/fa.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/fa.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/fi.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/fi.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/fo.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/fo.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/fr-ca.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/fr-ca.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/fr.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/fr.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/gl.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/gl.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/gu.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/gu.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/he.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/he.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/hi.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/hi.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/hr.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/hr.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/hu.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/hu.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/id.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/id.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/it.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/it.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/ja.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/ja.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/km.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/km.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/ko.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/ko.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/ku.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/ku.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/lt.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/lt.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/lv.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/lv.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/mk.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/mk.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/mn.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/mn.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/nb.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/nb.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/nl.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/nl.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/no.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/no.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/pl.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/pl.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/pt-br.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/pt-br.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/pt.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/pt.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/ro.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/ro.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/ru.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/ru.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/si.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/si.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/sk.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/sk.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/sl.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/sl.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/sq.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/sq.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/sr-latn.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/sr-latn.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/sr.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/sr.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/sv.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/sv.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/th.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/th.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/tr.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/tr.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/tt.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/tt.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/ug.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/ug.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/uk.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/uk.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/vi.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/vi.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/zh-cn.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/zh-cn.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/zh.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/a11yhelp/dialogs/lang/zh.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/about/dialogs/about.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/about/dialogs/about.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/clipboard/dialogs/paste.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/clipboard/dialogs/paste.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/colordialog/dialogs/colordialog.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/colordialog/dialogs/colordialog.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/dialog/dialogDefinition.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/dialog/dialogDefinition.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/div/dialogs/div.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/div/dialogs/div.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/find/dialogs/find.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/find/dialogs/find.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/flash/dialogs/flash.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/flash/dialogs/flash.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/forms/dialogs/button.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/forms/dialogs/button.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/forms/dialogs/checkbox.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/forms/dialogs/checkbox.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/forms/dialogs/form.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/forms/dialogs/form.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/forms/dialogs/hiddenfield.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/forms/dialogs/hiddenfield.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/forms/dialogs/radio.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/forms/dialogs/radio.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/forms/dialogs/select.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/forms/dialogs/select.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/forms/dialogs/textarea.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/forms/dialogs/textarea.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/forms/dialogs/textfield.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/forms/dialogs/textfield.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/iframe/dialogs/iframe.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/iframe/dialogs/iframe.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/image/dialogs/image.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/image/dialogs/image.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/link/dialogs/anchor.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/link/dialogs/anchor.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/link/dialogs/link.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/link/dialogs/link.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/liststyle/dialogs/liststyle.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/liststyle/dialogs/liststyle.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/pastefromword/filter/default.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/pastefromword/filter/default.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/scayt/dialogs/options.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/scayt/dialogs/options.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/scayt/dialogs/toolbar.css": {
+            "uri": "/static/common/plugin/ckeditor/plugins/scayt/dialogs/toolbar.css",
+            "type": "css"
+        },
+        "common:static/plugin/ckeditor/plugins/smiley/dialogs/smiley.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/smiley/dialogs/smiley.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/af.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/af.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/ar.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/ar.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/bg.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/bg.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/ca.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/ca.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/cs.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/cs.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/cy.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/cy.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/da.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/da.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/de.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/de.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/el.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/el.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/en-gb.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/en-gb.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/en.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/en.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/eo.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/eo.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/es.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/es.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/et.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/et.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/fa.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/fa.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/fi.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/fi.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/fr-ca.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/fr-ca.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/fr.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/fr.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/gl.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/gl.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/he.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/he.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/hr.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/hr.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/hu.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/hu.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/id.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/id.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/it.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/it.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/ja.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/ja.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/km.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/km.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/ko.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/ko.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/ku.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/ku.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/lt.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/lt.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/lv.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/lv.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/nb.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/nb.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/nl.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/nl.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/no.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/no.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/pl.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/pl.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/pt-br.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/pt-br.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/pt.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/pt.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/ru.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/ru.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/si.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/si.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/sk.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/sk.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/sl.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/sl.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/sq.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/sq.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/sv.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/sv.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/th.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/th.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/tr.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/tr.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/tt.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/tt.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/ug.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/ug.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/uk.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/uk.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/vi.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/vi.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/zh-cn.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/zh-cn.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/lang/zh.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/lang/zh.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/specialchar/dialogs/specialchar.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/specialchar/dialogs/specialchar.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/table/dialogs/table.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/table/dialogs/table.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/tabletools/dialogs/tableCell.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/tabletools/dialogs/tableCell.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/templates/dialogs/templates.css": {
+            "uri": "/static/common/plugin/ckeditor/plugins/templates/dialogs/templates.css",
+            "type": "css"
+        },
+        "common:static/plugin/ckeditor/plugins/templates/dialogs/templates.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/templates/dialogs/templates.js",
+            "type": "js",
+            "deps": [
+                "common:static/plugin/ckeditor/plugins/templates/dialogs/templates.css"
+            ]
+        },
+        "common:static/plugin/ckeditor/plugins/templates/templates/default.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/templates/templates/default.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/plugins/wsc/dialogs/wsc.css": {
+            "uri": "/static/common/plugin/ckeditor/plugins/wsc/dialogs/wsc.css",
+            "type": "css"
+        },
+        "common:static/plugin/ckeditor/plugins/wsc/dialogs/wsc.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/wsc/dialogs/wsc.js",
+            "type": "js",
+            "deps": [
+                "common:static/plugin/ckeditor/plugins/wsc/dialogs/wsc.css"
+            ]
+        },
+        "common:static/plugin/ckeditor/plugins/wsc/dialogs/wsc_ie.js": {
+            "uri": "/static/common/plugin/ckeditor/plugins/wsc/dialogs/wsc_ie.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/samples/css/samples.css": {
+            "uri": "/static/common/plugin/ckeditor/samples/css/samples.css",
+            "type": "css"
+        },
+        "common:static/plugin/ckeditor/samples/js/sample.js": {
+            "uri": "/static/common/plugin/ckeditor/samples/js/sample.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/samples/js/sf.js": {
+            "uri": "/static/common/plugin/ckeditor/samples/js/sf.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/samples/old/assets/outputxhtml/outputxhtml.css": {
+            "uri": "/static/common/plugin/ckeditor/samples/old/assets/outputxhtml/outputxhtml.css",
+            "type": "css"
+        },
+        "common:static/plugin/ckeditor/samples/old/assets/uilanguages/languages.js": {
+            "uri": "/static/common/plugin/ckeditor/samples/old/assets/uilanguages/languages.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/samples/old/dialog/assets/my_dialog.js": {
+            "uri": "/static/common/plugin/ckeditor/samples/old/dialog/assets/my_dialog.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/samples/old/htmlwriter/assets/outputforflash/swfobject.js": {
+            "uri": "/static/common/plugin/ckeditor/samples/old/htmlwriter/assets/outputforflash/swfobject.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/samples/old/sample.css": {
+            "uri": "/static/common/plugin/ckeditor/samples/old/sample.css",
+            "type": "css"
+        },
+        "common:static/plugin/ckeditor/samples/old/sample.js": {
+            "uri": "/static/common/plugin/ckeditor/samples/old/sample.js",
+            "type": "js",
+            "deps": [
+                "common:static/plugin/ckeditor/samples/old/sample.css"
+            ]
+        },
+        "common:static/plugin/ckeditor/samples/toolbarconfigurator/css/fontello.css": {
+            "uri": "/static/common/plugin/ckeditor/samples/toolbarconfigurator/css/fontello.css",
+            "type": "css"
+        },
+        "common:static/plugin/ckeditor/samples/toolbarconfigurator/js/abstracttoolbarmodifier.js": {
+            "uri": "/static/common/plugin/ckeditor/samples/toolbarconfigurator/js/abstracttoolbarmodifier.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/samples/toolbarconfigurator/js/fulltoolbareditor.js": {
+            "uri": "/static/common/plugin/ckeditor/samples/toolbarconfigurator/js/fulltoolbareditor.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/samples/toolbarconfigurator/js/toolbarmodifier.js": {
+            "uri": "/static/common/plugin/ckeditor/samples/toolbarconfigurator/js/toolbarmodifier.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/samples/toolbarconfigurator/js/toolbartextmodifier.js": {
+            "uri": "/static/common/plugin/ckeditor/samples/toolbarconfigurator/js/toolbartextmodifier.js",
+            "type": "js"
+        },
+        "common:static/plugin/ckeditor/samples/toolbarconfigurator/lib/codemirror/codemirror.css": {
+            "uri": "/static/common/plugin/ckeditor/samples/toolbarconfigurator/lib/codemirror/codemirror.css",
+            "type": "css"
+        },
+        "common:static/plugin/ckeditor/samples/toolbarconfigurator/lib/codemirror/codemirror.js": {
+            "uri": "/static/common/plugin/ckeditor/samples/toolbarconfigurator/lib/codemirror/codemirror.js",
+            "type": "js",
+            "deps": [
+                "common:static/plugin/ckeditor/samples/toolbarconfigurator/lib/codemirror/codemirror.css"
+            ]
+        },
+        "common:static/plugin/ckeditor/samples/toolbarconfigurator/lib/codemirror/javascript.js": {
+            "uri": "/static/common/plugin/ckeditor/samples/toolbarconfigurator/lib/codemirror/javascript.js",
+            "type": "js",
+            "deps": [
+                "../../lib/codemirror"
+            ]
+        },
+        "common:static/plugin/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css": {
+            "uri": "/static/common/plugin/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css",
+            "type": "css"
+        },
+        "common:static/plugin/ckeditor/samples/toolbarconfigurator/lib/codemirror/show-hint.css": {
+            "uri": "/static/common/plugin/ckeditor/samples/toolbarconfigurator/lib/codemirror/show-hint.css",
+            "type": "css"
+        },
+        "common:static/plugin/ckeditor/samples/toolbarconfigurator/lib/codemirror/show-hint.js": {
+            "uri": "/static/common/plugin/ckeditor/samples/toolbarconfigurator/lib/codemirror/show-hint.js",
+            "type": "js",
+            "deps": [
+                "../../lib/codemirror",
+                "common:static/plugin/ckeditor/samples/toolbarconfigurator/lib/codemirror/show-hint.css"
+            ]
+        },
+        "common:static/plugin/ckeditor/skins/moono/dialog.css": {
+            "uri": "/static/common/plugin/ckeditor/skins/moono/dialog.css",
+            "type": "css"
+        },
+        "common:static/plugin/ckeditor/skins/moono/dialog_ie.css": {
+            "uri": "/static/common/plugin/ckeditor/skins/moono/dialog_ie.css",
+            "type": "css"
+        },
+        "common:static/plugin/ckeditor/skins/moono/dialog_ie7.css": {
+            "uri": "/static/common/plugin/ckeditor/skins/moono/dialog_ie7.css",
+            "type": "css"
+        },
+        "common:static/plugin/ckeditor/skins/moono/dialog_ie8.css": {
+            "uri": "/static/common/plugin/ckeditor/skins/moono/dialog_ie8.css",
+            "type": "css"
+        },
+        "common:static/plugin/ckeditor/skins/moono/dialog_iequirks.css": {
+            "uri": "/static/common/plugin/ckeditor/skins/moono/dialog_iequirks.css",
+            "type": "css"
+        },
+        "common:static/plugin/ckeditor/skins/moono/editor.css": {
+            "uri": "/static/common/plugin/ckeditor/skins/moono/editor.css",
+            "type": "css"
+        },
+        "common:static/plugin/ckeditor/skins/moono/editor_gecko.css": {
+            "uri": "/static/common/plugin/ckeditor/skins/moono/editor_gecko.css",
+            "type": "css"
+        },
+        "common:static/plugin/ckeditor/skins/moono/editor_ie.css": {
+            "uri": "/static/common/plugin/ckeditor/skins/moono/editor_ie.css",
+            "type": "css"
+        },
+        "common:static/plugin/ckeditor/skins/moono/editor_ie7.css": {
+            "uri": "/static/common/plugin/ckeditor/skins/moono/editor_ie7.css",
+            "type": "css"
+        },
+        "common:static/plugin/ckeditor/skins/moono/editor_ie8.css": {
+            "uri": "/static/common/plugin/ckeditor/skins/moono/editor_ie8.css",
+            "type": "css"
+        },
+        "common:static/plugin/ckeditor/skins/moono/editor_iequirks.css": {
+            "uri": "/static/common/plugin/ckeditor/skins/moono/editor_iequirks.css",
+            "type": "css"
+        },
+        "common:static/plugin/ckeditor/styles.js": {
+            "uri": "/static/common/plugin/ckeditor/styles.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/css/sh_acid.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_acid.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_acid.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_acid.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_berries-dark.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_berries-dark.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_berries-dark.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_berries-dark.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_berries-light.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_berries-light.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_berries-light.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_berries-light.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_bipolar.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_bipolar.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_bipolar.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_bipolar.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_blacknblue.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_blacknblue.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_blacknblue.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_blacknblue.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_bright.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_bright.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_bright.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_bright.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_contrast.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_contrast.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_contrast.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_contrast.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_darkblue.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_darkblue.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_darkblue.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_darkblue.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_darkness.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_darkness.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_darkness.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_darkness.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_desert.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_desert.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_desert.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_desert.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_dull.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_dull.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_dull.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_dull.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_easter.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_easter.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_easter.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_easter.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_emacs.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_emacs.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_emacs.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_emacs.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_golden.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_golden.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_golden.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_golden.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_greenlcd.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_greenlcd.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_greenlcd.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_greenlcd.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_ide-anjuta.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_ide-anjuta.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_ide-anjuta.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_ide-anjuta.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_ide-codewarrior.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_ide-codewarrior.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_ide-codewarrior.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_ide-codewarrior.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_ide-devcpp.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_ide-devcpp.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_ide-devcpp.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_ide-devcpp.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_ide-eclipse.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_ide-eclipse.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_ide-eclipse.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_ide-eclipse.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_ide-kdev.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_ide-kdev.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_ide-kdev.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_ide-kdev.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_ide-msvcpp.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_ide-msvcpp.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_ide-msvcpp.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_ide-msvcpp.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_kwrite.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_kwrite.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_kwrite.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_kwrite.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_matlab.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_matlab.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_matlab.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_matlab.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_navy.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_navy.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_navy.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_navy.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_nedit.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_nedit.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_nedit.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_nedit.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_neon.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_neon.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_neon.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_neon.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_night.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_night.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_night.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_night.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_pablo.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_pablo.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_pablo.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_pablo.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_peachpuff.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_peachpuff.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_peachpuff.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_peachpuff.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_print.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_print.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_print.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_print.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_rand01.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_rand01.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_rand01.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_rand01.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_the.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_the.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_the.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_the.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_typical.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_typical.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_typical.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_typical.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_vampire.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_vampire.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_vampire.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_vampire.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_vim-dark.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_vim-dark.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_vim-dark.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_vim-dark.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_vim.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_vim.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_vim.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_vim.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_whatis.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_whatis.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_whatis.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_whatis.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_whitengrey.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_whitengrey.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_whitengrey.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_whitengrey.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_zellner.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_zellner.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/css/sh_zellner.min.css": {
+            "uri": "/static/common/plugin/shjs/css/sh_zellner.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/js/sh_bison.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_bison.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_bison.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_bison.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_c.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_c.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_c.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_c.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_caml.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_caml.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_caml.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_caml.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_changelog.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_changelog.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_changelog.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_changelog.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_cpp.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_cpp.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_cpp.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_cpp.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_csharp.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_csharp.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_csharp.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_csharp.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_css.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_css.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_css.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_css.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_desktop.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_desktop.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_desktop.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_desktop.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_diff.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_diff.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_diff.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_diff.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_flex.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_flex.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_flex.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_flex.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_glsl.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_glsl.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_glsl.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_glsl.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_haxe.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_haxe.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_haxe.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_haxe.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_html.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_html.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_html.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_html.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_java.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_java.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_java.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_java.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_javascript.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_javascript.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_javascript.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_javascript.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_javascript_dom.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_javascript_dom.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_javascript_dom.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_javascript_dom.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_latex.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_latex.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_latex.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_latex.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_ldap.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_ldap.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_ldap.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_ldap.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_log.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_log.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_log.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_log.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_lsm.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_lsm.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_lsm.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_lsm.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_m4.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_m4.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_m4.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_m4.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_makefile.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_makefile.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_makefile.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_makefile.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_oracle.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_oracle.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_oracle.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_oracle.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_pascal.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_pascal.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_pascal.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_pascal.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_perl.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_perl.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_perl.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_perl.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_php.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_php.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_php.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_php.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_prolog.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_prolog.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_prolog.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_prolog.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_properties.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_properties.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_properties.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_properties.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_python.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_python.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_python.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_python.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_ruby.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_ruby.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_ruby.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_ruby.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_scala.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_scala.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_scala.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_scala.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_sh.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_sh.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_sh.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_sh.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_slang.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_slang.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_slang.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_slang.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_sml.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_sml.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_sml.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_sml.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_spec.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_spec.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_spec.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_spec.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_sql.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_sql.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_sql.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_sql.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_tcl.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_tcl.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_tcl.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_tcl.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_xml.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_xml.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_xml.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_xml.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_xorg.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_xorg.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/js/sh_xorg.min.js": {
+            "uri": "/static/common/plugin/shjs/js/sh_xorg.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/sh_main.js": {
+            "uri": "/static/common/plugin/shjs/sh_main.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/sh_main.min.js": {
+            "uri": "/static/common/plugin/shjs/sh_main.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/shjs/sh_style.css": {
+            "uri": "/static/common/plugin/shjs/sh_style.css",
+            "type": "css"
+        },
+        "common:static/plugin/shjs/sh_style.min.css": {
+            "uri": "/static/common/plugin/shjs/sh_style.min.css",
+            "type": "css"
+        },
+        "common:static/plugin/syntaxhighlighter/compass/_theme_template.scss": {
+            "uri": "/static/common/plugin/syntaxhighlighter/compass/_theme_template.scss",
+            "type": "scss"
+        },
+        "common:static/plugin/syntaxhighlighter/compass/shCore.scss": {
+            "uri": "/static/common/plugin/syntaxhighlighter/compass/shCore.scss",
+            "type": "scss"
+        },
+        "common:static/plugin/syntaxhighlighter/compass/shCoreDefault.scss": {
+            "uri": "/static/common/plugin/syntaxhighlighter/compass/shCoreDefault.scss",
+            "type": "scss"
+        },
+        "common:static/plugin/syntaxhighlighter/compass/shCoreDjango.scss": {
+            "uri": "/static/common/plugin/syntaxhighlighter/compass/shCoreDjango.scss",
+            "type": "scss"
+        },
+        "common:static/plugin/syntaxhighlighter/compass/shCoreEclipse.scss": {
+            "uri": "/static/common/plugin/syntaxhighlighter/compass/shCoreEclipse.scss",
+            "type": "scss"
+        },
+        "common:static/plugin/syntaxhighlighter/compass/shCoreEmacs.scss": {
+            "uri": "/static/common/plugin/syntaxhighlighter/compass/shCoreEmacs.scss",
+            "type": "scss"
+        },
+        "common:static/plugin/syntaxhighlighter/compass/shCoreFadeToGrey.scss": {
+            "uri": "/static/common/plugin/syntaxhighlighter/compass/shCoreFadeToGrey.scss",
+            "type": "scss"
+        },
+        "common:static/plugin/syntaxhighlighter/compass/shCoreMDUltra.scss": {
+            "uri": "/static/common/plugin/syntaxhighlighter/compass/shCoreMDUltra.scss",
+            "type": "scss"
+        },
+        "common:static/plugin/syntaxhighlighter/compass/shCoreMidnight.scss": {
+            "uri": "/static/common/plugin/syntaxhighlighter/compass/shCoreMidnight.scss",
+            "type": "scss"
+        },
+        "common:static/plugin/syntaxhighlighter/compass/shCoreRDark.scss": {
+            "uri": "/static/common/plugin/syntaxhighlighter/compass/shCoreRDark.scss",
+            "type": "scss"
+        },
+        "common:static/plugin/syntaxhighlighter/compass/shThemeDefault.scss": {
+            "uri": "/static/common/plugin/syntaxhighlighter/compass/shThemeDefault.scss",
+            "type": "scss"
+        },
+        "common:static/plugin/syntaxhighlighter/compass/shThemeDjango.scss": {
+            "uri": "/static/common/plugin/syntaxhighlighter/compass/shThemeDjango.scss",
+            "type": "scss"
+        },
+        "common:static/plugin/syntaxhighlighter/compass/shThemeEclipse.scss": {
+            "uri": "/static/common/plugin/syntaxhighlighter/compass/shThemeEclipse.scss",
+            "type": "scss"
+        },
+        "common:static/plugin/syntaxhighlighter/compass/shThemeEmacs.scss": {
+            "uri": "/static/common/plugin/syntaxhighlighter/compass/shThemeEmacs.scss",
+            "type": "scss"
+        },
+        "common:static/plugin/syntaxhighlighter/compass/shThemeFadeToGrey.scss": {
+            "uri": "/static/common/plugin/syntaxhighlighter/compass/shThemeFadeToGrey.scss",
+            "type": "scss"
+        },
+        "common:static/plugin/syntaxhighlighter/compass/shThemeMDUltra.scss": {
+            "uri": "/static/common/plugin/syntaxhighlighter/compass/shThemeMDUltra.scss",
+            "type": "scss"
+        },
+        "common:static/plugin/syntaxhighlighter/compass/shThemeMidnight.scss": {
+            "uri": "/static/common/plugin/syntaxhighlighter/compass/shThemeMidnight.scss",
+            "type": "scss"
+        },
+        "common:static/plugin/syntaxhighlighter/compass/shThemeRDark.scss": {
+            "uri": "/static/common/plugin/syntaxhighlighter/compass/shThemeRDark.scss",
+            "type": "scss"
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/config.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/config.js",
+            "type": "js"
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shAutoloader.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shAutoloader.js",
+            "type": "js"
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushAS3.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushAS3.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushAppleScript.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushAppleScript.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushBash.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushBash.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushCSharp.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushCSharp.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushColdFusion.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushColdFusion.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushCpp.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushCpp.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushCss.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushCss.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushDelphi.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushDelphi.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushDiff.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushDiff.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushErlang.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushErlang.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushGroovy.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushGroovy.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushJScript.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushJScript.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushJava.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushJava.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushJavaFX.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushJavaFX.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushPerl.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushPerl.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushPhp.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushPhp.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushPlain.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushPlain.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushPowerShell.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushPowerShell.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushPython.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushPython.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushRuby.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushRuby.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushSass.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushSass.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushScala.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushScala.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushSql.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushSql.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushVb.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushVb.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shBrushXml.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shBrushXml.js",
+            "type": "js",
+            "deps": [
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shCore.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shCore.js",
+            "type": "js"
+        },
+        "common:static/plugin/syntaxhighlighter/scripts/shLegacy.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/scripts/shLegacy.js",
+            "type": "js"
+        },
+        "common:static/plugin/syntaxhighlighter/src/shAutoloader.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/src/shAutoloader.js",
+            "type": "js"
+        },
+        "common:static/plugin/syntaxhighlighter/src/shCore.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/src/shCore.js",
+            "type": "js",
+            "deps": [
+                "XRegExp"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/src/shLegacy.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/src/shLegacy.js",
+            "type": "js"
+        },
+        "common:static/plugin/syntaxhighlighter/styles/shCore.css": {
+            "uri": "/static/common/plugin/syntaxhighlighter/styles/shCore.css",
+            "type": "css"
+        },
+        "common:static/plugin/syntaxhighlighter/styles/shCoreDefault.css": {
+            "uri": "/static/common/plugin/syntaxhighlighter/styles/shCoreDefault.css",
+            "type": "css"
+        },
+        "common:static/plugin/syntaxhighlighter/styles/shCoreDjango.css": {
+            "uri": "/static/common/plugin/syntaxhighlighter/styles/shCoreDjango.css",
+            "type": "css"
+        },
+        "common:static/plugin/syntaxhighlighter/styles/shCoreEclipse.css": {
+            "uri": "/static/common/plugin/syntaxhighlighter/styles/shCoreEclipse.css",
+            "type": "css"
+        },
+        "common:static/plugin/syntaxhighlighter/styles/shCoreEmacs.css": {
+            "uri": "/static/common/plugin/syntaxhighlighter/styles/shCoreEmacs.css",
+            "type": "css"
+        },
+        "common:static/plugin/syntaxhighlighter/styles/shCoreFadeToGrey.css": {
+            "uri": "/static/common/plugin/syntaxhighlighter/styles/shCoreFadeToGrey.css",
+            "type": "css"
+        },
+        "common:static/plugin/syntaxhighlighter/styles/shCoreMDUltra.css": {
+            "uri": "/static/common/plugin/syntaxhighlighter/styles/shCoreMDUltra.css",
+            "type": "css"
+        },
+        "common:static/plugin/syntaxhighlighter/styles/shCoreMidnight.css": {
+            "uri": "/static/common/plugin/syntaxhighlighter/styles/shCoreMidnight.css",
+            "type": "css"
+        },
+        "common:static/plugin/syntaxhighlighter/styles/shCoreRDark.css": {
+            "uri": "/static/common/plugin/syntaxhighlighter/styles/shCoreRDark.css",
+            "type": "css"
+        },
+        "common:static/plugin/syntaxhighlighter/styles/shThemeDefault.css": {
+            "uri": "/static/common/plugin/syntaxhighlighter/styles/shThemeDefault.css",
+            "type": "css"
+        },
+        "common:static/plugin/syntaxhighlighter/styles/shThemeDjango.css": {
+            "uri": "/static/common/plugin/syntaxhighlighter/styles/shThemeDjango.css",
+            "type": "css"
+        },
+        "common:static/plugin/syntaxhighlighter/styles/shThemeEclipse.css": {
+            "uri": "/static/common/plugin/syntaxhighlighter/styles/shThemeEclipse.css",
+            "type": "css"
+        },
+        "common:static/plugin/syntaxhighlighter/styles/shThemeEmacs.css": {
+            "uri": "/static/common/plugin/syntaxhighlighter/styles/shThemeEmacs.css",
+            "type": "css"
+        },
+        "common:static/plugin/syntaxhighlighter/styles/shThemeFadeToGrey.css": {
+            "uri": "/static/common/plugin/syntaxhighlighter/styles/shThemeFadeToGrey.css",
+            "type": "css"
+        },
+        "common:static/plugin/syntaxhighlighter/styles/shThemeMDUltra.css": {
+            "uri": "/static/common/plugin/syntaxhighlighter/styles/shThemeMDUltra.css",
+            "type": "css"
+        },
+        "common:static/plugin/syntaxhighlighter/styles/shThemeMidnight.css": {
+            "uri": "/static/common/plugin/syntaxhighlighter/styles/shThemeMidnight.css",
+            "type": "css"
+        },
+        "common:static/plugin/syntaxhighlighter/styles/shThemeRDark.css": {
+            "uri": "/static/common/plugin/syntaxhighlighter/styles/shThemeRDark.css",
+            "type": "css"
+        },
+        "common:static/plugin/syntaxhighlighter/tests/commonjs_tests.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/tests/commonjs_tests.js",
+            "type": "js",
+            "deps": [
+                "sys",
+                "shCore"
+            ]
+        },
+        "common:static/plugin/syntaxhighlighter/tests/js/jquery-1.4.2.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/tests/js/jquery-1.4.2.js",
+            "type": "js"
+        },
+        "common:static/plugin/syntaxhighlighter/tests/js/qunit.css": {
+            "uri": "/static/common/plugin/syntaxhighlighter/tests/js/qunit.css",
+            "type": "css"
+        },
+        "common:static/plugin/syntaxhighlighter/tests/js/qunit.js": {
+            "uri": "/static/common/plugin/syntaxhighlighter/tests/js/qunit.js",
+            "type": "js",
+            "deps": [
+                "common:static/plugin/syntaxhighlighter/tests/js/qunit.css"
+            ]
+        },
+        "common:static/plugin/timepicker/css/jquery-ui.css": {
+            "uri": "/static/common/plugin/timepicker/css/jquery-ui.css",
+            "type": "css"
+        },
+        "common:static/plugin/timepicker/js/jquery-ui-slide.min.js": {
+            "uri": "/static/common/plugin/timepicker/js/jquery-ui-slide.min.js",
+            "type": "js"
+        },
+        "common:static/plugin/timepicker/js/jquery-ui-timepicker-addon.js": {
+            "uri": "/static/common/plugin/timepicker/js/jquery-ui-timepicker-addon.js",
+            "type": "js"
+        },
+        "common:static/plugin/timepicker/js/jquery-ui.js": {
+            "uri": "/static/common/plugin/timepicker/js/jquery-ui.js",
+            "type": "js"
+        },
+        "common:static/plugin/zyUpload/control/css/zyUpload.css": {
+            "uri": "/static/common/plugin/zyUpload/control/css/zyUpload.css",
+            "type": "css"
+        },
+        "common:static/plugin/zyUpload/control/js/jquery-1.7.2.js": {
+            "uri": "/static/common/plugin/zyUpload/control/js/jquery-1.7.2.js",
+            "type": "js"
+        },
+        "common:static/plugin/zyUpload/control/js/zyUpload.js": {
+            "uri": "/static/common/plugin/zyUpload/control/js/zyUpload.js",
+            "type": "js"
+        },
+        "common:static/plugin/zyUpload/core/zyFile.js": {
+            "uri": "/static/common/plugin/zyUpload/core/zyFile.js",
+            "type": "js"
+        },
+        "common:static/plugin/zyUpload/jquery-1.7.2.js": {
+            "uri": "/static/common/plugin/zyUpload/jquery-1.7.2.js",
+            "type": "js"
+        }
+    },
+    "pkg": {}
+}

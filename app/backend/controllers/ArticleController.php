@@ -73,7 +73,7 @@ class ArticleController extends ControllerBase {
         if (isset($secondCategoryId)){
             $categoryIds[] = $secondCategoryId;
         }
-        
+       
         // 获取文章
         $articleInfo = $this->articleService->getBackendArticleList(isset($articleId) ? array($articleId) : array(),$title,$categoryIds,$readTimesStart,$readTimesEnd,
                 $commentTimesStart,$commentTimesEnd,$newTagIds,$releaseTimeStart,$releaseTimeEnd,$page - 1,$pageSize,5);
@@ -84,6 +84,7 @@ class ArticleController extends ControllerBase {
         
         //一级分类
         $firstCategory = $this->categoryService->getFirstCategory();
+
         //二级分类
         $secondCategory = array();
         if (!empty($firstCategoryId)){
@@ -91,10 +92,7 @@ class ArticleController extends ControllerBase {
         }
         
         //标签
-        $tags = array();
-        if (!empty($secondCategoryId)){
-            $tags = $this->tagService->getTagByCategoryId($secondCategoryId);
-        }
+        $tags = $this->tagService->getAllTagsInfo();
         
         $this->view->setVar('articleInfo', $articleInfo['article']);
         $this->view->setVar('firstCategorys', $firstCategory);
@@ -123,7 +121,7 @@ class ArticleController extends ControllerBase {
         $firstCategory = $this->categoryService->getFirstCategory();
         $categoryInfo = $this->categoryService->getCategoryById($articleInfo['article']['category_id']);
         $secondCategory = $this->categoryService->getCategoryByPid($categoryInfo->getPid());
-        $tags = $this->tagService->getTagByCategoryId($articleInfo['article']['category_id']);
+        $tags = $this->tagService->getAllTagsInfo();
         
         $this->view->setVar('articletag', array_values($articleInfo['tag']));
         $this->view->setVar('firstCategorys', $firstCategory);

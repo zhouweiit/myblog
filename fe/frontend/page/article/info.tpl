@@ -10,7 +10,7 @@
   <article>
   	{%$navigation%}
     <div class="index_about">
-      <h2 class="c_titile">{%$article.title%}</h2>
+      <h2 class="c_titile infolist_article_title">{%$article.title%}</h2>
       <p class="box_c">
       	<span class="d_time">发布时间：<a href="/index/index?date={%$article.release_datetime%}">{%$article.release_datetime%}</a></span>
       	{%if $tags%}

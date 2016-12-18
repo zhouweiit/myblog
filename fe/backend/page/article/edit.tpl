@@ -166,25 +166,25 @@ $(function(){
         });
     });
     
-    $("#second_category").change(function(){
-        var categoryId = $(this).val();
-        $.ajax({
-            url: '/backend/dictionary/ajaxTagByCategoryId',
-            type: 'post',
-            dataType: 'json',
-            data:'category_id='+categoryId,
-            success: function( resp, status ) {
-                var html='<option value="">请选择</option>';
-                $(resp).each(function(i){
-                    html += '<option value="'+resp[i].id+'">'+resp[i].name+'</option>';
-                });
-                $("select.tag").html(html);
-            },
-            error: function (data, status, e)
-            {
-            }
-        });
-    });
+//    $("#second_category").change(function(){
+//        var categoryId = $(this).val();
+//        $.ajax({
+//            url: '/backend/dictionary/ajaxTagByCategoryId',
+//            type: 'post',
+//            dataType: 'json',
+//            data:'category_id='+categoryId,
+//            success: function( resp, status ) {
+//                var html='<option value="">请选择</option>';
+//                $(resp).each(function(i){
+//                    html += '<option value="'+resp[i].id+'">'+resp[i].name+'</option>';
+//                });
+//                $("select.tag").html(html);
+//            },
+//            error: function (data, status, e)
+//            {
+//            }
+//        });
+//    });
     
     $("#chooseimage").click(function(){
         $("#headimage").attr('src',$("#headimagesrc").val());

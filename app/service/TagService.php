@@ -86,5 +86,17 @@ class TagService extends ServiceBase {
         }
         return $result;
     }
+
+    public function getAllTagsInfo(){
+        $tags = $this->tagDao->getAllTag();
+        $result = array();
+        foreach ($tags as $value){
+            $result[] = array(
+                'id'    => $value->getId(),
+                'name'  => $value->getName(),
+            );
+        }
+        return $result;
+    }
 }
 

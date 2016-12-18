@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21, created on 2016-12-13 23:46:23
+<?php /* Smarty version Smarty-3.1.21, created on 2016-12-18 17:30:34
          compiled from "/home/zhouwei/workspace/myblog/app/smarty/views/template/frontend/page/index/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:12537298955682b2cca97ad1-85468592%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,13 +7,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f549a385038633e1a4231ca91f2a5e0a82234cd4' => 
     array (
       0 => '/home/zhouwei/workspace/myblog/app/smarty/views/template/frontend/page/index/index.tpl',
-      1 => 1481118904,
+      1 => 1482053433,
       2 => 'file',
     ),
     '7c6678bcb6c6c4af387b5ed998cb0f869a7b25b6' => 
     array (
       0 => '/home/zhouwei/workspace/myblog/app/smarty/views/template/common/page/frontLayout.tpl',
-      1 => 1481643974,
+      1 => 1482053433,
       2 => 'file',
     ),
   ),
@@ -26,7 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'variables' => 
   array (
     'TDK' => 0,
-    'aside' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -36,27 +35,40 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title><?php if ($_smarty_tpl->tpl_vars['TDK']->value['title']) {
 echo $_smarty_tpl->tpl_vars['TDK']->value['title'];?>
- | <?php }?>未舟 - www.zwiter.com</title>
+ | <?php }?>未舟 - zwiter.com</title>
 <?php if (!$_smarty_tpl->tpl_vars['TDK']->value['description']) {?>
-<meta name="description"  content="一个不严谨的技术博客，因为博客内容充满了技术与段子 | 未舟 - www.zwiter.com" />
+<meta name="description"  content="未舟的IT技术博客，常用语言PHP、C、JAVA。关注架构开发、底层开发、性能优化。真心希望大家阅读后能有所收获。www.zwiter.com" />
 <?php } else { ?>
 <meta name="description"  content="<?php echo $_smarty_tpl->tpl_vars['TDK']->value['description'];?>
 " />
 <?php }?>
 <?php if (!$_smarty_tpl->tpl_vars['TDK']->value['keywords']) {?>
-<meta name="keywords"  content="<?php echo $_smarty_tpl->tpl_vars['aside']->value['tagStr'];?>
-" />
+<meta name="keywords"  content="排序,正则表达式,程序员,算法,软件开发,AJAX,Algorithm,Android,Bash,book,C++,Code Review,Coding,CSS,Database,Debug,ebook,Erlang,Game,Go,Google,HTML,IE,Java,Javascript,jQuery,Linus Torvalds,Linux,Mac,MySQL,Oracle,OS,Perl,PHP,Programmer,programming,language,Python,Ruby,SQL,Ubuntu,UI,Unix,vim,Web,Windows" />
 <?php } else { ?>
 <meta name="keywords"  content="<?php echo $_smarty_tpl->tpl_vars['TDK']->value['keywords'];?>
-,未舟 - www.zwiter.com"/>
+,【未舟】"/>
 <?php }?>
 <link href="<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("frontend:static/css/base.css",$_smarty_tpl->smarty);?>" rel="stylesheet">
 <link href="<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("frontend:static/css/index.css",$_smarty_tpl->smarty);?>" rel="stylesheet">
 <link href="<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("frontend:static/css/about.css",$_smarty_tpl->smarty);?>" rel="stylesheet">
 <link href="<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("frontend:static/css/style.css",$_smarty_tpl->smarty);?>" rel="stylesheet">
-<link href="<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("common:static/plugin/syntaxhighlighter/styles/shCoreDefault.css",$_smarty_tpl->smarty);?>" rel="stylesheet"/>
 <?php echo '<script'; ?>
  src="<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("common:static/js/jquery-1.8.1.min.js",$_smarty_tpl->smarty);?>"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("common:static/js/jsencrypt.min.js",$_smarty_tpl->smarty);?>"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("common:static/js/modernizr.js",$_smarty_tpl->smarty);?>"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("common:static/js/silder.js",$_smarty_tpl->smarty);?>"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("common:static/js/jquery.tagcanvas.min.js",$_smarty_tpl->smarty);?>"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"><?php echo '</script'; ?>
 >
 <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
 
@@ -81,7 +93,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['article']->key => $_smarty_tpl->tpl_v
 $_smarty_tpl->tpl_vars['article']->_loop = true;
 ?>
       <div class="blogs">
-        <h3><a href="/article/info?articleid=<?php echo $_smarty_tpl->tpl_vars['article']->value['id'];?>
+        <h3><a class="infolist_article_title" href="/article/info?articleid=<?php echo $_smarty_tpl->tpl_vars['article']->value['id'];?>
 "><?php echo $_smarty_tpl->tpl_vars['article']->value['title'];?>
 </a></h3>
         <p class="title_meta">
@@ -112,7 +124,7 @@ $_smarty_tpl->tpl_vars['tag']->_loop = true;
 )</a></span><span><a href="/article/info?articleid=<?php echo $_smarty_tpl->tpl_vars['article']->value['id'];?>
 #comment">评论(<?php echo $_smarty_tpl->tpl_vars['article']->value['comment_times'];?>
 )</a></span></p>
-        <ul class="infos" style="margin-top:1px;">
+        <ul>
         	<?php if ($_smarty_tpl->tpl_vars['article']->value['headimage']) {?>
         		<figure><img src="<?php echo $_smarty_tpl->tpl_vars['article']->value['headimage'];?>
 "></figure>
@@ -134,46 +146,6 @@ $_smarty_tpl->tpl_vars['tag']->_loop = true;
   <div class="clear"></div>
   <!-- 清除浮动 --> 
 </div>
-
-</body><?php if(class_exists('FISResource', false)){echo FISResource::jsHook();}?>
-<?php echo '<script'; ?>
- type="text/javascript">
-$(function(){  
-	SyntaxHighlighter.autoloader(
-		['js','jscript','javascript','<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("common:static/plugin/syntaxhighlighter/scripts/shBrushJScript.js",$_smarty_tpl->smarty);?>'],
-		['bash','shell','<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("common:static/plugin/syntaxhighlighter/scripts/shBrushBash.js",$_smarty_tpl->smarty);?>'],
-		['css','css','<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("common:static/plugin/syntaxhighlighter/scripts/shBrushCss.js",$_smarty_tpl->smarty);?>'],
-		['xml','html','<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("common:static/plugin/syntaxhighlighter/scripts/shBrushXml.js",$_smarty_tpl->smarty);?>'],
-		['sql','sq','<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("common:static/plugin/syntaxhighlighter/scripts/shBrushSql.js",$_smarty_tpl->smarty);?>'],
-		['php','php','<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("common:static/plugin/syntaxhighlighter/scripts/shBrushPhp.js",$_smarty_tpl->smarty);?>'],
-		['java','java','<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("common:static/plugin/syntaxhighlighter/scripts/shBrushJava.js",$_smarty_tpl->smarty);?>'],
-		['c','c','<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("common:static/plugin/syntaxhighlighter/scripts/shBrushCpp.js",$_smarty_tpl->smarty);?>']
-	); 
-	SyntaxHighlighter.all();
-
-}); 
-<?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- src="<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("common:static/js/jsencrypt.min.js",$_smarty_tpl->smarty);?>"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- src="<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("common:static/js/modernizr.js",$_smarty_tpl->smarty);?>"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- src="<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("common:static/js/silder.js",$_smarty_tpl->smarty);?>"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- src="<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("common:static/js/jquery.tagcanvas.min.js",$_smarty_tpl->smarty);?>"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- src="<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("common:static/plugin/syntaxhighlighter/scripts/shCore.js",$_smarty_tpl->smarty);?>"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- src="<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}echo FISResource::getUri("common:static/plugin/syntaxhighlighter/scripts/shAutoloader.js",$_smarty_tpl->smarty);?>"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"><?php echo '</script'; ?>
->
-<?php $_smarty_tpl->registerFilter('output', array('FISResource', 'renderResponse'));?></html>
-<?php }} ?>
+<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}FISResource::load('frontend:page/index/index.tpl',$_smarty_tpl->smarty, false);?>
+<?php if(!class_exists('FISResource', false)){require_once('/home/zhouwei/workspace/myblog/app/smarty/views/plugin/FISResource.class.php');}FISResource::load('common:page/frontLayout.tpl',$_smarty_tpl->smarty, false);?></body><?php if(class_exists('FISResource', false)){echo FISResource::jsHook();}?>
+<?php $_smarty_tpl->registerFilter('output', array('FISResource', 'renderResponse'));?></html><?php }} ?>
