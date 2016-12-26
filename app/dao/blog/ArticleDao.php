@@ -255,8 +255,8 @@ class ArticleDao extends DaoBase {
      * @author zhouwei
      */
     public function insert(Article $article){
-        $sql = 'insert into article (title,content,user_id,category_id,headcontent,headimage,comment_times,read_times,release_datetime,is_delete,creation_date,last_changed_date)
-                    value (:title,:content,0,:category_id,:headcontent,:headimage,:comment_times,:read_times,:release_datetime,0,now(),now())';
+        $sql = 'insert into article (title,content,user_id,category_id,headcontent,headimage,comment_times,read_times,release_datetime,keywords,is_delete,creation_date,last_changed_date)
+                    value (:title,:content,0,:category_id,:headcontent,:headimage,:comment_times,:read_times,:release_datetime,:keywords,0,now(),now())';
         $data = array(
             ':title'        => $article->getTitle(),
             ':content'      => $article->getContent(),
@@ -265,6 +265,7 @@ class ArticleDao extends DaoBase {
             ':headimage'    => $article->getHeadimage(),
             ':comment_times'=> $article->getCommentTimes(),
             ':read_times'   => $article->getReadTimes(),
+            ':keywords'     => $article->getKeywords(),
             ':release_datetime'=> $article->getReleaseDatetime(),
         );
         $this->persistent->execute($sql,$data);
@@ -278,7 +279,7 @@ class ArticleDao extends DaoBase {
      * @author zhouwei
      */
     public function update(Article $article){
-        $sql = 'update article set title = :title,content = :content,category_id = :category_id,headcontent = :headcontent,headimage = :headimage,comment_times = :comment_times,
+        $sql = 'update article set title = :title,content = :content,category_id = :category_id,headcontent = :headcontent,headimage = :headimage,comment_times = :comment_times,keywords = :keywords,
                     read_times = :read_times,release_datetime = :release_datetime,last_changed_date=now() where id = :id';
         $data = array(
             ':title'        => $article->getTitle(),
@@ -288,6 +289,7 @@ class ArticleDao extends DaoBase {
             ':headimage'    => $article->getHeadimage(),
             ':comment_times'=> $article->getCommentTimes(),
             ':read_times'   => $article->getReadTimes(),
+            ':keywords'     => $article->getKeywords(),
             ':release_datetime'=> $article->getReleaseDatetime(),
             ':id'           => $article->getId(),
         );

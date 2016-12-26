@@ -142,6 +142,8 @@ class ArticleController extends ControllerBase {
         $firstCategory = $this->categoryService->getFirstCategory();
         $this->view->setVar('firstCategorys', $firstCategory);
         $this->view->setVar('type','release');
+        $tags = $this->tagService->getAllTagsInfo();
+        $this->view->setVar('tags', $tags);
         $this->view->renderFix('article', 'edit');
     }
     
@@ -164,6 +166,7 @@ class ArticleController extends ControllerBase {
         $headimage      = HttpUtils::filterString($this->request->get('headimage'));
         $headcontent    = HttpUtils::filterString($this->request->get('headcontent'));
         $content        = HttpUtils::filterString($this->request->get('content'));
+        $keywords       = HttpUtils::filterString($this->request->get('keywords'));
         
         //处理tag信息
         $tags = explode(',', $tag);
@@ -179,7 +182,7 @@ class ArticleController extends ControllerBase {
         //todo 业务逻辑校验,没时间写了,以后补
         
         try {
-            $this->articleService->saveArticle($id, $title, $readTimes, $commentTimes, $releaseDatetime, $firstCategory, $secondCategory, $tagIds, $headimage, $headcontent, $content);
+            $this->articleService->saveArticle($id, $title, $readTimes, $commentTimes, $releaseDatetime, $firstCategory, $secondCategory, $tagIds, $headimage, $headcontent, $content,$keywords);
             $this->response->setContent('true');
         } catch (\Exception $e) {
             $this->response->setContent('false');

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21, created on 2016-12-18 18:14:13
+<?php /* Smarty version Smarty-3.1.21, created on 2016-12-26 17:28:39
          compiled from "/home/zhouwei/workspace/myblog/app/smarty/views/template/backend/page/article/edit.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:10620098285683cf7d264fe1-83015792%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,13 +7,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'bf8d335ffb647905b33968f6879b188cc784aaab' => 
     array (
       0 => '/home/zhouwei/workspace/myblog/app/smarty/views/template/backend/page/article/edit.tpl',
-      1 => 1482053433,
+      1 => 1482744513,
       2 => 'file',
     ),
     '9efcdd2efdffcf6946b52f19c93cf2ba09ea9128' => 
     array (
       0 => '/home/zhouwei/workspace/myblog/app/smarty/views/template/common/page/backMainLayout.tpl',
-      1 => 1482053433,
+      1 => 1482744513,
       2 => 'file',
     ),
   ),
@@ -226,6 +226,18 @@ $_smarty_tpl->tpl_vars['tag']->_loop = true;
                             </td>
                         </tr>
                         <tr>
+                            <td class="header">SEO关键字：</td>
+                            <td class="">
+                                <div class="select_border">
+                                    <div class="select_containers ">
+                                        <input type="text" name="keywords" id="keywords" value="<?php echo $_smarty_tpl->tpl_vars['article']->value['keywords'];?>
+"  class="input-text lh30" size="40">
+                                        <label style="margin-top:7px;padding-left:5px;float:right;">多个用","相隔</label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
                             <td class="header">列表图片：</td>
                             <td class="">
                                 <img id="headimage" src="<?php echo $_smarty_tpl->tpl_vars['article']->value['headimage'];?>
@@ -352,6 +364,7 @@ $(function(){
         var headimage = $("#headimagesrc");
         var headcontent = $("#headcontent");
         var content = $("#content");
+        var keywords = $("#keywords");
         
         var checktitle = validata_title(title,title.val());
         var checkheadcontent = validata_headcontent(headcontent,headcontent.val());
@@ -380,7 +393,8 @@ $(function(){
             'headimage':headimage.val(),
             'headcontent':headcontent.val(),
             'content':contentck.getData(),
-            'committype':committype
+            'committype':committype,
+            'keywords':keywords.val()
         };
         
         $.ajax({

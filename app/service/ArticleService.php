@@ -472,6 +472,7 @@ class ArticleService extends ServiceBase {
                 'comment_times' => $articleInfo->getCommentTimes(),
                 'read_times' => $articleInfo->getReadTimes(),
                 'content' => $articleInfo->getContent(),
+                'keywords' => $articleInfo->getKeywords(),
                 'id' => $articleInfo->getId(), 
             ),
             'tag' => $tagInfo 
@@ -506,8 +507,8 @@ class ArticleService extends ServiceBase {
      * @author zhouwei
      *
      */
-    public function saveArticle($id,$title,$readTimes,$commentTimes,$releaseDatetime,$firstCategory,$secondCategory,$tag,$headimage,$headcontent,$content){
-        $article = $this->getArticle($id, $title, $readTimes, $commentTimes, $releaseDatetime, $firstCategory, $secondCategory, $tag, $headimage, $headcontent, $content);
+    public function saveArticle($id,$title,$readTimes,$commentTimes,$releaseDatetime,$firstCategory,$secondCategory,$tag,$headimage,$headcontent,$content,$keywords){
+        $article = $this->getArticle($id, $title, $readTimes, $commentTimes, $releaseDatetime, $firstCategory, $secondCategory, $tag, $headimage, $headcontent, $content,$keywords);
         if (empty($id)){
             $articleId = $this->articleDao->insert($article);
             $this->articleTagMapService->saveArticleTagMap($articleId, $tag);
@@ -525,7 +526,7 @@ class ArticleService extends ServiceBase {
      * @return Article
      * @author zhouwei
      */
-    public function getArticle($id,$title,$readTimes,$commentTimes,$releaseDatetime,$firstCategory,$secondCategory,$tag,$headimage,$headcontent,$content){
+    public function getArticle($id,$title,$readTimes,$commentTimes,$releaseDatetime,$firstCategory,$secondCategory,$tag,$headimage,$headcontent,$content,$keywords){
         $article = new Article();
         $article->setId($id);
         $article->setContent($content);
@@ -536,6 +537,7 @@ class ArticleService extends ServiceBase {
         $article->setCategoryId($secondCategory);
         $article->setHeadimage($headimage);
         $article->setHeadcontent($headcontent);
+        $article->setKeywords($keywords);
         return $article;
     }
     

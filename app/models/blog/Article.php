@@ -85,6 +85,12 @@ class Article {
      * @var date
      */
     private $releaseDatetime;
+
+    /**
+     * seo的关键字
+     * @var string
+     */
+    private $keywords;
     
     /**
      * 是否删除
@@ -118,6 +124,7 @@ class Article {
             'headimage' => 'headimage',
             'comment_times' => 'commentTimes',
             'read_times' => 'readTimes',
+            'keywords' => 'keywords',
             'tag' => 'tag',
             'release_datetime' => 'releaseDatetime',
             'is_delete' => 'isDelete',
@@ -204,6 +211,10 @@ class Article {
      */
     public function getTag(){
         return $this->tag;
+    }
+    
+    public function getKeywords(){
+        return $this->keywords;
     }
     
     /**
@@ -316,6 +327,10 @@ class Article {
      */
     public function setTag($tag){
         $this->tag = $tag;
+    }
+
+    public function setKeywords($keywords){
+        $this->keywords = $keywords;
     }
     
     /**

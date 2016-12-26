@@ -82,6 +82,17 @@
                             </td>
                         </tr>
                         <tr>
+                            <td class="header">SEO关键字：</td>
+                            <td class="">
+                                <div class="select_border">
+                                    <div class="select_containers ">
+                                        <input type="text" name="keywords" id="keywords" value="{%$article.keywords%}"  class="input-text lh30" size="40">
+                                        <label style="margin-top:7px;padding-left:5px;float:right;">多个用","相隔</label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
                             <td class="header">列表图片：</td>
                             <td class="">
                                 <img id="headimage" src="{%$article.headimage%}" onerror="this.src='/static/backend/images/no_image.png'" style="width:200px;"/><br />
@@ -203,6 +214,7 @@ $(function(){
         var headimage = $("#headimagesrc");
         var headcontent = $("#headcontent");
         var content = $("#content");
+        var keywords = $("#keywords");
         
         var checktitle = validata_title(title,title.val());
         var checkheadcontent = validata_headcontent(headcontent,headcontent.val());
@@ -231,7 +243,8 @@ $(function(){
             'headimage':headimage.val(),
             'headcontent':headcontent.val(),
             'content':contentck.getData(),
-            'committype':committype
+            'committype':committype,
+            'keywords':keywords.val()
         };
         
         $.ajax({

@@ -25,7 +25,7 @@ class SEOService extends ServiceBase{
         return array(
             'description' => StringUtils::filterHtmlEntity(mb_substr($articleInfo['content'],0,300,'utf-8')),
             'title'       => $articleInfo['title'],
-            'keywords'    => $keywords,
+            'keywords'    => $keywords . "," . $articleInfo['keywords'],
         );        
     }
 }
