@@ -146,6 +146,7 @@ div.commentsubmit:hover{
 	-moz-box-shadow:0 0 10px #53a2e1;
 }
 
+@media screen and (min-width: 1024px) {
 .inputblue{
 	transition:all 0.30s ease-in-out;
 	-webkit-transition: all 0.30s ease-in-out;
@@ -157,6 +158,23 @@ div.commentsubmit:hover{
 	margin-top:10px;
 	margin-right:3px;
 }
+}
+
+@media screen and (max-width: 512px) {
+.inputblue{
+	transition:all 0.30s ease-in-out;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	border:#bcb6b6 1px solid;
+	border-radius:3px;
+	outline:none;
+	height:25px;
+    width:300px !important;
+	margin-top:10px;
+	margin-right:3px;
+}
+}
+
 .inputblue:focus{
 	border:#53a2e1 1px solid;
 	box-shadow:0 0 10px #53a2e1;

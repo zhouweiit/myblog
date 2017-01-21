@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>{%if $TDK['title']%}{%$TDK['title']%} | {%/if%}未舟 - zwiter.com</title>
 {%if !$TDK['description']%}
-<meta name="description"  content="未舟的IT技术博客，常用语言PHP、C、JAVA。关注架构开发、底层开发、性能优化。真心希望大家阅读后能有所收获。www.zwiter.com" />
+<meta name="description"  content="未舟的IT技术博客，常用语言PHP、C、JAVA、GO。关注架构开发、底层开发、性能优化。真心希望大家阅读后能有所收获。www.zwiter.com" />
 {%else%}
 <meta name="description"  content="{%$TDK['description']%}" />
 {%/if%}

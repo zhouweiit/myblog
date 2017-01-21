@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21, created on 2016-12-26 18:05:13
+<?php /* Smarty version Smarty-3.1.21, created on 2017-01-21 23:57:23
          compiled from "/home/zhouwei/workspace/myblog/app/smarty/views/template/frontend/page/article/info.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:8571675435682f85a2bf0f7-28588794%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,13 +7,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2f3d2e08a2877cc91eb4b8723a792a87c0757191' => 
     array (
       0 => '/home/zhouwei/workspace/myblog/app/smarty/views/template/frontend/page/article/info.tpl',
-      1 => 1482746678,
+      1 => 1485014242,
       2 => 'file',
     ),
     '7c6678bcb6c6c4af387b5ed998cb0f869a7b25b6' => 
     array (
       0 => '/home/zhouwei/workspace/myblog/app/smarty/views/template/common/page/frontLayout.tpl',
-      1 => 1482746678,
+      1 => 1485014242,
       2 => 'file',
     ),
   ),
@@ -37,7 +37,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 echo $_smarty_tpl->tpl_vars['TDK']->value['title'];?>
  | <?php }?>未舟 - zwiter.com</title>
 <?php if (!$_smarty_tpl->tpl_vars['TDK']->value['description']) {?>
-<meta name="description"  content="未舟的IT技术博客，常用语言PHP、C、JAVA。关注架构开发、底层开发、性能优化。真心希望大家阅读后能有所收获。www.zwiter.com" />
+<meta name="description"  content="未舟的IT技术博客，常用语言PHP、C、JAVA、GO。关注架构开发、底层开发、性能优化。真心希望大家阅读后能有所收获。www.zwiter.com" />
 <?php } else { ?>
 <meta name="description"  content="<?php echo $_smarty_tpl->tpl_vars['TDK']->value['description'];?>
 " />
