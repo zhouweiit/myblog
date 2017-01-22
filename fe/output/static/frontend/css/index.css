@@ -173,6 +173,9 @@ div.commentsubmit:hover{
 	margin-top:10px;
 	margin-right:3px;
 }
+input.inputblue{
+    width:100px !important;
+}        
 }
 
 .inputblue:focus{
