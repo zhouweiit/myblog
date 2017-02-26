@@ -17,12 +17,9 @@
 <link href="{%uri name="frontend:static/css/index.css"%}" rel="stylesheet">
 <link href="{%uri name="frontend:static/css/about.css"%}" rel="stylesheet">
 <link href="{%uri name="frontend:static/css/style.css"%}" rel="stylesheet">
+<link href="{%uri name="common:static/plugin/syntaxhighlighter/styles/shCoreDefault.css"%}" rel="stylesheet"/>
 <script src="{%uri name="common:static/js/jquery-1.8.1.min.js"%}"></script>
-<script src="{%uri name="common:static/js/jsencrypt.min.js"%}"></script>
-<script src="{%uri name="common:static/js/modernizr.js"%}"></script>
-<script src="{%uri name="common:static/js/silder.js"%}"></script>
-<script src="{%uri name="common:static/js/jquery.tagcanvas.min.js"%}"></script>
-<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+<script src="{%uri name="common:static/plugin/ckeditor/ckeditor.js"%}"></script>
 <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
 {%block name="head"%}{%/block%}
 <!--[if lt IE 9]>
@@ -32,4 +29,27 @@
 {%body id="type_page"%}
 {%block name="content"%}{%/block%}
 {%require name='common:page/frontLayout.tpl'%}{%/body%}
+<script type="text/javascript">
+$(function(){  
+            SyntaxHighlighter.autoloader(
+            ['js','jscript','javascript','{%uri name="common:static/plugin/syntaxhighlighter/scripts/shBrushJScript.js"%}'],
+            ['bash','shell','{%uri name="common:static/plugin/syntaxhighlighter/scripts/shBrushBash.js"%}'],
+            ['css','css','{%uri name="common:static/plugin/syntaxhighlighter/scripts/shBrushCss.js"%}'],
+            ['xml','html','{%uri name="common:static/plugin/syntaxhighlighter/scripts/shBrushXml.js"%}'],
+            ['sql','sq','{%uri name="common:static/plugin/syntaxhighlighter/scripts/shBrushSql.js"%}'],
+            ['php','php','{%uri name="common:static/plugin/syntaxhighlighter/scripts/shBrushPhp.js"%}'],
+            ['java','java','{%uri name="common:static/plugin/syntaxhighlighter/scripts/shBrushJava.js"%}'],
+            ['c','c','{%uri name="common:static/plugin/syntaxhighlighter/scripts/shBrushCpp.js"%}']
+            ); 
+            SyntaxHighlighter.all();
+}); 
+</script>
+<script src="{%uri name="common:static/js/jsencrypt.min.js"%}"></script>
+<script src="{%uri name="common:static/js/modernizr.js"%}"></script>
+<script src="{%uri name="common:static/js/silder.js"%}"></script>
+<script src="{%uri name="common:static/js/jquery.tagcanvas.min.js"%}"></script>
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+<script src="{%uri name="common:static/plugin/syntaxhighlighter/scripts/shCore.js"%}"></script>
+<script src="{%uri name="common:static/plugin/syntaxhighlighter/scripts/shAutoloader.js"%}"></script>
 {%/html%}
+

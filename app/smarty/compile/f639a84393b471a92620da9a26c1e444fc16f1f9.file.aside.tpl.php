@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21, created on 2017-01-22 22:32:37
+<?php /* Smarty version Smarty-3.1.21, created on 2017-02-26 16:39:28
          compiled from "/home/zhouwei/workspace/myblog/app/smarty/views/template/frontend/widget/aside.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3807236155682b2ccbcfa18-23442581%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f639a84393b471a92620da9a26c1e444fc16f1f9' => 
     array (
       0 => '/home/zhouwei/workspace/myblog/app/smarty/views/template/frontend/widget/aside.tpl',
-      1 => 1485095556,
+      1 => 1488098368,
       2 => 'file',
     ),
   ),
@@ -176,7 +176,9 @@ $_smarty_tpl->tpl_vars['link']->_loop = true;
 
 <div class="copyright">
   <ul>
-    <p>Copyright © 2015 zwiter</p>
+    <p>Copyright © 2017 zwiter</p>
     <p>All Rights Reserved</p>
+    <p>京ICP备15063372号-1</p>
   </ul>
-</div><?php }} ?>
+</div>
+<?php }} ?>
