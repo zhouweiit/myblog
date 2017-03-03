@@ -31,6 +31,7 @@
 3.开发ORM框架，讲查询结构映射成与表对应的pojo类  
 4.良好的代码结构与代码编写  
 
+博客地址：http://www.zwiter.com
 
 周威
 zhouwei
